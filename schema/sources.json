@@ -1,0 +1,523 @@
+{
+  "schemaVersion": "0.3.0",
+  "note": "Licenças e termos são ponto de partida para conferência, não aconselhamento jurídico. licenseCheckedAt fica null até alguém do projeto ler os termos atuais.",
+  "sources": [
+    {
+      "id": "ucdp",
+      "name": "Uppsala Conflict Data Program",
+      "shortName": "UCDP",
+      "org": "Universidade de Uppsala",
+      "url": "https://ucdp.uu.se",
+      "access": "aberto",
+      "license": "CC BY 4.0",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "mensal (candidatos: diária)",
+      "latencyHours": 720,
+      "layers": [
+        "conflito"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "acled",
+      "name": "ACLED",
+      "shortName": "ACLED",
+      "org": "Armed Conflict Location & Event Data",
+      "url": "https://acleddata.com",
+      "access": "chave_api",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "semanal",
+      "latencyHours": 168,
+      "layers": [
+        "conflito",
+        "protesto"
+      ],
+      "licenseCheckedAt": null,
+      "env": [
+        "ACLED_KEY",
+        "ACLED_EMAIL"
+      ]
+    },
+    {
+      "id": "gdelt",
+      "name": "GDELT Project",
+      "shortName": "GDELT",
+      "org": "GDELT",
+      "url": "https://www.gdeltproject.org",
+      "access": "aberto",
+      "license": "uso aberto com atribuição",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "agregador",
+      "cadence": "15 min",
+      "latencyHours": 0.25,
+      "layers": [
+        "conflito",
+        "protesto",
+        "diplomacia",
+        "economia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "reliefweb",
+      "name": "ReliefWeb",
+      "shortName": "ReliefWeb",
+      "org": "UN OCHA",
+      "url": "https://reliefweb.int",
+      "access": "aberto",
+      "license": "varia por documento",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 6,
+      "layers": [
+        "conflito",
+        "clima",
+        "sismico"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "idmc",
+      "name": "Internal Displacement Monitoring Centre",
+      "shortName": "IDMC",
+      "org": "IDMC",
+      "url": "https://www.internal-displacement.org",
+      "access": "aberto",
+      "license": "CC BY-NC 4.0",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 48,
+      "layers": [
+        "conflito",
+        "clima"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "unhcr",
+      "name": "UNHCR Refugee Data",
+      "shortName": "ACNUR",
+      "org": "ACNUR",
+      "url": "https://www.unhcr.org/refugee-statistics",
+      "access": "aberto",
+      "license": "CC BY 4.0",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "semestral",
+      "latencyHours": 2160,
+      "layers": [
+        "conflito"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "usgs",
+      "name": "USGS Earthquake Hazards",
+      "shortName": "USGS",
+      "org": "Serviço Geológico dos EUA",
+      "url": "https://earthquake.usgs.gov",
+      "access": "aberto",
+      "license": "domínio público",
+      "redistribution": "permitida",
+      "attributionRequired": false,
+      "reliability": "primaria",
+      "cadence": "1 min",
+      "latencyHours": 0.1,
+      "layers": [
+        "sismico"
+      ],
+      "licenseCheckedAt": null,
+      "endpoint": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
+    },
+    {
+      "id": "emsc",
+      "name": "EMSC",
+      "shortName": "EMSC",
+      "org": "European-Mediterranean Seismological Centre",
+      "url": "https://www.emsc-csem.org",
+      "access": "aberto",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "1 min",
+      "latencyHours": 0.1,
+      "layers": [
+        "sismico"
+      ],
+      "licenseCheckedAt": null,
+      "endpoint": "https://www.seismicportal.eu/fdsnws/event/1/query"
+    },
+    {
+      "id": "gdacs",
+      "name": "GDACS",
+      "shortName": "GDACS",
+      "org": "ONU e Comissão Europeia (JRC)",
+      "url": "https://www.gdacs.org",
+      "access": "aberto",
+      "license": "uso aberto com atribuição",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 1,
+      "layers": [
+        "clima",
+        "sismico"
+      ],
+      "licenseCheckedAt": null,
+      "endpoint": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/MAP"
+    },
+    {
+      "id": "firms",
+      "name": "NASA FIRMS",
+      "shortName": "NASA FIRMS",
+      "org": "NASA",
+      "url": "https://firms.modaps.eosdis.nasa.gov",
+      "access": "chave_api",
+      "license": "aberto (NASA)",
+      "redistribution": "permitida",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "3 h",
+      "latencyHours": 3,
+      "layers": [
+        "clima"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "copernicus_ems",
+      "name": "Copernicus Emergency Management",
+      "shortName": "Copernicus",
+      "org": "União Europeia",
+      "url": "https://emergency.copernicus.eu",
+      "access": "aberto",
+      "license": "licença Copernicus",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "por ativação",
+      "latencyHours": 24,
+      "layers": [
+        "clima"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "ifes",
+      "name": "IFES ElectionGuide",
+      "shortName": "IFES",
+      "org": "IFES",
+      "url": "https://www.electionguide.org",
+      "access": "aberto",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 24,
+      "layers": [
+        "eleicao"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "tse_br",
+      "name": "Tribunal Superior Eleitoral",
+      "shortName": "TSE",
+      "org": "Justiça Eleitoral do Brasil",
+      "url": "https://dadosabertos.tse.jus.br",
+      "access": "aberto",
+      "license": "dados abertos",
+      "redistribution": "permitida",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 1,
+      "layers": [
+        "eleicao"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "fec_us",
+      "name": "Federal Election Commission",
+      "shortName": "FEC",
+      "org": "Governo dos EUA",
+      "url": "https://www.fec.gov/data",
+      "access": "aberto",
+      "license": "domínio público",
+      "redistribution": "permitida",
+      "attributionRequired": false,
+      "reliability": "primaria",
+      "cadence": "diária",
+      "latencyHours": 24,
+      "layers": [
+        "eleicao"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "wto",
+      "name": "WTO Data",
+      "shortName": "OMC",
+      "org": "Organização Mundial do Comércio",
+      "url": "https://data.wto.org",
+      "access": "chave_api",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 72,
+      "layers": [
+        "economia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "comtrade",
+      "name": "UN Comtrade",
+      "shortName": "Comtrade",
+      "org": "ONU",
+      "url": "https://comtradeplus.un.org",
+      "access": "chave_api",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "mensal",
+      "latencyHours": 720,
+      "layers": [
+        "economia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "imf",
+      "name": "IMF Data",
+      "shortName": "FMI",
+      "org": "Fundo Monetário Internacional",
+      "url": "https://data.imf.org",
+      "access": "aberto",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "mensal",
+      "latencyHours": 720,
+      "layers": [
+        "economia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "worldbank",
+      "name": "World Bank Open Data",
+      "shortName": "Banco Mundial",
+      "org": "Banco Mundial",
+      "url": "https://data.worldbank.org",
+      "access": "aberto",
+      "license": "CC BY 4.0",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "anual",
+      "latencyHours": 8760,
+      "layers": [
+        "economia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "un_sc",
+      "name": "Lista Consolidada do Conselho de Segurança",
+      "shortName": "ONU/CSNU",
+      "org": "ONU",
+      "url": "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list",
+      "access": "aberto",
+      "license": "uso público",
+      "redistribution": "permitida",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "por atualização",
+      "latencyHours": 24,
+      "layers": [
+        "diplomacia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "eu_sanctions",
+      "name": "EU Sanctions Map",
+      "shortName": "UE",
+      "org": "União Europeia",
+      "url": "https://www.sanctionsmap.eu",
+      "access": "aberto",
+      "license": "reuso UE",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "por atualização",
+      "latencyHours": 24,
+      "layers": [
+        "diplomacia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "ofac",
+      "name": "OFAC Sanctions List",
+      "shortName": "OFAC",
+      "org": "Tesouro dos EUA",
+      "url": "https://sanctionssearch.ofac.treas.gov",
+      "access": "aberto",
+      "license": "domínio público",
+      "redistribution": "permitida",
+      "attributionRequired": false,
+      "reliability": "primaria",
+      "cadence": "por atualização",
+      "latencyHours": 24,
+      "layers": [
+        "diplomacia"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "opensky",
+      "name": "OpenSky Network",
+      "shortName": "OpenSky",
+      "org": "OpenSky Network",
+      "url": "https://opensky-network.org",
+      "access": "chave_api",
+      "license": "uso não comercial",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "colaborativa",
+      "cadence": "10 s",
+      "latencyHours": 0.01,
+      "layers": [
+        "militar"
+      ],
+      "licenseCheckedAt": null,
+      "endpoint": "https://opensky-network.org/api/states/all",
+      "env": [
+        "OPENSKY_CLIENT_ID",
+        "OPENSKY_CLIENT_SECRET"
+      ]
+    },
+    {
+      "id": "aisstream",
+      "name": "AISStream",
+      "shortName": "AISStream",
+      "org": "aisstream.io",
+      "url": "https://aisstream.io",
+      "access": "chave_api",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "colaborativa",
+      "cadence": "contínua",
+      "latencyHours": 0.01,
+      "layers": [
+        "militar"
+      ],
+      "licenseCheckedAt": null,
+      "endpoint": "wss://stream.aisstream.io/v0/stream",
+      "env": [
+        "AISSTREAM_API_KEY"
+      ]
+    },
+    {
+      "id": "gov_ua",
+      "name": "Ministério da Reintegração da Ucrânia",
+      "shortName": "Gov. Ucrânia",
+      "org": "Governo da Ucrânia",
+      "url": "https://minre.gov.ua",
+      "access": "aberto",
+      "license": "governamental",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "irregular",
+      "latencyHours": 168,
+      "layers": [
+        "conflito"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "cisa_kev",
+      "name": "CISA Known Exploited Vulnerabilities",
+      "shortName": "CISA KEV",
+      "org": "Agência de Cibersegurança dos EUA",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "endpoint": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "access": "aberto",
+      "license": "domínio público",
+      "redistribution": "permitida",
+      "attributionRequired": false,
+      "reliability": "primaria",
+      "cadence": "dias úteis",
+      "latencyHours": 24,
+      "layers": [
+        "ciber"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "ioda",
+      "name": "Internet Outage Detection and Analysis",
+      "shortName": "IODA",
+      "org": "Georgia Tech",
+      "url": "https://ioda.inetintel.cc.gatech.edu",
+      "endpoint": "https://api.ioda.inetintel.cc.gatech.edu/v2/outages/events",
+      "access": "aberto",
+      "license": "termos próprios",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "5 min",
+      "latencyHours": 0.5,
+      "layers": [
+        "ciber"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "curadoria",
+      "name": "Curadoria Polarized",
+      "shortName": "Curadoria",
+      "org": "Projeto Polarized",
+      "url": "https://polarized.example/curadoria",
+      "access": "aberto",
+      "license": "a definir pelo projeto",
+      "redistribution": "verificar",
+      "attributionRequired": false,
+      "reliability": "curadoria",
+      "cadence": "manual",
+      "latencyHours": 24,
+      "layers": [
+        "conflito",
+        "protesto",
+        "eleicao",
+        "economia",
+        "clima",
+        "diplomacia"
+      ],
+      "licenseCheckedAt": null
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+ "type": "FeatureCollection",
+ "note": "fixture: formato da API GDACS, eventos fictícios",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.1,
+     33.7
+    ]
+   },
+   "properties": {
+    "eventtype": "FL",
+    "eventid": 900101,
+    "episodeid": 1,
+    "name": null,
+    "alertlevel": "Orange",
+    "country": "Pakistan",
+    "iso3": "PAK",
+    "fromdate": "2026-10-21T17:00:00Z",
+    "todate": "2026-10-25T17:00:00Z",
+    "datemodified": "2026-10-25T16:20:00Z",
+    "iscurrent": "true",
+    "severitydata": {
+     "severitytext": "chuva acumulada acima da média em 5 distritos"
+    },
+    "url": {
+     "report": "https://www.gdacs.org/report.aspx?eventtype=FL&eventid=900101"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     110.45,
+     -7.54
+    ]
+   },
+   "properties": {
+    "eventtype": "VO",
+    "eventid": 900102,
+    "episodeid": 1,
+    "name": "Vulcão de exemplo",
+    "alertlevel": "Orange",
+    "country": "Indonesia",
+    "iso3": "IDN",
+    "fromdate": "2026-10-24T17:00:00Z",
+    "todate": "2026-10-25T17:00:00Z",
+    "datemodified": "2026-10-25T16:20:00Z",
+    "iscurrent": "true",
+    "severitydata": {
+     "severitytext": "coluna de cinzas de 3 km"
+    },
+    "url": {
+     "report": "https://www.gdacs.org/report.aspx?eventtype=VO&eventid=900102"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     124.2,
+     14.6
+    ]
+   },
+   "properties": {
+    "eventtype": "TC",
+    "eventid": 900103,
+    "episodeid": 1,
+    "name": "Ciclone Exemplo",
+    "alertlevel": "Red",
+    "country": "Philippines",
+    "iso3": "PHL",
+    "fromdate": "2026-10-24T17:00:00Z",
+    "todate": "2026-10-25T17:00:00Z",
+    "datemodified": "2026-10-25T16:20:00Z",
+    "iscurrent": "true",
+    "severitydata": {
+     "severitytext": "ventos sustentados de 185 km/h"
+    },
+    "url": {
+     "report": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=900103"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     150.6,
+     -33.6
+    ]
+   },
+   "properties": {
+    "eventtype": "WF",
+    "eventid": 900104,
+    "episodeid": 1,
+    "name": null,
+    "alertlevel": "Green",
+    "country": "Australia",
+    "iso3": "AUS",
+    "fromdate": "2026-10-24T17:00:00Z",
+    "todate": "2026-10-25T17:00:00Z",
+    "datemodified": "2026-10-25T16:20:00Z",
+    "iscurrent": "true",
+    "severitydata": {
+     "severitytext": "2.100 ha queimados"
+    },
+    "url": {
+     "report": "https://www.gdacs.org/report.aspx?eventtype=WF&eventid=900104"
+    }
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     141.9,
+     36.1
+    ]
+   },
+   "properties": {
+    "eventtype": "EQ",
+    "eventid": 900105,
+    "episodeid": 1,
+    "name": null,
+    "alertlevel": "Green",
+    "country": "Japan",
+    "iso3": "JPN",
+    "fromdate": "2026-10-25T16:00:00Z",
+    "todate": "2026-10-25T17:00:00Z",
+    "datemodified": "2026-10-25T16:20:00Z",
+    "iscurrent": "true",
+    "severitydata": {
+     "severitytext": "M 6.1"
+    },
+    "url": {
+     "report": "https://www.gdacs.org/report.aspx?eventtype=EQ&eventid=900105"
+    }
+   }
+  }
+ ]
+}

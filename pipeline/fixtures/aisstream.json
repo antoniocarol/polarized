@@ -1,0 +1,117 @@
+[
+ {
+  "MessageType": "ShipStaticData",
+  "MetaData": {
+   "MMSI": 247000202,
+   "ShipName": "NAVIO EXEMPLO"
+  },
+  "Message": {
+   "ShipStaticData": {
+    "Type": 35,
+    "Name": "NAVIO EXEMPLO",
+    "CallSign": "EXMP1",
+    "ImoNumber": 0
+   }
+  }
+ },
+ {
+  "MessageType": "PositionReport",
+  "MetaData": {
+   "MMSI": 247000202,
+   "ShipName": "NAVIO EXEMPLO",
+   "latitude": 36.6,
+   "longitude": 15.9,
+   "time_utc": "2026-10-25 16:30:00.000000000 +0000 UTC"
+  },
+  "Message": {
+   "PositionReport": {
+    "Cog": 95,
+    "Sog": 12,
+    "TrueHeading": 511,
+    "Latitude": 36.6,
+    "Longitude": 15.9,
+    "UserID": 247000202
+   }
+  }
+ },
+ {
+  "MessageType": "PositionReport",
+  "MetaData": {
+   "MMSI": 247000202,
+   "ShipName": "NAVIO EXEMPLO",
+   "latitude": 36.65,
+   "longitude": 16.4,
+   "time_utc": "2026-10-25 16:55:00.000000000 +0000 UTC"
+  },
+  "Message": {
+   "PositionReport": {
+    "Cog": 96,
+    "Sog": 12,
+    "TrueHeading": 511,
+    "Latitude": 36.65,
+    "Longitude": 16.4,
+    "UserID": 247000202
+   }
+  }
+ },
+ {
+  "MessageType": "PositionReport",
+  "MetaData": {
+   "MMSI": 338000001,
+   "ShipName": "USNS EXEMPLO",
+   "latitude": 15.0,
+   "longitude": 41.9,
+   "time_utc": "2026-10-25 15:55:00.000000000 +0000 UTC"
+  },
+  "Message": {
+   "PositionReport": {
+    "Cog": 334,
+    "Sog": 14,
+    "TrueHeading": 511,
+    "Latitude": 15.0,
+    "Longitude": 41.9,
+    "UserID": 338000001
+   }
+  }
+ },
+ {
+  "MessageType": "PositionReport",
+  "MetaData": {
+   "MMSI": 338000001,
+   "ShipName": "USNS EXEMPLO",
+   "latitude": 15.9,
+   "longitude": 41.3,
+   "time_utc": "2026-10-25 16:57:00.000000000 +0000 UTC"
+  },
+  "Message": {
+   "PositionReport": {
+    "Cog": 333,
+    "Sog": 14,
+    "TrueHeading": 511,
+    "Latitude": 15.9,
+    "Longitude": 41.3,
+    "UserID": 338000001
+   }
+  }
+ },
+ {
+  "MessageType": "PositionReport",
+  "MetaData": {
+   "MMSI": 636000303,
+   "ShipName": "CARGUEIRO CIVIL",
+   "latitude": 1.2,
+   "longitude": 103.8,
+   "time_utc": "2026-10-25 16:56:00.000000000 +0000 UTC"
+  },
+  "Message": {
+   "PositionReport": {
+    "Cog": 80,
+    "Sog": 11,
+    "TrueHeading": 511,
+    "Latitude": 1.2,
+    "Longitude": 103.8,
+    "UserID": 636000303
+   }
+  }
+ }
+]

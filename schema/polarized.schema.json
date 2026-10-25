@@ -1,0 +1,1569 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://polarized.example/schema/0.3.0/snapshot.json",
+  "title": "Polarized Snapshot",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "window",
+    "dataClass",
+    "sources",
+    "ingest",
+    "entities"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": "0.3.0"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "window": {
+      "type": "object",
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "to": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "dataClass": {
+      "enum": [
+        "example",
+        "live",
+        "mixed"
+      ]
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "ingest": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ingest"
+      }
+    },
+    "policy": {
+      "type": "object"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
+    }
+  },
+  "$defs": {
+    "layer": {
+      "enum": [
+        "conflito",
+        "protesto",
+        "eleicao",
+        "economia",
+        "clima",
+        "sismico",
+        "diplomacia",
+        "ciber",
+        "militar"
+      ]
+    },
+    "status": {
+      "enum": [
+        "nao_verificado",
+        "corroborado",
+        "verificado",
+        "disputado",
+        "retratado"
+      ]
+    },
+    "geometry": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "type",
+        "coordinates"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "Point",
+            "MultiPoint",
+            "LineString",
+            "Polygon",
+            "MultiPolygon"
+          ]
+        },
+        "coordinates": {
+          "type": "array"
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "required": [
+        "iso2",
+        "iso3",
+        "name"
+      ],
+      "properties": {
+        "iso2": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{2}$"
+        },
+        "iso3": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{3}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "admin1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "time": {
+      "type": "object",
+      "required": [
+        "start",
+        "end",
+        "observedAt",
+        "precision"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "precision": {
+          "enum": [
+            "year",
+            "month",
+            "day",
+            "hour",
+            "minute"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceRef": {
+      "type": "object",
+      "required": [
+        "sourceId",
+        "retrievedAt"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "retrievedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/sourceRef"
+      }
+    },
+    "text": {
+      "type": "object",
+      "required": [
+        "headline",
+        "summary"
+      ],
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 140
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 320
+        },
+        "body": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "texts": {
+      "type": "object",
+      "required": [
+        "pt"
+      ],
+      "additionalProperties": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "intensity": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 5
+    },
+    "condition": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "layer",
+        "subtype",
+        "place",
+        "status",
+        "confidence",
+        "sources",
+        "text",
+        "updatedAt",
+        "geo",
+        "time",
+        "intensity",
+        "intensityBasis"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+:[a-z]+:[A-Za-z0-9._-]+$"
+        },
+        "schemaVersion": {
+          "const": "0.3.0"
+        },
+        "layer": {
+          "$ref": "#/$defs/layer"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "place": {
+          "$ref": "#/$defs/place"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "text": {
+          "$ref": "#/$defs/texts"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "url"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clusterKey": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "geo": {
+          "$ref": "#/$defs/geometry"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "intensity": {
+          "$ref": "#/$defs/intensity"
+        },
+        "intensityBasis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "const": "condition"
+        }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "layer",
+        "subtype",
+        "place",
+        "status",
+        "confidence",
+        "sources",
+        "text",
+        "updatedAt",
+        "geo",
+        "time",
+        "intensity",
+        "intensityBasis"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+:[a-z]+:[A-Za-z0-9._-]+$"
+        },
+        "schemaVersion": {
+          "const": "0.3.0"
+        },
+        "layer": {
+          "$ref": "#/$defs/layer"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "place": {
+          "$ref": "#/$defs/place"
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "text": {
+          "$ref": "#/$defs/texts"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "url"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "publishedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clusterKey": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "geo": {
+          "$ref": "#/$defs/geometry"
+        },
+        "time": {
+          "$ref": "#/$defs/time"
+        },
+        "intensity": {
+          "$ref": "#/$defs/intensity"
+        },
+        "intensityBasis": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "const": "event"
+        },
+        "parentId": {
+          "type": "string"
+        },
+        "magnitude": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "value",
+            "scale"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "number"
+            },
+            "scale": {
+              "type": "string",
+              "maxLength": 8
+            }
+          }
+        },
+        "depthKm": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "measure": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "subject",
+        "metric",
+        "unit",
+        "periodStart",
+        "periodEnd",
+        "assertions",
+        "spread",
+        "disputed",
+        "consensus",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "0.3.0"
+        },
+        "kind": {
+          "const": "measure"
+        },
+        "subject": {
+          "type": "object",
+          "required": [
+            "type",
+            "id"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "condition",
+                "event",
+                "place"
+              ]
+            },
+            "id": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "metric": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "periodStart": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "periodEnd": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assertions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "sourceId",
+              "value",
+              "observedAt"
+            ],
+            "properties": {
+              "sourceId": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              },
+              "observedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "method": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "spread": {
+          "type": "object",
+          "required": [
+            "low",
+            "high",
+            "relative"
+          ],
+          "properties": {
+            "low": {
+              "type": "number"
+            },
+            "high": {
+              "type": "number"
+            },
+            "relative": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "disputed": {
+          "type": "boolean"
+        },
+        "consensus": {
+          "type": "null"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "track": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "layer",
+        "subtype",
+        "asset",
+        "classification",
+        "samples",
+        "firstSeen",
+        "lastSeen",
+        "trackStatus",
+        "sampleRateSec",
+        "releaseDelayMinutes",
+        "status",
+        "sources",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "schemaVersion": {
+          "const": "0.3.0"
+        },
+        "kind": {
+          "const": "track"
+        },
+        "layer": {
+          "const": "militar"
+        },
+        "subtype": {
+          "enum": [
+            "aeronave",
+            "navio",
+            "comboio"
+          ]
+        },
+        "asset": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "callsign": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "icao24": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "mmsi": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "imo": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "model": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "class": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "operator": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "flag": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "classification": {
+          "type": "object",
+          "required": [
+            "military",
+            "rule",
+            "confidence"
+          ],
+          "properties": {
+            "military": {
+              "type": "boolean"
+            },
+            "rule": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "samples": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "t",
+              "lat",
+              "lon"
+            ],
+            "properties": {
+              "t": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "lat": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "lon": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              },
+              "altM": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "speedKn": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "headingDeg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 360
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "firstSeen": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastSeen": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trackStatus": {
+          "enum": [
+            "live",
+            "stale",
+            "lost"
+          ]
+        },
+        "sampleRateSec": {
+          "type": "number",
+          "minimum": 0
+        },
+        "releaseDelayMinutes": {
+          "type": "number",
+          "minimum": 0
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "analysis": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "analysisType",
+        "subjectIds",
+        "layer",
+        "question",
+        "text",
+        "points",
+        "counterpoint",
+        "limits",
+        "method",
+        "review",
+        "guards",
+        "status",
+        "confidence",
+        "sources",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^plz:analysis:[A-Za-z0-9._-]+$"
+        },
+        "schemaVersion": {
+          "const": "0.3.0"
+        },
+        "kind": {
+          "const": "analysis"
+        },
+        "analysisType": {
+          "enum": [
+            "precedente",
+            "impacto",
+            "checagem",
+            "contexto"
+          ]
+        },
+        "subjectIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "layer": {
+          "$ref": "#/$defs/layer"
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "region": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "iso2",
+            "name"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "iso2": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "text": {
+          "$ref": "#/$defs/texts"
+        },
+        "points": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "text",
+              "supportedBy"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fato",
+                  "analise"
+                ]
+              },
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "supportedBy": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "type": "string"
+                    },
+                    "precedent": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "analise"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "supportedBy": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "fato"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "supportedBy": {
+                      "minItems": 1
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "precedents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "case",
+              "place",
+              "period",
+              "outcome",
+              "why",
+              "conditions",
+              "origin",
+              "verified"
+            ],
+            "properties": {
+              "case": {
+                "type": "string"
+              },
+              "place": {
+                "type": "string"
+              },
+              "period": {
+                "type": "string"
+              },
+              "outcome": {
+                "enum": [
+                  "funcionou",
+                  "falhou",
+                  "misto",
+                  "inconclusivo"
+                ]
+              },
+              "why": {
+                "type": "string"
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "origin": {
+                "enum": [
+                  "conhecimento_do_modelo",
+                  "fonte"
+                ]
+              },
+              "sourceUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verified": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "condition",
+              "metHere",
+              "why"
+            ],
+            "properties": {
+              "condition": {
+                "type": "string"
+              },
+              "metHere": {
+                "enum": [
+                  "sim",
+                  "nao",
+                  "parcial",
+                  "incerto"
+                ]
+              },
+              "why": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "impacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "domain",
+              "region",
+              "direction",
+              "chain",
+              "horizon",
+              "magnitude"
+            ],
+            "properties": {
+              "domain": {
+                "type": "string"
+              },
+              "region": {
+                "type": "string"
+              },
+              "direction": {
+                "enum": [
+                  "aumenta",
+                  "diminui",
+                  "misto",
+                  "incerto"
+                ]
+              },
+              "chain": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "horizon": {
+                "enum": [
+                  "dias",
+                  "meses",
+                  "anos"
+                ]
+              },
+              "magnitude": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "required": [
+                  "value",
+                  "unit",
+                  "basis"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string"
+                  },
+                  "basis": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "speaker",
+              "quote",
+              "class",
+              "verdict",
+              "why",
+              "supportedBy"
+            ],
+            "properties": {
+              "speaker": {
+                "type": "string"
+              },
+              "quote": {
+                "type": "string"
+              },
+              "class": {
+                "enum": [
+                  "fato_verificavel",
+                  "promessa",
+                  "opiniao"
+                ]
+              },
+              "verdict": {
+                "enum": [
+                  "confere",
+                  "nao_confere",
+                  "impreciso",
+                  "sem_dados",
+                  "nao_se_aplica"
+                ]
+              },
+              "why": {
+                "type": "string"
+              },
+              "supportedBy": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [],
+                  "properties": {
+                    "entityId": {
+                      "type": "string"
+                    },
+                    "sourceId": {
+                      "type": "string"
+                    },
+                    "precedent": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "counterpoint": {
+          "type": "object",
+          "required": [
+            "text",
+            "supportedBy"
+          ],
+          "properties": {
+            "text": {
+              "type": "string",
+              "minLength": 20
+            },
+            "supportedBy": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                  "entityId": {
+                    "type": "string"
+                  },
+                  "sourceId": {
+                    "type": "string"
+                  },
+                  "precedent": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "limits": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "type": "object",
+          "required": [
+            "provider",
+            "model",
+            "promptVersion",
+            "generatedAt"
+          ],
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "promptVersion": {
+              "type": "string"
+            },
+            "generatedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "effort": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "crossCheck": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "required": [
+            "provider",
+            "model",
+            "agreement",
+            "divergent"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "agreement": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "divergent": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "required": [
+            "status",
+            "reviewer",
+            "at",
+            "note"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "pendente",
+                "aprovada",
+                "rejeitada"
+              ]
+            },
+            "reviewer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "note": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "guards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "rule",
+              "passed",
+              "detail"
+            ],
+            "properties": {
+              "rule": {
+                "type": "string"
+              },
+              "passed": {
+                "type": "boolean"
+              },
+              "detail": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "entity": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/condition"
+        },
+        {
+          "$ref": "#/$defs/event"
+        },
+        {
+          "$ref": "#/$defs/measure"
+        },
+        {
+          "$ref": "#/$defs/track"
+        },
+        {
+          "$ref": "#/$defs/analysis"
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "org",
+        "url",
+        "access",
+        "license",
+        "redistribution",
+        "attributionRequired",
+        "reliability",
+        "cadence",
+        "latencyHours",
+        "layers",
+        "licenseCheckedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "org": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "access": {
+          "enum": [
+            "aberto",
+            "chave_api",
+            "restrito"
+          ]
+        },
+        "license": {
+          "type": "string"
+        },
+        "redistribution": {
+          "enum": [
+            "permitida",
+            "com_atribuicao",
+            "proibida",
+            "verificar"
+          ]
+        },
+        "attributionRequired": {
+          "type": "boolean"
+        },
+        "reliability": {
+          "enum": [
+            "primaria",
+            "agregador",
+            "imprensa",
+            "colaborativa",
+            "curadoria"
+          ]
+        },
+        "cadence": {
+          "type": "string"
+        },
+        "latencyHours": {
+          "type": "number"
+        },
+        "layers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/layer"
+          }
+        },
+        "licenseCheckedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ingest": {
+      "type": "object",
+      "required": [
+        "sourceId",
+        "status",
+        "count",
+        "fetchedAt",
+        "error"
+      ],
+      "properties": {
+        "sourceId": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "falhou",
+            "sem_credencial",
+            "desativada",
+            "fixture",
+            "bloqueada_licenca"
+          ]
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fetchedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ms": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

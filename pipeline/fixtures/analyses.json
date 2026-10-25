@@ -1,0 +1,316 @@
+{
+ "curadoria:evt:br-debate-exemplo|checagem": {
+  "method": {
+   "provider": "exemplo",
+   "model": "redigido-manualmente",
+   "effort": null
+  },
+  "output": {
+   "headline": "O que confere no debate sobre custo de vida (exemplo)",
+   "summary": "Das quatro falas transcritas, uma é fato verificável que confere com os dados, uma é promessa, uma é opinião e uma não tem dado na lista para ser conferida.",
+   "points": [
+    {
+     "type": "fato",
+     "text": "A inflação de alimentos em doze meses registrada nos dados é de 7,8%.",
+     "supportedBy": [
+      {
+       "entityId": "tse_br:cond:br-presidencial",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "A fala do Candidato A sobre inflação de alimentos acima de 7% confere com o valor registrado.",
+     "supportedBy": [
+      {
+       "entityId": "tse_br:cond:br-presidencial",
+       "precedent": null
+      },
+      {
+       "entityId": "curadoria:evt:br-debate-exemplo",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "A promessa de congelamento não traz duração nem regra de saída, o que impede avaliar custo e efeito só com o que foi dito.",
+     "supportedBy": [
+      {
+       "entityId": "curadoria:evt:br-proposta-congelamento-exemplo",
+       "precedent": null
+      }
+     ]
+    }
+   ],
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [
+    {
+     "speaker": "Candidato A",
+     "quote": "A inflação de alimentos passou de 7% em doze meses.",
+     "class": "fato_verificavel",
+     "verdict": "confere",
+     "why": "O valor registrado para os últimos doze meses é 7,8%, acima de 7%.",
+     "supportedBy": [
+      {
+       "entityId": "tse_br:cond:br-presidencial",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "speaker": "Candidato B",
+     "quote": "No primeiro mês de governo vou congelar o preço dos alimentos da cesta básica.",
+     "class": "promessa",
+     "verdict": "nao_se_aplica",
+     "why": "Promessa de ação futura; não há o que conferir agora. Os precedentes da proposta estão no cartão dela.",
+     "supportedBy": [
+      {
+       "entityId": "curadoria:evt:br-proposta-congelamento-exemplo",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "speaker": "Candidato A",
+     "quote": "O meu adversário não entende de economia.",
+     "class": "opiniao",
+     "verdict": "nao_se_aplica",
+     "why": "Juízo sobre uma pessoa, sem fato verificável.",
+     "supportedBy": []
+    },
+    {
+     "speaker": "Candidato B",
+     "quote": "O desemprego hoje é o menor da história do país.",
+     "class": "fato_verificavel",
+     "verdict": "sem_dados",
+     "why": "Não há dado de desemprego na lista de fatos. A fala fica sem conferência até a fonte oficial entrar.",
+     "supportedBy": []
+    }
+   ],
+   "counterpoint": {
+    "text": "Conferir só o número de doze meses pode favorecer quem escolheu o recorte: a inflação de um mês ou de um item específico pode contar outra história, e a fala não diz qual período usou.",
+    "supportedBy": [
+     {
+      "entityId": "tse_br:cond:br-presidencial",
+      "precedent": null
+     }
+    ]
+   },
+   "limits": "Os fatos não trazem desemprego, série mensal de preços nem a íntegra do debate. Falas fora da transcrição não foram analisadas."
+  }
+ },
+ "curadoria:evt:br-proposta-congelamento-exemplo|precedente": {
+  "method": {
+   "provider": "exemplo",
+   "model": "redigido-manualmente",
+   "effort": null
+  },
+  "output": {
+   "headline": "Congelar preços de alimentos já foi tentado. O que aconteceu",
+   "summary": "Congelamentos seguraram preços por alguns meses em vários países e terminaram em falta de produtos quando as causas da alta continuaram. O resultado dependeu da duração, da saída planejada e das contas públicas.",
+   "points": [
+    {
+     "type": "fato",
+     "text": "A proposta prevê congelar por decreto o preço da cesta básica no primeiro mês de governo, sem duração nem critério de saída definidos.",
+     "supportedBy": [
+      {
+       "entityId": "curadoria:evt:br-proposta-congelamento-exemplo",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Nos três casos, o congelamento conteve preços no início; a alta voltou quando as causas de fundo seguiram ativas.",
+     "supportedBy": [
+      {
+       "entityId": null,
+       "precedent": 0
+      },
+      {
+       "entityId": null,
+       "precedent": 1
+      },
+      {
+       "entityId": null,
+       "precedent": 2
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "A condição que mais pesou nos precedentes, uma saída planejada, não aparece no texto da proposta.",
+     "supportedBy": [
+      {
+       "entityId": "curadoria:evt:br-proposta-congelamento-exemplo",
+       "precedent": null
+      },
+      {
+       "entityId": null,
+       "precedent": 0
+      }
+     ]
+    }
+   ],
+   "precedents": [
+    {
+     "case": "Plano Cruzado",
+     "place": "Brasil",
+     "period": "1986",
+     "outcome": "falhou",
+     "why": "O congelamento geral derrubou a inflação nos primeiros meses. Com demanda aquecida e sem ajuste nas contas públicas, surgiram falta de produtos e cobrança de ágio, e a inflação voltou mais alta depois da liberação.",
+     "conditions": [
+      "demanda aquecida",
+      "sem ajuste fiscal",
+      "sem data de saída"
+     ]
+    },
+    {
+     "case": "Controles de preços e salários do governo Nixon",
+     "place": "Estados Unidos",
+     "period": "1971–1974",
+     "outcome": "misto",
+     "why": "Segurou a inflação no curto prazo. A retirada em fases coincidiu com nova alta de preços, agravada pelo choque do petróleo de 1973, e houve falta pontual de alimentos e combustível.",
+     "conditions": [
+      "saída em fases anunciada",
+      "choque externo durante a saída"
+     ]
+    },
+    {
+     "case": "Controle de preços de produtos básicos",
+     "place": "Venezuela",
+     "period": "a partir de 2003",
+     "outcome": "falhou",
+     "why": "Preços tabelados abaixo do custo de produção reduziram a oferta. O país passou a conviver com escassez de itens básicos e mercado paralelo, enquanto a inflação seguiu alta por causas monetárias.",
+     "conditions": [
+      "preço tabelado abaixo do custo",
+      "déficit financiado com emissão de moeda",
+      "controle prolongado"
+     ]
+    }
+   ],
+   "conditions": [
+    {
+     "condition": "Duração curta, com data e regra de saída anunciadas",
+     "metHere": "nao",
+     "why": "A proposta registrada não informa duração nem critério de saída."
+    },
+    {
+     "condition": "Contas públicas sob controle durante e depois do congelamento",
+     "metHere": "incerto",
+     "why": "Os fatos fornecidos não trazem dados fiscais."
+    },
+    {
+     "condition": "Alta de preços causada por choque temporário de oferta, e não por excesso de demanda",
+     "metHere": "incerto",
+     "why": "A inflação de alimentos de 7,8% está registrada, mas os fatos não dizem a causa."
+    },
+    {
+     "condition": "Fiscalização capaz de evitar ágio e mercado paralelo",
+     "metHere": "incerto",
+     "why": "A proposta não detalha como o preço seria fiscalizado."
+    }
+   ],
+   "impacts": [],
+   "claims": [],
+   "counterpoint": {
+    "text": "Congelamentos curtos, limitados a poucos itens e combinados com política fiscal e monetária coerente não têm o mesmo histórico dos congelamentos gerais e longos. Se a proposta for detalhada nessa linha, os casos acima pesam menos.",
+    "supportedBy": [
+     {
+      "entityId": null,
+      "precedent": 1
+     }
+    ]
+   },
+   "limits": "Os casos vêm do conhecimento histórico de quem redigiu e ainda não foram verificados por uma pessoa do projeto. Os fatos não trazem dados fiscais, a causa da alta dos alimentos nem o desenho completo da proposta."
+  }
+ },
+ "wto:cond:eu-regulacao-comercial|impacto": {
+  "method": {
+   "provider": "exemplo",
+   "model": "redigido-manualmente",
+   "effort": null
+  },
+  "output": {
+   "headline": "Quem sente as novas regras de importação da União Europeia",
+   "summary": "Exigências de origem e ambientais elevam o custo de exportar para o bloco. O efeito maior recai sobre quem exporta produtos agrícolas e florestais com cadeias pouco rastreadas.",
+   "points": [
+    {
+     "type": "fato",
+     "text": "O bloco adotou regras de importação com exigências ambientais e de origem.",
+     "supportedBy": [
+      {
+       "entityId": "wto:cond:eu-regulacao-comercial",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "O custo recai primeiro sobre quem exporta para a União Europeia e não consegue comprovar a origem do produto.",
+     "supportedBy": [
+      {
+       "entityId": "wto:cond:eu-regulacao-comercial",
+       "precedent": null
+      }
+     ]
+    }
+   ],
+   "precedents": [],
+   "conditions": [],
+   "claims": [],
+   "impacts": [
+    {
+     "domain": "Exportação agrícola e florestal",
+     "region": "Países que exportam esses produtos para a União Europeia",
+     "direction": "aumenta",
+     "horizon": "meses",
+     "magnitude": null,
+     "chain": [
+      "O importador europeu passa a exigir prova de origem do produto",
+      "O exportador precisa rastrear a cadeia até o produtor",
+      "Produtor pequeno sem documentação perde acesso ou vende com desconto a intermediários",
+      "Parte da produção vai para mercados sem a exigência"
+     ]
+    },
+    {
+     "domain": "Preço ao consumidor",
+     "region": "União Europeia",
+     "direction": "aumenta",
+     "horizon": "meses",
+     "magnitude": null,
+     "chain": [
+      "O custo de comprovação entra no preço do importado",
+      "Fornecedores que já rastreiam a produção ganham fatia"
+     ]
+    },
+    {
+     "domain": "Pressão sobre o desmatamento",
+     "region": "Regiões produtoras",
+     "direction": "incerto",
+     "horizon": "anos",
+     "magnitude": null,
+     "chain": [
+      "A exigência reduz o incentivo para áreas recém-desmatadas que vendem ao bloco",
+      "Produção irregular pode migrar para compradores sem exigência",
+      "O efeito líquido depende da fatia da União Europeia nas compras de cada região"
+     ]
+    }
+   ],
+   "counterpoint": {
+    "text": "A exigência pode valorizar quem já rastreia a produção e abrir espaço para preços melhores. Para exportadores organizados, o efeito líquido pode ser positivo.",
+    "supportedBy": [
+     {
+      "entityId": "wto:cond:eu-regulacao-comercial",
+      "precedent": null
+     }
+    ]
+   },
+   "limits": "Os fatos não trazem os setores cobertos, a data de vigência nem o volume de comércio afetado, por isso nenhuma magnitude foi estimada."
+  }
+ }
+}

@@ -1,0 +1,31 @@
+{
+  "note": "Heurística para marcar aeronaves e navios como militares. O ADS-B e o AIS não dizem isso. Cada regra tem confiança própria; revise e documente a origem de qualquer regra nova no commit.",
+  "icao24Ranges": [
+    { "from": "ae0000", "to": "afffff", "operator": "Forças Armadas dos EUA", "flag": "US", "confidence": 0.9, "origin": "faixa do bloco ICAO dos EUA usada por aeronaves militares" },
+    { "from": "43c000", "to": "43cfff", "operator": "Forças Armadas do Reino Unido", "flag": "GB", "confidence": 0.85, "origin": "faixa do bloco ICAO do Reino Unido usada por aeronaves militares" }
+  ],
+  "callsignPrefixes": [
+    { "prefix": "RCH", "operator": "USAF Air Mobility Command", "flag": "US", "class": "transporte", "confidence": 0.9 },
+    { "prefix": "CNV", "operator": "Marinha dos EUA", "flag": "US", "class": "transporte", "confidence": 0.8 },
+    { "prefix": "PAT", "operator": "Exército dos EUA", "flag": "US", "class": "transporte", "confidence": 0.75 },
+    { "prefix": "FORTE", "operator": "USAF (RQ-4 Global Hawk)", "flag": "US", "class": "vigilancia", "confidence": 0.9 },
+    { "prefix": "RRR", "operator": "Royal Air Force", "flag": "GB", "class": "transporte", "confidence": 0.85 },
+    { "prefix": "NATO", "operator": "OTAN", "flag": null, "class": "vigilancia", "confidence": 0.85 },
+    { "prefix": "GAF", "operator": "Força Aérea Alemã", "flag": "DE", "class": null, "confidence": 0.85 },
+    { "prefix": "CTM", "operator": "Força Aérea Francesa (transporte)", "flag": "FR", "class": "transporte", "confidence": 0.8 },
+    { "prefix": "IAM", "operator": "Força Aérea Italiana", "flag": "IT", "class": null, "confidence": 0.8 },
+    { "prefix": "BAF", "operator": "Força Aérea Belga", "flag": "BE", "class": null, "confidence": 0.75 },
+    { "prefix": "NAF", "operator": "Força Aérea Holandesa", "flag": "NL", "class": null, "confidence": 0.7 },
+    { "prefix": "PLF", "operator": "Força Aérea Polonesa", "flag": "PL", "class": null, "confidence": 0.75 },
+    { "prefix": "ASY", "operator": "Força Aérea Australiana", "flag": "AU", "class": null, "confidence": 0.8 },
+    { "prefix": "CFC", "operator": "Forças Canadenses", "flag": "CA", "class": null, "confidence": 0.8 }
+  ],
+  "aisShipTypes": [
+    { "type": 35, "label": "operação militar", "confidence": 0.85 }
+  ],
+  "vesselNamePrefixes": [
+    { "prefix": "USNS ", "operator": "Comando de Transporte Marítimo dos EUA", "flag": "US", "confidence": 0.8 },
+    { "prefix": "HMS ", "operator": "Marinha Real Britânica", "flag": "GB", "confidence": 0.6 },
+    { "prefix": "WARSHIP", "operator": null, "flag": null, "confidence": 0.7 }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "note": "Política editorial aplicada pelo pipeline antes de publicar. É uma decisão do projeto, não um detalhe técnico: mude aqui, em público, com justificativa no commit.",
+  "licenseGate": {
+    "description": "Em modo ao vivo, entidades de fontes com redistribution 'verificar' ou 'proibida' e licenseCheckedAt nulo não são publicadas.",
+    "block": ["verificar", "proibida"]
+  },
+  "militaryTracks": {
+    "description": "Trilhas militares dentro de zonas de conflito ativo são publicadas com atraso. Fora delas, sem atraso.",
+    "defaultDelayMinutes": 0,
+    "zones": [
+      { "name": "Ucrânia e Mar Negro", "bbox": [41.0, 22.0, 53.0, 41.0], "delayMinutes": 60 },
+      { "name": "Israel, Gaza, Líbano e Síria", "bbox": [29.0, 33.5, 37.5, 42.5], "delayMinutes": 60 },
+      { "name": "Mar Vermelho e Golfo de Áden", "bbox": [11.0, 32.0, 30.0, 52.0], "delayMinutes": 60 },
+      { "name": "Estreito de Taiwan", "bbox": [21.5, 117.0, 26.5, 123.0], "delayMinutes": 30 }
+    ],
+    "historyHours": 3,
+    "staleAfterMinutes": 15,
+    "lostAfterMinutes": 60
+  },
+  "events": {
+    "minQuakeMagnitude": 4.5,
+    "kevWindowDays": 7,
+    "outageWindowHours": 24
+  },
+  "analysis": {
+    "maxPerRun": 8,
+    "minIntensity": 4,
+    "layers": ["conflito", "protesto", "eleicao", "economia", "diplomacia", "ciber"],
+    "crossCheckMinAgreement": 0.6
+  }
+}

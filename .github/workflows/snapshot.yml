@@ -1,0 +1,76 @@
+name: snapshot
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Testes e sincronia app/pipeline
+        run: npm run check
+
+      # Estado privado (trilhas sem atraso) e o último snapshot, para reaproveitar análises.
+      # O cache do Actions não é público; o estado nunca vai para o site.
+      - uses: actions/cache/restore@v4
+        with:
+          path: |
+            state
+            public
+          key: pipeline-${{ github.run_id }}
+          restore-keys: pipeline-
+
+      - name: Gerar snapshot
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENSKY_CLIENT_ID: ${{ secrets.OPENSKY_CLIENT_ID }}
+          OPENSKY_CLIENT_SECRET: ${{ secrets.OPENSKY_CLIENT_SECRET }}
+          AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
+          CROSSCHECK_BASE_URL: ${{ vars.CROSSCHECK_BASE_URL }}
+          CROSSCHECK_MODEL: ${{ vars.CROSSCHECK_MODEL }}
+          CROSSCHECK_API_KEY: ${{ secrets.CROSSCHECK_API_KEY }}
+        run: npm run build
+
+      - uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            state
+            public
+          key: pipeline-${{ github.run_id }}
+
+      - name: Montar site
+        run: node scripts/build-site.js public/snapshot.json
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

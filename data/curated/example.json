@@ -1,0 +1,1139 @@
+{
+ "schemaVersion": "0.3.0",
+ "dataClass": "example",
+ "note": "Condições de exemplo para o protótipo. Os números não foram apurados nas fontes citadas. Em produção, crie data/curated/live.json com dataClass \"live\".",
+ "entities": [
+  {
+   "id": "ucdp:cond:ua-guerra-interestatal",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "conflito",
+   "subtype": "guerra_interestatal",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     31.5,
+     49.0
+    ]
+   },
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia"
+   },
+   "time": {
+    "start": "2022-02-24T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:52:00Z",
+    "precision": "day"
+   },
+   "intensity": 5,
+   "intensityBasis": "eventos armados/24h + deslocamento acumulado",
+   "status": "corroborado",
+   "confidence": 0.9,
+   "clusterKey": "ua-conflito-guerra_interestatal",
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "ua",
+     "retrievedAt": "2026-10-25T16:52:00Z"
+    },
+    {
+     "sourceId": "reliefweb",
+     "retrievedAt": "2026-10-25T16:30:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Guerra em curso no leste europeu",
+     "summary": "Hostilidades ativas, deslocamento interno em larga escala e infraestrutura energética sob ataque.",
+     "body": "A camada de conflito acompanha eventos armados georreferenciados, linhas de frente relatadas e fluxos de deslocamento. O marcador soma os episódios registrados nas últimas 24 horas dentro do país.\nO número de deslocados tem três versões oficiais diferentes. O Polarized mostra as três lado a lado em vez de escolher uma."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:52:00Z"
+  },
+  {
+   "id": "ucdp:cond:sd-guerra-civil",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "conflito",
+   "subtype": "guerra_civil",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     32.5,
+     15.6
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão"
+   },
+   "time": {
+    "start": "2023-04-15T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:38:00Z",
+    "precision": "day"
+   },
+   "intensity": 5,
+   "intensityBasis": "eventos armados/24h + população afetada",
+   "status": "corroborado",
+   "confidence": 0.85,
+   "clusterKey": "sd-conflito-guerra_civil",
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "sd",
+     "retrievedAt": "2026-10-25T16:38:00Z"
+    },
+    {
+     "sourceId": "reliefweb",
+     "retrievedAt": "2026-10-25T16:10:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Guerra civil e crise humanitária",
+     "summary": "Disputa entre forças rivais com deslocamento em massa e acesso humanitário restrito.",
+     "body": "Guerra civil aparece com o mesmo peso de guerra entre países. O que define a intensidade é o volume de eventos armados e a população afetada, não a cobertura da imprensa.\nO cartão real combina registros de eventos armados com os números de deslocamento publicados por agências humanitárias."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:38:00Z"
+  },
+  {
+   "id": "acled:cond:ps-ocupacao",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "conflito",
+   "subtype": "ocupacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     34.5,
+     31.5
+    ]
+   },
+   "place": {
+    "iso2": "PS",
+    "iso3": "PSE",
+    "name": "Territórios Palestinos"
+   },
+   "time": {
+    "start": "2023-10-07T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:45:00Z",
+    "precision": "day"
+   },
+   "intensity": 5,
+   "intensityBasis": "eventos armados/24h por km²",
+   "status": "corroborado",
+   "confidence": 0.85,
+   "clusterKey": "ps-conflito-ocupacao",
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "ps",
+     "retrievedAt": "2026-10-25T16:45:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Zona de conflito ativo",
+     "summary": "Operações militares, bloqueio e emergência humanitária em território denso.",
+     "body": "Em áreas pequenas e densamente povoadas, o globo agrupa os eventos em um único marcador.\nO cartão real mostra eventos por dia, situação de acesso humanitário e deslocamento acumulado."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:45:00Z"
+  },
+  {
+   "id": "ucdp:cond:mm-guerra-civil",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "conflito",
+   "subtype": "guerra_civil",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     96.1,
+     21.0
+    ]
+   },
+   "place": {
+    "iso2": "MM",
+    "iso3": "MMR",
+    "name": "Mianmar"
+   },
+   "time": {
+    "start": "2021-02-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:00:00Z",
+    "precision": "month"
+   },
+   "intensity": 4,
+   "intensityBasis": "municípios com confronto ativo/mês",
+   "status": "corroborado",
+   "confidence": 0.8,
+   "clusterKey": "mm-conflito-guerra_civil",
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "mm",
+     "retrievedAt": "2026-10-25T16:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Guerra civil prolongada",
+     "summary": "Confrontos entre a junta militar e forças de resistência em várias regiões.",
+     "body": "Conflitos longos tendem a sumir do noticiário. Aqui eles continuam visíveis enquanto houver registro de eventos armados.\nO cartão real acompanha o número de municípios com confronto ativo no mês."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:00:00Z"
+  },
+  {
+   "id": "acled:cond:ht-violencia-armada",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "conflito",
+   "subtype": "violencia_armada",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -72.3,
+     18.6
+    ]
+   },
+   "place": {
+    "iso2": "HT",
+    "iso3": "HTI",
+    "name": "Haiti"
+   },
+   "time": {
+    "start": "2021-07-07T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T15:00:00Z",
+    "precision": "month"
+   },
+   "intensity": 4,
+   "intensityBasis": "homicídios/semana + deslocamento urbano",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "clusterKey": "ht-conflito-violencia_armada",
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "ht",
+     "retrievedAt": "2026-10-25T15:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Colapso da segurança pública",
+     "summary": "Controle territorial por grupos armados e instituições de Estado enfraquecidas.",
+     "body": "Nem todo conflito é uma guerra declarada. A camada também registra violência armada organizada que desorganiza o Estado."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T15:00:00Z"
+  },
+  {
+   "id": "ucdp:cond:cd-insurgencia",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "conflito",
+   "subtype": "insurgencia",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     28.9,
+     -2.5
+    ]
+   },
+   "place": {
+    "iso2": "CD",
+    "iso3": "COD",
+    "name": "RD Congo"
+   },
+   "time": {
+    "start": "1996-10-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:20:00Z",
+    "precision": "year"
+   },
+   "intensity": 4,
+   "intensityBasis": "grupos armados ativos + eventos/semana",
+   "status": "corroborado",
+   "confidence": 0.8,
+   "clusterKey": "cd-conflito-insurgencia",
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "cd",
+     "retrievedAt": "2026-10-25T16:20:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Insurgência armada no leste do país",
+     "summary": "Múltiplos grupos armados disputando território em regiões ricas em minerais.",
+     "body": "Esta camada cruza conflito com economia: regiões em disputa que também são origem de minerais críticos aparecem ligadas às duas camadas."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:20:00Z"
+  },
+  {
+   "id": "gdelt:evt:fr-greve-geral",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "greve_geral",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.35,
+     48.86
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França"
+   },
+   "time": {
+    "start": "2026-10-25T16:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:30:00Z",
+    "precision": "hour"
+   },
+   "intensity": 3,
+   "intensityBasis": "participantes estimados + cidades afetadas",
+   "status": "nao_verificado",
+   "confidence": 0.55,
+   "clusterKey": "fr-protesto-greve_geral",
+   "sources": [
+    {
+     "sourceId": "gdelt",
+     "ref": "fr",
+     "retrievedAt": "2026-10-25T16:30:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Greve geral convocada por centrais sindicais",
+     "summary": "Paralisação com atos em várias cidades e impacto sobre transporte.",
+     "body": "Protestos entram como evento, com começo e fim. O número de participantes quase sempre tem duas versões — a dos organizadores e a da polícia — e as duas aparecem.\nStatus não verificado: um único registro, ainda sem segunda fonte."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:30:00Z"
+  },
+  {
+   "id": "tse_br:cond:br-presidencial",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "eleicao",
+   "subtype": "presidencial",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -47.9,
+     -15.8
+    ]
+   },
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil"
+   },
+   "time": {
+    "start": "2026-08-16T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:55:00Z",
+    "precision": "day"
+   },
+   "intensity": 4,
+   "intensityBasis": "dias até a votação + eleitorado",
+   "status": "verificado",
+   "confidence": 0.98,
+   "clusterKey": "br-eleicao-presidencial",
+   "sources": [
+    {
+     "sourceId": "tse_br",
+     "ref": "br",
+     "retrievedAt": "2026-10-25T16:55:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ciclo eleitoral presidencial",
+     "summary": "Período eleitoral para a presidência, com calendário oficial em andamento.",
+     "body": "Todo país em período eleitoral de presidência recebe um marcador, do início da campanha até a diplomação. A intensidade cresce conforme a votação se aproxima.\nA fonte é o próprio tribunal eleitoral, por isso o status é verificado."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "fec_us:cond:us-legislativa",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "eleicao",
+   "subtype": "legislativa",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -77.0,
+     38.9
+    ]
+   },
+   "place": {
+    "iso2": "US",
+    "iso3": "USA",
+    "name": "Estados Unidos"
+   },
+   "time": {
+    "start": "2026-01-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:48:00Z",
+    "precision": "month"
+   },
+   "intensity": 4,
+   "intensityBasis": "cadeiras em disputa + dias até a votação",
+   "status": "verificado",
+   "confidence": 0.98,
+   "clusterKey": "us-eleicao-legislativa",
+   "sources": [
+    {
+     "sourceId": "fec_us",
+     "ref": "us",
+     "retrievedAt": "2026-10-25T16:48:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Eleições legislativas de meio de mandato",
+     "summary": "Renovação parcial do Congresso, com efeito direto sobre política externa e comercial.",
+     "body": "Eleições legislativas entram na camada quando mudam a correlação de forças sobre orçamento, sanções ou comércio."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:48:00Z"
+  },
+  {
+   "id": "ifes:cond:ng-pre-eleitoral",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "eleicao",
+   "subtype": "pre_eleitoral",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     7.4,
+     9.1
+    ]
+   },
+   "place": {
+    "iso2": "NG",
+    "iso3": "NGA",
+    "name": "Nigéria"
+   },
+   "time": {
+    "start": "2026-06-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T14:00:00Z",
+    "precision": "month"
+   },
+   "intensity": 2,
+   "intensityBasis": "dias até a votação",
+   "status": "corroborado",
+   "confidence": 0.8,
+   "clusterKey": "ng-eleicao-pre_eleitoral",
+   "sources": [
+    {
+     "sourceId": "ifes",
+     "ref": "ng",
+     "retrievedAt": "2026-10-25T14:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Período pré-eleitoral",
+     "summary": "Preparação para o próximo pleito geral, com registro de eleitores em andamento.",
+     "body": "A fase pré-eleitoral aparece com marcador discreto e acende quando o calendário oficial é publicado."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T14:00:00Z"
+  },
+  {
+   "id": "wto:cond:cn-controle-exportacao",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "economia",
+   "subtype": "controle_exportacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     116.4,
+     39.9
+    ]
+   },
+   "place": {
+    "iso2": "CN",
+    "iso3": "CHN",
+    "name": "China"
+   },
+   "time": {
+    "start": "2025-04-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:42:00Z",
+    "precision": "month"
+   },
+   "intensity": 4,
+   "intensityBasis": "valor comercial afetado",
+   "status": "corroborado",
+   "confidence": 0.85,
+   "clusterKey": "cn-economia-controle_exportacao",
+   "sources": [
+    {
+     "sourceId": "wto",
+     "ref": "cn",
+     "retrievedAt": "2026-10-25T16:42:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Controles de exportação de insumos estratégicos",
+     "summary": "Medidas sobre insumos com efeito em cadeias industriais de vários países.",
+     "body": "A camada econômica registra tarifas, cotas e controles de exportação — e desenha a linha entre quem impõe e quem é atingido."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:42:00Z"
+  },
+  {
+   "id": "wto:cond:eu-regulacao-comercial",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "economia",
+   "subtype": "regulacao_comercial",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     4.35,
+     50.85
+    ]
+   },
+   "place": {
+    "iso2": null,
+    "iso3": null,
+    "name": "União Europeia",
+    "admin1": "Bruxelas"
+   },
+   "time": {
+    "start": "2026-01-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "valor comercial afetado",
+   "status": "verificado",
+   "confidence": 0.95,
+   "clusterKey": "eu-economia-regulacao_comercial",
+   "sources": [
+    {
+     "sourceId": "wto",
+     "ref": "eu",
+     "retrievedAt": "2026-10-25T16:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Novas regras de comércio no bloco",
+     "summary": "Regulação de importações com exigências ambientais e de origem.",
+     "body": "Uma decisão de bloco muda o custo de exportar de dezenas de países ao mesmo tempo."
+    }
+   },
+   "tags": [
+    "analisar"
+   ],
+   "updatedAt": "2026-10-25T16:00:00Z"
+  },
+  {
+   "id": "imf:cond:ar-crise-cambial",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "economia",
+   "subtype": "crise_cambial",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -58.4,
+     -34.6
+    ]
+   },
+   "place": {
+    "iso2": "AR",
+    "iso3": "ARG",
+    "name": "Argentina"
+   },
+   "time": {
+    "start": "2023-12-10T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T15:00:00Z",
+    "precision": "month"
+   },
+   "intensity": 3,
+   "intensityBasis": "inflação acumulada + variação cambial",
+   "status": "verificado",
+   "confidence": 0.9,
+   "clusterKey": "ar-economia-crise_cambial",
+   "sources": [
+    {
+     "sourceId": "imf",
+     "ref": "ar",
+     "retrievedAt": "2026-10-25T15:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Programa de ajuste e inflação alta",
+     "summary": "Reorganização fiscal e cambial com impacto sobre o comércio regional.",
+     "body": "A inflação mensal tem duas leituras públicas: a oficial e a de consultorias privadas. As duas entram como versões da mesma medida."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T15:00:00Z"
+  },
+  {
+   "id": "wto:cond:in-negociacao-comercial",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "economia",
+   "subtype": "negociacao_comercial",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     77.2,
+     28.6
+    ]
+   },
+   "place": {
+    "iso2": "IN",
+    "iso3": "IND",
+    "name": "Índia"
+   },
+   "time": {
+    "start": "2025-02-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T13:00:00Z",
+    "precision": "month"
+   },
+   "intensity": 3,
+   "intensityBasis": "volume de comércio em jogo",
+   "status": "corroborado",
+   "confidence": 0.8,
+   "clusterKey": "in-economia-negociacao_comercial",
+   "sources": [
+    {
+     "sourceId": "wto",
+     "ref": "in",
+     "retrievedAt": "2026-10-25T13:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Acordo comercial em negociação",
+     "summary": "Rodadas sobre tarifas industriais e serviços.",
+     "body": "Acordos em negociação aparecem como linha tracejada entre os países até serem assinados."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T13:00:00Z"
+  },
+  {
+   "id": "firms:cond:au-temporada-incendios",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "clima",
+   "subtype": "temporada_incendios",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     151.2,
+     -33.9
+    ]
+   },
+   "place": {
+    "iso2": "AU",
+    "iso3": "AUS",
+    "name": "Austrália"
+   },
+   "time": {
+    "start": "2026-09-01T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T11:00:00Z",
+    "precision": "month"
+   },
+   "intensity": 3,
+   "intensityBasis": "focos ativos/24h",
+   "status": "verificado",
+   "confidence": 0.95,
+   "clusterKey": "au-clima-temporada_incendios",
+   "sources": [
+    {
+     "sourceId": "firms",
+     "ref": "au",
+     "retrievedAt": "2026-10-25T11:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Temporada de incêndios florestais",
+     "summary": "Focos ativos detectados por satélite em várias regiões.",
+     "body": "Focos de calor vêm de satélite e são agrupados por região, não por notícia publicada."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T11:00:00Z"
+  },
+  {
+   "id": "eu_sanctions:cond:ru-regime-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     37.6,
+     55.75
+    ]
+   },
+   "place": {
+    "iso2": "RU",
+    "iso3": "RUS",
+    "name": "Rússia"
+   },
+   "time": {
+    "start": "2014-03-17T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:35:00Z",
+    "precision": "day"
+   },
+   "intensity": 5,
+   "intensityBasis": "pacotes vigentes × setores atingidos",
+   "status": "verificado",
+   "confidence": 0.98,
+   "clusterKey": "ru-diplomacia-regime_sancoes",
+   "sources": [
+    {
+     "sourceId": "eu_sanctions",
+     "ref": "ru",
+     "retrievedAt": "2026-10-25T16:35:00Z"
+    },
+    {
+     "sourceId": "ofac",
+     "retrievedAt": "2026-10-25T16:20:00Z"
+    },
+    {
+     "sourceId": "un_sc",
+     "retrievedAt": "2026-10-25T10:20:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Regime de sanções ampliado",
+     "summary": "Sanções financeiras, energéticas e de tecnologia por vários blocos.",
+     "body": "A camada diplomática desenha quem sanciona quem. Ao abrir o marcador, o globo traça linhas entre o país sancionado e cada emissor."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:35:00Z"
+  },
+  {
+   "id": "un_sc:cond:ir-embargo",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "embargo",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     51.4,
+     35.7
+    ]
+   },
+   "place": {
+    "iso2": "IR",
+    "iso3": "IRN",
+    "name": "Irã"
+   },
+   "time": {
+    "start": "2006-12-23T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T16:10:00Z",
+    "precision": "day"
+   },
+   "intensity": 4,
+   "intensityBasis": "pacotes vigentes × setores atingidos",
+   "status": "verificado",
+   "confidence": 0.95,
+   "clusterKey": "ir-diplomacia-embargo",
+   "sources": [
+    {
+     "sourceId": "un_sc",
+     "ref": "ir",
+     "retrievedAt": "2026-10-25T16:10:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Embargo e negociação nuclear",
+     "summary": "Restrições em vigor com rodadas de negociação sobre o programa nuclear.",
+     "body": "Quando sanção e negociação convivem, o marcador mostra os dois estados — restrição vigente e canal aberto."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T16:10:00Z"
+  },
+  {
+   "id": "un_sc:cond:kp-regime-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     125.75,
+     39.0
+    ]
+   },
+   "place": {
+    "iso2": "KP",
+    "iso3": "PRK",
+    "name": "Coreia do Norte"
+   },
+   "time": {
+    "start": "2006-10-14T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T14:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 4,
+   "intensityBasis": "resoluções vigentes",
+   "status": "verificado",
+   "confidence": 0.98,
+   "clusterKey": "kp-diplomacia-regime_sancoes",
+   "sources": [
+    {
+     "sourceId": "un_sc",
+     "ref": "kp",
+     "retrievedAt": "2026-10-25T14:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Sanções do Conselho de Segurança",
+     "summary": "Restrições multilaterais e testes de mísseis registrados na região.",
+     "body": "Resoluções do Conselho de Segurança têm peso próprio por serem obrigatórias para todos os membros da ONU."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T14:00:00Z"
+  },
+  {
+   "id": "ofac:cond:ve-regime-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -66.9,
+     10.5
+    ]
+   },
+   "place": {
+    "iso2": "VE",
+    "iso3": "VEN",
+    "name": "Venezuela"
+   },
+   "time": {
+    "start": "2017-08-24T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T12:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "setores restritos",
+   "status": "verificado",
+   "confidence": 0.95,
+   "clusterKey": "ve-diplomacia-regime_sancoes",
+   "sources": [
+    {
+     "sourceId": "ofac",
+     "ref": "ve",
+     "retrievedAt": "2026-10-25T12:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Sanções econômicas setoriais",
+     "summary": "Restrições sobre petróleo e finanças, com efeito sobre migração regional.",
+     "body": "Sanções setoriais aparecem ligadas à camada econômica quando atingem commodities negociadas globalmente."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T12:00:00Z"
+  },
+  {
+   "id": "plz:measure:ua-deslocados",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:ua-guerra-interestatal"
+   },
+   "metric": "deslocados_internos",
+   "unit": "pessoas",
+   "periodStart": "2026-09-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "idmc",
+     "value": 3700000,
+     "observedAt": "2026-10-23T17:00:00Z",
+     "method": "estimativa de campo"
+    },
+    {
+     "sourceId": "unhcr",
+     "value": 3400000,
+     "observedAt": "2026-10-18T17:00:00Z",
+     "method": "registro"
+    },
+    {
+     "sourceId": "gov_ua",
+     "value": 4900000,
+     "observedAt": "2026-10-22T17:00:00Z",
+     "method": "cadastro nacional"
+    }
+   ],
+   "spread": {
+    "low": 3400000,
+    "high": 4900000,
+    "relative": 0.441
+   },
+   "disputed": true,
+   "consensus": null,
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "plz:measure:sd-deslocados",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:sd-guerra-civil"
+   },
+   "metric": "deslocados_internos",
+   "unit": "pessoas",
+   "periodStart": "2026-09-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "idmc",
+     "value": 8800000,
+     "observedAt": "2026-10-23T17:00:00Z",
+     "method": "estimativa de campo"
+    },
+    {
+     "sourceId": "unhcr",
+     "value": 8100000,
+     "observedAt": "2026-10-18T17:00:00Z",
+     "method": "registro"
+    }
+   ],
+   "spread": {
+    "low": 8100000,
+    "high": 8800000,
+    "relative": 0.086
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "plz:measure:fr-participantes",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "event",
+    "id": "gdelt:evt:fr-greve-geral"
+   },
+   "metric": "participantes",
+   "unit": "pessoas",
+   "periodStart": "2026-10-24T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "gdelt",
+     "value": 1200000,
+     "observedAt": "2026-10-25T16:30:00Z",
+     "method": "declaração dos organizadores"
+    },
+    {
+     "sourceId": "reliefweb",
+     "value": 380000,
+     "observedAt": "2026-10-25T16:00:00Z",
+     "method": "estimativa policial citada"
+    }
+   ],
+   "spread": {
+    "low": 380000,
+    "high": 1200000,
+    "relative": 2.158
+   },
+   "disputed": true,
+   "consensus": null,
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "curadoria:evt:br-debate-exemplo",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "eleicao",
+   "subtype": "debate",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -47.9,
+     -15.8
+    ]
+   },
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil"
+   },
+   "time": {
+    "start": "2026-10-25T10:30:00Z",
+    "end": "2026-10-25T12:00:00Z",
+    "observedAt": "2026-10-25T12:00:00Z",
+    "precision": "hour"
+   },
+   "intensity": 3,
+   "intensityBasis": "audiência estimada + proximidade da votação",
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "curadoria",
+     "ref": "br-debate-exemplo",
+     "retrievedAt": "2026-10-25T12:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Debate presidencial na TV (exemplo)",
+     "summary": "Exemplo fictício: dois candidatos, Candidato A e Candidato B, debatem custo de vida e emprego.",
+     "body": "Trechos transcritos (exemplo fictício):\nCandidato A: \"A inflação de alimentos passou de 7% em doze meses.\"\nCandidato B: \"No primeiro mês de governo vou congelar o preço dos alimentos da cesta básica.\"\nCandidato A: \"O meu adversário não entende de economia.\"\nCandidato B: \"O desemprego hoje é o menor da história do país.\""
+    }
+   },
+   "tags": [
+    "analisar",
+    "exemplo-ficticio"
+   ],
+   "updatedAt": "2026-10-25T12:00:00Z",
+   "parentId": "tse_br:cond:br-presidencial"
+  },
+  {
+   "id": "curadoria:evt:br-proposta-congelamento-exemplo",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "eleicao",
+   "subtype": "periodo_de_campanha",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -47.9,
+     -15.8
+    ]
+   },
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil"
+   },
+   "time": {
+    "start": "2026-10-25T11:30:00Z",
+    "end": "2026-10-25T13:00:00Z",
+    "observedAt": "2026-10-25T13:00:00Z",
+    "precision": "hour"
+   },
+   "intensity": 3,
+   "intensityBasis": "audiência estimada + proximidade da votação",
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "curadoria",
+     "ref": "br-proposta-congelamento-exemplo",
+     "retrievedAt": "2026-10-25T13:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Proposta de congelar preços de alimentos (exemplo)",
+     "summary": "Exemplo fictício: o Candidato B propõe congelar por decreto o preço dos itens da cesta básica no primeiro mês de governo.",
+     "body": "Proposta apresentada no debate e repetida em entrevista. O texto não detalha duração, fiscalização nem critério de saída."
+    }
+   },
+   "tags": [
+    "analisar",
+    "proposta",
+    "exemplo-ficticio"
+   ],
+   "updatedAt": "2026-10-25T13:00:00Z",
+   "parentId": "tse_br:cond:br-presidencial"
+  },
+  {
+   "id": "plz:measure:br-inflacao-alimentos-exemplo",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "tse_br:cond:br-presidencial"
+   },
+   "metric": "inflacao_alimentos_12m",
+   "unit": "%",
+   "periodStart": "2025-10-25T17:00:00Z",
+   "periodEnd": "2026-09-30T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "curadoria",
+     "value": 7.8,
+     "observedAt": "2026-10-24T07:40:00Z",
+     "method": "valor de exemplo"
+    }
+   ],
+   "spread": {
+    "low": 7.8,
+    "high": 7.8,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-24T07:40:00Z"
+  }
+ ]
+}

@@ -1,0 +1,158 @@
+{
+ "type": "FeatureCollection",
+ "metadata": {
+  "title": "fixture: formato do feed USGS, eventos fictícios"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "fx26jp01",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     141.9,
+     36.1,
+     34
+    ]
+   },
+   "properties": {
+    "mag": 6.1,
+    "place": "88 km E of Hasaki, Japan",
+    "time": 1792946760000,
+    "updated": 1792947120000,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26jp01",
+    "alert": null,
+    "status": "reviewed",
+    "tsunami": 0,
+    "magType": "mww",
+    "type": "earthquake",
+    "title": "M 6.1 - 88 km E of Hasaki, Japan"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "fx26cl02",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.6,
+     -30.9,
+     51
+    ]
+   },
+   "properties": {
+    "mag": 5.4,
+    "place": "34 km W of Ovalle, Chile",
+    "time": 1792941900000,
+    "updated": 1792942260000,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26cl02",
+    "alert": null,
+    "status": "automatic",
+    "tsunami": 0,
+    "magType": "mb",
+    "type": "earthquake",
+    "title": "M 5.4 - 34 km W of Ovalle, Chile"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "fx26id03",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     128.4,
+     -2.1,
+     12
+    ]
+   },
+   "properties": {
+    "mag": 4.8,
+    "place": "120 km NNE of Ambon, Indonesia",
+    "time": 1792933800000,
+    "updated": 1792934160000,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26id03",
+    "alert": null,
+    "status": "automatic",
+    "tsunami": 0,
+    "magType": "mb",
+    "type": "earthquake",
+    "title": "M 4.8 - 120 km NNE of Ambon, Indonesia"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "fx26to04",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -174.1,
+     -20.3,
+     10
+    ]
+   },
+   "properties": {
+    "mag": 6.6,
+    "place": "105 km NW of Neiafu, Tonga",
+    "time": 1792910400000,
+    "updated": 1792910760000,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26to04",
+    "alert": "green",
+    "status": "reviewed",
+    "tsunami": 1,
+    "magType": "mww",
+    "type": "earthquake",
+    "title": "M 6.6 - 105 km NW of Neiafu, Tonga"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "fx26mx05",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -100.1,
+     17.2,
+     20
+    ]
+   },
+   "properties": {
+    "mag": 3.1,
+    "place": "10 km S of Tecpan, Mexico",
+    "time": 1792944600000,
+    "updated": 1792944960000,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26mx05",
+    "alert": null,
+    "status": "reviewed",
+    "tsunami": 0,
+    "magType": "ml",
+    "type": "earthquake",
+    "title": "M 3.1 - 10 km S of Tecpan, Mexico"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "fx26us06",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -122.3,
+     46.5,
+     1
+    ]
+   },
+   "properties": {
+    "mag": 2.9,
+    "place": "Quarry blast near Morton, Washington",
+    "time": 1792945200000,
+    "updated": 1792945560000,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26us06",
+    "alert": null,
+    "status": "reviewed",
+    "tsunami": 0,
+    "magType": "md",
+    "type": "quarry blast",
+    "title": "M 2.9 - Quarry blast near Morton, Washington"
+   }
+  }
+ ]
+}

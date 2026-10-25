@@ -1,0 +1,23 @@
+{
+ "note": "fixture: formato tolerante descrito no adaptador; eventos fictícios",
+ "data": [
+  {
+   "location": "country/IR",
+   "start": 1792929600,
+   "duration": 18000,
+   "score": 42000
+  },
+  {
+   "location": "country/SN",
+   "start": 1792915200,
+   "duration": 7200,
+   "score": 3200
+  },
+  {
+   "location": "country/XX",
+   "start": 1792940400,
+   "duration": 600,
+   "score": 10
+  }
+ ]
+}

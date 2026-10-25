@@ -1,0 +1,217 @@
+{
+ "tracks": [
+  {
+   "id": "opensky:trk:ae1a01",
+   "schemaVersion": "0.3.0",
+   "kind": "track",
+   "layer": "militar",
+   "subtype": "aeronave",
+   "asset": {
+    "callsign": "RCH871",
+    "name": null,
+    "icao24": "ae1a01",
+    "mmsi": null,
+    "imo": null,
+    "model": null,
+    "class": "transporte",
+    "operator": "USAF Air Mobility Command",
+    "flag": "US"
+   },
+   "classification": {
+    "military": true,
+    "rule": "indicativo RCH*",
+    "confidence": 0.9
+   },
+   "samples": [
+    {
+     "t": "2026-10-25T15:50:00Z",
+     "lat": 45.1,
+     "lon": -40.2,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 60
+    },
+    {
+     "t": "2026-10-25T16:10:00Z",
+     "lat": 45.9,
+     "lon": -37.9,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 61
+    },
+    {
+     "t": "2026-10-25T16:30:00Z",
+     "lat": 46.6,
+     "lon": -35.6,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 62
+    },
+    {
+     "t": "2026-10-25T16:50:00Z",
+     "lat": 47.3,
+     "lon": -33.4,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 62
+    }
+   ],
+   "firstSeen": "2026-10-25T15:50:00Z",
+   "lastSeen": "2026-10-25T16:50:00Z",
+   "trackStatus": "live",
+   "sampleRateSec": 600,
+   "releaseDelayMinutes": 0,
+   "status": "nao_verificado",
+   "sources": [
+    {
+     "sourceId": "opensky",
+     "retrievedAt": "2026-10-25T16:50:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T16:50:00Z"
+  },
+  {
+   "id": "opensky:trk:ae1a02",
+   "schemaVersion": "0.3.0",
+   "kind": "track",
+   "layer": "militar",
+   "subtype": "aeronave",
+   "asset": {
+    "callsign": "FORTE12",
+    "name": null,
+    "icao24": "ae1a02",
+    "mmsi": null,
+    "imo": null,
+    "model": "RQ-4",
+    "class": "vigilancia",
+    "operator": "USAF (RQ-4 Global Hawk)",
+    "flag": "US"
+   },
+   "classification": {
+    "military": true,
+    "rule": "indicativo FORTE*",
+    "confidence": 0.9
+   },
+   "samples": [
+    {
+     "t": "2026-10-25T14:10:00Z",
+     "lat": 42.2,
+     "lon": 30.1,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 70
+    },
+    {
+     "t": "2026-10-25T14:35:00Z",
+     "lat": 42.6,
+     "lon": 31.0,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 80
+    },
+    {
+     "t": "2026-10-25T15:00:00Z",
+     "lat": 42.9,
+     "lon": 31.9,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 90
+    },
+    {
+     "t": "2026-10-25T15:25:00Z",
+     "lat": 43.2,
+     "lon": 32.8,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 100
+    },
+    {
+     "t": "2026-10-25T15:50:00Z",
+     "lat": 43.4,
+     "lon": 33.4,
+     "altM": 10500,
+     "speedKn": 450,
+     "headingDeg": 105
+    }
+   ],
+   "firstSeen": "2026-10-25T14:10:00Z",
+   "lastSeen": "2026-10-25T15:50:00Z",
+   "trackStatus": "live",
+   "sampleRateSec": 600,
+   "releaseDelayMinutes": 60,
+   "status": "nao_verificado",
+   "sources": [
+    {
+     "sourceId": "opensky",
+     "retrievedAt": "2026-10-25T16:50:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T16:50:00Z"
+  },
+  {
+   "id": "aisstream:trk:338000001",
+   "schemaVersion": "0.3.0",
+   "kind": "track",
+   "layer": "militar",
+   "subtype": "navio",
+   "asset": {
+    "callsign": null,
+    "name": "USNS EXEMPLO",
+    "icao24": null,
+    "mmsi": "338000001",
+    "imo": null,
+    "model": null,
+    "class": null,
+    "operator": "Comando de Transporte Marítimo dos EUA",
+    "flag": "US"
+   },
+   "classification": {
+    "military": true,
+    "rule": "nome \"USNS…\"",
+    "confidence": 0.8
+   },
+   "samples": [
+    {
+     "t": "2026-10-25T14:10:00Z",
+     "lat": 13.2,
+     "lon": 43.1,
+     "altM": null,
+     "speedKn": 14,
+     "headingDeg": 340
+    },
+    {
+     "t": "2026-10-25T14:50:00Z",
+     "lat": 13.8,
+     "lon": 42.8,
+     "altM": null,
+     "speedKn": 14,
+     "headingDeg": 338
+    },
+    {
+     "t": "2026-10-25T15:25:00Z",
+     "lat": 14.4,
+     "lon": 42.4,
+     "altM": null,
+     "speedKn": 14,
+     "headingDeg": 335
+    }
+   ],
+   "firstSeen": "2026-10-25T14:10:00Z",
+   "lastSeen": "2026-10-25T15:25:00Z",
+   "trackStatus": "live",
+   "sampleRateSec": 180,
+   "releaseDelayMinutes": 60,
+   "status": "nao_verificado",
+   "sources": [
+    {
+     "sourceId": "aisstream",
+     "retrievedAt": "2026-10-25T16:50:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T16:50:00Z"
+  }
+ ],
+ "militaryMmsi": [
+  "338000001"
+ ]
+}

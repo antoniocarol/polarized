@@ -1,0 +1,330 @@
+{
+  "schemaVersion": "0.3.0",
+  "note": "Fonte da verdade das camadas. O app embute uma cópia de label/color/frame/subtypes; test/taxonomy.test.js garante que as duas estão iguais.",
+  "layers": {
+    "conflito": {
+      "label": "Conflitos",
+      "color": "#ff5f5f",
+      "frame": "diamond",
+      "desc": "guerras, guerra civil e violência armada",
+      "subtypes": {
+        "guerra_interestatal": {
+          "glyph": "war",
+          "label": "guerra entre países"
+        },
+        "guerra_civil": {
+          "glyph": "civil-war",
+          "label": "guerra civil"
+        },
+        "insurgencia": {
+          "glyph": "insurgency",
+          "label": "insurgência"
+        },
+        "confronto_armado": {
+          "glyph": "clash",
+          "label": "confronto armado"
+        },
+        "ataque_aereo": {
+          "glyph": "airstrike",
+          "label": "ataque aéreo"
+        },
+        "bombardeio": {
+          "glyph": "shelling",
+          "label": "bombardeio"
+        },
+        "incidente_naval": {
+          "glyph": "naval",
+          "label": "incidente naval"
+        },
+        "cessar_fogo": {
+          "glyph": "ceasefire",
+          "label": "cessar-fogo"
+        },
+        "ocupacao": {
+          "glyph": "occupation",
+          "label": "ocupação"
+        },
+        "violencia_armada": {
+          "glyph": "violence",
+          "label": "violência armada"
+        }
+      }
+    },
+    "protesto": {
+      "label": "Protestos",
+      "color": "#ff9140",
+      "frame": "circle",
+      "desc": "manifestações, greves e repressão",
+      "subtypes": {
+        "manifestacao": {
+          "glyph": "protest",
+          "label": "manifestação"
+        },
+        "greve_geral": {
+          "glyph": "strike",
+          "label": "greve geral"
+        },
+        "tumulto": {
+          "glyph": "riot",
+          "label": "tumulto"
+        },
+        "repressao": {
+          "glyph": "crackdown",
+          "label": "repressão"
+        },
+        "bloqueio": {
+          "glyph": "blockade",
+          "label": "bloqueio"
+        }
+      }
+    },
+    "eleicao": {
+      "label": "Eleições",
+      "color": "#ffc24d",
+      "frame": "square",
+      "desc": "ciclos eleitorais, debates e transições",
+      "subtypes": {
+        "presidencial": {
+          "glyph": "ballot",
+          "label": "eleição presidencial"
+        },
+        "legislativa": {
+          "glyph": "chamber",
+          "label": "eleição legislativa"
+        },
+        "referendo": {
+          "glyph": "referendum",
+          "label": "referendo"
+        },
+        "segundo_turno": {
+          "glyph": "runoff",
+          "label": "segundo turno"
+        },
+        "dia_de_votacao": {
+          "glyph": "vote-day",
+          "label": "dia de votação"
+        },
+        "periodo_de_campanha": {
+          "glyph": "campaign",
+          "label": "campanha"
+        },
+        "pre_eleitoral": {
+          "glyph": "campaign",
+          "label": "pré-eleitoral"
+        },
+        "debate": {
+          "glyph": "debate",
+          "label": "debate"
+        },
+        "transicao": {
+          "glyph": "transition",
+          "label": "transição de poder"
+        },
+        "golpe": {
+          "glyph": "coup",
+          "label": "golpe"
+        }
+      }
+    },
+    "economia": {
+      "label": "Economia",
+      "color": "#5fb8ff",
+      "frame": "hexagon",
+      "desc": "tarifas, acordos e crises",
+      "subtypes": {
+        "tarifa": {
+          "glyph": "tariff",
+          "label": "tarifa"
+        },
+        "controle_exportacao": {
+          "glyph": "export-control",
+          "label": "controle de exportação"
+        },
+        "acordo_comercial": {
+          "glyph": "deal",
+          "label": "acordo comercial"
+        },
+        "negociacao_comercial": {
+          "glyph": "deal",
+          "label": "negociação comercial"
+        },
+        "regulacao_comercial": {
+          "glyph": "regulation",
+          "label": "regulação comercial"
+        },
+        "calote": {
+          "glyph": "default",
+          "label": "calote"
+        },
+        "crise_cambial": {
+          "glyph": "currency",
+          "label": "crise cambial"
+        },
+        "choque_commodity": {
+          "glyph": "commodity",
+          "label": "choque de commodity"
+        }
+      }
+    },
+    "clima": {
+      "label": "Clima",
+      "color": "#49d98c",
+      "frame": "circle",
+      "desc": "desastres e eventos extremos",
+      "subtypes": {
+        "enchente": {
+          "glyph": "flood",
+          "label": "enchente"
+        },
+        "incendio": {
+          "glyph": "fire",
+          "label": "incêndio"
+        },
+        "temporada_incendios": {
+          "glyph": "fire",
+          "label": "temporada de incêndios"
+        },
+        "tempestade": {
+          "glyph": "storm",
+          "label": "tempestade ou ciclone"
+        },
+        "seca": {
+          "glyph": "drought",
+          "label": "seca"
+        },
+        "onda_calor": {
+          "glyph": "heat",
+          "label": "onda de calor"
+        }
+      }
+    },
+    "sismico": {
+      "label": "Sismos",
+      "color": "#f06eb0",
+      "frame": "triangle",
+      "desc": "terremotos, vulcões e alertas de tsunami",
+      "subtypes": {
+        "terremoto": {
+          "glyph": "quake",
+          "label": "terremoto"
+        },
+        "replica": {
+          "glyph": "aftershock",
+          "label": "réplica"
+        },
+        "vulcao": {
+          "glyph": "volcano",
+          "label": "vulcão"
+        },
+        "alerta_tsunami": {
+          "glyph": "tsunami",
+          "label": "alerta de tsunami"
+        }
+      }
+    },
+    "diplomacia": {
+      "label": "Diplomacia",
+      "color": "#b98cff",
+      "frame": "octagon",
+      "desc": "sanções, embargos e tratados",
+      "subtypes": {
+        "sancoes": {
+          "glyph": "sanctions",
+          "label": "sanções"
+        },
+        "regime_sancoes": {
+          "glyph": "sanctions",
+          "label": "regime de sanções"
+        },
+        "embargo": {
+          "glyph": "embargo",
+          "label": "embargo"
+        },
+        "tratado": {
+          "glyph": "treaty",
+          "label": "tratado"
+        },
+        "expulsao_diplomatica": {
+          "glyph": "expulsion",
+          "label": "expulsão de diplomatas"
+        },
+        "reconhecimento": {
+          "glyph": "recognition",
+          "label": "reconhecimento"
+        },
+        "cupula": {
+          "glyph": "summit",
+          "label": "cúpula"
+        }
+      }
+    },
+    "ciber": {
+      "label": "Ciber",
+      "color": "#3fe0ff",
+      "frame": "bracket",
+      "desc": "quedas de internet, ataques e vulnerabilidades exploradas",
+      "subtypes": {
+        "queda_internet": {
+          "glyph": "outage",
+          "label": "queda de internet"
+        },
+        "ddos": {
+          "glyph": "ddos",
+          "label": "ataque DDoS"
+        },
+        "vulnerabilidade_explorada": {
+          "glyph": "bug",
+          "label": "falha explorada"
+        },
+        "ransomware": {
+          "glyph": "ransomware",
+          "label": "ransomware"
+        },
+        "incidente": {
+          "glyph": "incident",
+          "label": "incidente cibernético"
+        },
+        "campanha_atribuida": {
+          "glyph": "attributed",
+          "label": "campanha atribuída"
+        }
+      }
+    },
+    "militar": {
+      "label": "Militar",
+      "color": "#c6d2de",
+      "frame": "none",
+      "desc": "aeronaves, navios e exercícios",
+      "subtypes": {
+        "aeronave": {
+          "glyph": "aircraft",
+          "label": "aeronave"
+        },
+        "navio": {
+          "glyph": "vessel",
+          "label": "navio"
+        },
+        "comboio": {
+          "glyph": "convoy",
+          "label": "comboio"
+        },
+        "exercicio": {
+          "glyph": "exercise",
+          "label": "exercício militar"
+        },
+        "mobilizacao": {
+          "glyph": "mobilization",
+          "label": "mobilização"
+        }
+      }
+    }
+  },
+  "status": {
+    "nao_verificado": "Não verificado",
+    "corroborado": "Corroborado",
+    "verificado": "Verificado",
+    "disputado": "Disputado",
+    "retratado": "Retratado"
+  },
+  "disputeThreshold": 0.15
+}
