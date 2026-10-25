@@ -7,7 +7,17 @@ const taxonomy = readJson(rel("schema/taxonomy.json"));
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 addFormats(ajv);
 const check = ajv.compile(schema);
-export const validateEntity = ajv.compile({ $ref: "#/$defs/entity", $defs: schema.$defs });
+const BY_KIND = Object.fromEntries(["condition", "event", "measure", "track", "analysis"]
+  .map(k => [k, ajv.compile({ $ref: `#/$defs/${k}`, $defs: schema.$defs })]));
+
+/** Valida uma entidade contra a definição do seu tipo; os erros ficam em validateEntity.errors. */
+export function validateEntity(e) {
+  const v = BY_KIND[e?.kind];
+  if (!v) { validateEntity.errors = [{ instancePath: "/kind", message: "tipo de entidade desconhecido" }]; return false; }
+  const ok = v(e);
+  validateEntity.errors = v.errors;
+  return ok;
+}
 
 /**
  * Valida o snapshot contra o JSON Schema e contra as regras que o schema não expressa.
@@ -47,7 +57,7 @@ export function validateSnapshot(snap) {
   }
   if (snap.dataClass !== "example") {
     for (const [id, s] of Object.entries(snap.sources)) {
-      if (s.licenseCheckedAt == null) warnings.push(`licença de "${id}" ainda não conferida`);
+      if (s.licenseCheckedAt == null && s.redistribution !== "permitida") warnings.push(`licença de "${id}" ainda não conferida`);
     }
   }
   return { errors, warnings };

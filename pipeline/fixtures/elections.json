@@ -1,0 +1,15 @@
+{
+ "dataClass": "example",
+ "elections": [
+  {
+   "country": "US",
+   "type": "legislativa",
+   "date": "2026-11-03",
+   "campaignDays": 60,
+   "title": "Eleições de meio de mandato — Estados Unidos",
+   "sourceUrl": "https://www.fec.gov",
+   "note": "Data fixada em lei federal.",
+   "verifiedAt": null
+  }
+ ]
+}

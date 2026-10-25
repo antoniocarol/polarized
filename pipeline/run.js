@@ -5,10 +5,10 @@ import path from "node:path";
 import { parseArgs } from "node:util";
 import { ROOT, SCHEMA_VERSION, iso, readJson, readJsonIf, rel, writeJson } from "./lib/util.js";
 import { mergeTracks } from "./lib/tracks.js";
-import { applyLicenseGate } from "./lib/gate.js";
+import { applyLicenseGate, blockedSources } from "./lib/gate.js";
 import { clusterEntities } from "./lib/cluster.js";
 import { runAnalysis, defaultClient } from "./lib/analysis.js";
-import { validateSnapshot } from "./lib/validate.js";
+import { validateSnapshot, validateEntity } from "./lib/validate.js";
 import usgs from "./adapters/usgs.js";
 import gdacs from "./adapters/gdacs.js";
 import opensky from "./adapters/opensky.js";
@@ -16,8 +16,14 @@ import aisstream from "./adapters/aisstream.js";
 import cisaKev from "./adapters/cisa_kev.js";
 import ioda from "./adapters/ioda.js";
 import curated from "./adapters/curated.js";
+import elections from "./adapters/elections.js";
+import emsc from "./adapters/emsc.js";
+import cloudflare from "./adapters/cloudflare_radar.js";
+import ucdp from "./adapters/ucdp.js";
+import acled from "./adapters/acled.js";
+import { ofac, unsc, eu } from "./adapters/sanctions.js";
 
-export const ADAPTERS = [curated, usgs, gdacs, ioda, cisaKev, opensky, aisstream];
+export const ADAPTERS = [curated, elections, usgs, emsc, gdacs, ioda, cloudflare, cisaKev, ucdp, acled, ofac, unsc, eu, opensky, aisstream];
 
 export async function build({ fixtures = false, now = iso(Date.now()), only = null, analysis = true, client, statePath, prevPath, log = console.log } = {}) {
   const registry = Object.fromEntries(readJson(rel("schema/sources.json")).sources.map(s => [s.id, s]));
@@ -26,6 +32,7 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
   const prev = readJsonIf(prevPath);
   const ingest = [], entities = [], observations = [];
   const extraSources = {};
+  const blocked = fixtures ? new Set() : blockedSources(registry, policy);
 
   for (const a of ADAPTERS) {
     if (only && !only.includes(a.id)) continue;
@@ -34,16 +41,28 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
     try {
       const ctx = { now, policy, source: registry[a.id], fixtures, state };
       let raw;
-      if (fixtures && a.fixture) { raw = readJson(rel("pipeline/fixtures", a.fixture)); row.status = "fixture"; }
+      if (fixtures && a.fixture) {
+        const f = rel("pipeline/fixtures", a.fixture);
+        raw = f.endsWith(".json") ? readJson(f) : fs.readFileSync(f, "utf8");
+        row.status = "fixture";
+      }
       else if (fixtures && a.fixture === undefined) { row.status = "desativada"; ingest.push(row); continue; }
-      else {
+      else if (blocked.has(a.id)) {
+        // Não consulta fonte que não poderia ser publicada.
+        row.status = "bloqueada_licenca"; row.error = "licença não conferida em schema/sources.json"; ingest.push(row); continue;
+      } else {
         const missing = (a.needs || []).filter(k => !process.env[k]);
         if (!fixtures && missing.length) { row.status = "sem_credencial"; row.error = `faltando ${missing.join(", ")}`; ingest.push(row); continue; }
         raw = await a.fetch(ctx);
         if (fixtures) row.status = "fixture";
       }
       const res = a.normalize(raw, ctx);
-      const list = Array.isArray(res) ? res : res.entities || [];
+      // Uma entidade malformada não derruba o snapshot: sai sozinha e fica registrada.
+      const list = [];
+      for (const e of Array.isArray(res) ? res : res.entities || []) {
+        if (validateEntity(e)) list.push(e);
+        else { row.rejected = (row.rejected || 0) + 1; row.error ||= `${e.id || "?"}: ${validateEntity.errors[0].instancePath} ${validateEntity.errors[0].message}`; }
+      }
       entities.push(...list);
       observations.push(...(res.observations || []));
       Object.assign(extraSources, res.sources || {});
@@ -67,12 +86,15 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
   }
 
   const tracks = mergeTracks(state, obs, { now, policy });
-  const clustered = clusterEntities(kept, now);
+  const merged = clusterEntities(kept, now);
+  const present = new Set(merged.map(e => e.id));
+  const clustered = merged.filter(e => e.kind !== "measure" || present.has(e.subject.id));
+  for (const e of clustered) if (e.parentId && !present.has(e.parentId)) delete e.parentId;
 
   const sources = { ...extraSources };
   const allSoFar = [...clustered, ...tracks.published];
   const used = new Set(allSoFar.flatMap(e => [...(e.sources || []), ...(e.assertions || [])].map(s => s.sourceId)));
-  for (const id of used) if (registry[id]) sources[id] = registry[id];
+  for (const id of [...used, ...ingest.map(r => r.sourceId)]) if (registry[id]) sources[id] = registry[id];
 
   let analyses = [], analysisReport = null;
   if (analysis) {

@@ -35,7 +35,7 @@ export default {
         headline: `Queda de internet detectada — ${c.pt}`,
         summary: `Sinais de conectividade abaixo do normal ${ongoing ? "há" : "por"} ${hours(dur)}. ` +
           "Detecção automática; a fonte não diz a causa (apagão, corte deliberado ou falha técnica).",
-        clusterKey: `queda:${c.iso2}:${Math.floor(o.start / 3600)}`,
+        clusterKey: `queda:${c.iso2}:${new Date(startMs).toISOString().slice(0, 10)}`,
         links: [{ label: `Painel IODA — ${c.pt}`, url: `https://ioda.inetintel.cc.gatech.edu/country/${c.iso2}` }],
       }));
     }

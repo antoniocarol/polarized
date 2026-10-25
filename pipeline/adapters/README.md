@@ -5,7 +5,7 @@ Cada adaptador lê uma fonte e devolve entidades no esquema `0.3.0`.
 ```js
 export default {
   id: "usgs",                 // chave em schema/sources.json
-  fixture: "usgs.json",       // arquivo em pipeline/fixtures/ usado com --fixtures
+  fixture: "usgs.json",       // arquivo em pipeline/fixtures/ usado com --fixtures (.json, .csv ou .xml)
   needs: ["CHAVE"],           // variáveis obrigatórias; sem elas a fonte fica "sem_credencial"
   async fetch(ctx) { … },     // ctx: { now, policy, source, fixtures, state }
   normalize(raw, ctx) { … },  // devolve Entity[] ou { entities, observations, sources }
@@ -13,35 +13,38 @@ export default {
 ```
 
 Trilhas (`observations`) não viram entidades no adaptador: o pipeline junta com o
-histórico, aplica a política de atraso e só então publica.
+histórico, aplica a política de atraso e só então publica. Toda entidade passa pelo
+JSON Schema antes de entrar; a malformada sai sozinha e fica contada no relatório.
 
 ## Implementados
 
-| adaptador | fonte | credencial | camada | conferido contra a API real? |
+| adaptador | fonte | credencial | o que gera | ponto a conferir na primeira execução real |
 |---|---|---|---|---|
-| `usgs.js` | USGS, GeoJSON de 2 dias | nenhuma | sismos | formato documentado; testado com fixture |
-| `gdacs.js` | GDACS, lista de eventos | nenhuma | clima, vulcões | **conferir endpoint e campos** antes de ativar |
-| `ioda.js` | IODA, quedas por país | nenhuma | ciber | **conferir formato** — o parser é tolerante, mas o endpoint não foi testado |
-| `cisa_kev.js` | CISA KEV | nenhuma | ciber | formato documentado; testado com fixture |
-| `opensky.js` | OpenSky `/states/all` | opcional (OAuth2) | militar | formato documentado; testado com fixture |
-| `aisstream.js` | AISStream WebSocket | `AISSTREAM_API_KEY` | militar | formato documentado; testado com fixture |
-| `curated.js` | `data/curated/*.json` | — | todas | — |
+| `usgs.js` | USGS, GeoJSON de 2 dias | — | terremotos ≥ 4,5 | — |
+| `emsc.js` | EMSC, FDSN JSON | — | terremotos; junta com o USGS e gera medida de magnitude | licença |
+| `gdacs.js` | GDACS | — | enchentes, ciclones, secas, incêndios, vulcões | **endpoint** (`MAP`) e campos |
+| `ioda.js` | IODA | — | quedas de internet por país | **formato da resposta** e licença |
+| `cloudflare_radar.js` | Cloudflare Radar | `CLOUDFLARE_API_TOKEN` | quedas com causa e alcance; junta com o IODA | licença CC BY-NC |
+| `cisa_kev.js` | CISA KEV | — | falhas exploradas (sem lugar no mapa) | — |
+| `ucdp.js` | UCDP GED candidato | `UCDP_TOKEN` | eventos e condição de conflito por país | **versão do conjunto** (`UCDP_ENDPOINT`) |
+| `acled.js` | ACLED | `ACLED_USERNAME`, `ACLED_PASSWORD` | conflito, protesto, repressão; ondas de protesto por país | **login OAuth** e termos de redistribuição |
+| `sanctions.js` → `ofac` | OFAC SDN.CSV | — | regime de sanções dos EUA por país | tabela de programas |
+| `sanctions.js` → `unsc` | Lista consolidada da ONU (XML) | — | regime de sanções da ONU por país | — |
+| `sanctions.js` → `eu` | Lista consolidada da UE (XML) | `EU_FSF_TOKEN` | regime de sanções da UE por país | — |
+| `opensky.js` | OpenSky `/states/all` | opcional (OAuth2) | trilhas de aeronaves militares | licença (uso não comercial) |
+| `aisstream.js` | AISStream WebSocket | `AISSTREAM_API_KEY` | trilhas de navios militares | licença |
+| `elections.js` | `data/curated/elections.json` | — | campanha e dia de votação | datas e `verifiedAt` |
+| `curated.js` | `data/curated/*.json` | — | qualquer condição mantida à mão | — |
 
-Nenhuma dessas APIs estava acessível do ambiente onde o pipeline foi escrito. As
-fixtures reproduzem o formato documentado de cada uma com eventos fictícios. A primeira
-execução real (local ou no Actions) é o teste de verdade: confira o relatório de
-ingestão no app ("Sobre → Estado das fontes").
+Programas de sanção são ligados a países em `pipeline/data/sanction-programs.json`.
+Programas temáticos (terrorismo, drogas, ciber, direitos humanos globais) ficam de fora.
 
-## Próximos
+## Ideias para depois
 
-| fonte | camada | o que mapear |
+| fonte | camada | por quê |
 |---|---|---|
-| UCDP | conflito | conflito ativo → `condition`; `type_of_conflict` 2 interestatal, 3–4 guerra civil; mortes `best/low/high` → uma `measure` com três versões |
-| ACLED | conflito, protesto | `event_type` Battles → confronto, Explosions → ataque aéreo/bombardeio, Protests → manifestação, Riots → tumulto. Termos de redistribuição restritos: confira antes |
-| ONU, UE, OFAC | diplomacia | cada país sancionado → `condition`; cada emissor entra como uma `source` da mesma condição |
-| TSE, FEC, IFES | eleição | calendário → `condition` de campanha; dia da votação → `event`; resultado só de fonte eleitoral oficial |
-| EMSC | sismos | mesma `clusterKey` do USGS: as duas magnitudes viram uma `measure` |
-| Cloudflare Radar | ciber | quedas e tendências de DDoS por país (exige token) |
-
-Enquanto não existem, a camada é mantida por curadoria: crie `data/curated/live.json`
-com `"dataClass": "live"` e as condições no formato do esquema.
+| ReliefWeb (OCHA) | conflito, clima | relatórios humanitários e números de deslocados |
+| IDMC / ACNUR | conflito | deslocamento, para medidas com várias versões |
+| Cloudflare Radar (ataques) | ciber | tendências de DDoS por país |
+| OMC / Global Trade Alert | economia | tarifas e barreiras comerciais em vigor |
+| Órgãos eleitorais nacionais | eleição | resultado oficial como `measure` verificada |

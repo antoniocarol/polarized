@@ -315,7 +315,7 @@ button.ref:hover{color:var(--signal);border-color:var(--signal)}
   <p>O Polarized mostra o estado do mundo num único globo. Cada símbolo é um lugar onde algo acontece agora: guerra, eleição, protesto, tarifa, embargo, terremoto, queda de internet, avião ou navio militar. Você gira, toca e lê.</p>
 
   <h3>Símbolos</h3>
-  <p>Cada camada tem cor e moldura próprias, e cada tipo de acontecimento tem um ícone. Forma e cor dizem a mesma coisa, para que o mapa funcione também para quem não distingue cores.</p>
+  <p>Cada camada tem cor e moldura próprias, e cada tipo de acontecimento tem um ícone. Forma e cor dizem a mesma coisa, para que o mapa funcione também para quem não distingue cores. Aproxime o globo (pinça ou roda do mouse) para ver os eventos dentro de cada conflito.</p>
   <div class="legend" id="legend"></div>
 
   <h3>Análise com IA, com camadas de proteção</h3>
@@ -340,7 +340,8 @@ button.ref:hover{color:var(--signal);border-color:var(--signal)}
   <p class="fineprint" id="supportNote" hidden>O meio de pagamento ainda não está conectado neste protótipo. Quando estiver, este botão abre a página de apoio.</p>
   <div class="rule"></div>
   <h3>Código aberto</h3>
-  <p>O globo, os adaptadores de fonte, a política editorial e as regras de proteção da análise ficam públicos para qualquer pessoa auditar, corrigir ou rodar por conta própria.</p>
+  <p>O globo, os adaptadores de fonte, a política editorial e as regras de proteção da análise ficam públicos para qualquer pessoa auditar, corrigir ou rodar por conta própria. Licença AGPL-3.0: quem publicar uma versão modificada também precisa abrir o código.</p>
+  <p><a href="https://github.com/antoniocarol/polarized" target="_blank" rel="noopener">Código-fonte no GitHub ↗</a></p>
   <p class="fineprint">Contornos dos países: Natural Earth (domínio público), via world-atlas.</p>
 </div>
 
@@ -686,7 +687,9 @@ function symbolSVG(layer, glyph, size){
 const SNAPSHOT_URL = "snapshot.json";
 const RELIAB = {primaria:"fonte primária",agregador:"agregador",imprensa:"imprensa",colaborativa:"colaborativa",curadoria:"curadoria do projeto"};
 const METRIC = {deslocados_internos:"Deslocados internos",participantes:"Participantes",magnitude:"Magnitude",mortes:"Mortes",
-  populacao_exposta:"População exposta",inflacao_alimentos_12m:"Inflação de alimentos em 12 meses"};
+  populacao_exposta:"População exposta",inflacao_alimentos_12m:"Inflação de alimentos em 12 meses",
+  designacoes_ofac:"Designações na lista dos EUA (OFAC)",designacoes_un_sc:"Designações na lista da ONU",designacoes_eu_sanctions:"Designações na lista da UE"};
+function metricLabel(m){ const w=/^(mortes|protestos)_(\d+)d$/.exec(m); if(w) return (w[1]==="mortes"?"Mortes registradas em ":"Protestos registrados em ")+w[2]+" dias"; return METRIC[m]||m.replace(/_/g," "); }
 const TYPE_LABEL = {precedente:"Precedentes históricos",impacto:"Impacto",checagem:"Checagem",contexto:"Contexto"};
 const OUTCOME = {funcionou:["Funcionou","ok"],falhou:["Falhou","bad"],misto:["Misto","warn"],inconclusivo:["Inconclusivo","mute"]};
 const MET = {sim:["Presente","ok"],nao:["Ausente","bad"],parcial:["Parcial","warn"],incerto:["Incerto","mute"]};
@@ -756,7 +759,7 @@ function normalize(snap){
         lon:pt?pt[0]:null, lat:pt?pt[1]:null, sev:en.intensity==null?1:en.intensity, basis:en.intensityBasis,
         title:t.headline||"", blurb:t.summary||"", detail:t.body||"", stamp:rel(en.time.observedAt,snap.generatedAt),
         time:en.time, status:en.status, confidence:en.confidence, magnitude:en.magnitude||null, depthKm:en.depthKm==null?null:en.depthKm,
-        links:en.links||[], tags:en.tags||[], sources:en.sources.map(src), measures:[], analyses:byAnalysis.get(en.id)||[],
+        links:en.links||[], tags:en.tags||[], sources:en.sources.map(src), measures:[], analyses:byAnalysis.get(en.id)||[], parentId:en.parentId||null,
         disputed:en.status==="disputado" });
     } else if(en.kind==="track"){
       const last=en.samples[en.samples.length-1], a=en.asset;
@@ -908,7 +911,9 @@ function draw(t){
   ctx.save(); ctx.globalAlpha=.16; ctx.shadowColor="#2ff0d6"; ctx.shadowBlur=26; ctx.strokeStyle="#2ff0d6"; ctx.lineWidth=2; ctx.stroke(); ctx.restore();
 
   pts.length=0;
-  const order=visible.filter(e=>e.lat!=null).sort((x,y)=>(x.kind==="track")-(y.kind==="track")||x.sev-y.sev);
+  // Eventos dentro de um conflito ou campanha só aparecem de perto, ou com o pai aberto.
+  const ids=new Set(visible.map(e=>e.id)), kids=zoom>=1.7, sel=selected&&selected.id, selParent=selected&&selected.parentId;
+  const order=visible.filter(e=>e.lat!=null&&(kids||!e.parentId||!ids.has(e.parentId)||e.parentId===sel||e.id===sel||e.parentId===selParent)).sort((x,y)=>(x.kind==="track")-(y.kind==="track")||x.sev-y.sev);
   for(const e of order){
     if(selected&&selected.id===e.id) continue;
     if(e.kind==="track"){ const p=drawTrack(e,t); if(p) pts.push({e,px:p.x,py:p.y}); continue; }
@@ -1093,7 +1098,7 @@ function measureHTML(m,color){
   const rows=m.assertions.map(a=>'<div class="m-row"><span class="m-src">'+esc(a.src.shortName||a.src.name)+'</span>'+
     '<span class="m-bar"><i style="width:'+Math.max(2,a.value/hi*100).toFixed(1)+'%;background:'+color+'"></i></span>'+
     '<span class="m-val">'+fmtNum(a.value,m.unit)+'</span>'+(a.method?'<span class="m-meth">'+esc(a.method)+'</span>':"")+'</div>').join("");
-  return '<div class="measure'+(m.disputed?" disputed":"")+'"><div class="m-head"><span class="m-name">'+esc(METRIC[m.metric]||m.metric)+'</span>'+
+  return '<div class="measure'+(m.disputed?" disputed":"")+'"><div class="m-head"><span class="m-name">'+esc(metricLabel(m.metric))+'</span>'+
     (m.assertions.length<2?"":m.disputed?'<span class="fork">Versões divergem '+Math.round(m.spread.relative*100)+'%</span>':'<span class="agree">Fontes convergem</span>')+
     (isExample()?'<span class="ex">exemplo</span>':"")+'</div>'+rows+
     (m.disputed?'<p class="m-note">Quando as fontes discordam, o Polarized mostra todas as versões. Não há média.</p>':"")+'</div>';
@@ -1114,7 +1119,7 @@ function head(e){
 function eventHTML(e){
   const L=LAYERS[e.cat];
   const when=e.kind==="condition"
-    ? (e.time.end?"Encerrado em "+fmtDate(e.time.end,e.time.precision):"Em curso desde "+fmtDate(e.time.start,e.time.precision))
+    ? (e.time.startKnown===false?"Vigente na lista em "+fmtDate(e.time.observedAt,"day"):e.time.end?"Encerrado em "+fmtDate(e.time.end,e.time.precision):"Em curso desde "+fmtDate(e.time.start,e.time.precision))
     : (e.time.end&&e.time.end!==e.time.start?fmtDate(e.time.start,e.time.precision)+" a "+fmtDate(e.time.end,e.time.precision):"Ocorreu em "+fmtDate(e.time.start,e.time.precision));
   let h=head(e)+'<div class="meter" style="color:'+L.color+'"><span class="k">Intensidade</span><span class="bars">'+
     Array.from({length:5},(_,i)=>'<i class="'+(i<e.sev?"on":"")+'"></i>').join("")+'</span></div>'+

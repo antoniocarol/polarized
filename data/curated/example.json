@@ -31,7 +31,7 @@
    "intensityBasis": "eventos armados/24h + deslocamento acumulado",
    "status": "corroborado",
    "confidence": 0.9,
-   "clusterKey": "ua-conflito-guerra_interestatal",
+   "clusterKey": "conflito:UA",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -81,7 +81,7 @@
    "intensityBasis": "eventos armados/24h + população afetada",
    "status": "corroborado",
    "confidence": 0.85,
-   "clusterKey": "sd-conflito-guerra_civil",
+   "clusterKey": "conflito:SD",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -131,7 +131,7 @@
    "intensityBasis": "eventos armados/24h por km²",
    "status": "corroborado",
    "confidence": 0.85,
-   "clusterKey": "ps-conflito-ocupacao",
+   "clusterKey": "conflito:PS",
    "sources": [
     {
      "sourceId": "acled",
@@ -177,7 +177,7 @@
    "intensityBasis": "municípios com confronto ativo/mês",
    "status": "corroborado",
    "confidence": 0.8,
-   "clusterKey": "mm-conflito-guerra_civil",
+   "clusterKey": "conflito:MM",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -223,7 +223,7 @@
    "intensityBasis": "homicídios/semana + deslocamento urbano",
    "status": "corroborado",
    "confidence": 0.75,
-   "clusterKey": "ht-conflito-violencia_armada",
+   "clusterKey": "conflito:HT",
    "sources": [
     {
      "sourceId": "acled",
@@ -269,7 +269,7 @@
    "intensityBasis": "grupos armados ativos + eventos/semana",
    "status": "corroborado",
    "confidence": 0.8,
-   "clusterKey": "cd-conflito-insurgencia",
+   "clusterKey": "conflito:CD",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -407,7 +407,7 @@
    "intensityBasis": "cadeiras em disputa + dias até a votação",
    "status": "verificado",
    "confidence": 0.98,
-   "clusterKey": "us-eleicao-legislativa",
+   "clusterKey": "eleicao:US:2026-11-03",
    "sources": [
     {
      "sourceId": "fec_us",
@@ -732,7 +732,7 @@
    "intensityBasis": "pacotes vigentes × setores atingidos",
    "status": "verificado",
    "confidence": 0.98,
-   "clusterKey": "ru-diplomacia-regime_sancoes",
+   "clusterKey": "sancoes:RU",
    "sources": [
     {
      "sourceId": "eu_sanctions",
@@ -786,7 +786,7 @@
    "intensityBasis": "pacotes vigentes × setores atingidos",
    "status": "verificado",
    "confidence": 0.95,
-   "clusterKey": "ir-diplomacia-embargo",
+   "clusterKey": "sancoes:IR",
    "sources": [
     {
      "sourceId": "un_sc",
@@ -832,7 +832,7 @@
    "intensityBasis": "resoluções vigentes",
    "status": "verificado",
    "confidence": 0.98,
-   "clusterKey": "kp-diplomacia-regime_sancoes",
+   "clusterKey": "sancoes:KP",
    "sources": [
     {
      "sourceId": "un_sc",
@@ -878,7 +878,7 @@
    "intensityBasis": "setores restritos",
    "status": "verificado",
    "confidence": 0.95,
-   "clusterKey": "ve-diplomacia-regime_sancoes",
+   "clusterKey": "sancoes:VE",
    "sources": [
     {
      "sourceId": "ofac",

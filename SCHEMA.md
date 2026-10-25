@@ -41,7 +41,7 @@ apontando para a guerra.
   "subtype": "terremoto",          // define o ícone (taxonomy.json)
   "geo": { "type": "Point", "coordinates": [141.9, 36.1] },  // GeoJSON [lon, lat]; null = sem lugar no mapa
   "place": { "iso2": "JP", "iso3": "JPN", "name": "Japão", "admin1": null },
-  "time": { "start": "…", "end": null, "observedAt": "…", "precision": "minute" },
+  "time": { "start": "…", "end": null, "observedAt": "…", "precision": "minute" },  // startKnown: false quando a fonte não diz o início
   "intensity": 3,                  // 0–5, sempre calculada
   "intensityBasis": "(magnitude − 4) × 1,25, +1 se PAGER laranja, +2 se vermelho",
   "status": "verificado",          // nao_verificado | corroborado | verificado | disputado | retratado
@@ -64,7 +64,10 @@ apontando para a guerra.
 3. `time.precision` impede falsa exatidão. Relato de "esta semana" entra com `day`.
 4. Mesma `clusterKey` = um cartão só, com todas as fontes. Duas fontes independentes
    sobem o status de `nao_verificado` para `corroborado`.
-5. `geo: null` é permitido para o que não tem lugar (uma falha de software explorada no
+5. Convenção de `clusterKey` entre fontes: `conflito:XX`, `protesto:XX`, `sancoes:XX`,
+   `eleicao:XX:AAAA-MM-DD`, `queda:XX:AAAA-MM-DD` (XX = ISO-2). Sismos se juntam por
+   proximidade (até 90 s e 100 km), porque cada rede dá hora e epicentro um pouco diferentes.
+6. `geo: null` é permitido para o que não tem lugar (uma falha de software explorada no
    mundo todo). O app lista esses itens em "Sem lugar no mapa" e não inventa um ponto.
 
 ## 3. `measure` — versões divergentes lado a lado
@@ -85,7 +88,12 @@ apontando para a guerra.
 ```
 
 Quando dois sismógrafos publicam magnitudes diferentes do mesmo terremoto, o pipeline
-cria essa `measure` sozinho a partir do agrupamento.
+cria essa `measure` sozinho a partir do agrupamento. Medidas com o mesmo `metric` sobre o
+mesmo fato, vindas de fontes diferentes, viram uma só com uma versão por fonte — por isso
+o nome da métrica carrega a janela (`mortes_45d`, `mortes_14d`): números de janelas
+diferentes nunca são comparados como se divergissem. Contagens por emissor
+(`designacoes_ofac`, `designacoes_un_sc`) também ficam separadas, porque cada lista é outra
+coisa, não outra versão.
 
 ## 4. `track` — aeronaves e navios
 
@@ -201,4 +209,6 @@ conferência, não aconselhamento jurídico.
 ```
 
 `ingest` aparece no app ("Estado das fontes"): fonte fora do ar, sem credencial ou
-bloqueada por licença fica visível em vez de sumir em silêncio.
+bloqueada por licença fica visível em vez de sumir em silêncio. Cada entidade é validada
+sozinha antes de entrar: uma malformada é descartada, contada em `rejected` e o primeiro
+erro vai em `error`, sem derrubar o resto do snapshot.

@@ -1,0 +1,22 @@
+{
+  "note": "Programa de sanção -> país que ele atinge. Programas temáticos (terrorismo, drogas, ciber, direitos humanos globais) ficam de fora: não têm um país-alvo. Revise ao surgirem programas novos; programa desconhecido é ignorado e aparece no log.",
+  "ofac": {
+    "CUBA": "CU",
+    "IRAN": "IR", "IRAN-EO13846": "IR", "IRAN-EO13871": "IR", "IRAN-EO13876": "IR", "IRAN-EO13902": "IR", "IRAN-HR": "IR", "IRAN-TRA": "IR", "IFSR": "IR", "IRGC": "IR", "IRAN-CON-ARMS-EO": "IR",
+    "DPRK": "KP", "DPRK2": "KP", "DPRK3": "KP", "DPRK4": "KP", "DPRK-NKSPEA": "KP",
+    "SYRIA": "SY", "SYRIA-EO13894": "SY", "SYRIA-CAESAR": "SY",
+    "VENEZUELA": "VE", "VENEZUELA-EO13850": "VE", "VENEZUELA-EO13884": "VE",
+    "RUSSIA-EO14024": "RU", "UKRAINE-EO13660": "RU", "UKRAINE-EO13661": "RU", "UKRAINE-EO13662": "RU",
+    "BELARUS": "BY", "BELARUS-EO14038": "BY",
+    "BURMA-EO14014": "MM",
+    "CAR": "CF", "DRCONGO": "CD", "ETHIOPIA-EO14046": "ET", "IRAQ2": "IQ", "IRAQ3": "IQ",
+    "LEBANON": "LB", "LIBYA2": "LY", "LIBYA3": "LY", "MALI-EO13882": "ML",
+    "NICARAGUA": "NI", "NICARAGUA-NHRAA": "NI", "SOMALIA": "SO", "SOUTH SUDAN": "SS",
+    "SUDAN-EO14098": "SD", "DARFUR": "SD", "YEMEN": "YE"
+  },
+  "un": {
+    "DPRK": "KP", "Iraq": "IQ", "Libya": "LY", "Somalia": "SO", "South Sudan": "SS", "Sudan": "SD", "Yemen": "YE",
+    "CAR": "CF", "DRC": "CD", "Haiti": "HT", "Mali": "ML", "Lebanon": "LB", "Guinea-Bissau": "GW", "Iran": "IR", "Taliban": "AF"
+  },
+  "euIgnore": ["TERR", "CYB", "HR", "CHEM", "TAQA", "EUAQ", "UNLI", "SY-CHEM"]
+}

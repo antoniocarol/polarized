@@ -25,12 +25,12 @@ Isso mantém o cliente leve, cacheável e independente das APIs.
 | `SCHEMA.md` | Especificação do esquema de dados (leia primeiro). |
 | `schema/` | JSON Schema, tipos TypeScript, taxonomia de camadas e registro de fontes. |
 | `pipeline/run.js` | Orquestrador. |
-| `pipeline/adapters/` | Um arquivo por fonte (USGS, GDACS, IODA, CISA KEV, OpenSky, AISStream, curadoria). |
+| `pipeline/adapters/` | Um arquivo por fonte: USGS, EMSC, GDACS, IODA, Cloudflare Radar, CISA KEV, UCDP, ACLED, OFAC, ONU, UE, OpenSky, AISStream, calendário eleitoral e curadoria. |
 | `pipeline/lib/prompt.js`, `guards.js` | Prompt e camadas de proteção da análise — compartilhados com o app. |
 | `pipeline/policy.json` | Política editorial: trava de licença, zonas com atraso para trilhas militares, limites da análise. |
 | `pipeline/data/military.json` | Heurística aberta que marca aeronaves e navios como militares. |
 | `pipeline/fixtures/` | Respostas fictícias no formato de cada fonte, para testes e para o exemplo. |
-| `data/curated/` | Condições mantidas por pessoas (guerras, eleições, sanções). |
+| `data/curated/` | Dados mantidos pelo projeto: calendário eleitoral (`elections.json`) e condições extras (`live.json`). |
 | `data/reviews/` | Revisões humanas das análises. |
 | `data/snapshot.example.json` | Snapshot de exemplo gerado pelo pipeline a partir das fixtures. |
 | `test/` | Testes (`node:test`). |
@@ -63,6 +63,10 @@ no relatório de ingestão e o resto do snapshot sai normalmente.
 | `OPENSKY_CLIENT_ID`, `OPENSKY_CLIENT_SECRET` | OpenSky com conta (limite diário maior). Sem elas, roda anônimo. |
 | `AISSTREAM_API_KEY` | Navios via AIS (chave gratuita em aisstream.io). |
 | `CROSSCHECK_BASE_URL`, `CROSSCHECK_MODEL`, `CROSSCHECK_API_KEY` | Segundo modelo para conferência cruzada. Qualquer endpoint compatível com `/chat/completions` (Ollama local, Groq, OpenRouter e outros com plano gratuito). |
+| `UCDP_TOKEN` | Conflitos do UCDP (token gratuito, pedido no site do UCDP). `UCDP_ENDPOINT` troca a versão do conjunto de dados. |
+| `ACLED_USERNAME`, `ACLED_PASSWORD` | Conflitos e protestos do ACLED (conta gratuita). |
+| `EU_FSF_TOKEN` | Lista de sanções da União Europeia (token público do portal Financial Sanctions Files). |
+| `CLOUDFLARE_API_TOKEN` | Quedas de internet com causa, do Cloudflare Radar. |
 | `POLARIZED_MODEL` | Troca o modelo da análise (padrão `claude-opus-5-5`). |
 
 ## Publicar
@@ -70,28 +74,43 @@ no relatório de ingestão e o resto do snapshot sai normalmente.
 `.github/workflows/snapshot.yml` roda a cada 15 minutos: testa, gera o snapshot, guarda o
 estado privado das trilhas no cache do Actions e publica o site no GitHub Pages.
 
-1. Suba o repositório no GitHub.
-2. Em *Settings → Pages*, escolha *GitHub Actions* como fonte.
-3. Em *Settings → Secrets and variables → Actions*, cadastre as credenciais que quiser usar.
+1. Em *Settings → Pages*, escolha *GitHub Actions* como fonte. O site sai em
+   `https://antoniocarol.github.io/polarized/`.
+2. Em *Settings → Secrets and variables → Actions*, cadastre as credenciais que quiser usar.
+   Sem nenhuma, o site já sai com sismos, desastres, falhas exploradas, sanções da ONU e dos
+   EUA e o calendário eleitoral.
+3. Rode o workflow uma vez em *Actions → snapshot → Run workflow* e confira o relatório de
+   fontes no app ("Sobre → Estado das fontes").
+
+O GitHub pausa agendamentos de repositórios públicos sem commits há 60 dias. Se o site
+parar de atualizar, reative em *Actions → snapshot → Enable workflow*.
 
 Custo da análise: no máximo `analysis.maxPerRun` (8) chamadas por execução, e só para
 fatos novos ou alterados — análises de fatos que não mudaram são reaproveitadas.
 
 ## Antes de ir ao ar com dados reais
 
-- [ ] Conferir os termos de cada fonte e preencher `licenseCheckedAt` em `schema/sources.json`.
-      Fontes `verificar` ficam bloqueadas até isso (IODA, OpenSky, AISStream, ACLED…).
-- [ ] Rodar `npm run build` uma vez com rede e olhar o relatório de ingestão. Os adaptadores
-      foram escritos contra o formato documentado e testados com fixtures; GDACS e IODA
-      precisam de conferência do endpoint.
-- [ ] Criar `data/curated/live.json` com as condições reais (guerras, eleições, sanções),
-      ou implementar os adaptadores de UCDP, ACLED e listas de sanções.
-- [ ] Revisar `pipeline/policy.json` (zonas e atraso das trilhas militares).
-- [ ] Definir a licença do projeto (ver abaixo).
-- [ ] Consultar quem entende de direito eleitoral antes de publicar análise de candidatos
-      em período de eleição.
+- [ ] **Licenças das fontes.** Fontes com redistribuição `verificar` não são nem consultadas
+      até alguém ler os termos e preencher `licenseCheckedAt` em `schema/sources.json`:
+      IODA, Cloudflare Radar (CC BY-NC — atenção com anúncios), EMSC, ACLED (restritiva),
+      OpenSky (uso não comercial), AISStream. Com o campo preenchido, a fonte entra na
+      execução seguinte.
+- [ ] **Primeira execução com rede.** Os adaptadores foram escritos contra o formato
+      documentado de cada API e testados com respostas fictícias; nenhuma API real estava
+      acessível de onde o código foi escrito. Os pontos mais incertos: endpoint do GDACS,
+      formato do IODA, versão do GED no UCDP (`UCDP_ENDPOINT`) e o login novo do ACLED.
+- [ ] **Calendário eleitoral.** Confirme as datas em `data/curated/elections.json` no órgão
+      eleitoral de cada país, preencha `verifiedAt` e acrescente as próximas eleições.
+- [ ] **Política de trilhas militares.** Revise zonas e atraso em `pipeline/policy.json`.
+- [ ] **Análise de candidatos.** Consulte quem entende de direito eleitoral antes de publicar
+      análise de candidatos em período de eleição.
 
 ## Licença
 
-A definir. Contornos dos países: Natural Earth (domínio público), via world-atlas
-(ISC, `pipeline/data/world-atlas.LICENSE`).
+Código e dados do projeto sob [AGPL-3.0-or-later](LICENSE): qualquer pessoa pode usar,
+estudar e modificar, e quem oferecer uma versão modificada ao público, inclusive como site,
+precisa publicar o código dessa versão. Se preferir permitir uso fechado (por exemplo por
+empresas), troque por MIT antes de aceitar contribuições externas.
+
+Dados de terceiros seguem as licenças de cada fonte (`schema/sources.json`). Contornos dos
+países: Natural Earth (domínio público), via world-atlas (ISC, `pipeline/data/world-atlas.LICENSE`).

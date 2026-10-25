@@ -1,0 +1,41 @@
+{
+ "success": true,
+ "result": {
+  "annotations": [
+   {
+    "id": "ex-901",
+    "dataSource": "ALL",
+    "description": "Example: nationwide shutdown (fictitious).",
+    "scope": "Iran",
+    "startDate": "2026-10-25T12:00:00Z",
+    "endDate": null,
+    "locations": [
+     "IR"
+    ],
+    "asns": [],
+    "eventType": "OUTAGE",
+    "outage": {
+     "outageCause": "GOVERNMENT_DIRECTED",
+     "outageType": "NATIONWIDE"
+    }
+   },
+   {
+    "id": "ex-902",
+    "dataSource": "ALL",
+    "description": "Example: regional power outage (fictitious).",
+    "scope": "Pakistan",
+    "startDate": "2026-10-25T09:00:00Z",
+    "endDate": "2026-10-25T11:00:00Z",
+    "locations": [
+     "PK"
+    ],
+    "asns": [],
+    "eventType": "OUTAGE",
+    "outage": {
+     "outageCause": "POWER_OUTAGE",
+     "outageType": "REGIONAL"
+    }
+   }
+  ]
+ }
+}

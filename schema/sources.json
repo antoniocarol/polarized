@@ -13,12 +13,16 @@
       "redistribution": "com_atribuicao",
       "attributionRequired": true,
       "reliability": "primaria",
-      "cadence": "mensal (candidatos: diária)",
+      "cadence": "mensal (eventos candidatos)",
       "latencyHours": 720,
       "layers": [
         "conflito"
       ],
-      "licenseCheckedAt": null
+      "licenseCheckedAt": null,
+      "endpoint": "https://ucdpapi.pcr.uu.se/api/gedevents/26.0.9",
+      "env": [
+        "UCDP_TOKEN"
+      ]
     },
     {
       "id": "acled",
@@ -39,9 +43,10 @@
       ],
       "licenseCheckedAt": null,
       "env": [
-        "ACLED_KEY",
-        "ACLED_EMAIL"
-      ]
+        "ACLED_USERNAME",
+        "ACLED_PASSWORD"
+      ],
+      "endpoint": "https://acleddata.com/api/acled/read"
     },
     {
       "id": "gdelt",
@@ -357,14 +362,15 @@
       "layers": [
         "diplomacia"
       ],
-      "licenseCheckedAt": null
+      "licenseCheckedAt": null,
+      "endpoint": "https://scsanctions.un.org/resources/xml/en/consolidated.xml"
     },
     {
       "id": "eu_sanctions",
-      "name": "EU Sanctions Map",
+      "name": "Lista consolidada de sanções financeiras da UE",
       "shortName": "UE",
       "org": "União Europeia",
-      "url": "https://www.sanctionsmap.eu",
+      "url": "https://data.europa.eu/data/datasets/consolidated-list-of-persons-groups-and-entities-subject-to-eu-financial-sanctions",
       "access": "aberto",
       "license": "reuso UE",
       "redistribution": "com_atribuicao",
@@ -375,11 +381,15 @@
       "layers": [
         "diplomacia"
       ],
-      "licenseCheckedAt": null
+      "licenseCheckedAt": null,
+      "endpoint": "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content",
+      "env": [
+        "EU_FSF_TOKEN"
+      ]
     },
     {
       "id": "ofac",
-      "name": "OFAC Sanctions List",
+      "name": "OFAC Specially Designated Nationals",
       "shortName": "OFAC",
       "org": "Tesouro dos EUA",
       "url": "https://sanctionssearch.ofac.treas.gov",
@@ -393,7 +403,8 @@
       "layers": [
         "diplomacia"
       ],
-      "licenseCheckedAt": null
+      "licenseCheckedAt": null,
+      "endpoint": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.CSV"
     },
     {
       "id": "opensky",
@@ -503,8 +514,8 @@
       "org": "Projeto Polarized",
       "url": "https://polarized.example/curadoria",
       "access": "aberto",
-      "license": "a definir pelo projeto",
-      "redistribution": "verificar",
+      "license": "mesma licença do projeto",
+      "redistribution": "permitida",
       "attributionRequired": false,
       "reliability": "curadoria",
       "cadence": "manual",
@@ -517,7 +528,50 @@
         "clima",
         "diplomacia"
       ],
-      "licenseCheckedAt": null
+      "licenseCheckedAt": "2026-10-25T00:00:00Z",
+      "note": "Dados mantidos pelo próprio projeto; cada entrada cita a fonte oficial em links."
+    },
+    {
+      "id": "cloudflare_radar",
+      "name": "Cloudflare Radar — quedas de internet",
+      "shortName": "Cloudflare Radar",
+      "org": "Cloudflare",
+      "url": "https://radar.cloudflare.com/outage-center",
+      "endpoint": "https://api.cloudflare.com/client/v4/radar/annotations/outages",
+      "env": [
+        "CLOUDFLARE_API_TOKEN"
+      ],
+      "access": "chave_api",
+      "license": "CC BY-NC 4.0",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "primaria",
+      "cadence": "contínua",
+      "latencyHours": 1,
+      "layers": [
+        "ciber"
+      ],
+      "licenseCheckedAt": null,
+      "note": "Licença não comercial: confira se o projeto com anúncios pode usar."
+    },
+    {
+      "id": "eleicoes",
+      "name": "Calendário eleitoral do Polarized",
+      "shortName": "Calendário",
+      "org": "Projeto Polarized",
+      "url": "https://polarized.example/eleicoes",
+      "access": "aberto",
+      "license": "mesma licença do projeto",
+      "redistribution": "permitida",
+      "attributionRequired": false,
+      "reliability": "curadoria",
+      "cadence": "manual",
+      "latencyHours": 24,
+      "layers": [
+        "eleicao"
+      ],
+      "licenseCheckedAt": "2026-10-25T00:00:00Z",
+      "note": "Arquivo data/curated/elections.json. Os cartões citam a fonte 'curadoria' e o órgão eleitoral nos links."
     }
   ]
 }

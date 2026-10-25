@@ -56,6 +56,7 @@ function inRing(x, y, r) {
 export const allCountries = () => COUNTRIES.map(c => [c.iso2, c.pt]).sort((a, b) => a[1].localeCompare(b[1], "pt-BR"));
 
 export const country = code => (code?.length === 3 ? byIso3.get(code) : byIso2.get(code)) || null;
+export const countryByNum = n => (n == null || n === "" ? null : COUNTRIES.find(c => c.num === String(n).padStart(3, "0")) || null);
 export const countryByName = name => byName.get(norm(name)) || null;
 
 /** País que contém o ponto, ou null em alto-mar. */

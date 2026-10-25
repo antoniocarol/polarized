@@ -7,102 +7,6 @@
  },
  "dataClass": "example",
  "sources": {
-  "idmc": {
-   "id": "idmc",
-   "name": "Internal Displacement Monitoring Centre",
-   "shortName": "IDMC",
-   "org": "IDMC",
-   "url": "https://www.internal-displacement.org",
-   "access": "aberto",
-   "license": "CC BY-NC 4.0",
-   "redistribution": "verificar",
-   "attributionRequired": true,
-   "reliability": "primaria",
-   "cadence": "contínua",
-   "latencyHours": 48,
-   "layers": [
-    "conflito",
-    "clima"
-   ],
-   "licenseCheckedAt": null
-  },
-  "unhcr": {
-   "id": "unhcr",
-   "name": "UNHCR Refugee Data",
-   "shortName": "ACNUR",
-   "org": "ACNUR",
-   "url": "https://www.unhcr.org/refugee-statistics",
-   "access": "aberto",
-   "license": "CC BY 4.0",
-   "redistribution": "com_atribuicao",
-   "attributionRequired": true,
-   "reliability": "primaria",
-   "cadence": "semestral",
-   "latencyHours": 2160,
-   "layers": [
-    "conflito"
-   ],
-   "licenseCheckedAt": null
-  },
-  "gov_ua": {
-   "id": "gov_ua",
-   "name": "Ministério da Reintegração da Ucrânia",
-   "shortName": "Gov. Ucrânia",
-   "org": "Governo da Ucrânia",
-   "url": "https://minre.gov.ua",
-   "access": "aberto",
-   "license": "governamental",
-   "redistribution": "verificar",
-   "attributionRequired": true,
-   "reliability": "primaria",
-   "cadence": "irregular",
-   "latencyHours": 168,
-   "layers": [
-    "conflito"
-   ],
-   "licenseCheckedAt": null
-  },
-  "gdelt": {
-   "id": "gdelt",
-   "name": "GDELT Project",
-   "shortName": "GDELT",
-   "org": "GDELT",
-   "url": "https://www.gdeltproject.org",
-   "access": "aberto",
-   "license": "uso aberto com atribuição",
-   "redistribution": "com_atribuicao",
-   "attributionRequired": true,
-   "reliability": "agregador",
-   "cadence": "15 min",
-   "latencyHours": 0.25,
-   "layers": [
-    "conflito",
-    "protesto",
-    "diplomacia",
-    "economia"
-   ],
-   "licenseCheckedAt": null
-  },
-  "reliefweb": {
-   "id": "reliefweb",
-   "name": "ReliefWeb",
-   "shortName": "ReliefWeb",
-   "org": "UN OCHA",
-   "url": "https://reliefweb.int",
-   "access": "aberto",
-   "license": "varia por documento",
-   "redistribution": "verificar",
-   "attributionRequired": true,
-   "reliability": "primaria",
-   "cadence": "contínua",
-   "latencyHours": 6,
-   "layers": [
-    "conflito",
-    "clima",
-    "sismico"
-   ],
-   "licenseCheckedAt": null
-  },
   "curadoria": {
    "id": "curadoria",
    "name": "Curadoria Polarized",
@@ -110,8 +14,8 @@
    "org": "Projeto Polarized",
    "url": "https://polarized.example/curadoria",
    "access": "aberto",
-   "license": "a definir pelo projeto",
-   "redistribution": "verificar",
+   "license": "mesma licença do projeto",
+   "redistribution": "permitida",
    "attributionRequired": false,
    "reliability": "curadoria",
    "cadence": "manual",
@@ -124,7 +28,8 @@
     "clima",
     "diplomacia"
    ],
-   "licenseCheckedAt": null
+   "licenseCheckedAt": "2026-10-25T00:00:00Z",
+   "note": "Dados mantidos pelo próprio projeto; cada entrada cita a fonte oficial em links."
   },
   "cisa_kev": {
    "id": "cisa_kev",
@@ -156,12 +61,16 @@
    "redistribution": "com_atribuicao",
    "attributionRequired": true,
    "reliability": "primaria",
-   "cadence": "mensal (candidatos: diária)",
+   "cadence": "mensal (eventos candidatos)",
    "latencyHours": 720,
    "layers": [
     "conflito"
    ],
-   "licenseCheckedAt": null
+   "licenseCheckedAt": null,
+   "endpoint": "https://ucdpapi.pcr.uu.se/api/gedevents/26.0.9",
+   "env": [
+    "UCDP_TOKEN"
+   ]
   },
   "acled": {
    "id": "acled",
@@ -182,9 +91,51 @@
    ],
    "licenseCheckedAt": null,
    "env": [
-    "ACLED_KEY",
-    "ACLED_EMAIL"
-   ]
+    "ACLED_USERNAME",
+    "ACLED_PASSWORD"
+   ],
+   "endpoint": "https://acleddata.com/api/acled/read"
+  },
+  "reliefweb": {
+   "id": "reliefweb",
+   "name": "ReliefWeb",
+   "shortName": "ReliefWeb",
+   "org": "UN OCHA",
+   "url": "https://reliefweb.int",
+   "access": "aberto",
+   "license": "varia por documento",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "primaria",
+   "cadence": "contínua",
+   "latencyHours": 6,
+   "layers": [
+    "conflito",
+    "clima",
+    "sismico"
+   ],
+   "licenseCheckedAt": null
+  },
+  "gdelt": {
+   "id": "gdelt",
+   "name": "GDELT Project",
+   "shortName": "GDELT",
+   "org": "GDELT",
+   "url": "https://www.gdeltproject.org",
+   "access": "aberto",
+   "license": "uso aberto com atribuição",
+   "redistribution": "com_atribuicao",
+   "attributionRequired": true,
+   "reliability": "agregador",
+   "cadence": "15 min",
+   "latencyHours": 0.25,
+   "layers": [
+    "conflito",
+    "protesto",
+    "diplomacia",
+    "economia"
+   ],
+   "licenseCheckedAt": null
   },
   "tse_br": {
    "id": "tse_br",
@@ -296,10 +247,10 @@
   },
   "eu_sanctions": {
    "id": "eu_sanctions",
-   "name": "EU Sanctions Map",
+   "name": "Lista consolidada de sanções financeiras da UE",
    "shortName": "UE",
    "org": "União Europeia",
-   "url": "https://www.sanctionsmap.eu",
+   "url": "https://data.europa.eu/data/datasets/consolidated-list-of-persons-groups-and-entities-subject-to-eu-financial-sanctions",
    "access": "aberto",
    "license": "reuso UE",
    "redistribution": "com_atribuicao",
@@ -310,11 +261,15 @@
    "layers": [
     "diplomacia"
    ],
-   "licenseCheckedAt": null
+   "licenseCheckedAt": null,
+   "endpoint": "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content",
+   "env": [
+    "EU_FSF_TOKEN"
+   ]
   },
   "ofac": {
    "id": "ofac",
-   "name": "OFAC Sanctions List",
+   "name": "OFAC Specially Designated Nationals",
    "shortName": "OFAC",
    "org": "Tesouro dos EUA",
    "url": "https://sanctionssearch.ofac.treas.gov",
@@ -328,7 +283,8 @@
    "layers": [
     "diplomacia"
    ],
-   "licenseCheckedAt": null
+   "licenseCheckedAt": null,
+   "endpoint": "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/SDN.CSV"
   },
   "un_sc": {
    "id": "un_sc",
@@ -346,7 +302,8 @@
    "layers": [
     "diplomacia"
    ],
-   "licenseCheckedAt": null
+   "licenseCheckedAt": null,
+   "endpoint": "https://scsanctions.un.org/resources/xml/en/consolidated.xml"
   },
   "usgs": {
    "id": "usgs",
@@ -366,6 +323,25 @@
    ],
    "licenseCheckedAt": null,
    "endpoint": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
+  },
+  "emsc": {
+   "id": "emsc",
+   "name": "EMSC",
+   "shortName": "EMSC",
+   "org": "European-Mediterranean Seismological Centre",
+   "url": "https://www.emsc-csem.org",
+   "access": "aberto",
+   "license": "termos próprios",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "primaria",
+   "cadence": "1 min",
+   "latencyHours": 0.1,
+   "layers": [
+    "sismico"
+   ],
+   "licenseCheckedAt": null,
+   "endpoint": "https://www.seismicportal.eu/fdsnws/event/1/query"
   },
   "gdacs": {
    "id": "gdacs",
@@ -387,6 +363,29 @@
    "licenseCheckedAt": null,
    "endpoint": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/MAP"
   },
+  "cloudflare_radar": {
+   "id": "cloudflare_radar",
+   "name": "Cloudflare Radar — quedas de internet",
+   "shortName": "Cloudflare Radar",
+   "org": "Cloudflare",
+   "url": "https://radar.cloudflare.com/outage-center",
+   "endpoint": "https://api.cloudflare.com/client/v4/radar/annotations/outages",
+   "env": [
+    "CLOUDFLARE_API_TOKEN"
+   ],
+   "access": "chave_api",
+   "license": "CC BY-NC 4.0",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "primaria",
+   "cadence": "contínua",
+   "latencyHours": 1,
+   "layers": [
+    "ciber"
+   ],
+   "licenseCheckedAt": null,
+   "note": "Licença não comercial: confira se o projeto com anúncios pode usar."
+  },
   "ioda": {
    "id": "ioda",
    "name": "Internet Outage Detection and Analysis",
@@ -403,6 +402,61 @@
    "latencyHours": 0.5,
    "layers": [
     "ciber"
+   ],
+   "licenseCheckedAt": null
+  },
+  "idmc": {
+   "id": "idmc",
+   "name": "Internal Displacement Monitoring Centre",
+   "shortName": "IDMC",
+   "org": "IDMC",
+   "url": "https://www.internal-displacement.org",
+   "access": "aberto",
+   "license": "CC BY-NC 4.0",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "primaria",
+   "cadence": "contínua",
+   "latencyHours": 48,
+   "layers": [
+    "conflito",
+    "clima"
+   ],
+   "licenseCheckedAt": null
+  },
+  "unhcr": {
+   "id": "unhcr",
+   "name": "UNHCR Refugee Data",
+   "shortName": "ACNUR",
+   "org": "ACNUR",
+   "url": "https://www.unhcr.org/refugee-statistics",
+   "access": "aberto",
+   "license": "CC BY 4.0",
+   "redistribution": "com_atribuicao",
+   "attributionRequired": true,
+   "reliability": "primaria",
+   "cadence": "semestral",
+   "latencyHours": 2160,
+   "layers": [
+    "conflito"
+   ],
+   "licenseCheckedAt": null
+  },
+  "gov_ua": {
+   "id": "gov_ua",
+   "name": "Ministério da Reintegração da Ucrânia",
+   "shortName": "Gov. Ucrânia",
+   "org": "Governo da Ucrânia",
+   "url": "https://minre.gov.ua",
+   "access": "aberto",
+   "license": "governamental",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "primaria",
+   "cadence": "irregular",
+   "latencyHours": 168,
+   "layers": [
+    "conflito"
    ],
    "licenseCheckedAt": null
   },
@@ -450,6 +504,25 @@
    "env": [
     "AISSTREAM_API_KEY"
    ]
+  },
+  "eleicoes": {
+   "id": "eleicoes",
+   "name": "Calendário eleitoral do Polarized",
+   "shortName": "Calendário",
+   "org": "Projeto Polarized",
+   "url": "https://polarized.example/eleicoes",
+   "access": "aberto",
+   "license": "mesma licença do projeto",
+   "redistribution": "permitida",
+   "attributionRequired": false,
+   "reliability": "curadoria",
+   "cadence": "manual",
+   "latencyHours": 24,
+   "layers": [
+    "eleicao"
+   ],
+   "licenseCheckedAt": "2026-10-25T00:00:00Z",
+   "note": "Arquivo data/curated/elections.json. Os cartões citam a fonte 'curadoria' e o órgão eleitoral nos links."
   }
  },
  "ingest": [
@@ -459,7 +532,15 @@
    "count": 25,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 1
+   "ms": 7
+  },
+  {
+   "sourceId": "eleicoes",
+   "status": "fixture",
+   "count": 1,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 21
   },
   {
    "sourceId": "usgs",
@@ -467,7 +548,15 @@
    "count": 4,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 3
+   "ms": 2
+  },
+  {
+   "sourceId": "emsc",
+   "status": "fixture",
+   "count": 2,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 1
   },
   {
    "sourceId": "gdacs",
@@ -475,7 +564,7 @@
    "count": 4,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 0
+   "ms": 1
   },
   {
    "sourceId": "ioda",
@@ -483,10 +572,10 @@
    "count": 2,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 1
+   "ms": 0
   },
   {
-   "sourceId": "cisa_kev",
+   "sourceId": "cloudflare_radar",
    "status": "fixture",
    "count": 2,
    "fetchedAt": "2026-10-25T17:00:00Z",
@@ -494,12 +583,60 @@
    "ms": 0
   },
   {
+   "sourceId": "cisa_kev",
+   "status": "fixture",
+   "count": 2,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 1
+  },
+  {
+   "sourceId": "ucdp",
+   "status": "fixture",
+   "count": 19,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 3
+  },
+  {
+   "sourceId": "acled",
+   "status": "fixture",
+   "count": 15,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 3
+  },
+  {
+   "sourceId": "ofac",
+   "status": "fixture",
+   "count": 10,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 3
+  },
+  {
+   "sourceId": "un_sc",
+   "status": "fixture",
+   "count": 6,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 0
+  },
+  {
+   "sourceId": "eu_sanctions",
+   "status": "fixture",
+   "count": 6,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 1
+  },
+  {
    "sourceId": "opensky",
    "status": "fixture",
    "count": 4,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 1
+   "ms": 0
   },
   {
    "sourceId": "aisstream",
@@ -507,7 +644,7 @@
    "count": 4,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 0
+   "ms": 1
   }
  ],
  "policy": {
@@ -534,121 +671,10 @@
    "generated": 0,
    "rejected": 0,
    "failed": 0,
-   "skipped": 14
+   "skipped": 16
   }
  },
  "entities": [
-  {
-   "id": "plz:measure:ua-deslocados",
-   "schemaVersion": "0.3.0",
-   "kind": "measure",
-   "subject": {
-    "type": "condition",
-    "id": "ucdp:cond:ua-guerra-interestatal"
-   },
-   "metric": "deslocados_internos",
-   "unit": "pessoas",
-   "periodStart": "2026-09-25T17:00:00Z",
-   "periodEnd": "2026-10-25T17:00:00Z",
-   "assertions": [
-    {
-     "sourceId": "idmc",
-     "value": 3700000,
-     "observedAt": "2026-10-23T17:00:00Z",
-     "method": "estimativa de campo"
-    },
-    {
-     "sourceId": "unhcr",
-     "value": 3400000,
-     "observedAt": "2026-10-18T17:00:00Z",
-     "method": "registro"
-    },
-    {
-     "sourceId": "gov_ua",
-     "value": 4900000,
-     "observedAt": "2026-10-22T17:00:00Z",
-     "method": "cadastro nacional"
-    }
-   ],
-   "spread": {
-    "low": 3400000,
-    "high": 4900000,
-    "relative": 0.441
-   },
-   "disputed": true,
-   "consensus": null,
-   "updatedAt": "2026-10-25T16:55:00Z"
-  },
-  {
-   "id": "plz:measure:sd-deslocados",
-   "schemaVersion": "0.3.0",
-   "kind": "measure",
-   "subject": {
-    "type": "condition",
-    "id": "ucdp:cond:sd-guerra-civil"
-   },
-   "metric": "deslocados_internos",
-   "unit": "pessoas",
-   "periodStart": "2026-09-25T17:00:00Z",
-   "periodEnd": "2026-10-25T17:00:00Z",
-   "assertions": [
-    {
-     "sourceId": "idmc",
-     "value": 8800000,
-     "observedAt": "2026-10-23T17:00:00Z",
-     "method": "estimativa de campo"
-    },
-    {
-     "sourceId": "unhcr",
-     "value": 8100000,
-     "observedAt": "2026-10-18T17:00:00Z",
-     "method": "registro"
-    }
-   ],
-   "spread": {
-    "low": 8100000,
-    "high": 8800000,
-    "relative": 0.086
-   },
-   "disputed": false,
-   "consensus": null,
-   "updatedAt": "2026-10-25T16:55:00Z"
-  },
-  {
-   "id": "plz:measure:fr-participantes",
-   "schemaVersion": "0.3.0",
-   "kind": "measure",
-   "subject": {
-    "type": "event",
-    "id": "gdelt:evt:fr-greve-geral"
-   },
-   "metric": "participantes",
-   "unit": "pessoas",
-   "periodStart": "2026-10-24T17:00:00Z",
-   "periodEnd": "2026-10-25T17:00:00Z",
-   "assertions": [
-    {
-     "sourceId": "gdelt",
-     "value": 1200000,
-     "observedAt": "2026-10-25T16:30:00Z",
-     "method": "declaração dos organizadores"
-    },
-    {
-     "sourceId": "reliefweb",
-     "value": 380000,
-     "observedAt": "2026-10-25T16:00:00Z",
-     "method": "estimativa policial citada"
-    }
-   ],
-   "spread": {
-    "low": 380000,
-    "high": 1200000,
-    "relative": 2.158
-   },
-   "disputed": true,
-   "consensus": null,
-   "updatedAt": "2026-10-25T16:55:00Z"
-  },
   {
    "id": "curadoria:evt:br-debate-exemplo",
    "schemaVersion": "0.3.0",
@@ -747,35 +773,6 @@
    ],
    "updatedAt": "2026-10-25T13:00:00Z",
    "parentId": "tse_br:cond:br-presidencial"
-  },
-  {
-   "id": "plz:measure:br-inflacao-alimentos-exemplo",
-   "schemaVersion": "0.3.0",
-   "kind": "measure",
-   "subject": {
-    "type": "condition",
-    "id": "tse_br:cond:br-presidencial"
-   },
-   "metric": "inflacao_alimentos_12m",
-   "unit": "%",
-   "periodStart": "2025-10-25T17:00:00Z",
-   "periodEnd": "2026-09-30T17:00:00Z",
-   "assertions": [
-    {
-     "sourceId": "curadoria",
-     "value": 7.8,
-     "observedAt": "2026-10-24T07:40:00Z",
-     "method": "valor de exemplo"
-    }
-   ],
-   "spread": {
-    "low": 7.8,
-    "high": 7.8,
-    "relative": 0
-   },
-   "disputed": false,
-   "consensus": null,
-   "updatedAt": "2026-10-24T07:40:00Z"
   },
   {
    "id": "cisa_kev:evt:CVE-2026-90001",
@@ -877,6 +874,1139 @@
    ]
   },
   {
+   "id": "ucdp:evt:9100001",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     37.8,
+     48
+    ]
+   },
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Donetska oblast"
+   },
+   "time": {
+    "start": "2026-10-22T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-22T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 4,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100001",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Combate entre países — região de exemplo A",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Russia (Soviet Union) - Government of Ukraine. 120 mortes estimadas (faixa 90 a 160). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-22T00:00:00Z",
+   "parentId": "ucdp:cond:ua-guerra-interestatal"
+  },
+  {
+   "id": "ucdp:evt:9100002",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     35.4,
+     47.1
+    ]
+   },
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Zaporizka oblast"
+   },
+   "time": {
+    "start": "2026-10-19T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-19T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100002",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Combate entre países — região de exemplo B",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Russia (Soviet Union) - Government of Ukraine. 60 mortes estimadas (faixa 50 a 80). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "parentId": "ucdp:cond:ua-guerra-interestatal"
+  },
+  {
+   "id": "ucdp:evt:9100003",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     30.5,
+     50.4
+    ]
+   },
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Kyiv"
+   },
+   "time": {
+    "start": "2026-10-16T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-16T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100003",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Combate entre países — região de exemplo C",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Russia (Soviet Union) - Government of Ukraine. 12 mortes estimadas (faixa 10 a 15). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-16T00:00:00Z",
+   "parentId": "ucdp:cond:ua-guerra-interestatal"
+  },
+  {
+   "id": "ucdp:evt:9100004",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     32.6,
+     46.6
+    ]
+   },
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Khersonska oblast"
+   },
+   "time": {
+    "start": "2026-10-13T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-13T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100004",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Combate entre países — região de exemplo D",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Russia (Soviet Union) - Government of Ukraine. 40 mortes estimadas (faixa 30 a 55). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-13T00:00:00Z",
+   "parentId": "ucdp:cond:ua-guerra-interestatal"
+  },
+  {
+   "id": "ucdp:evt:9100005",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     25.3,
+     13.6
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "North Darfur"
+   },
+   "time": {
+    "start": "2026-10-21T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-21T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100005",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — cidade de exemplo E",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Sudan - RSF. 90 mortes estimadas (faixa 70 a 120). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-21T00:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "ucdp:evt:9100006",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     32.5,
+     15.6
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "Khartoum"
+   },
+   "time": {
+    "start": "2026-10-17T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-17T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100006",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — cidade de exemplo F",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Sudan - RSF. 70 mortes estimadas (faixa 60 a 90). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-17T00:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "ucdp:evt:9100007",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "violencia_armada",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     24.9,
+     12
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "Central Darfur"
+   },
+   "time": {
+    "start": "2026-10-15T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-15T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100007",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — vila de exemplo G",
+     "summary": "violência contra civis: RSF - Civilians. 55 mortes estimadas (faixa 40 a 70). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-15T00:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "ucdp:evt:9100008",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     30.2,
+     13.2
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "North Kordofan"
+   },
+   "time": {
+    "start": "2026-10-10T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-10T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100008",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — cidade de exemplo H",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Sudan - RSF. 35 mortes estimadas (faixa 30 a 45). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-10T00:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "ucdp:evt:9100009",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     96.1,
+     21.9
+    ]
+   },
+   "place": {
+    "iso2": "MM",
+    "iso3": "MMR",
+    "name": "Mianmar",
+    "admin1": "Mandalay"
+   },
+   "time": {
+    "start": "2026-10-20T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-20T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100009",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo I",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Myanmar (Burma) - PDF. 4 mortes estimadas (faixa 3 a 6). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-20T00:00:00Z"
+  },
+  {
+   "id": "ucdp:evt:9100010",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     95.9,
+     22
+    ]
+   },
+   "place": {
+    "iso2": "MM",
+    "iso3": "MMR",
+    "name": "Mianmar",
+    "admin1": "Mandalay"
+   },
+   "time": {
+    "start": "2026-10-18T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-18T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100010",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo J",
+     "summary": "confronto entre um Estado e outro grupo armado: Government of Myanmar (Burma) - PDF. 3 mortes estimadas (faixa 2 a 4). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-18T00:00:00Z"
+  },
+  {
+   "id": "ucdp:evt:9100011",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "violencia_armada",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     29.2,
+     -1.7
+    ]
+   },
+   "place": {
+    "iso2": "CD",
+    "iso3": "COD",
+    "name": "República Democrática do Congo",
+    "admin1": "North Kivu"
+   },
+   "time": {
+    "start": "2026-10-19T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-19T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100011",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo K",
+     "summary": "violência contra civis: M23 - Civilians. 9 mortes estimadas (faixa 6 a 12). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-19T00:00:00Z",
+   "parentId": "ucdp:cond:cd-insurgencia"
+  },
+  {
+   "id": "ucdp:evt:9100013",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "violencia_armada",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     29.5,
+     0.5
+    ]
+   },
+   "place": {
+    "iso2": "CD",
+    "iso3": "COD",
+    "name": "República Democrática do Congo",
+    "admin1": "Ituri"
+   },
+   "time": {
+    "start": "2026-10-14T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-14T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100013",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo M",
+     "summary": "violência contra civis: ADF - Civilians. 5 mortes estimadas (faixa 4 a 7). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-14T00:00:00Z",
+   "parentId": "ucdp:cond:cd-insurgencia"
+  },
+  {
+   "id": "ucdp:evt:9100012",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "violencia_armada",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     29.6,
+     -1.5
+    ]
+   },
+   "place": {
+    "iso2": "RW",
+    "iso3": "RWA",
+    "name": "Ruanda",
+    "admin1": "North Kivu"
+   },
+   "time": {
+    "start": "2026-10-16T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-16T00:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100012",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo L",
+     "summary": "violência contra civis: ADF - Civilians. 7 mortes estimadas (faixa 5 a 9). Dado preliminar do UCDP."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-16T00:00:00Z"
+  },
+  {
+   "id": "acled:evt:FRA9000",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "manifestacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.35,
+     48.85
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": "Ile-de-France"
+   },
+   "time": {
+    "start": "2026-10-25T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "FRA9000",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto — cidade de exemplo 0",
+     "summary": "Protesters (France). Sem mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "acled:cond:fr-protestos"
+  },
+  {
+   "id": "acled:evt:FRA9007",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "manifestacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.35,
+     48.92
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": "Ile-de-France"
+   },
+   "time": {
+    "start": "2026-10-25T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "FRA9007",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto — cidade de exemplo 7",
+     "summary": "Protesters (France). Sem mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "acled:cond:fr-protestos"
+  },
+  {
+   "id": "acled:evt:FRA9014",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "manifestacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.35,
+     48.99
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": "Ile-de-France"
+   },
+   "time": {
+    "start": "2026-10-25T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "FRA9014",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto — cidade de exemplo 14",
+     "summary": "Protesters (France). Sem mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "acled:cond:fr-protestos"
+  },
+  {
+   "id": "acled:evt:FRA9001",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "manifestacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.35,
+     48.86
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": "Ile-de-France"
+   },
+   "time": {
+    "start": "2026-10-24T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "FRA9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto — cidade de exemplo 1",
+     "summary": "Protesters (France). Sem mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "acled:cond:fr-protestos"
+  },
+  {
+   "id": "acled:evt:FRA9008",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "manifestacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.35,
+     48.93
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": "Ile-de-France"
+   },
+   "time": {
+    "start": "2026-10-24T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "FRA9008",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto — cidade de exemplo 8",
+     "summary": "Protesters (France). Sem mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "acled:cond:fr-protestos"
+  },
+  {
+   "id": "acled:evt:SDN9001",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     25.3,
+     13.6
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "North Darfur"
+   },
+   "time": {
+    "start": "2026-10-22T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "SDN9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo",
+     "summary": "Military Forces of Sudan × RSF. 30 mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "acled:evt:SDN9002",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     32.5,
+     15.6
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "Khartoum"
+   },
+   "time": {
+    "start": "2026-10-20T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "mortes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "SDN9002",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo",
+     "summary": "Military Forces of Sudan × RSF. 12 mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "acled:evt:SDN9003",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     30.2,
+     13.2
+    ]
+   },
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": "North Kordofan"
+   },
+   "time": {
+    "start": "2026-10-16T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "SDN9003",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Confronto armado — exemplo",
+     "summary": "Military Forces of Sudan × RSF. 8 mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "parentId": "ucdp:cond:sd-guerra-civil"
+  },
+  {
+   "id": "acled:evt:UKR9001",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "conflito",
+   "subtype": "ataque_aereo",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     30.52,
+     50.45
+    ]
+   },
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Kyiv"
+   },
+   "time": {
+    "start": "2026-10-23T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 2,
+   "intensityBasis": "mortes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "UKR9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ataque aéreo ou com drone — exemplo",
+     "summary": "Military Forces of Russia. 4 mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z"
+  },
+  {
+   "id": "acled:evt:IRN9001",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "repressao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     51.4,
+     35.7
+    ]
+   },
+   "place": {
+    "iso2": "IR",
+    "iso3": "IRN",
+    "name": "Irã",
+    "admin1": "Tehran"
+   },
+   "time": {
+    "start": "2026-10-24T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 5,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "IRN9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto reprimido — exemplo",
+     "summary": "Protesters (Iran) × Police Forces of Iran. 2 mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z"
+  },
+  {
+   "id": "acled:evt:IRN9002",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "protesto",
+   "subtype": "repressao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     51.7,
+     32.6
+    ]
+   },
+   "place": {
+    "iso2": "IR",
+    "iso3": "IRN",
+    "name": "Irã",
+    "admin1": "Isfahan"
+   },
+   "time": {
+    "start": "2026-10-24T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-24T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "2, +2 se houve mortes, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "IRN9002",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Protesto reprimido — exemplo",
+     "summary": "Protesters (Iran) × Police Forces of Iran. Sem mortes registradas. Fonte original citada pelo ACLED: Fonte de exemplo.",
+     "body": "Descrição original (inglês): Example note (fictitious)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-24T17:00:00Z"
+  },
+  {
    "id": "ucdp:cond:ua-guerra-interestatal",
    "schemaVersion": "0.3.0",
    "kind": "condition",
@@ -903,8 +2033,8 @@
    "intensity": 5,
    "intensityBasis": "eventos armados/24h + deslocamento acumulado",
    "status": "corroborado",
-   "confidence": 0.9,
-   "clusterKey": "ua-conflito-guerra_interestatal",
+   "confidence": 0.95,
+   "clusterKey": "conflito:UA",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -953,8 +2083,8 @@
    "intensity": 5,
    "intensityBasis": "eventos armados/24h + população afetada",
    "status": "corroborado",
-   "confidence": 0.85,
-   "clusterKey": "sd-conflito-guerra_civil",
+   "confidence": 0.95,
+   "clusterKey": "conflito:SD",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -964,6 +2094,12 @@
     {
      "sourceId": "reliefweb",
      "retrievedAt": "2026-10-25T16:10:00Z"
+    },
+    {
+     "sourceId": "acled",
+     "ref": "SD",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
     }
    ],
    "text": {
@@ -1004,7 +2140,7 @@
    "intensityBasis": "eventos armados/24h por km²",
    "status": "corroborado",
    "confidence": 0.85,
-   "clusterKey": "ps-conflito-ocupacao",
+   "clusterKey": "conflito:PS",
    "sources": [
     {
      "sourceId": "acled",
@@ -1050,7 +2186,7 @@
    "intensityBasis": "municípios com confronto ativo/mês",
    "status": "corroborado",
    "confidence": 0.8,
-   "clusterKey": "mm-conflito-guerra_civil",
+   "clusterKey": "conflito:MM",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -1096,7 +2232,7 @@
    "intensityBasis": "homicídios/semana + deslocamento urbano",
    "status": "corroborado",
    "confidence": 0.75,
-   "clusterKey": "ht-conflito-violencia_armada",
+   "clusterKey": "conflito:HT",
    "sources": [
     {
      "sourceId": "acled",
@@ -1142,7 +2278,7 @@
    "intensityBasis": "grupos armados ativos + eventos/semana",
    "status": "corroborado",
    "confidence": 0.8,
-   "clusterKey": "cd-conflito-insurgencia",
+   "clusterKey": "conflito:CD",
    "sources": [
     {
      "sourceId": "ucdp",
@@ -1279,13 +2415,19 @@
    "intensity": 4,
    "intensityBasis": "cadeiras em disputa + dias até a votação",
    "status": "verificado",
-   "confidence": 0.98,
-   "clusterKey": "us-eleicao-legislativa",
+   "confidence": 0.99,
+   "clusterKey": "eleicao:US:2026-11-03",
    "sources": [
     {
      "sourceId": "fec_us",
      "ref": "us",
      "retrievedAt": "2026-10-25T16:48:00Z"
+    },
+    {
+     "sourceId": "curadoria",
+     "ref": "US-2026-11-03",
+     "url": "https://www.fec.gov",
+     "retrievedAt": "2026-10-25T17:00:00Z"
     }
    ],
    "text": {
@@ -1296,7 +2438,13 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T16:48:00Z"
+   "updatedAt": "2026-10-25T16:48:00Z",
+   "links": [
+    {
+     "label": "Calendário oficial",
+     "url": "https://www.fec.gov"
+    }
+   ]
   },
   {
    "id": "ifes:cond:ng-pre-eleitoral",
@@ -1604,8 +2752,8 @@
    "intensity": 5,
    "intensityBasis": "pacotes vigentes × setores atingidos",
    "status": "verificado",
-   "confidence": 0.98,
-   "clusterKey": "ru-diplomacia-regime_sancoes",
+   "confidence": 0.99,
+   "clusterKey": "sancoes:RU",
    "sources": [
     {
      "sourceId": "eu_sanctions",
@@ -1658,13 +2806,25 @@
    "intensity": 4,
    "intensityBasis": "pacotes vigentes × setores atingidos",
    "status": "verificado",
-   "confidence": 0.95,
-   "clusterKey": "ir-diplomacia-embargo",
+   "confidence": 0.99,
+   "clusterKey": "sancoes:IR",
    "sources": [
     {
      "sourceId": "un_sc",
      "ref": "ir",
      "retrievedAt": "2026-10-25T16:10:00Z"
+    },
+    {
+     "sourceId": "ofac",
+     "ref": "IR",
+     "url": "https://sanctionssearch.ofac.treas.gov/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "eu_sanctions",
+     "ref": "IR",
+     "url": "https://www.sanctionsmap.eu/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
     }
    ],
    "text": {
@@ -1704,13 +2864,19 @@
    "intensity": 4,
    "intensityBasis": "resoluções vigentes",
    "status": "verificado",
-   "confidence": 0.98,
-   "clusterKey": "kp-diplomacia-regime_sancoes",
+   "confidence": 0.99,
+   "clusterKey": "sancoes:KP",
    "sources": [
     {
      "sourceId": "un_sc",
      "ref": "kp",
      "retrievedAt": "2026-10-25T14:00:00Z"
+    },
+    {
+     "sourceId": "ofac",
+     "ref": "KP",
+     "url": "https://sanctionssearch.ofac.treas.gov/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
     }
    ],
    "text": {
@@ -1751,7 +2917,7 @@
    "intensityBasis": "setores restritos",
    "status": "verificado",
    "confidence": 0.95,
-   "clusterKey": "ve-diplomacia-regime_sancoes",
+   "clusterKey": "sancoes:VE",
    "sources": [
     {
      "sourceId": "ofac",
@@ -1797,12 +2963,18 @@
    "intensity": 3,
    "intensityBasis": "(magnitude − 4) × 1,25, +1 se PAGER laranja, +2 se vermelho",
    "status": "verificado",
-   "confidence": 0.95,
+   "confidence": 0.99,
    "sources": [
     {
      "sourceId": "usgs",
      "ref": "fx26jp01",
      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/fx26jp01",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "emsc",
+     "ref": "20261025_0000901",
+     "url": "https://www.seismicportal.eu/eventdetails.html?unid=20261025_0000901",
      "retrievedAt": "2026-10-25T17:00:00Z"
     }
    ],
@@ -2003,6 +3175,58 @@
     "scale": "Mww"
    },
    "depthKm": 10
+  },
+  {
+   "id": "emsc:evt:20261025_0000902",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "sismico",
+   "subtype": "terremoto",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     22.1,
+     38.4
+    ]
+   },
+   "place": {
+    "iso2": "GR",
+    "iso3": "GRC",
+    "name": "Grécia",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-25T14:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T14:08:00Z",
+    "precision": "minute"
+   },
+   "intensity": 1,
+   "intensityBasis": "(magnitude − 4) × 1,25",
+   "status": "nao_verificado",
+   "confidence": 0.8,
+   "sources": [
+    {
+     "sourceId": "emsc",
+     "ref": "20261025_0000902",
+     "url": "https://www.seismicportal.eu/eventdetails.html?unid=20261025_0000902",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Terremoto de magnitude 4,7 — Greece",
+     "summary": "Profundidade de 8 km. Solução da rede europeia EMSC."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T14:08:00Z",
+   "clusterKey": "sismo:38.5:22:14941140",
+   "magnitude": {
+    "value": 4.7,
+    "scale": "ML"
+   },
+   "depthKm": 8
   },
   {
    "id": "gdacs:evt:FL-900101",
@@ -2217,7 +3441,7 @@
    "clusterKey": "incendio:AU:900104"
   },
   {
-   "id": "ioda:evt:IR-1792929600",
+   "id": "cloudflare_radar:evt:ex-901-IR",
    "schemaVersion": "0.3.0",
    "kind": "event",
    "layer": "ciber",
@@ -2241,11 +3465,17 @@
     "observedAt": "2026-10-25T17:00:00Z",
     "precision": "minute"
    },
-   "intensity": 4,
-   "intensityBasis": "log10 do score de queda do IODA, menos 1",
-   "status": "nao_verificado",
-   "confidence": 0.7,
+   "intensity": 5,
+   "intensityBasis": "alcance (país 4, região 3, rede 2), +1 se a causa for ordem do governo ou ação militar",
+   "status": "verificado",
+   "confidence": 0.9,
    "sources": [
+    {
+     "sourceId": "cloudflare_radar",
+     "ref": "ex-901",
+     "url": "https://radar.cloudflare.com/ir",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
     {
      "sourceId": "ioda",
      "ref": "IR-1792929600",
@@ -2255,19 +3485,22 @@
    ],
    "text": {
     "pt": {
-     "headline": "Queda de internet detectada — Irã",
-     "summary": "Sinais de conectividade abaixo do normal há 5 h. Detecção automática; a fonte não diz a causa (apagão, corte deliberado ou falha técnica)."
+     "headline": "Queda de internet em todo o país — Irã",
+     "summary": "Causa segundo o Cloudflare Radar: ordem do governo. A queda continuava no momento da coleta.",
+     "body": "Nota original (inglês): Example: nationwide shutdown (fictitious)."
     }
    },
-   "tags": [],
+   "tags": [
+    "causa-government_directed"
+   ],
    "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "queda:IR:2026-10-25",
    "links": [
     {
      "label": "Painel IODA — Irã",
      "url": "https://ioda.inetintel.cc.gatech.edu/country/IR"
     }
-   ],
-   "clusterKey": "queda:IR:498036"
+   ]
   },
   {
    "id": "ioda:evt:SN-1792915200",
@@ -2320,7 +3553,924 @@
      "url": "https://ioda.inetintel.cc.gatech.edu/country/SN"
     }
    ],
-   "clusterKey": "queda:SN:498032"
+   "clusterKey": "queda:SN:2026-10-25"
+  },
+  {
+   "id": "cloudflare_radar:evt:ex-902-PK",
+   "schemaVersion": "0.3.0",
+   "kind": "event",
+   "layer": "ciber",
+   "subtype": "queda_internet",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     69.41,
+     29.97
+    ]
+   },
+   "place": {
+    "iso2": "PK",
+    "iso3": "PAK",
+    "name": "Paquistão",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-25T09:00:00Z",
+    "end": "2026-10-25T11:00:00Z",
+    "observedAt": "2026-10-25T17:00:00Z",
+    "precision": "minute"
+   },
+   "intensity": 3,
+   "intensityBasis": "alcance (país 4, região 3, rede 2), +1 se a causa for ordem do governo ou ação militar",
+   "status": "verificado",
+   "confidence": 0.85,
+   "sources": [
+    {
+     "sourceId": "cloudflare_radar",
+     "ref": "ex-902",
+     "url": "https://radar.cloudflare.com/pk",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Queda de internet regional — Paquistão",
+     "summary": "Causa segundo o Cloudflare Radar: falta de energia.",
+     "body": "Nota original (inglês): Example: regional power outage (fictitious)."
+    }
+   },
+   "tags": [
+    "causa-power_outage"
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "queda:PK:2026-10-25"
+  },
+  {
+   "id": "acled:cond:fr-protestos",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "protesto",
+   "subtype": "manifestacao",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     2.34,
+     46.61
+    ]
+   },
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-19T00:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T17:00:00Z",
+    "precision": "day"
+   },
+   "intensity": 3,
+   "intensityBasis": "2 + log10 do número de protestos, +1 se houve repressão",
+   "status": "corroborado",
+   "confidence": 0.75,
+   "sources": [
+    {
+     "sourceId": "acled",
+     "ref": "FR",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Onda de protestos — França",
+     "summary": "16 protestos e tumultos registrados em França nos últimos 14 dias."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "protesto:FR"
+  },
+  {
+   "id": "ofac:cond:cu-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -78.96,
+     21.63
+    ]
+   },
+   "place": {
+    "iso2": "CU",
+    "iso3": "CUB",
+    "name": "Cuba",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-25T17:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T17:00:00Z",
+    "precision": "day",
+    "startKnown": false
+   },
+   "intensity": 2,
+   "intensityBasis": "designações vigentes na lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "verificado",
+   "confidence": 0.95,
+   "sources": [
+    {
+     "sourceId": "ofac",
+     "ref": "CU",
+     "url": "https://sanctionssearch.ofac.treas.gov/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Sob sanções — Cuba",
+     "summary": "O Tesouro dos EUA (OFAC) mantém 1 designação ligadas a Cuba (programas: CUBA)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "sancoes:CU"
+  },
+  {
+   "id": "un_sc:cond:ly-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     17.97,
+     27
+    ]
+   },
+   "place": {
+    "iso2": "LY",
+    "iso3": "LBY",
+    "name": "Líbia",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-25T17:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T17:00:00Z",
+    "precision": "day",
+    "startKnown": false
+   },
+   "intensity": 2,
+   "intensityBasis": "designações vigentes na lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "verificado",
+   "confidence": 0.95,
+   "sources": [
+    {
+     "sourceId": "un_sc",
+     "ref": "LY",
+     "url": "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Sob sanções — Líbia",
+     "summary": "O Conselho de Segurança da ONU mantém 1 designação ligadas a Líbia (programas: Libya)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "sancoes:LY"
+  },
+  {
+   "id": "un_sc:cond:so-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     45.73,
+     4.75
+    ]
+   },
+   "place": {
+    "iso2": "SO",
+    "iso3": "SOM",
+    "name": "Somália",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-25T17:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T17:00:00Z",
+    "precision": "day",
+    "startKnown": false
+   },
+   "intensity": 2,
+   "intensityBasis": "designações vigentes na lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "verificado",
+   "confidence": 0.95,
+   "sources": [
+    {
+     "sourceId": "un_sc",
+     "ref": "SO",
+     "url": "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Sob sanções — Somália",
+     "summary": "O Conselho de Segurança da ONU mantém 1 designação ligadas a Somália (programas: Somalia)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "sancoes:SO"
+  },
+  {
+   "id": "eu_sanctions:cond:sy-sancoes",
+   "schemaVersion": "0.3.0",
+   "kind": "condition",
+   "layer": "diplomacia",
+   "subtype": "regime_sancoes",
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     38.54,
+     35.01
+    ]
+   },
+   "place": {
+    "iso2": "SY",
+    "iso3": "SYR",
+    "name": "Síria",
+    "admin1": null
+   },
+   "time": {
+    "start": "2026-10-25T17:00:00Z",
+    "end": null,
+    "observedAt": "2026-10-25T17:00:00Z",
+    "precision": "day",
+    "startKnown": false
+   },
+   "intensity": 2,
+   "intensityBasis": "designações vigentes na lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
+   "status": "verificado",
+   "confidence": 0.95,
+   "sources": [
+    {
+     "sourceId": "eu_sanctions",
+     "ref": "SY",
+     "url": "https://www.sanctionsmap.eu/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Sob sanções — Síria",
+     "summary": "A União Europeia mantém 1 designação ligadas a Síria (programas: SYR)."
+    }
+   },
+   "tags": [],
+   "updatedAt": "2026-10-25T17:00:00Z",
+   "clusterKey": "sancoes:SY"
+  },
+  {
+   "id": "plz:measure:ua-deslocados",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:ua-guerra-interestatal"
+   },
+   "metric": "deslocados_internos",
+   "unit": "pessoas",
+   "periodStart": "2026-09-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "idmc",
+     "value": 3700000,
+     "observedAt": "2026-10-23T17:00:00Z",
+     "method": "estimativa de campo"
+    },
+    {
+     "sourceId": "unhcr",
+     "value": 3400000,
+     "observedAt": "2026-10-18T17:00:00Z",
+     "method": "registro"
+    },
+    {
+     "sourceId": "gov_ua",
+     "value": 4900000,
+     "observedAt": "2026-10-22T17:00:00Z",
+     "method": "cadastro nacional"
+    }
+   ],
+   "spread": {
+    "low": 3400000,
+    "high": 4900000,
+    "relative": 0.441
+   },
+   "disputed": true,
+   "consensus": null,
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "plz:measure:sd-deslocados",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:sd-guerra-civil"
+   },
+   "metric": "deslocados_internos",
+   "unit": "pessoas",
+   "periodStart": "2026-09-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "idmc",
+     "value": 8800000,
+     "observedAt": "2026-10-23T17:00:00Z",
+     "method": "estimativa de campo"
+    },
+    {
+     "sourceId": "unhcr",
+     "value": 8100000,
+     "observedAt": "2026-10-18T17:00:00Z",
+     "method": "registro"
+    }
+   ],
+   "spread": {
+    "low": 8100000,
+    "high": 8800000,
+    "relative": 0.086
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "plz:measure:fr-participantes",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "event",
+    "id": "gdelt:evt:fr-greve-geral"
+   },
+   "metric": "participantes",
+   "unit": "pessoas",
+   "periodStart": "2026-10-24T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "gdelt",
+     "value": 1200000,
+     "observedAt": "2026-10-25T16:30:00Z",
+     "method": "declaração dos organizadores"
+    },
+    {
+     "sourceId": "reliefweb",
+     "value": 380000,
+     "observedAt": "2026-10-25T16:00:00Z",
+     "method": "estimativa policial citada"
+    }
+   ],
+   "spread": {
+    "low": 380000,
+    "high": 1200000,
+    "relative": 2.158
+   },
+   "disputed": true,
+   "consensus": null,
+   "updatedAt": "2026-10-25T16:55:00Z"
+  },
+  {
+   "id": "plz:measure:br-inflacao-alimentos-exemplo",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "tse_br:cond:br-presidencial"
+   },
+   "metric": "inflacao_alimentos_12m",
+   "unit": "%",
+   "periodStart": "2025-10-25T17:00:00Z",
+   "periodEnd": "2026-09-30T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "curadoria",
+     "value": 7.8,
+     "observedAt": "2026-10-24T07:40:00Z",
+     "method": "valor de exemplo"
+    }
+   ],
+   "spread": {
+    "low": 7.8,
+    "high": 7.8,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-24T07:40:00Z"
+  },
+  {
+   "id": "plz:measure:ua-conflito-mortes_45d",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:ua-guerra-interestatal"
+   },
+   "metric": "mortes_45d",
+   "unit": "pessoas",
+   "periodStart": "2026-10-13T00:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ucdp",
+     "value": 232,
+     "observedAt": "2026-10-25T17:00:00Z",
+     "method": "UCDP, soma da estimativa central (faixa 180 a 310)"
+    }
+   ],
+   "spread": {
+    "low": 232,
+    "high": 232,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:sd-conflito-mortes_45d",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:sd-guerra-civil"
+   },
+   "metric": "mortes_45d",
+   "unit": "pessoas",
+   "periodStart": "2026-10-10T00:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ucdp",
+     "value": 250,
+     "observedAt": "2026-10-25T17:00:00Z",
+     "method": "UCDP, soma da estimativa central (faixa 200 a 325)"
+    }
+   ],
+   "spread": {
+    "low": 250,
+    "high": 250,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:cd-conflito-mortes_45d",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:cd-insurgencia"
+   },
+   "metric": "mortes_45d",
+   "unit": "pessoas",
+   "periodStart": "2026-10-14T00:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ucdp",
+     "value": 14,
+     "observedAt": "2026-10-25T17:00:00Z",
+     "method": "UCDP, soma da estimativa central (faixa 10 a 19)"
+    }
+   ],
+   "spread": {
+    "low": 14,
+    "high": 14,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:sd-conflito-mortes_14d",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ucdp:cond:sd-guerra-civil"
+   },
+   "metric": "mortes_14d",
+   "unit": "pessoas",
+   "periodStart": "2026-10-16T00:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "acled",
+     "value": 50,
+     "observedAt": "2026-10-25T17:00:00Z",
+     "method": "ACLED, soma das mortes registradas"
+    }
+   ],
+   "spread": {
+    "low": 50,
+    "high": 50,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:fr-protestos-protestos_14d",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "acled:cond:fr-protestos"
+   },
+   "metric": "protestos_14d",
+   "unit": "eventos",
+   "periodStart": "2026-10-19T00:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "acled",
+     "value": 16,
+     "observedAt": "2026-10-25T17:00:00Z",
+     "method": "ACLED"
+    }
+   ],
+   "spread": {
+    "low": 16,
+    "high": 16,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:ru-sancoes-designacoes_ofac",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "eu_sanctions:cond:ru-regime-sancoes"
+   },
+   "metric": "designacoes_ofac",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ofac",
+     "value": 4,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 4,
+    "high": 4,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:ir-sancoes-designacoes_ofac",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "un_sc:cond:ir-embargo"
+   },
+   "metric": "designacoes_ofac",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ofac",
+     "value": 2,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 2,
+    "high": 2,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:kp-sancoes-designacoes_ofac",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "un_sc:cond:kp-regime-sancoes"
+   },
+   "metric": "designacoes_ofac",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ofac",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:cu-sancoes-designacoes_ofac",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ofac:cond:cu-sancoes"
+   },
+   "metric": "designacoes_ofac",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ofac",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:ve-sancoes-designacoes_ofac",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "ofac:cond:ve-regime-sancoes"
+   },
+   "metric": "designacoes_ofac",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "ofac",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:kp-sancoes-designacoes_un_sc",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "un_sc:cond:kp-regime-sancoes"
+   },
+   "metric": "designacoes_un_sc",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "un_sc",
+     "value": 3,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 3,
+    "high": 3,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:ly-sancoes-designacoes_un_sc",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "un_sc:cond:ly-sancoes"
+   },
+   "metric": "designacoes_un_sc",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "un_sc",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:so-sancoes-designacoes_un_sc",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "un_sc:cond:so-sancoes"
+   },
+   "metric": "designacoes_un_sc",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "un_sc",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:ru-sancoes-designacoes_eu_sanctions",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "eu_sanctions:cond:ru-regime-sancoes"
+   },
+   "metric": "designacoes_eu_sanctions",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "eu_sanctions",
+     "value": 3,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 3,
+    "high": 3,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:ir-sancoes-designacoes_eu_sanctions",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "un_sc:cond:ir-embargo"
+   },
+   "metric": "designacoes_eu_sanctions",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "eu_sanctions",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:sy-sancoes-designacoes_eu_sanctions",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "condition",
+    "id": "eu_sanctions:cond:sy-sancoes"
+   },
+   "metric": "designacoes_eu_sanctions",
+   "unit": "designações",
+   "periodStart": "2026-10-25T17:00:00Z",
+   "periodEnd": "2026-10-25T17:00:00Z",
+   "assertions": [
+    {
+     "sourceId": "eu_sanctions",
+     "value": 1,
+     "observedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "spread": {
+    "low": 1,
+    "high": 1,
+    "relative": 0
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:measure:fx26jp01-magnitude",
+   "schemaVersion": "0.3.0",
+   "kind": "measure",
+   "subject": {
+    "type": "event",
+    "id": "usgs:evt:fx26jp01"
+   },
+   "metric": "magnitude",
+   "unit": "Mw",
+   "periodStart": "2026-10-25T16:46:00Z",
+   "periodEnd": "2026-10-25T16:46:00Z",
+   "assertions": [
+    {
+     "sourceId": "usgs",
+     "value": 6.1,
+     "observedAt": "2026-10-25T16:52:00Z",
+     "method": "Mww"
+    },
+    {
+     "sourceId": "emsc",
+     "value": 6,
+     "observedAt": "2026-10-25T16:54:20Z",
+     "method": "mb"
+    }
+   ],
+   "spread": {
+    "low": 6,
+    "high": 6.1,
+    "relative": 0.017
+   },
+   "disputed": false,
+   "consensus": null,
+   "updatedAt": "2026-10-25T17:00:00Z"
   },
   {
    "id": "opensky:trk:ae1a01",

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.3.0",
+  "dataClass": "live",
+  "note": "Calendário mantido pelo projeto. Uma eleição aparece a partir de campaignDays antes da votação e some 3 dias depois. Confirme cada data no órgão eleitoral e preencha verifiedAt; sem isso o cartão sai como não verificado.",
+  "elections": [
+    {
+      "country": "US", "type": "legislativa", "date": "2026-11-03", "campaignDays": 60,
+      "title": "Eleições de meio de mandato — Estados Unidos",
+      "sourceUrl": "https://www.fec.gov",
+      "note": "Data fixada em lei federal: terça-feira depois da primeira segunda-feira de novembro. Renovação da Câmara e de um terço do Senado.",
+      "verifiedAt": null
+    }
+  ]
+}

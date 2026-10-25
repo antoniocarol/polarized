@@ -2,7 +2,7 @@
   "name": "polarized",
   "version": "0.3.0",
   "description": "O mundo em tempo real, num globo. Pipeline de dados e app.",
-  "license": "UNLICENSED",
+  "license": "AGPL-3.0-or-later",
   "type": "module",
   "private": true,
   "engines": {
@@ -23,5 +23,9 @@
   },
   "devDependencies": {
     "i18n-iso-countries": "^7.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antoniocarol/polarized.git"
   }
 }

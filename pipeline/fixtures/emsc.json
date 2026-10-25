@@ -1,0 +1,58 @@
+{
+ "type": "FeatureCollection",
+ "metadata": {
+  "note": "fixture: formato FDSN JSON do EMSC; eventos fictícios"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "id": "20261025_0000901",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     141.95,
+     36.15,
+     -30
+    ]
+   },
+   "properties": {
+    "unid": "20261025_0000901",
+    "time": "2026-10-25T16:46:20.0Z",
+    "lastupdate": "2026-10-25T16:54:20.0Z",
+    "lat": 36.15,
+    "lon": 141.95,
+    "depth": 30,
+    "evtype": "ke",
+    "auth": "EMSC",
+    "mag": 6.0,
+    "magtype": "mb",
+    "flynn_region": "NEAR EAST COAST OF HONSHU, JAPAN"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "20261025_0000902",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     22.1,
+     38.4,
+     -8
+    ]
+   },
+   "properties": {
+    "unid": "20261025_0000902",
+    "time": "2026-10-25T14:00:00.0Z",
+    "lastupdate": "2026-10-25T14:08:00.0Z",
+    "lat": 38.4,
+    "lon": 22.1,
+    "depth": 8,
+    "evtype": "ke",
+    "auth": "EMSC",
+    "mag": 4.7,
+    "magtype": "ml",
+    "flynn_region": "GREECE"
+   }
+  }
+ ]
+}
