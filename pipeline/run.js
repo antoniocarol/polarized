@@ -147,6 +147,8 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
+  const annotate = err => { console.log(`::error title=pipeline::${String(err?.stack || err).split("\n").slice(0, 4).join(" | ")}`); process.exit(1); };
+  if (process.env.GITHUB_ACTIONS) { process.on("uncaughtException", annotate); process.on("unhandledRejection", annotate); }
   const { values: v } = parseArgs({ options: {
     fixtures: { type: "boolean", default: false }, now: { type: "string" }, out: { type: "string", default: "public/snapshot.json" },
     state: { type: "string", default: "state/tracks.json" }, only: { type: "string" }, "no-analysis": { type: "boolean", default: false } } });
@@ -160,6 +162,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const w of warnings) console.log("AVISO", w);
   if (errors.length) {
     for (const e of errors) console.error("ERRO ", e);
+    // No GitHub Actions, os primeiros erros viram anotações, legíveis sem baixar o log.
+    if (process.env.GITHUB_ACTIONS) for (const e of errors.slice(0, 10)) console.log(`::error title=snapshot inválido::${String(e).replace(/\r?\n/g, " ")}`);
     console.error(`snapshot inválido (${errors.length} erros); o anterior foi mantido`);
     process.exit(1);
   }
