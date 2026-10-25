@@ -108,3 +108,12 @@ test("estado: eventos com ponto ganham o estado do Natural Earth", () => {
   assert.equal(e.place.admin1Code, "BR-SP");
   assert.equal(admin1At(52.52, 13.40, "DE").code, "DE-BE", "Berlim, dentro de Brandemburgo");
 });
+
+test("notícias: a mesma matéria repetida no feed vira um relato só", async () => {
+  const { rss } = await import("../pipeline/adapters/news.js");
+  const item = '<item><title>Same story</title><link>https://example.org/a</link><pubDate>Sun, 25 Oct 2026 10:00:00 GMT</pubDate></item>';
+  const xml = `<rss><channel>${item}${item}</channel></rss>`;
+  const outlets = [{ id: "o1", name: "O1", lang: "en", feeds: [{ kind: "rss", url: "x" }] }, { id: "o2", name: "O2", lang: "en", feeds: [{ kind: "rss", url: "y" }] }];
+  const r = rss.normalize({ raw: { o1: xml, o2: xml } }, { outlets, now: "2026-10-25T12:00:00Z" });
+  assert.equal(r.entities.length, 1);
+});

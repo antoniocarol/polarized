@@ -19,6 +19,8 @@ export function report({ sourceId, outlet, url, title, excerpt, publishedAt, now
   };
 }
 const fresh = (t, now) => { const ms = Date.parse(t); return Number.isFinite(ms) && Date.parse(now) - ms <= WINDOW_H * 3600e3 && ms <= Date.parse(now) + 3600e3; };
+// A mesma matéria aparece repetida num feed, ou em dois feeds; fica o primeiro relato.
+const uniq = list => { const seen = new Set(); return list.filter(r => !seen.has(r.id) && seen.add(r.id)); };
 const feedsOf = (outlets, kind) => outlets.flatMap(o => o.feeds.filter(f => f.kind === kind).map(f => ({ o, f })));
 
 async function each(list, fn) {
@@ -41,7 +43,7 @@ export const rss = {
       for (const it of parseFeed(xml).filter(i => fresh(i.date, ctx.now)).slice(0, PER_FEED))
         out.push(report({ sourceId: "rss", outlet, url: it.link, title: it.title, excerpt: it.description, publishedAt: it.date, now: ctx.now }));
     }
-    return { entities: out, warnings: res.warnings || [] };
+    return { entities: uniq(out), warnings: res.warnings || [] };
   },
 };
 
@@ -64,7 +66,7 @@ export const bluesky = {
           title: ext?.title || rec.text, excerpt: ext?.description || (ext ? rec.text : null), publishedAt: rec.createdAt, now: ctx.now }));
       }
     }
-    return { entities: out, warnings: res.warnings || [] };
+    return { entities: uniq(out), warnings: res.warnings || [] };
   },
 };
 
@@ -90,6 +92,6 @@ export const x = {
         out.push(report({ sourceId: "x", outlet: o, url: link || `https://x.com/${f.username}/status/${tw.id}`, title: text, excerpt: null, publishedAt: tw.created_at, now: ctx.now }));
       }
     }
-    return { entities: out, warnings: res.warnings || [] };
+    return { entities: uniq(out), warnings: res.warnings || [] };
   },
 };

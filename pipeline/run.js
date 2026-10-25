@@ -134,6 +134,10 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
     policy: { militaryTrackZones: policy.militaryTracks.zones.map(z => ({ name: z.name, delayMinutes: z.delayMinutes })), analysis: analysisReport },
     entities: [...clustered, ...tracks.published, ...analyses],
   };
+  // Última rede: id repetido de qualquer fonte não pode derrubar o instantâneo inteiro.
+  const seenIds = new Set(), dup = [];
+  snapshot.entities = snapshot.entities.filter(e => { if (seenIds.has(e.id)) { dup.push(e.id); return false; } seenIds.add(e.id); return true; });
+  if (dup.length) log(`AVISO      ${dup.length} entidades com id repetido descartadas (${dup.slice(0, 3).join(", ")})`);
   // Tradução do conteúdo para os idiomas do app (text/<idioma>.json), com cache e conferência de números.
   let translations = null, trCache = state.translations || {};
   if (policy.translation?.enabled !== false) {
