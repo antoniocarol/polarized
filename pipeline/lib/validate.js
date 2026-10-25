@@ -7,7 +7,7 @@ const taxonomy = readJson(rel("schema/taxonomy.json"));
 const ajv = new Ajv2020({ allErrors: true, strict: false });
 addFormats(ajv);
 const check = ajv.compile(schema);
-const BY_KIND = Object.fromEntries(["condition", "event", "measure", "track", "analysis"]
+const BY_KIND = Object.fromEntries(["condition", "event", "measure", "track", "analysis", "report", "series"]
   .map(k => [k, ajv.compile({ $ref: `#/$defs/${k}`, $defs: schema.$defs })]));
 
 /** Valida uma entidade contra a definição do seu tipo; os erros ficam em validateEntity.errors. */
@@ -40,12 +40,14 @@ export function validateSnapshot(snap) {
       refs.push(...e.assertions.map(a => a.sourceId));
       if (!ids.has(e.subject.id)) errors.push(`${e.id}: subject inexistente ${e.subject.id}`);
       if (e.disputed !== e.spread.relative > taxonomy.disputeThreshold) errors.push(`${e.id}: disputed inconsistente com spread`);
-    } else if (e.kind !== "analysis" && !(e.subtype in taxonomy.layers[e.layer].subtypes)) {
+    } else if (e.kind !== "analysis" && e.layer && e.subtype != null && !(e.subtype in taxonomy.layers[e.layer].subtypes)) {
       errors.push(`${e.id}: subtype "${e.subtype}" fora da taxonomia de ${e.layer}`);
     }
+    if (e.kind === "report" && snap.outlets && !snap.outlets[e.outlet]) errors.push(`${e.id}: veículo "${e.outlet}" não registrado`);
+    for (const id of [...(e.relatedIds || []), ...(e.reportIds || [])]) if (!ids.has(id)) errors.push(`${e.id}: referência a entidade inexistente ${id}`);
     if (e.kind === "analysis") {
       for (const s of e.subjectIds) if (!ids.has(s)) errors.push(`${e.id}: subjectId inexistente ${s}`);
-      const supports = [...e.points, e.counterpoint, ...(e.claims || [])].flatMap(p => p.supportedBy);
+      const supports = [...e.points, e.counterpoint, ...(e.claims || []), ...(e.moves || []).flatMap(m => m.drivers)].flatMap(p => p.supportedBy);
       for (const s of supports) {
         if (s.entityId && !ids.has(s.entityId)) errors.push(`${e.id}: apoio aponta para entidade inexistente ${s.entityId}`);
         if (s.precedent != null && !(e.precedents || [])[s.precedent]) errors.push(`${e.id}: apoio aponta para precedente inexistente ${s.precedent}`);

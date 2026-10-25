@@ -1,5 +1,5 @@
 {
- "schemaVersion": "0.3.0",
+ "schemaVersion": "0.4.0",
  "generatedAt": "2026-10-25T17:00:00Z",
  "window": {
   "from": "2026-10-18T17:00:00Z",
@@ -95,6 +95,108 @@
     "ACLED_PASSWORD"
    ],
    "endpoint": "https://acleddata.com/api/acled/read"
+  },
+  "rss": {
+   "id": "rss",
+   "name": "Feeds RSS de redações",
+   "shortName": "RSS",
+   "org": "vários (schema/outlets.json)",
+   "url": "https://polarized.example/veiculos",
+   "access": "aberto",
+   "license": "manchete, link e resumo do próprio feed",
+   "redistribution": "com_atribuicao",
+   "attributionRequired": true,
+   "reliability": "imprensa",
+   "cadence": "15 min",
+   "latencyHours": 0.25,
+   "layers": [
+    "conflito",
+    "protesto",
+    "eleicao",
+    "economia",
+    "clima",
+    "sismico",
+    "diplomacia",
+    "ciber"
+   ],
+   "licenseCheckedAt": null,
+   "note": "Guarda só manchete, link e o resumo que o próprio feed publica. Nunca o texto integral."
+  },
+  "bluesky": {
+   "id": "bluesky",
+   "name": "Bluesky (contas de redações)",
+   "shortName": "Bluesky",
+   "org": "Bluesky Social",
+   "url": "https://bsky.app",
+   "endpoint": "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed",
+   "access": "aberto",
+   "license": "termos do Bluesky",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "imprensa",
+   "cadence": "15 min",
+   "latencyHours": 0.25,
+   "layers": [
+    "conflito",
+    "protesto",
+    "eleicao",
+    "economia",
+    "clima",
+    "sismico",
+    "diplomacia",
+    "ciber"
+   ],
+   "licenseCheckedAt": null
+  },
+  "x": {
+   "id": "x",
+   "name": "X (contas de redações)",
+   "shortName": "X",
+   "org": "X Corp.",
+   "url": "https://developer.x.com",
+   "endpoint": "https://api.x.com/2",
+   "env": [
+    "X_BEARER_TOKEN"
+   ],
+   "access": "chave_api",
+   "license": "Developer Agreement do X",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "imprensa",
+   "cadence": "15 min",
+   "latencyHours": 0.25,
+   "layers": [
+    "conflito",
+    "protesto",
+    "eleicao",
+    "economia",
+    "clima",
+    "sismico",
+    "diplomacia",
+    "ciber"
+   ],
+   "licenseCheckedAt": null,
+   "note": "Leitura de timelines exige plano pago da API. O acordo de desenvolvedor limita a redistribuição de conteúdo."
+  },
+  "stooq": {
+   "id": "stooq",
+   "name": "Stooq — cotações diárias",
+   "shortName": "Stooq",
+   "org": "Stooq",
+   "url": "https://stooq.com",
+   "endpoint": "https://stooq.com/q/d/l/",
+   "access": "aberto",
+   "license": "termos do Stooq",
+   "redistribution": "verificar",
+   "attributionRequired": true,
+   "reliability": "agregador",
+   "cadence": "diária",
+   "latencyHours": 24,
+   "layers": [
+    "economia"
+   ],
+   "licenseCheckedAt": null,
+   "note": "Dados de mercado costumam ter licença restrita. Confira os termos ou troque por um provedor com licença de redistribuição."
   },
   "reliefweb": {
    "id": "reliefweb",
@@ -525,6 +627,134 @@
    "note": "Arquivo data/curated/elections.json. Os cartões citam a fonte 'curadoria' e o órgão eleitoral nos links."
   }
  },
+ "outlets": {
+  "ex_agencia": {
+   "id": "ex_agencia",
+   "name": "Agência Exemplo",
+   "country": "BR",
+   "region": "América do Sul",
+   "lang": "pt",
+   "type": "agencia",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/agencia/rss"
+    }
+   ]
+  },
+  "ex_radio": {
+   "id": "ex_radio",
+   "name": "Rádio Pública Exemplo",
+   "country": "DE",
+   "region": "Europa",
+   "lang": "en",
+   "type": "emissora_publica",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/radio/rss"
+    }
+   ]
+  },
+  "ex_jornal": {
+   "id": "ex_jornal",
+   "name": "Jornal Independente Exemplo",
+   "country": "GB",
+   "region": "Europa",
+   "lang": "en",
+   "type": "privada",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/jornal/rss"
+    }
+   ]
+  },
+  "ex_estatal": {
+   "id": "ex_estatal",
+   "name": "Canal Estatal Exemplo",
+   "country": "QA",
+   "region": "Oriente Médio",
+   "lang": "en",
+   "type": "estatal",
+   "funding": "fictício — veículo de exemplo com financiamento estatal",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/estatal/rss"
+    }
+   ]
+  },
+  "ex_asia": {
+   "id": "ex_asia",
+   "name": "Diário da Ásia Exemplo",
+   "country": "IN",
+   "region": "Ásia",
+   "lang": "en",
+   "type": "privada",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/asia/rss"
+    }
+   ]
+  },
+  "ex_bsky": {
+   "id": "ex_bsky",
+   "name": "Agência Exemplo (Bluesky)",
+   "country": "BR",
+   "region": "América do Sul",
+   "lang": "en",
+   "type": "agencia",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "bluesky",
+     "handle": "agencia.exemplo.invalid"
+    }
+   ]
+  },
+  "ex_x": {
+   "id": "ex_x",
+   "name": "Agência Exemplo (X)",
+   "country": "BR",
+   "region": "América do Sul",
+   "lang": "en",
+   "type": "agencia",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "x",
+     "username": "AgenciaExemplo"
+    }
+   ]
+  }
+ },
  "ingest": [
   {
    "sourceId": "curadoria",
@@ -532,7 +762,7 @@
    "count": 25,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 7
+   "ms": 12
   },
   {
    "sourceId": "eleicoes",
@@ -540,7 +770,7 @@
    "count": 1,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 21
+   "ms": 22
   },
   {
    "sourceId": "usgs",
@@ -548,7 +778,7 @@
    "count": 4,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 2
+   "ms": 4
   },
   {
    "sourceId": "emsc",
@@ -580,7 +810,7 @@
    "count": 2,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 0
+   "ms": 1
   },
   {
    "sourceId": "cisa_kev",
@@ -604,7 +834,7 @@
    "count": 15,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 3
+   "ms": 2
   },
   {
    "sourceId": "ofac",
@@ -612,7 +842,7 @@
    "count": 10,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 3
+   "ms": 2
   },
   {
    "sourceId": "un_sc",
@@ -620,7 +850,7 @@
    "count": 6,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 0
+   "ms": 1
   },
   {
    "sourceId": "eu_sanctions",
@@ -628,7 +858,39 @@
    "count": 6,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
+   "ms": 0
+  },
+  {
+   "sourceId": "rss",
+   "status": "fixture",
+   "count": 21,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 6
+  },
+  {
+   "sourceId": "bluesky",
+   "status": "fixture",
+   "count": 1,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
+   "ms": 0
+  },
+  {
+   "sourceId": "x",
+   "status": "fixture",
+   "count": 1,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": null,
    "ms": 1
+  },
+  {
+   "sourceId": "stooq",
+   "status": "fixture",
+   "count": 5,
+   "fetchedAt": "2026-10-25T17:00:00Z",
+   "error": "1 itens com falha: ^dax: resposta sem dados (exemplo de símbolo com falha)",
+   "ms": 3
   },
   {
    "sourceId": "opensky",
@@ -667,17 +929,17 @@
    }
   ],
   "analysis": {
-   "reused": 3,
-   "generated": 0,
+   "reused": 0,
+   "generated": 6,
    "rejected": 0,
    "failed": 0,
-   "skipped": 16
+   "skipped": 21
   }
  },
  "entities": [
   {
    "id": "curadoria:evt:br-debate-exemplo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "eleicao",
    "subtype": "debate",
@@ -691,7 +953,9 @@
    "place": {
     "iso2": "BR",
     "iso3": "BRA",
-    "name": "Brasil"
+    "name": "Brasil",
+    "admin1": "Distrito Federal",
+    "admin1Code": "BR-DF"
    },
    "time": {
     "start": "2026-10-25T10:30:00Z",
@@ -726,7 +990,7 @@
   },
   {
    "id": "curadoria:evt:br-proposta-congelamento-exemplo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "eleicao",
    "subtype": "periodo_de_campanha",
@@ -740,7 +1004,9 @@
    "place": {
     "iso2": "BR",
     "iso3": "BRA",
-    "name": "Brasil"
+    "name": "Brasil",
+    "admin1": "Distrito Federal",
+    "admin1Code": "BR-DF"
    },
    "time": {
     "start": "2026-10-25T11:30:00Z",
@@ -776,7 +1042,7 @@
   },
   {
    "id": "cisa_kev:evt:CVE-2026-90001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "ransomware",
@@ -826,7 +1092,7 @@
   },
   {
    "id": "cisa_kev:evt:CVE-2026-90002",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "vulnerabilidade_explorada",
@@ -875,7 +1141,7 @@
   },
   {
    "id": "ucdp:evt:9100001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -890,7 +1156,8 @@
     "iso2": "UA",
     "iso3": "UKR",
     "name": "Ucrânia",
-    "admin1": "Donetska oblast"
+    "admin1": "Donetsk",
+    "admin1Code": "UA-14"
    },
    "time": {
     "start": "2026-10-22T00:00:00Z",
@@ -922,7 +1189,7 @@
   },
   {
    "id": "ucdp:evt:9100002",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -937,7 +1204,8 @@
     "iso2": "UA",
     "iso3": "UKR",
     "name": "Ucrânia",
-    "admin1": "Zaporizka oblast"
+    "admin1": "Zaporíjia",
+    "admin1Code": "UA-23"
    },
    "time": {
     "start": "2026-10-19T00:00:00Z",
@@ -969,7 +1237,7 @@
   },
   {
    "id": "ucdp:evt:9100003",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -984,7 +1252,8 @@
     "iso2": "UA",
     "iso3": "UKR",
     "name": "Ucrânia",
-    "admin1": "Kyiv"
+    "admin1": "Kiev",
+    "admin1Code": "UA-30"
    },
    "time": {
     "start": "2026-10-16T00:00:00Z",
@@ -1016,7 +1285,7 @@
   },
   {
    "id": "ucdp:evt:9100004",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1031,7 +1300,8 @@
     "iso2": "UA",
     "iso3": "UKR",
     "name": "Ucrânia",
-    "admin1": "Khersonska oblast"
+    "admin1": "Kherson",
+    "admin1Code": "UA-65"
    },
    "time": {
     "start": "2026-10-13T00:00:00Z",
@@ -1063,7 +1333,7 @@
   },
   {
    "id": "ucdp:evt:9100005",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1078,7 +1348,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "North Darfur"
+    "admin1": "Darfur do Norte",
+    "admin1Code": "SD-DN"
    },
    "time": {
     "start": "2026-10-21T00:00:00Z",
@@ -1110,7 +1381,7 @@
   },
   {
    "id": "ucdp:evt:9100006",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1125,7 +1396,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "Khartoum"
+    "admin1": "Cartum",
+    "admin1Code": "SD-KH"
    },
    "time": {
     "start": "2026-10-17T00:00:00Z",
@@ -1157,7 +1429,7 @@
   },
   {
    "id": "ucdp:evt:9100007",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1172,7 +1444,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "Central Darfur"
+    "admin1": "Darfur do Sul",
+    "admin1Code": "SD-DS"
    },
    "time": {
     "start": "2026-10-15T00:00:00Z",
@@ -1204,7 +1477,7 @@
   },
   {
    "id": "ucdp:evt:9100008",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1219,7 +1492,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "North Kordofan"
+    "admin1": "Cordofão do Norte",
+    "admin1Code": "SD-KN"
    },
    "time": {
     "start": "2026-10-10T00:00:00Z",
@@ -1251,7 +1525,7 @@
   },
   {
    "id": "ucdp:evt:9100009",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1266,7 +1540,8 @@
     "iso2": "MM",
     "iso3": "MMR",
     "name": "Mianmar",
-    "admin1": "Mandalay"
+    "admin1": "Mandalay",
+    "admin1Code": "MM-04"
    },
    "time": {
     "start": "2026-10-20T00:00:00Z",
@@ -1297,7 +1572,7 @@
   },
   {
    "id": "ucdp:evt:9100010",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1312,7 +1587,8 @@
     "iso2": "MM",
     "iso3": "MMR",
     "name": "Mianmar",
-    "admin1": "Mandalay"
+    "admin1": "Sagaing",
+    "admin1Code": "MM-01"
    },
    "time": {
     "start": "2026-10-18T00:00:00Z",
@@ -1343,7 +1619,7 @@
   },
   {
    "id": "ucdp:evt:9100011",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1358,7 +1634,8 @@
     "iso2": "CD",
     "iso3": "COD",
     "name": "República Democrática do Congo",
-    "admin1": "North Kivu"
+    "admin1": "Nord-Kivu",
+    "admin1Code": "CD-NK"
    },
    "time": {
     "start": "2026-10-19T00:00:00Z",
@@ -1390,7 +1667,7 @@
   },
   {
    "id": "ucdp:evt:9100013",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1405,7 +1682,8 @@
     "iso2": "CD",
     "iso3": "COD",
     "name": "República Democrática do Congo",
-    "admin1": "Ituri"
+    "admin1": "Nord-Kivu",
+    "admin1Code": "CD-NK"
    },
    "time": {
     "start": "2026-10-14T00:00:00Z",
@@ -1437,7 +1715,7 @@
   },
   {
    "id": "ucdp:evt:9100012",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1452,7 +1730,8 @@
     "iso2": "RW",
     "iso3": "RWA",
     "name": "Ruanda",
-    "admin1": "North Kivu"
+    "admin1": "Norte",
+    "admin1Code": "RW-03"
    },
    "time": {
     "start": "2026-10-16T00:00:00Z",
@@ -1483,7 +1762,7 @@
   },
   {
    "id": "acled:evt:FRA9000",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1498,7 +1777,8 @@
     "iso2": "FR",
     "iso3": "FRA",
     "name": "França",
-    "admin1": "Ile-de-France"
+    "admin1": "Paris",
+    "admin1Code": "FR-75"
    },
    "time": {
     "start": "2026-10-25T00:00:00Z",
@@ -1531,7 +1811,7 @@
   },
   {
    "id": "acled:evt:FRA9007",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1546,7 +1826,8 @@
     "iso2": "FR",
     "iso3": "FRA",
     "name": "França",
-    "admin1": "Ile-de-France"
+    "admin1": "Seine-Saint-Denis",
+    "admin1Code": "FR-93"
    },
    "time": {
     "start": "2026-10-25T00:00:00Z",
@@ -1579,7 +1860,7 @@
   },
   {
    "id": "acled:evt:FRA9014",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1594,7 +1875,8 @@
     "iso2": "FR",
     "iso3": "FRA",
     "name": "França",
-    "admin1": "Ile-de-France"
+    "admin1": "Val-d'Oise",
+    "admin1Code": "FR-95"
    },
    "time": {
     "start": "2026-10-25T00:00:00Z",
@@ -1627,7 +1909,7 @@
   },
   {
    "id": "acled:evt:FRA9001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1642,7 +1924,8 @@
     "iso2": "FR",
     "iso3": "FRA",
     "name": "França",
-    "admin1": "Ile-de-France"
+    "admin1": "Paris",
+    "admin1Code": "FR-75"
    },
    "time": {
     "start": "2026-10-24T00:00:00Z",
@@ -1675,7 +1958,7 @@
   },
   {
    "id": "acled:evt:FRA9008",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1690,7 +1973,8 @@
     "iso2": "FR",
     "iso3": "FRA",
     "name": "França",
-    "admin1": "Ile-de-France"
+    "admin1": "Seine-Saint-Denis",
+    "admin1Code": "FR-93"
    },
    "time": {
     "start": "2026-10-24T00:00:00Z",
@@ -1723,7 +2007,7 @@
   },
   {
    "id": "acled:evt:SDN9001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1738,7 +2022,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "North Darfur"
+    "admin1": "Darfur do Norte",
+    "admin1Code": "SD-DN"
    },
    "time": {
     "start": "2026-10-22T00:00:00Z",
@@ -1767,11 +2052,15 @@
    },
    "tags": [],
    "updatedAt": "2026-10-24T17:00:00Z",
-   "parentId": "ucdp:cond:sd-guerra-civil"
+   "parentId": "ucdp:cond:sd-guerra-civil",
+   "reportIds": [
+    "rss:rep:81546f05daa157",
+    "rss:rep:7342c0c6bbe80b"
+   ]
   },
   {
    "id": "acled:evt:SDN9002",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1786,7 +2075,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "Khartoum"
+    "admin1": "Cartum",
+    "admin1Code": "SD-KH"
    },
    "time": {
     "start": "2026-10-20T00:00:00Z",
@@ -1819,7 +2109,7 @@
   },
   {
    "id": "acled:evt:SDN9003",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1834,7 +2124,8 @@
     "iso2": "SD",
     "iso3": "SDN",
     "name": "Sudão",
-    "admin1": "North Kordofan"
+    "admin1": "Cordofão do Norte",
+    "admin1Code": "SD-KN"
    },
    "time": {
     "start": "2026-10-16T00:00:00Z",
@@ -1867,7 +2158,7 @@
   },
   {
    "id": "acled:evt:UKR9001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "ataque_aereo",
@@ -1882,7 +2173,8 @@
     "iso2": "UA",
     "iso3": "UKR",
     "name": "Ucrânia",
-    "admin1": "Kyiv"
+    "admin1": "Kiev",
+    "admin1Code": "UA-30"
    },
    "time": {
     "start": "2026-10-23T00:00:00Z",
@@ -1910,11 +2202,17 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-24T17:00:00Z"
+   "updatedAt": "2026-10-24T17:00:00Z",
+   "reportIds": [
+    "rss:rep:5d687879861bf4",
+    "rss:rep:63043cf0173b6d",
+    "rss:rep:5edc3f16dc8e40",
+    "x:rep:f1e471e270efc8"
+   ]
   },
   {
    "id": "acled:evt:IRN9001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "repressao",
@@ -1929,7 +2227,8 @@
     "iso2": "IR",
     "iso3": "IRN",
     "name": "Irã",
-    "admin1": "Tehran"
+    "admin1": "Teerão",
+    "admin1Code": "IR-07"
    },
    "time": {
     "start": "2026-10-24T00:00:00Z",
@@ -1961,7 +2260,7 @@
   },
   {
    "id": "acled:evt:IRN9002",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "repressao",
@@ -1976,7 +2275,8 @@
     "iso2": "IR",
     "iso3": "IRN",
     "name": "Irã",
-    "admin1": "Isfahan"
+    "admin1": "Ispaão",
+    "admin1Code": "IR-04"
    },
    "time": {
     "start": "2026-10-24T00:00:00Z",
@@ -2007,8 +2307,1884 @@
    "updatedAt": "2026-10-24T17:00:00Z"
   },
   {
+   "id": "rss:rep:2107f7874335c8",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_agencia",
+   "url": "https://exemplo.invalid/ex_agencia/0",
+   "title": "Terremoto de magnitude 6,1 atinge a costa leste do Japão",
+   "excerpt": "Tremor no mar, sem alerta de tsunami, segundo a rede sismológica.",
+   "summaryPt": null,
+   "lang": "pt",
+   "publishedAt": "2026-10-25T15:00:00Z",
+   "place": {
+    "iso2": "JP",
+    "iso3": "JPN",
+    "name": "Japão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "sismico",
+   "subtype": "alerta_tsunami",
+   "storyKey": "st-a55c3ce620",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "usgs:evt:fx26jp01"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/0",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:a202c3f4d4efcb",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_agencia",
+   "url": "https://exemplo.invalid/ex_agencia/1",
+   "title": "Inflação de alimentos pesa no debate presidencial",
+   "excerpt": "Candidatos discutem custo de vida e cesta básica no debate de exemplo.",
+   "summaryPt": null,
+   "lang": "pt",
+   "publishedAt": "2026-10-25T08:00:00Z",
+   "place": null,
+   "geo": null,
+   "layer": "eleicao",
+   "subtype": "debate",
+   "storyKey": "st-2255ebf359",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/1",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:af60ed87121b57",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_agencia",
+   "url": "https://exemplo.invalid/ex_agencia/2",
+   "title": "Ibovespa recua 2,4% com aversão a risco e dólar em alta",
+   "excerpt": "Bolsa fecha em queda na sexta-feira; dólar sobe e petróleo dispara no exterior.",
+   "summaryPt": null,
+   "lang": "pt",
+   "publishedAt": "2026-10-23T21:00:00Z",
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "economia",
+   "subtype": "indice_bolsa",
+   "storyKey": "st-2845ded2b5",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/2",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:f320ce85c09572",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_agencia",
+   "url": "https://exemplo.invalid/ex_agencia/3",
+   "title": "Chuvas fortes atingem o Rio Grande do Sul e deixam cidades em alerta",
+   "excerpt": "Defesa civil emite alerta para enchentes em várias cidades.",
+   "summaryPt": null,
+   "lang": "pt",
+   "publishedAt": "2026-10-25T11:00:00Z",
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil",
+    "admin1": "Rio Grande do Sul",
+    "admin1Code": "BR-RS"
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -53.656,
+     -29.728
+    ]
+   },
+   "layer": "clima",
+   "subtype": "enchente",
+   "storyKey": "st-6019218b3e",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/3",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:c731794143d525",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_agencia",
+   "url": "https://exemplo.invalid/ex_agencia/4",
+   "title": "Governo de São Paulo anuncia plano contra enchentes",
+   "excerpt": "Plano prevê obras de drenagem em áreas de risco.",
+   "summaryPt": null,
+   "lang": "pt",
+   "publishedAt": "2026-10-24T21:00:00Z",
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil",
+    "admin1": "São Paulo",
+    "admin1Code": "BR-SP"
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -48.521,
+     -22.227
+    ]
+   },
+   "layer": "clima",
+   "subtype": "enchente",
+   "storyKey": "st-977ae97563",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/4",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:ed6dc8f93966f9",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_radio",
+   "url": "https://exemplo.invalid/ex_radio/0",
+   "title": "Magnitude 6.1 earthquake strikes off Japan east coast",
+   "excerpt": "No tsunami warning was issued.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T15:00:00Z",
+   "place": {
+    "iso2": "JP",
+    "iso3": "JPN",
+    "name": "Japão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "sismico",
+   "subtype": "alerta_tsunami",
+   "storyKey": "st-6f405b0087",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "usgs:evt:fx26jp01"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/0",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:5d687879861bf4",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_radio",
+   "url": "https://exemplo.invalid/ex_radio/1",
+   "title": "Drone attack on Kharkiv damages energy infrastructure",
+   "excerpt": "Officials report damage to power facilities after overnight attack.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T03:00:00Z",
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Kharkiv",
+    "admin1Code": "UA-63"
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     36.461,
+     49.465
+    ]
+   },
+   "layer": "conflito",
+   "subtype": "ataque_aereo",
+   "storyKey": "st-a9df549ffa",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "ucdp:cond:ua-guerra-interestatal",
+    "acled:evt:UKR9001"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/1",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:81546f05daa157",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_radio",
+   "url": "https://exemplo.invalid/ex_radio/2",
+   "title": "Fighting intensifies around El Fasher in North Darfur",
+   "excerpt": "Aid groups report displacement as fighting spreads.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-24T11:00:00Z",
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "storyKey": "st-743415bd18",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "ucdp:cond:sd-guerra-civil",
+    "acled:evt:SDN9001"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/2",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:e0ca8fc9cb5f01",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_radio",
+   "url": "https://exemplo.invalid/ex_radio/3",
+   "title": "General strike disrupts transport across France",
+   "excerpt": "Unions call nationwide strike over pension changes.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-24T15:00:00Z",
+   "place": {
+    "iso2": "FR",
+    "iso3": "FRA",
+    "name": "França",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "protesto",
+   "subtype": "greve_geral",
+   "storyKey": "st-2dbf964d71",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "gdelt:evt:fr-greve-geral",
+    "acled:cond:fr-protestos"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/3",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:5d39736b7ece24",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_radio",
+   "url": "https://exemplo.invalid/ex_radio/4",
+   "title": "Thousands evacuated as cyclone makes landfall in the Philippines",
+   "excerpt": "Authorities open evacuation centres.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-24T23:00:00Z",
+   "place": {
+    "iso2": "PH",
+    "iso3": "PHL",
+    "name": "Filipinas",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "clima",
+   "subtype": "tempestade",
+   "storyKey": "st-9dd4f6679e",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "gdacs:evt:TC-900103"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/4",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:8fe028011b5fce",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_radio",
+   "url": "https://exemplo.invalid/ex_radio/5",
+   "title": "EU adopts new sanctions package against Russia",
+   "excerpt": "The package targets energy and technology sectors.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-24T01:00:00Z",
+   "place": {
+    "iso2": "RU",
+    "iso3": "RUS",
+    "name": "Rússia",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "diplomacia",
+   "subtype": "sancoes",
+   "storyKey": "st-feb781505f",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "eu_sanctions:cond:ru-regime-sancoes"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/5",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:f4fa4a9bf65dd6",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_jornal",
+   "url": "https://exemplo.invalid/ex_jornal/0",
+   "title": "Strong earthquake strikes off Japan east coast, no tsunami warning",
+   "excerpt": "Buildings shook in coastal areas.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T14:00:00Z",
+   "place": {
+    "iso2": "JP",
+    "iso3": "JPN",
+    "name": "Japão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "sismico",
+   "subtype": "alerta_tsunami",
+   "storyKey": "st-6f405b0087",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "usgs:evt:fx26jp01"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_jornal/0",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:63043cf0173b6d",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_jornal",
+   "url": "https://exemplo.invalid/ex_jornal/1",
+   "title": "Overnight drone attack hits Kharkiv energy infrastructure",
+   "excerpt": "Power cuts reported in parts of the city.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T04:00:00Z",
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Kharkiv",
+    "admin1Code": "UA-63"
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     36.461,
+     49.465
+    ]
+   },
+   "layer": "conflito",
+   "subtype": "ataque_aereo",
+   "storyKey": "st-a9df549ffa",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "ucdp:cond:ua-guerra-interestatal",
+    "acled:evt:UKR9001"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_jornal/1",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:eb36b9c99eb35a",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_jornal",
+   "url": "https://exemplo.invalid/ex_jornal/2",
+   "title": "Iran internet shutdown enters second day",
+   "excerpt": "Monitors report nationwide connectivity loss.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T12:00:00Z",
+   "place": {
+    "iso2": "IR",
+    "iso3": "IRN",
+    "name": "Irã",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "ciber",
+   "subtype": "queda_internet",
+   "storyKey": "st-7c3d6fb344",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "cloudflare_radar:evt:ex-901-IR"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_jornal/2",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:76a6ddf1533ac5",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_jornal",
+   "url": "https://exemplo.invalid/ex_jornal/3",
+   "title": "Oil prices jump as Red Sea shipping concerns grow",
+   "excerpt": "Brent rises as insurers raise premiums for the route.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-23T22:00:00Z",
+   "place": null,
+   "geo": null,
+   "layer": "economia",
+   "subtype": null,
+   "storyKey": "st-87620d3543",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_jornal/3",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:5edc3f16dc8e40",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_estatal",
+   "url": "https://exemplo.invalid/ex_estatal/0",
+   "title": "Kharkiv energy infrastructure hit in drone attack",
+   "excerpt": "Damage reported at energy sites.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T05:00:00Z",
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Kharkiv",
+    "admin1Code": "UA-63"
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     36.461,
+     49.465
+    ]
+   },
+   "layer": "conflito",
+   "subtype": "ataque_aereo",
+   "storyKey": "st-a9df549ffa",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "ucdp:cond:ua-guerra-interestatal",
+    "acled:evt:UKR9001"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_estatal/0",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:7342c0c6bbe80b",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_estatal",
+   "url": "https://exemplo.invalid/ex_estatal/1",
+   "title": "Aid groups warn of worsening crisis as fighting intensifies in North Darfur",
+   "excerpt": "Humanitarian access remains limited.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-24T13:00:00Z",
+   "place": {
+    "iso2": "SD",
+    "iso3": "SDN",
+    "name": "Sudão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "conflito",
+   "subtype": "confronto_armado",
+   "storyKey": "st-743415bd18",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "ucdp:cond:sd-guerra-civil",
+    "acled:evt:SDN9001"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_estatal/1",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:b5adeb476de389",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_estatal",
+   "url": "https://exemplo.invalid/ex_estatal/2",
+   "title": "Internet shutdown in Iran enters second day, monitors say",
+   "excerpt": "Connectivity remains low across the country.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T13:00:00Z",
+   "place": {
+    "iso2": "IR",
+    "iso3": "IRN",
+    "name": "Irã",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "ciber",
+   "subtype": "queda_internet",
+   "storyKey": "st-7c3d6fb344",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "cloudflare_radar:evt:ex-901-IR"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_estatal/2",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:80e919bab74d32",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_estatal",
+   "url": "https://exemplo.invalid/ex_estatal/3",
+   "title": "Cyclone makes landfall in the Philippines, thousands evacuated",
+   "excerpt": "Strong winds hit eastern provinces.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T00:00:00Z",
+   "place": {
+    "iso2": "PH",
+    "iso3": "PHL",
+    "name": "Filipinas",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "clima",
+   "subtype": "tempestade",
+   "storyKey": "st-9dd4f6679e",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "gdacs:evt:TC-900103"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_estatal/3",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:ac4c120ec6718c",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_asia",
+   "url": "https://exemplo.invalid/ex_asia/0",
+   "title": "Cyclone makes landfall in Philippines as thousands evacuated from coast",
+   "excerpt": "Evacuations continue in coastal provinces.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T01:00:00Z",
+   "place": {
+    "iso2": "PH",
+    "iso3": "PHL",
+    "name": "Filipinas",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "clima",
+   "subtype": "tempestade",
+   "storyKey": "st-9dd4f6679e",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "gdacs:evt:TC-900103"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_asia/0",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "rss:rep:91dd076cae3436",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "rss",
+   "outlet": "ex_asia",
+   "url": "https://exemplo.invalid/ex_asia/1",
+   "title": "Japan earthquake: strong quake strikes off east coast",
+   "excerpt": "Rail services briefly suspended.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T15:00:00Z",
+   "place": {
+    "iso2": "JP",
+    "iso3": "JPN",
+    "name": "Japão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "sismico",
+   "subtype": "terremoto",
+   "storyKey": "st-6f405b0087",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "usgs:evt:fx26jp01"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_asia/1",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "bluesky:rep:51f299bc9ec8cb",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "bluesky",
+   "outlet": "ex_bsky",
+   "url": "https://exemplo.invalid/bsky/japan-quake",
+   "title": "Earthquake off Japan east coast: what we know",
+   "excerpt": "Key facts about the quake.",
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T16:00:00Z",
+   "place": {
+    "iso2": "JP",
+    "iso3": "JPN",
+    "name": "Japão",
+    "admin1": null,
+    "admin1Code": null
+   },
+   "geo": null,
+   "layer": "sismico",
+   "subtype": "terremoto",
+   "storyKey": "st-6f405b0087",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "usgs:evt:fx26jp01"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "bluesky",
+     "url": "https://exemplo.invalid/bsky/japan-quake",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "x:rep:f1e471e270efc8",
+   "schemaVersion": "0.4.0",
+   "kind": "report",
+   "sourceId": "x",
+   "outlet": "ex_x",
+   "url": "https://exemplo.invalid/x/kharkiv",
+   "title": "Kharkiv: drone attack damages energy infrastructure, officials say",
+   "excerpt": null,
+   "summaryPt": null,
+   "lang": "en",
+   "publishedAt": "2026-10-25T06:00:00Z",
+   "place": {
+    "iso2": "UA",
+    "iso3": "UKR",
+    "name": "Ucrânia",
+    "admin1": "Kharkiv",
+    "admin1Code": "UA-63"
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     36.461,
+     49.465
+    ]
+   },
+   "layer": "conflito",
+   "subtype": "ataque_aereo",
+   "storyKey": "st-a9df549ffa",
+   "topic": null,
+   "classifiedBy": "palavras-chave",
+   "relatedIds": [
+    "ucdp:cond:ua-guerra-interestatal",
+    "acled:evt:UKR9001"
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "x",
+     "url": "https://exemplo.invalid/x/kharkiv",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "stooq:ser:^bvp",
+   "schemaVersion": "0.4.0",
+   "kind": "series",
+   "layer": "economia",
+   "subtype": "indice_bolsa",
+   "instrument": {
+    "symbol": "^bvp",
+    "name": "Ibovespa",
+    "exchange": "B3",
+    "currency": "pontos",
+    "unit": null,
+    "note": null
+   },
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil",
+    "admin1": null
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -46.63,
+     -23.55
+    ]
+   },
+   "points": [
+    {
+     "d": "2026-09-14",
+     "close": 128533.8929,
+     "changePct": -0.36
+    },
+    {
+     "d": "2026-09-15",
+     "close": 128144.4538,
+     "changePct": -0.3
+    },
+    {
+     "d": "2026-09-16",
+     "close": 128587.2597,
+     "changePct": 0.35
+    },
+    {
+     "d": "2026-09-17",
+     "close": 129727.8444,
+     "changePct": 0.89
+    },
+    {
+     "d": "2026-09-18",
+     "close": 128800.126,
+     "changePct": -0.72
+    },
+    {
+     "d": "2026-09-21",
+     "close": 129907.4416,
+     "changePct": 0.86
+    },
+    {
+     "d": "2026-09-22",
+     "close": 131006.8832,
+     "changePct": 0.85
+    },
+    {
+     "d": "2026-09-23",
+     "close": 130402.462,
+     "changePct": -0.46
+    },
+    {
+     "d": "2026-09-24",
+     "close": 130010.5659,
+     "changePct": -0.3
+    },
+    {
+     "d": "2026-09-25",
+     "close": 129641.2801,
+     "changePct": -0.28
+    },
+    {
+     "d": "2026-09-28",
+     "close": 130280.7175,
+     "changePct": 0.49
+    },
+    {
+     "d": "2026-09-29",
+     "close": 131228.7311,
+     "changePct": 0.73
+    },
+    {
+     "d": "2026-09-30",
+     "close": 131912.8567,
+     "changePct": 0.52
+    },
+    {
+     "d": "2026-10-01",
+     "close": 130779.9594,
+     "changePct": -0.86
+    },
+    {
+     "d": "2026-10-02",
+     "close": 129626.142,
+     "changePct": -0.88
+    },
+    {
+     "d": "2026-10-05",
+     "close": 129469.5926,
+     "changePct": -0.12
+    },
+    {
+     "d": "2026-10-06",
+     "close": 129986.6894,
+     "changePct": 0.4
+    },
+    {
+     "d": "2026-10-07",
+     "close": 130184.2332,
+     "changePct": 0.15
+    },
+    {
+     "d": "2026-10-08",
+     "close": 129546.0699,
+     "changePct": -0.49
+    },
+    {
+     "d": "2026-10-09",
+     "close": 128398.1152,
+     "changePct": -0.89
+    },
+    {
+     "d": "2026-10-12",
+     "close": 128545.0465,
+     "changePct": 0.11
+    },
+    {
+     "d": "2026-10-13",
+     "close": 127746.8023,
+     "changePct": -0.62
+    },
+    {
+     "d": "2026-10-14",
+     "close": 128678.2886,
+     "changePct": 0.73
+    },
+    {
+     "d": "2026-10-15",
+     "close": 128796.8836,
+     "changePct": 0.09
+    },
+    {
+     "d": "2026-10-16",
+     "close": 128672.3912,
+     "changePct": -0.1
+    },
+    {
+     "d": "2026-10-19",
+     "close": 129750.7091,
+     "changePct": 0.84
+    },
+    {
+     "d": "2026-10-20",
+     "close": 129885.3984,
+     "changePct": 0.1
+    },
+    {
+     "d": "2026-10-21",
+     "close": 130534.8254,
+     "changePct": 0.5
+    },
+    {
+     "d": "2026-10-22",
+     "close": 129490.5468,
+     "changePct": -0.8
+    },
+    {
+     "d": "2026-10-23",
+     "close": 126382.7737,
+     "changePct": -2.4
+    }
+   ],
+   "last": {
+    "d": "2026-10-23",
+    "close": 126382.7737,
+    "changePct": -2.4
+   },
+   "status": "nao_verificado",
+   "confidence": 0.85,
+   "sources": [
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=%5Ebvp",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "stooq:ser:^spx",
+   "schemaVersion": "0.4.0",
+   "kind": "series",
+   "layer": "economia",
+   "subtype": "indice_bolsa",
+   "instrument": {
+    "symbol": "^spx",
+    "name": "S&P 500",
+    "exchange": "NYSE",
+    "currency": "pontos",
+    "unit": null,
+    "note": null
+   },
+   "place": {
+    "iso2": "US",
+    "iso3": "USA",
+    "name": "Estados Unidos",
+    "admin1": null
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     -74.01,
+     40.71
+    ]
+   },
+   "points": [
+    {
+     "d": "2026-09-14",
+     "close": 5790.387,
+     "changePct": -0.17
+    },
+    {
+     "d": "2026-09-15",
+     "close": 5777.9859,
+     "changePct": -0.21
+    },
+    {
+     "d": "2026-09-16",
+     "close": 5748.0775,
+     "changePct": -0.52
+    },
+    {
+     "d": "2026-09-17",
+     "close": 5736.5073,
+     "changePct": -0.2
+    },
+    {
+     "d": "2026-09-18",
+     "close": 5754.4452,
+     "changePct": 0.31
+    },
+    {
+     "d": "2026-09-21",
+     "close": 5780.8599,
+     "changePct": 0.46
+    },
+    {
+     "d": "2026-09-22",
+     "close": 5778.1094,
+     "changePct": -0.05
+    },
+    {
+     "d": "2026-09-23",
+     "close": 5797.7633,
+     "changePct": 0.34
+    },
+    {
+     "d": "2026-09-24",
+     "close": 5822.5403,
+     "changePct": 0.43
+    },
+    {
+     "d": "2026-09-25",
+     "close": 5796.5421,
+     "changePct": -0.45
+    },
+    {
+     "d": "2026-09-28",
+     "close": 5758.4227,
+     "changePct": -0.66
+    },
+    {
+     "d": "2026-09-29",
+     "close": 5744.0956,
+     "changePct": -0.25
+    },
+    {
+     "d": "2026-09-30",
+     "close": 5709.5692,
+     "changePct": -0.6
+    },
+    {
+     "d": "2026-10-01",
+     "close": 5700.1772,
+     "changePct": -0.16
+    },
+    {
+     "d": "2026-10-02",
+     "close": 5739.5061,
+     "changePct": 0.69
+    },
+    {
+     "d": "2026-10-05",
+     "close": 5743.0728,
+     "changePct": 0.06
+    },
+    {
+     "d": "2026-10-06",
+     "close": 5711.3535,
+     "changePct": -0.55
+    },
+    {
+     "d": "2026-10-07",
+     "close": 5735.0178,
+     "changePct": 0.41
+    },
+    {
+     "d": "2026-10-08",
+     "close": 5710.3382,
+     "changePct": -0.43
+    },
+    {
+     "d": "2026-10-09",
+     "close": 5734.1246,
+     "changePct": 0.42
+    },
+    {
+     "d": "2026-10-12",
+     "close": 5707.7402,
+     "changePct": -0.46
+    },
+    {
+     "d": "2026-10-13",
+     "close": 5735.018,
+     "changePct": 0.48
+    },
+    {
+     "d": "2026-10-14",
+     "close": 5718.8554,
+     "changePct": -0.28
+    },
+    {
+     "d": "2026-10-15",
+     "close": 5680.4836,
+     "changePct": -0.67
+    },
+    {
+     "d": "2026-10-16",
+     "close": 5704.2647,
+     "changePct": 0.42
+    },
+    {
+     "d": "2026-10-19",
+     "close": 5685.3207,
+     "changePct": -0.33
+    },
+    {
+     "d": "2026-10-20",
+     "close": 5671.6846,
+     "changePct": -0.24
+    },
+    {
+     "d": "2026-10-21",
+     "close": 5653.8502,
+     "changePct": -0.31
+    },
+    {
+     "d": "2026-10-22",
+     "close": 5686.4333,
+     "changePct": 0.58
+    },
+    {
+     "d": "2026-10-23",
+     "close": 5703.4926,
+     "changePct": 0.3
+    }
+   ],
+   "last": {
+    "d": "2026-10-23",
+    "close": 5703.4926,
+    "changePct": 0.3
+   },
+   "status": "nao_verificado",
+   "confidence": 0.85,
+   "sources": [
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=%5Espx",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "stooq:ser:^nkx",
+   "schemaVersion": "0.4.0",
+   "kind": "series",
+   "layer": "economia",
+   "subtype": "indice_bolsa",
+   "instrument": {
+    "symbol": "^nkx",
+    "name": "Nikkei 225",
+    "exchange": "Bolsa de Tóquio",
+    "currency": "pontos",
+    "unit": null,
+    "note": null
+   },
+   "place": {
+    "iso2": "JP",
+    "iso3": "JPN",
+    "name": "Japão",
+    "admin1": null
+   },
+   "geo": {
+    "type": "Point",
+    "coordinates": [
+     139.77,
+     35.68
+    ]
+   },
+   "points": [
+    {
+     "d": "2026-09-14",
+     "close": 38945.7974,
+     "changePct": -0.14
+    },
+    {
+     "d": "2026-09-15",
+     "close": 38843.9371,
+     "changePct": -0.26
+    },
+    {
+     "d": "2026-09-16",
+     "close": 39088.2434,
+     "changePct": 0.63
+    },
+    {
+     "d": "2026-09-17",
+     "close": 38763.1442,
+     "changePct": -0.83
+    },
+    {
+     "d": "2026-09-18",
+     "close": 38437.7747,
+     "changePct": -0.84
+    },
+    {
+     "d": "2026-09-21",
+     "close": 38266.8866,
+     "changePct": -0.44
+    },
+    {
+     "d": "2026-09-22",
+     "close": 38414.2442,
+     "changePct": 0.39
+    },
+    {
+     "d": "2026-09-23",
+     "close": 38754.854,
+     "changePct": 0.89
+    },
+    {
+     "d": "2026-09-24",
+     "close": 38783.7058,
+     "changePct": 0.07
+    },
+    {
+     "d": "2026-09-25",
+     "close": 38853.8642,
+     "changePct": 0.18
+    },
+    {
+     "d": "2026-09-28",
+     "close": 38614.9545,
+     "changePct": -0.61
+    },
+    {
+     "d": "2026-09-29",
+     "close": 38636.7076,
+     "changePct": 0.06
+    },
+    {
+     "d": "2026-09-30",
+     "close": 38435.8427,
+     "changePct": -0.52
+    },
+    {
+     "d": "2026-10-01",
+     "close": 38133.0328,
+     "changePct": -0.79
+    },
+    {
+     "d": "2026-10-02",
+     "close": 38122.2665,
+     "changePct": -0.03
+    },
+    {
+     "d": "2026-10-05",
+     "close": 37847.8749,
+     "changePct": -0.72
+    },
+    {
+     "d": "2026-10-06",
+     "close": 38050.4144,
+     "changePct": 0.54
+    },
+    {
+     "d": "2026-10-07",
+     "close": 37983.1013,
+     "changePct": -0.18
+    },
+    {
+     "d": "2026-10-08",
+     "close": 38102.8138,
+     "changePct": 0.32
+    },
+    {
+     "d": "2026-10-09",
+     "close": 37891.8823,
+     "changePct": -0.55
+    },
+    {
+     "d": "2026-10-12",
+     "close": 38216.0058,
+     "changePct": 0.86
+    },
+    {
+     "d": "2026-10-13",
+     "close": 38342.9494,
+     "changePct": 0.33
+    },
+    {
+     "d": "2026-10-14",
+     "close": 38339.8433,
+     "changePct": -0.01
+    },
+    {
+     "d": "2026-10-15",
+     "close": 38516.1705,
+     "changePct": 0.46
+    },
+    {
+     "d": "2026-10-16",
+     "close": 38845.7596,
+     "changePct": 0.86
+    },
+    {
+     "d": "2026-10-19",
+     "close": 38783.8004,
+     "changePct": -0.16
+    },
+    {
+     "d": "2026-10-20",
+     "close": 38933.3255,
+     "changePct": 0.39
+    },
+    {
+     "d": "2026-10-21",
+     "close": 38589.3191,
+     "changePct": -0.88
+    },
+    {
+     "d": "2026-10-22",
+     "close": 38337.1,
+     "changePct": -0.65
+    },
+    {
+     "d": "2026-10-23",
+     "close": 37915.3919,
+     "changePct": -1.1
+    }
+   ],
+   "last": {
+    "d": "2026-10-23",
+    "close": 37915.3919,
+    "changePct": -1.1
+   },
+   "status": "nao_verificado",
+   "confidence": 0.85,
+   "sources": [
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=%5Enkx",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "stooq:ser:usdbrl",
+   "schemaVersion": "0.4.0",
+   "kind": "series",
+   "layer": "economia",
+   "subtype": "cambio",
+   "instrument": {
+    "symbol": "usdbrl",
+    "name": "Dólar em reais",
+    "exchange": null,
+    "currency": "BRL",
+    "unit": null,
+    "note": null
+   },
+   "place": {
+    "iso2": "BR",
+    "iso3": "BRA",
+    "name": "Brasil",
+    "admin1": null
+   },
+   "geo": null,
+   "points": [
+    {
+     "d": "2026-09-14",
+     "close": 5.4003,
+     "changePct": 0.01
+    },
+    {
+     "d": "2026-09-15",
+     "close": 5.3933,
+     "changePct": -0.13
+    },
+    {
+     "d": "2026-09-16",
+     "close": 5.3818,
+     "changePct": -0.21
+    },
+    {
+     "d": "2026-09-17",
+     "close": 5.3765,
+     "changePct": -0.1
+    },
+    {
+     "d": "2026-09-18",
+     "close": 5.3848,
+     "changePct": 0.15
+    },
+    {
+     "d": "2026-09-21",
+     "close": 5.3634,
+     "changePct": -0.4
+    },
+    {
+     "d": "2026-09-22",
+     "close": 5.3479,
+     "changePct": -0.29
+    },
+    {
+     "d": "2026-09-23",
+     "close": 5.3474,
+     "changePct": -0.01
+    },
+    {
+     "d": "2026-09-24",
+     "close": 5.3214,
+     "changePct": -0.49
+    },
+    {
+     "d": "2026-09-25",
+     "close": 5.3182,
+     "changePct": -0.06
+    },
+    {
+     "d": "2026-09-28",
+     "close": 5.3137,
+     "changePct": -0.08
+    },
+    {
+     "d": "2026-09-29",
+     "close": 5.3375,
+     "changePct": 0.45
+    },
+    {
+     "d": "2026-09-30",
+     "close": 5.3371,
+     "changePct": -0.01
+    },
+    {
+     "d": "2026-10-01",
+     "close": 5.333,
+     "changePct": -0.08
+    },
+    {
+     "d": "2026-10-02",
+     "close": 5.3312,
+     "changePct": -0.03
+    },
+    {
+     "d": "2026-10-05",
+     "close": 5.3158,
+     "changePct": -0.29
+    },
+    {
+     "d": "2026-10-06",
+     "close": 5.2989,
+     "changePct": -0.32
+    },
+    {
+     "d": "2026-10-07",
+     "close": 5.3049,
+     "changePct": 0.11
+    },
+    {
+     "d": "2026-10-08",
+     "close": 5.3123,
+     "changePct": 0.14
+    },
+    {
+     "d": "2026-10-09",
+     "close": 5.3379,
+     "changePct": 0.48
+    },
+    {
+     "d": "2026-10-12",
+     "close": 5.3423,
+     "changePct": 0.08
+    },
+    {
+     "d": "2026-10-13",
+     "close": 5.3355,
+     "changePct": -0.13
+    },
+    {
+     "d": "2026-10-14",
+     "close": 5.3562,
+     "changePct": 0.39
+    },
+    {
+     "d": "2026-10-15",
+     "close": 5.3415,
+     "changePct": -0.27
+    },
+    {
+     "d": "2026-10-16",
+     "close": 5.3323,
+     "changePct": -0.17
+    },
+    {
+     "d": "2026-10-19",
+     "close": 5.3434,
+     "changePct": 0.21
+    },
+    {
+     "d": "2026-10-20",
+     "close": 5.3426,
+     "changePct": -0.01
+    },
+    {
+     "d": "2026-10-21",
+     "close": 5.3414,
+     "changePct": -0.02
+    },
+    {
+     "d": "2026-10-22",
+     "close": 5.3461,
+     "changePct": 0.09
+    },
+    {
+     "d": "2026-10-23",
+     "close": 5.4316,
+     "changePct": 1.6
+    }
+   ],
+   "last": {
+    "d": "2026-10-23",
+    "close": 5.4316,
+    "changePct": 1.6
+   },
+   "status": "nao_verificado",
+   "confidence": 0.85,
+   "sources": [
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=usdbrl",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "stooq:ser:cb.f",
+   "schemaVersion": "0.4.0",
+   "kind": "series",
+   "layer": "economia",
+   "subtype": "commodity",
+   "instrument": {
+    "symbol": "cb.f",
+    "name": "Petróleo Brent",
+    "exchange": "ICE",
+    "currency": "USD",
+    "unit": "barril",
+    "note": null
+   },
+   "place": null,
+   "geo": null,
+   "points": [
+    {
+     "d": "2026-09-14",
+     "close": 78.0867,
+     "changePct": 0.11
+    },
+    {
+     "d": "2026-09-15",
+     "close": 77.8575,
+     "changePct": -0.29
+    },
+    {
+     "d": "2026-09-16",
+     "close": 76.936,
+     "changePct": -1.18
+    },
+    {
+     "d": "2026-09-17",
+     "close": 76.1663,
+     "changePct": -1
+    },
+    {
+     "d": "2026-09-18",
+     "close": 77.0156,
+     "changePct": 1.12
+    },
+    {
+     "d": "2026-09-21",
+     "close": 77.0681,
+     "changePct": 0.07
+    },
+    {
+     "d": "2026-09-22",
+     "close": 76.9898,
+     "changePct": -0.1
+    },
+    {
+     "d": "2026-09-23",
+     "close": 77.4361,
+     "changePct": 0.58
+    },
+    {
+     "d": "2026-09-24",
+     "close": 77.9001,
+     "changePct": 0.6
+    },
+    {
+     "d": "2026-09-25",
+     "close": 78.5709,
+     "changePct": 0.86
+    },
+    {
+     "d": "2026-09-28",
+     "close": 78.6516,
+     "changePct": 0.1
+    },
+    {
+     "d": "2026-09-29",
+     "close": 78.0066,
+     "changePct": -0.82
+    },
+    {
+     "d": "2026-09-30",
+     "close": 78.2551,
+     "changePct": 0.32
+    },
+    {
+     "d": "2026-10-01",
+     "close": 77.5072,
+     "changePct": -0.96
+    },
+    {
+     "d": "2026-10-02",
+     "close": 78.3606,
+     "changePct": 1.1
+    },
+    {
+     "d": "2026-10-05",
+     "close": 78.8634,
+     "changePct": 0.64
+    },
+    {
+     "d": "2026-10-06",
+     "close": 79.5688,
+     "changePct": 0.89
+    },
+    {
+     "d": "2026-10-07",
+     "close": 79.0322,
+     "changePct": -0.67
+    },
+    {
+     "d": "2026-10-08",
+     "close": 78.3162,
+     "changePct": -0.91
+    },
+    {
+     "d": "2026-10-09",
+     "close": 78.0854,
+     "changePct": -0.29
+    },
+    {
+     "d": "2026-10-12",
+     "close": 77.8734,
+     "changePct": -0.27
+    },
+    {
+     "d": "2026-10-13",
+     "close": 77.339,
+     "changePct": -0.69
+    },
+    {
+     "d": "2026-10-14",
+     "close": 76.5704,
+     "changePct": -0.99
+    },
+    {
+     "d": "2026-10-15",
+     "close": 77.4154,
+     "changePct": 1.1
+    },
+    {
+     "d": "2026-10-16",
+     "close": 77.4237,
+     "changePct": 0.01
+    },
+    {
+     "d": "2026-10-19",
+     "close": 78.0875,
+     "changePct": 0.86
+    },
+    {
+     "d": "2026-10-20",
+     "close": 78.7822,
+     "changePct": 0.89
+    },
+    {
+     "d": "2026-10-21",
+     "close": 78.2344,
+     "changePct": -0.7
+    },
+    {
+     "d": "2026-10-22",
+     "close": 78.8215,
+     "changePct": 0.75
+    },
+    {
+     "d": "2026-10-23",
+     "close": 81.2649,
+     "changePct": 3.1
+    }
+   ],
+   "last": {
+    "d": "2026-10-23",
+    "close": 81.2649,
+    "changePct": 3.1
+   },
+   "status": "nao_verificado",
+   "confidence": 0.85,
+   "sources": [
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=cb.f",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
    "id": "ucdp:cond:ua-guerra-interestatal",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_interestatal",
@@ -2054,11 +4230,25 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T16:52:00Z"
+   "updatedAt": "2026-10-25T16:52:00Z",
+   "relations": [
+    {
+     "type": "conflito_com",
+     "from": "RU",
+     "to": "UA",
+     "label": "Government of Russia (Soviet Union) - Government of Ukraine"
+    }
+   ],
+   "reportIds": [
+    "rss:rep:5d687879861bf4",
+    "rss:rep:63043cf0173b6d",
+    "rss:rep:5edc3f16dc8e40",
+    "x:rep:f1e471e270efc8"
+   ]
   },
   {
    "id": "ucdp:cond:sd-guerra-civil",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_civil",
@@ -2110,11 +4300,15 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T16:38:00Z"
+   "updatedAt": "2026-10-25T16:38:00Z",
+   "reportIds": [
+    "rss:rep:81546f05daa157",
+    "rss:rep:7342c0c6bbe80b"
+   ]
   },
   {
    "id": "acled:cond:ps-ocupacao",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "ocupacao",
@@ -2160,7 +4354,7 @@
   },
   {
    "id": "ucdp:cond:mm-guerra-civil",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_civil",
@@ -2206,7 +4400,7 @@
   },
   {
    "id": "acled:cond:ht-violencia-armada",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -2252,7 +4446,7 @@
   },
   {
    "id": "ucdp:cond:cd-insurgencia",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "insurgencia",
@@ -2298,7 +4492,7 @@
   },
   {
    "id": "gdelt:evt:fr-greve-geral",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "greve_geral",
@@ -2312,7 +4506,9 @@
    "place": {
     "iso2": "FR",
     "iso3": "FRA",
-    "name": "França"
+    "name": "França",
+    "admin1": "Paris",
+    "admin1Code": "FR-75"
    },
    "time": {
     "start": "2026-10-25T16:00:00Z",
@@ -2340,11 +4536,14 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T16:30:00Z"
+   "updatedAt": "2026-10-25T16:30:00Z",
+   "reportIds": [
+    "rss:rep:e0ca8fc9cb5f01"
+   ]
   },
   {
    "id": "tse_br:cond:br-presidencial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "presidencial",
@@ -2390,7 +4589,7 @@
   },
   {
    "id": "fec_us:cond:us-legislativa",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "legislativa",
@@ -2448,7 +4647,7 @@
   },
   {
    "id": "ifes:cond:ng-pre-eleitoral",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "pre_eleitoral",
@@ -2494,7 +4693,7 @@
   },
   {
    "id": "wto:cond:cn-controle-exportacao",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "controle_exportacao",
@@ -2540,7 +4739,7 @@
   },
   {
    "id": "wto:cond:eu-regulacao-comercial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "regulacao_comercial",
@@ -2589,7 +4788,7 @@
   },
   {
    "id": "imf:cond:ar-crise-cambial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "crise_cambial",
@@ -2635,7 +4834,7 @@
   },
   {
    "id": "wto:cond:in-negociacao-comercial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "negociacao_comercial",
@@ -2681,7 +4880,7 @@
   },
   {
    "id": "firms:cond:au-temporada-incendios",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "clima",
    "subtype": "temporada_incendios",
@@ -2727,7 +4926,7 @@
   },
   {
    "id": "eu_sanctions:cond:ru-regime-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -2777,11 +4976,28 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T16:35:00Z"
+   "updatedAt": "2026-10-25T16:35:00Z",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "US",
+     "to": "RU",
+     "label": "O Tesouro dos EUA (OFAC)"
+    },
+    {
+     "type": "sanciona",
+     "from": "EU",
+     "to": "RU",
+     "label": "A União Europeia"
+    }
+   ],
+   "reportIds": [
+    "rss:rep:8fe028011b5fce"
+   ]
   },
   {
    "id": "un_sc:cond:ir-embargo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "embargo",
@@ -2835,11 +5051,25 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T16:10:00Z"
+   "updatedAt": "2026-10-25T16:10:00Z",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "US",
+     "to": "IR",
+     "label": "O Tesouro dos EUA (OFAC)"
+    },
+    {
+     "type": "sanciona",
+     "from": "EU",
+     "to": "IR",
+     "label": "A União Europeia"
+    }
+   ]
   },
   {
    "id": "un_sc:cond:kp-regime-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -2887,11 +5117,25 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T14:00:00Z"
+   "updatedAt": "2026-10-25T14:00:00Z",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "US",
+     "to": "KP",
+     "label": "O Tesouro dos EUA (OFAC)"
+    },
+    {
+     "type": "sanciona",
+     "from": "UN",
+     "to": "KP",
+     "label": "O Conselho de Segurança da ONU"
+    }
+   ]
   },
   {
    "id": "ofac:cond:ve-regime-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -2933,11 +5177,19 @@
     }
    },
    "tags": [],
-   "updatedAt": "2026-10-25T12:00:00Z"
+   "updatedAt": "2026-10-25T12:00:00Z",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "US",
+     "to": "VE",
+     "label": "O Tesouro dos EUA (OFAC)"
+    }
+   ]
   },
   {
    "id": "usgs:evt:fx26jp01",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -2997,11 +5249,18 @@
     "value": 6.1,
     "scale": "Mww"
    },
-   "depthKm": 34
+   "depthKm": 34,
+   "reportIds": [
+    "rss:rep:2107f7874335c8",
+    "rss:rep:ed6dc8f93966f9",
+    "rss:rep:f4fa4a9bf65dd6",
+    "rss:rep:91dd076cae3436",
+    "bluesky:rep:51f299bc9ec8cb"
+   ]
   },
   {
    "id": "usgs:evt:fx26cl02",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -3016,7 +5275,8 @@
     "iso2": "CL",
     "iso3": "CHL",
     "name": "Chile",
-    "admin1": null
+    "admin1": "de Coquimbo",
+    "admin1Code": "CL-CO"
    },
    "time": {
     "start": "2026-10-25T15:25:00Z",
@@ -3059,7 +5319,7 @@
   },
   {
    "id": "usgs:evt:fx26id03",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -3117,7 +5377,7 @@
   },
   {
    "id": "usgs:evt:fx26to04",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -3178,7 +5438,7 @@
   },
   {
    "id": "emsc:evt:20261025_0000902",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -3193,7 +5453,8 @@
     "iso2": "GR",
     "iso3": "GRC",
     "name": "Grécia",
-    "admin1": null
+    "admin1": "Grécia Central",
+    "admin1Code": "GR-H"
    },
    "time": {
     "start": "2026-10-25T14:00:00Z",
@@ -3230,7 +5491,7 @@
   },
   {
    "id": "gdacs:evt:FL-900101",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "clima",
    "subtype": "enchente",
@@ -3245,7 +5506,8 @@
     "iso2": "PK",
     "iso3": "PAK",
     "name": "Paquistão",
-    "admin1": null
+    "admin1": "Território da Capital Islamabad",
+    "admin1Code": "PK-IS"
    },
    "time": {
     "start": "2026-10-21T17:00:00Z",
@@ -3283,7 +5545,7 @@
   },
   {
    "id": "gdacs:evt:VO-900102",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "vulcao",
@@ -3298,7 +5560,8 @@
     "iso2": "ID",
     "iso3": "IDN",
     "name": "Indonésia",
-    "admin1": null
+    "admin1": "Java Central",
+    "admin1Code": "ID-JT"
    },
    "time": {
     "start": "2026-10-24T17:00:00Z",
@@ -3336,7 +5599,7 @@
   },
   {
    "id": "gdacs:evt:TC-900103",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "clima",
    "subtype": "tempestade",
@@ -3385,11 +5648,16 @@
      "url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=900103"
     }
    ],
-   "clusterKey": "tempestade:PH:900103"
+   "clusterKey": "tempestade:PH:900103",
+   "reportIds": [
+    "rss:rep:5d39736b7ece24",
+    "rss:rep:80e919bab74d32",
+    "rss:rep:ac4c120ec6718c"
+   ]
   },
   {
    "id": "gdacs:evt:WF-900104",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "clima",
    "subtype": "incendio",
@@ -3404,7 +5672,8 @@
     "iso2": "AU",
     "iso3": "AUS",
     "name": "Austrália",
-    "admin1": null
+    "admin1": "Nova Gales do Sul",
+    "admin1Code": "AU-NSW"
    },
    "time": {
     "start": "2026-10-24T17:00:00Z",
@@ -3442,7 +5711,7 @@
   },
   {
    "id": "cloudflare_radar:evt:ex-901-IR",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "queda_internet",
@@ -3457,7 +5726,8 @@
     "iso2": "IR",
     "iso3": "IRN",
     "name": "Irã",
-    "admin1": null
+    "admin1": "Yazd",
+    "admin1Code": "IR-25"
    },
    "time": {
     "start": "2026-10-25T12:00:00Z",
@@ -3500,11 +5770,15 @@
      "label": "Painel IODA — Irã",
      "url": "https://ioda.inetintel.cc.gatech.edu/country/IR"
     }
+   ],
+   "reportIds": [
+    "rss:rep:eb36b9c99eb35a",
+    "rss:rep:b5adeb476de389"
    ]
   },
   {
    "id": "ioda:evt:SN-1792915200",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "queda_internet",
@@ -3519,7 +5793,8 @@
     "iso2": "SN",
     "iso3": "SEN",
     "name": "Senegal",
-    "admin1": null
+    "admin1": "Tambacounda",
+    "admin1Code": "SN-TC"
    },
    "time": {
     "start": "2026-10-25T08:00:00Z",
@@ -3557,7 +5832,7 @@
   },
   {
    "id": "cloudflare_radar:evt:ex-902-PK",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "queda_internet",
@@ -3572,7 +5847,8 @@
     "iso2": "PK",
     "iso3": "PAK",
     "name": "Paquistão",
-    "admin1": null
+    "admin1": "Baluchistão",
+    "admin1Code": "PK-BA"
    },
    "time": {
     "start": "2026-10-25T09:00:00Z",
@@ -3607,7 +5883,7 @@
   },
   {
    "id": "acled:cond:fr-protestos",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -3650,11 +5926,14 @@
    },
    "tags": [],
    "updatedAt": "2026-10-25T17:00:00Z",
-   "clusterKey": "protesto:FR"
+   "clusterKey": "protesto:FR",
+   "reportIds": [
+    "rss:rep:e0ca8fc9cb5f01"
+   ]
   },
   {
    "id": "ofac:cond:cu-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -3698,11 +5977,19 @@
    },
    "tags": [],
    "updatedAt": "2026-10-25T17:00:00Z",
-   "clusterKey": "sancoes:CU"
+   "clusterKey": "sancoes:CU",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "US",
+     "to": "CU",
+     "label": "O Tesouro dos EUA (OFAC)"
+    }
+   ]
   },
   {
    "id": "un_sc:cond:ly-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -3746,11 +6033,19 @@
    },
    "tags": [],
    "updatedAt": "2026-10-25T17:00:00Z",
-   "clusterKey": "sancoes:LY"
+   "clusterKey": "sancoes:LY",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "UN",
+     "to": "LY",
+     "label": "O Conselho de Segurança da ONU"
+    }
+   ]
   },
   {
    "id": "un_sc:cond:so-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -3794,11 +6089,19 @@
    },
    "tags": [],
    "updatedAt": "2026-10-25T17:00:00Z",
-   "clusterKey": "sancoes:SO"
+   "clusterKey": "sancoes:SO",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "UN",
+     "to": "SO",
+     "label": "O Conselho de Segurança da ONU"
+    }
+   ]
   },
   {
    "id": "eu_sanctions:cond:sy-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -3842,11 +6145,19 @@
    },
    "tags": [],
    "updatedAt": "2026-10-25T17:00:00Z",
-   "clusterKey": "sancoes:SY"
+   "clusterKey": "sancoes:SY",
+   "relations": [
+    {
+     "type": "sanciona",
+     "from": "EU",
+     "to": "SY",
+     "label": "A União Europeia"
+    }
+   ]
   },
   {
    "id": "plz:measure:ua-deslocados",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -3887,7 +6198,7 @@
   },
   {
    "id": "plz:measure:sd-deslocados",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -3922,7 +6233,7 @@
   },
   {
    "id": "plz:measure:fr-participantes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "event",
@@ -3957,7 +6268,7 @@
   },
   {
    "id": "plz:measure:br-inflacao-alimentos-exemplo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -3986,7 +6297,7 @@
   },
   {
    "id": "plz:measure:ua-conflito-mortes_45d",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4015,7 +6326,7 @@
   },
   {
    "id": "plz:measure:sd-conflito-mortes_45d",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4044,7 +6355,7 @@
   },
   {
    "id": "plz:measure:cd-conflito-mortes_45d",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4073,7 +6384,7 @@
   },
   {
    "id": "plz:measure:sd-conflito-mortes_14d",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4102,7 +6413,7 @@
   },
   {
    "id": "plz:measure:fr-protestos-protestos_14d",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4131,7 +6442,7 @@
   },
   {
    "id": "plz:measure:ru-sancoes-designacoes_ofac",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4159,7 +6470,7 @@
   },
   {
    "id": "plz:measure:ir-sancoes-designacoes_ofac",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4187,7 +6498,7 @@
   },
   {
    "id": "plz:measure:kp-sancoes-designacoes_ofac",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4215,7 +6526,7 @@
   },
   {
    "id": "plz:measure:cu-sancoes-designacoes_ofac",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4243,7 +6554,7 @@
   },
   {
    "id": "plz:measure:ve-sancoes-designacoes_ofac",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4271,7 +6582,7 @@
   },
   {
    "id": "plz:measure:kp-sancoes-designacoes_un_sc",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4299,7 +6610,7 @@
   },
   {
    "id": "plz:measure:ly-sancoes-designacoes_un_sc",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4327,7 +6638,7 @@
   },
   {
    "id": "plz:measure:so-sancoes-designacoes_un_sc",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4355,7 +6666,7 @@
   },
   {
    "id": "plz:measure:ru-sancoes-designacoes_eu_sanctions",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4383,7 +6694,7 @@
   },
   {
    "id": "plz:measure:ir-sancoes-designacoes_eu_sanctions",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4411,7 +6722,7 @@
   },
   {
    "id": "plz:measure:sy-sancoes-designacoes_eu_sanctions",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -4439,7 +6750,7 @@
   },
   {
    "id": "plz:measure:fx26jp01-magnitude",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "event",
@@ -4474,7 +6785,7 @@
   },
   {
    "id": "opensky:trk:ae1a01",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -4552,7 +6863,7 @@
   },
   {
    "id": "opensky:trk:ae1a02",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -4630,7 +6941,7 @@
   },
   {
    "id": "aisstream:trk:338000001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "navio",
@@ -4700,7 +7011,7 @@
   },
   {
    "id": "opensky:trk:ae1a03",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -4746,7 +7057,7 @@
   },
   {
    "id": "opensky:trk:3f1a04",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -4792,7 +7103,7 @@
   },
   {
    "id": "aisstream:trk:247000202",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "navio",
@@ -4845,14 +7156,664 @@
    "updatedAt": "2026-10-25T17:00:00Z"
   },
   {
+   "id": "plz:analysis:panorama-mundo-2026-10-25",
+   "schemaVersion": "0.4.0",
+   "kind": "analysis",
+   "analysisType": "panorama",
+   "subjectIds": [
+    "acled:evt:IRN9001",
+    "cloudflare_radar:evt:ex-901-IR",
+    "ucdp:cond:ua-guerra-interestatal",
+    "ucdp:cond:sd-guerra-civil",
+    "acled:cond:ps-ocupacao",
+    "gdacs:evt:TC-900103",
+    "eu_sanctions:cond:ru-regime-sancoes",
+    "un_sc:cond:ir-embargo"
+   ],
+   "layer": "protesto",
+   "scope": {
+    "type": "mundo",
+    "iso2": null
+   },
+   "question": "O que importa agora?",
+   "region": null,
+   "text": {
+    "pt": {
+     "headline": "O mundo agora: guerra, apagões e um ciclone (exemplo)",
+     "summary": "Os maiores focos do instantâneo de exemplo são o Irã sem internet, os ataques à energia na Ucrânia e a guerra civil no Sudão, além de um ciclone de alerta vermelho nas Filipinas."
+    }
+   },
+   "points": [
+    {
+     "type": "fato",
+     "text": "A guerra na Ucrânia segue como o conflito mais grave registrado; quatro redações relataram um ataque com drones à infraestrutura de energia em Kharkiv.",
+     "supportedBy": [
+      {
+       "entityId": "ucdp:cond:ua-guerra-interestatal"
+      },
+      {
+       "entityId": "rss:rep:5d687879861bf4"
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "No Sudão, a guerra civil se concentra em Darfur do Norte, com deslocamento e acesso humanitário restrito.",
+     "supportedBy": [
+      {
+       "entityId": "ucdp:cond:sd-guerra-civil"
+      },
+      {
+       "entityId": "rss:rep:81546f05daa157"
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "O Irã está sem internet em todo o país, por ordem do governo segundo o Cloudflare Radar, e há registro de protestos reprimidos.",
+     "supportedBy": [
+      {
+       "entityId": "cloudflare_radar:evt:ex-901-IR"
+      },
+      {
+       "entityId": "acled:evt:IRN9001"
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "Um ciclone com alerta vermelho chegou às Filipinas, com milhares de pessoas retiradas da costa.",
+     "supportedBy": [
+      {
+       "entityId": "gdacs:evt:TC-900103"
+      },
+      {
+       "entityId": "rss:rep:5d39736b7ece24"
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Os três países com maior atenção combinam violência com perda de serviços básicos — energia, internet, acesso humanitário —, o que espalha o efeito para além das mortes registradas.",
+     "supportedBy": [
+      {
+       "entityId": "cloudflare_radar:evt:ex-901-IR"
+      },
+      {
+       "entityId": "ucdp:cond:ua-guerra-interestatal"
+      },
+      {
+       "entityId": "ucdp:cond:sd-guerra-civil"
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Entre os índices de bolsa acompanhados, o Ibovespa teve a maior queda no último pregão; o cartão da série explica os fatores daquele dia.",
+     "supportedBy": [
+      {
+       "entityId": "stooq:ser:^bvp"
+      }
+     ]
+    }
+   ],
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [],
+   "moves": [],
+   "watch": [
+    "Por quanto tempo dura o corte de internet no Irã",
+    "Se os ataques à energia na Ucrânia se repetem com a chegada do frio",
+    "Se a ajuda humanitária volta a chegar a Darfur do Norte"
+   ],
+   "counterpoint": {
+    "text": "Um retrato montado a partir de bases que registram violência e de redações que publicam em inglês tende a deixar de fora crises lentas — fome, seca, dívida — que não geram eventos diários.",
+    "supportedBy": []
+   },
+   "limits": "O panorama usa só os fatos deste instantâneo. Regiões com pouca cobertura de imprensa ou de bases de dados aparecem menos do que deveriam.",
+   "method": {
+    "provider": "exemplo",
+    "model": "redigido-manualmente",
+    "effort": null,
+    "promptVersion": "2026-10-25.2",
+    "generatedAt": "2026-10-25T17:00:00Z"
+   },
+   "crossCheck": null,
+   "review": {
+    "status": "pendente",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "guards": [
+    {
+     "rule": "apoio_em_fatos",
+     "passed": true,
+     "detail": "0 referências inválidas removidas, 0 pontos sem apoio removidos"
+    },
+    {
+     "rule": "sem_probabilidade",
+     "passed": true,
+     "detail": "nenhuma estimativa de chance"
+    },
+    {
+     "rule": "sem_recomendacao",
+     "passed": true,
+     "detail": "nenhuma recomendação de compra ou venda"
+    },
+    {
+     "rule": "contraponto",
+     "passed": true,
+     "detail": "presente"
+    },
+    {
+     "rule": "magnitude_com_base",
+     "passed": true,
+     "detail": "magnitudes conferidas"
+    },
+    {
+     "rule": "conteudo_do_tipo",
+     "passed": true,
+     "detail": "ok"
+    },
+    {
+     "rule": "precedentes_marcados",
+     "passed": true,
+     "detail": "sem precedentes"
+    }
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100001",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "acled",
+     "ref": "IRN9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/0",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=%5Ebvp",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "reliefweb",
+     "retrievedAt": "2026-10-25T16:30:00Z"
+    },
+    {
+     "sourceId": "tse_br",
+     "ref": "br",
+     "retrievedAt": "2026-10-25T16:55:00Z"
+    },
+    {
+     "sourceId": "fec_us",
+     "ref": "us",
+     "retrievedAt": "2026-10-25T16:48:00Z"
+    },
+    {
+     "sourceId": "curadoria",
+     "ref": "US-2026-11-03",
+     "url": "https://www.fec.gov",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "wto",
+     "ref": "cn",
+     "retrievedAt": "2026-10-25T16:42:00Z"
+    },
+    {
+     "sourceId": "eu_sanctions",
+     "ref": "ru",
+     "retrievedAt": "2026-10-25T16:35:00Z"
+    },
+    {
+     "sourceId": "ofac",
+     "retrievedAt": "2026-10-25T16:20:00Z"
+    },
+    {
+     "sourceId": "un_sc",
+     "retrievedAt": "2026-10-25T10:20:00Z"
+    },
+    {
+     "sourceId": "gdacs",
+     "ref": "TC-900103",
+     "url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=900103",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "cloudflare_radar",
+     "ref": "ex-901",
+     "url": "https://radar.cloudflare.com/ir",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "ioda",
+     "ref": "IR-1792929600",
+     "url": "https://ioda.inetintel.cc.gatech.edu/country/IR",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:analysis:mercado-bvp-2026-10-25",
+   "schemaVersion": "0.4.0",
+   "kind": "analysis",
+   "analysisType": "mercado",
+   "subjectIds": [
+    "stooq:ser:^bvp"
+   ],
+   "layer": "economia",
+   "scope": {
+    "type": "serie",
+    "iso2": "BR"
+   },
+   "question": "Por que o mercado se mexeu assim?",
+   "region": null,
+   "text": {
+    "pt": {
+     "headline": "Por que o Ibovespa caiu 2,4% na sexta (exemplo)",
+     "summary": "A queda coincidiu com alta do dólar e do petróleo e com aversão a risco no exterior. Nos dois pregões anteriores, os fatos coletados não explicam as variações."
+    }
+   },
+   "points": [
+    {
+     "type": "fato",
+     "text": "O Ibovespa caiu 2,4% na sexta-feira, a maior queda do mês na série.",
+     "supportedBy": [
+      {
+       "entityId": "stooq:ser:^bvp"
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "A queda veio junto com dólar e petróleo em alta, combinação comum quando investidores reduzem risco em mercados emergentes. Os fatos coletados não mostram um evento doméstico específico naquele dia.",
+     "supportedBy": [
+      {
+       "entityId": "stooq:ser:usdbrl"
+      },
+      {
+       "entityId": "stooq:ser:cb.f"
+      }
+     ]
+    }
+   ],
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [],
+   "moves": [
+    {
+     "date": "2026-10-23",
+     "changePct": -2.4,
+     "explained": true,
+     "drivers": [
+      {
+       "text": "Segundo a Agência Exemplo, a queda veio com aversão a risco e alta do dólar.",
+       "supportedBy": [
+        {
+         "entityId": "rss:rep:af60ed87121b57"
+        }
+       ]
+      },
+      {
+       "text": "O dólar subiu 1,6% contra o real no mesmo dia.",
+       "supportedBy": [
+        {
+         "entityId": "stooq:ser:usdbrl"
+        }
+       ]
+      },
+      {
+       "text": "O petróleo Brent subiu 3,1%, com preocupação sobre o transporte no Mar Vermelho segundo o Jornal Independente Exemplo.",
+       "supportedBy": [
+        {
+         "entityId": "stooq:ser:cb.f"
+        },
+        {
+         "entityId": "rss:rep:76a6ddf1533ac5"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "changePct": -0.8,
+     "explained": false,
+     "drivers": []
+    },
+    {
+     "date": "2026-10-21",
+     "changePct": 0.5,
+     "explained": false,
+     "drivers": []
+    }
+   ],
+   "watch": [],
+   "counterpoint": {
+    "text": "A coincidência com dólar e petróleo não prova a causa: notícias de empresas grandes do índice, que não estão nos fatos coletados, podem ter pesado mais.",
+    "supportedBy": []
+   },
+   "limits": "Variação no mesmo dia de um fato não prova causa. A série é de exemplo, e os fatos não incluem notícias de empresas nem dados de fluxo de investidores.",
+   "method": {
+    "provider": "exemplo",
+    "model": "redigido-manualmente",
+    "effort": null,
+    "promptVersion": "2026-10-25.2",
+    "generatedAt": "2026-10-25T17:00:00Z"
+   },
+   "crossCheck": null,
+   "review": {
+    "status": "pendente",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "guards": [
+    {
+     "rule": "apoio_em_fatos",
+     "passed": true,
+     "detail": "0 referências inválidas removidas, 0 pontos sem apoio removidos"
+    },
+    {
+     "rule": "sem_probabilidade",
+     "passed": true,
+     "detail": "nenhuma estimativa de chance"
+    },
+    {
+     "rule": "sem_recomendacao",
+     "passed": true,
+     "detail": "nenhuma recomendação de compra ou venda"
+    },
+    {
+     "rule": "sem_previsao_de_preco",
+     "passed": true,
+     "detail": "nenhuma previsão de preço"
+    },
+    {
+     "rule": "movimentos_da_serie",
+     "passed": true,
+     "detail": "3 dias analisados, 1 com fatores apoiados nos fatos"
+    },
+    {
+     "rule": "contraponto",
+     "passed": true,
+     "detail": "presente"
+    },
+    {
+     "rule": "magnitude_com_base",
+     "passed": true,
+     "detail": "magnitudes conferidas"
+    },
+    {
+     "rule": "conteudo_do_tipo",
+     "passed": true,
+     "detail": "ok"
+    },
+    {
+     "rule": "precedentes_marcados",
+     "passed": true,
+     "detail": "sem precedentes"
+    }
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.68,
+   "sources": [
+    {
+     "sourceId": "curadoria",
+     "ref": "br-debate-exemplo",
+     "retrievedAt": "2026-10-25T12:00:00Z"
+    },
+    {
+     "sourceId": "acled",
+     "ref": "IRN9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_agencia/2",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "stooq",
+     "url": "https://stooq.com/q/?s=%5Ebvp",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "ucdp",
+     "ref": "ua",
+     "retrievedAt": "2026-10-25T16:52:00Z"
+    },
+    {
+     "sourceId": "reliefweb",
+     "retrievedAt": "2026-10-25T16:30:00Z"
+    },
+    {
+     "sourceId": "tse_br",
+     "ref": "br",
+     "retrievedAt": "2026-10-25T16:55:00Z"
+    },
+    {
+     "sourceId": "eu_sanctions",
+     "ref": "ru",
+     "retrievedAt": "2026-10-25T16:35:00Z"
+    },
+    {
+     "sourceId": "ofac",
+     "retrievedAt": "2026-10-25T16:20:00Z"
+    },
+    {
+     "sourceId": "un_sc",
+     "retrievedAt": "2026-10-25T10:20:00Z"
+    },
+    {
+     "sourceId": "gdacs",
+     "ref": "TC-900103",
+     "url": "https://www.gdacs.org/report.aspx?eventtype=TC&eventid=900103",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
+   "id": "plz:analysis:panorama-ua-2026-10-25",
+   "schemaVersion": "0.4.0",
+   "kind": "analysis",
+   "analysisType": "panorama",
+   "subjectIds": [
+    "ucdp:cond:ua-guerra-interestatal",
+    "ucdp:evt:9100001",
+    "ucdp:evt:9100002",
+    "ucdp:evt:9100003",
+    "ucdp:evt:9100004",
+    "acled:evt:UKR9001"
+   ],
+   "layer": "conflito",
+   "scope": {
+    "type": "pais",
+    "iso2": "UA"
+   },
+   "question": "O que importa agora?",
+   "region": {
+    "iso2": "UA",
+    "name": "Ucrânia"
+   },
+   "text": {
+    "pt": {
+     "headline": "Ucrânia: a guerra chega à rede de energia (exemplo)",
+     "summary": "A guerra com a Rússia segue como a condição mais grave, com combates em várias regiões do leste e do sul e ataques recentes à infraestrutura de energia."
+    }
+   },
+   "points": [
+    {
+     "type": "fato",
+     "text": "A guerra com a Rússia é a condição mais grave do país, com eventos de combate registrados em várias regiões do leste e do sul nos últimos 45 dias.",
+     "supportedBy": [
+      {
+       "entityId": "ucdp:cond:ua-guerra-interestatal"
+      },
+      {
+       "entityId": "ucdp:evt:9100001"
+      },
+      {
+       "entityId": "ucdp:evt:9100002"
+      },
+      {
+       "entityId": "ucdp:evt:9100004"
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "Quatro redações relataram um ataque com drones à infraestrutura de energia em Kharkiv.",
+     "supportedBy": [
+      {
+       "entityId": "rss:rep:5d687879861bf4"
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "O ACLED registrou um ataque aéreo ou com drone em Kiev.",
+     "supportedBy": [
+      {
+       "entityId": "acled:evt:UKR9001"
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Os ataques recentes miram energia, o que leva o efeito da guerra a quem está longe da linha de frente.",
+     "supportedBy": [
+      {
+       "entityId": "rss:rep:5d687879861bf4"
+      },
+      {
+       "entityId": "acled:evt:UKR9001"
+      }
+     ]
+    }
+   ],
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [],
+   "moves": [],
+   "watch": [
+    "Se os cortes de energia em Kharkiv se espalham para outras cidades",
+    "Se o número de deslocados volta a subir, e qual das três fontes registra primeiro"
+   ],
+   "counterpoint": {
+    "text": "A contagem de eventos depende de onde há repórteres e sensores: áreas ocupadas ou isoladas podem ter mais violência do que a registrada.",
+    "supportedBy": []
+   },
+   "limits": "Os números de deslocados têm três versões oficiais divergentes. O panorama não usa dados militares, que nenhuma fonte aberta confirma.",
+   "method": {
+    "provider": "exemplo",
+    "model": "redigido-manualmente",
+    "effort": null,
+    "promptVersion": "2026-10-25.2",
+    "generatedAt": "2026-10-25T17:00:00Z"
+   },
+   "crossCheck": null,
+   "review": {
+    "status": "pendente",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "guards": [
+    {
+     "rule": "apoio_em_fatos",
+     "passed": true,
+     "detail": "0 referências inválidas removidas, 0 pontos sem apoio removidos"
+    },
+    {
+     "rule": "sem_probabilidade",
+     "passed": true,
+     "detail": "nenhuma estimativa de chance"
+    },
+    {
+     "rule": "sem_recomendacao",
+     "passed": true,
+     "detail": "nenhuma recomendação de compra ou venda"
+    },
+    {
+     "rule": "contraponto",
+     "passed": true,
+     "detail": "presente"
+    },
+    {
+     "rule": "magnitude_com_base",
+     "passed": true,
+     "detail": "magnitudes conferidas"
+    },
+    {
+     "rule": "conteudo_do_tipo",
+     "passed": true,
+     "detail": "ok"
+    },
+    {
+     "rule": "precedentes_marcados",
+     "passed": true,
+     "detail": "sem precedentes"
+    }
+   ],
+   "status": "nao_verificado",
+   "confidence": 0.6,
+   "sources": [
+    {
+     "sourceId": "ucdp",
+     "ref": "9100001",
+     "url": "https://ucdp.uu.se/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "acled",
+     "ref": "UKR9001",
+     "url": "https://acleddata.com/",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "rss",
+     "url": "https://exemplo.invalid/ex_radio/1",
+     "retrievedAt": "2026-10-25T17:00:00Z"
+    },
+    {
+     "sourceId": "reliefweb",
+     "retrievedAt": "2026-10-25T16:30:00Z"
+    }
+   ],
+   "updatedAt": "2026-10-25T17:00:00Z"
+  },
+  {
    "id": "plz:analysis:wto-cond-eu-regulacao-comercial-impacto",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "analysis",
    "analysisType": "impacto",
    "subjectIds": [
     "wto:cond:eu-regulacao-comercial"
    ],
    "layer": "economia",
+   "scope": {
+    "type": "fato",
+    "iso2": null
+   },
    "question": "O que isso muda, e para quem?",
    "region": null,
    "text": {
@@ -4922,6 +7883,8 @@
     }
    ],
    "claims": [],
+   "moves": [],
+   "watch": [],
    "counterpoint": {
     "text": "A exigência pode valorizar quem já rastreia a produção e abrir espaço para preços melhores. Para exportadores organizados, o efeito líquido pode ser positivo.",
     "supportedBy": [
@@ -4935,7 +7898,7 @@
     "provider": "exemplo",
     "model": "redigido-manualmente",
     "effort": null,
-    "promptVersion": "2026-10-25.1",
+    "promptVersion": "2026-10-25.2",
     "generatedAt": "2026-10-25T17:00:00Z"
    },
    "crossCheck": null,
@@ -4955,6 +7918,11 @@
      "rule": "sem_probabilidade",
      "passed": true,
      "detail": "nenhuma estimativa de chance"
+    },
+    {
+     "rule": "sem_recomendacao",
+     "passed": true,
+     "detail": "nenhuma recomendação de compra ou venda"
     },
     {
      "rule": "contraponto",
@@ -4990,13 +7958,17 @@
   },
   {
    "id": "plz:analysis:curadoria-evt-br-proposta-congelamento-exemplo-precedente",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "analysis",
    "analysisType": "precedente",
    "subjectIds": [
     "curadoria:evt:br-proposta-congelamento-exemplo"
    ],
    "layer": "eleicao",
+   "scope": {
+    "type": "fato",
+    "iso2": "BR"
+   },
    "question": "Já foi tentado antes, e deu certo?",
    "region": null,
    "text": {
@@ -5113,6 +8085,8 @@
    ],
    "impacts": [],
    "claims": [],
+   "moves": [],
+   "watch": [],
    "counterpoint": {
     "text": "Congelamentos curtos, limitados a poucos itens e combinados com política fiscal e monetária coerente não têm o mesmo histórico dos congelamentos gerais e longos. Se a proposta for detalhada nessa linha, os casos acima pesam menos.",
     "supportedBy": [
@@ -5126,7 +8100,7 @@
     "provider": "exemplo",
     "model": "redigido-manualmente",
     "effort": null,
-    "promptVersion": "2026-10-25.1",
+    "promptVersion": "2026-10-25.2",
     "generatedAt": "2026-10-25T17:00:00Z"
    },
    "crossCheck": null,
@@ -5146,6 +8120,11 @@
      "rule": "sem_probabilidade",
      "passed": true,
      "detail": "nenhuma estimativa de chance"
+    },
+    {
+     "rule": "sem_recomendacao",
+     "passed": true,
+     "detail": "nenhuma recomendação de compra ou venda"
     },
     {
      "rule": "contraponto",
@@ -5186,13 +8165,17 @@
   },
   {
    "id": "plz:analysis:curadoria-evt-br-debate-exemplo-checagem",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "analysis",
    "analysisType": "checagem",
    "subjectIds": [
     "curadoria:evt:br-debate-exemplo"
    ],
    "layer": "eleicao",
+   "scope": {
+    "type": "fato",
+    "iso2": "BR"
+   },
    "question": "O que foi dito confere?",
    "region": null,
    "text": {
@@ -5278,6 +8261,8 @@
      "supportedBy": []
     }
    ],
+   "moves": [],
+   "watch": [],
    "counterpoint": {
     "text": "Conferir só o número de doze meses pode favorecer quem escolheu o recorte: a inflação de um mês ou de um item específico pode contar outra história, e a fala não diz qual período usou.",
     "supportedBy": [
@@ -5291,7 +8276,7 @@
     "provider": "exemplo",
     "model": "redigido-manualmente",
     "effort": null,
-    "promptVersion": "2026-10-25.1",
+    "promptVersion": "2026-10-25.2",
     "generatedAt": "2026-10-25T17:00:00Z"
    },
    "crossCheck": null,
@@ -5311,6 +8296,11 @@
      "rule": "sem_probabilidade",
      "passed": true,
      "detail": "nenhuma estimativa de chance"
+    },
+    {
+     "rule": "sem_recomendacao",
+     "passed": true,
+     "detail": "nenhuma recomendação de compra ou venda"
     },
     {
      "rule": "contraponto",

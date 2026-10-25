@@ -1,0 +1,21 @@
+{
+ "raw": {
+  "AgenciaExemplo": {
+   "data": [
+    {
+     "id": "190000000000000001",
+     "text": "Kharkiv: drone attack damages energy infrastructure, officials say https://t.co/exemplo",
+     "created_at": "2026-10-25T06:00:00Z",
+     "entities": {
+      "urls": [
+       {
+        "expanded_url": "https://exemplo.invalid/x/kharkiv"
+       }
+      ]
+     }
+    }
+   ]
+  }
+ },
+ "warnings": []
+}

@@ -1,6 +1,6 @@
 # Adaptadores
 
-Cada adaptador lê uma fonte e devolve entidades no esquema `0.3.0`.
+Cada adaptador lê uma fonte e devolve entidades no esquema `0.4.0`.
 
 ```js
 export default {
@@ -33,11 +33,27 @@ JSON Schema antes de entrar; a malformada sai sozinha e fica contada no relatór
 | `sanctions.js` → `eu` | Lista consolidada da UE (XML) | `EU_FSF_TOKEN` | regime de sanções da UE por país | — |
 | `opensky.js` | OpenSky `/states/all` | opcional (OAuth2) | trilhas de aeronaves militares | licença (uso não comercial) |
 | `aisstream.js` | AISStream WebSocket | `AISSTREAM_API_KEY` | trilhas de navios militares | licença |
+| `news.js` → `rss` | feeds RSS/Atom dos veículos em `schema/outlets.json` | — | relatos (manchete, link, resumo), classificados e agrupados em histórias | endereços com `verifyFeed` |
+| `news.js` → `bluesky` | API pública do Bluesky (`getAuthorFeed`) | — | relatos das contas de agências | licença; contas oficiais |
+| `news.js` → `x` | API v2 do X | `X_BEARER_TOKEN` (pago) | relatos das contas de agências | custo e termos do Developer Agreement |
+| `markets.js` | Stooq, CSV diário | — | séries de bolsa, câmbio e commodity (`pipeline/data/markets.json`) | licença; símbolos |
 | `elections.js` | `data/curated/elections.json` | — | campanha e dia de votação | datas e `verifiedAt` |
 | `curated.js` | `data/curated/*.json` | — | qualquer condição mantida à mão | — |
 
 Programas de sanção são ligados a países em `pipeline/data/sanction-programs.json`.
 Programas temáticos (terrorismo, drogas, ciber, direitos humanos globais) ficam de fora.
+
+## Notícias: por que não raspar o X
+
+Raspar o X viola os termos dele e quebra sem aviso. As mesmas redações publicam RSS e
+Bluesky, de graça e com termos claros; o adaptador do X existe para quem quiser pagar a API.
+Cada relato guarda só manchete, link e o resumo que o próprio veículo pôs no feed.
+
+Depois da coleta, `pipeline/lib/classify.js` descobre país, estado e tema: com
+`ANTHROPIC_API_KEY`, um modelo classifica em lote e cada campo é conferido contra as listas
+do esquema; sem ela, palavras-chave com peso (lugares 3, países 2, gentílicos 1). Manchetes
+em idiomas diferentes sobre o mesmo fato só se juntam numa história quando o modelo
+classificou — por palavras-chave, a semelhança de título não atravessa idiomas.
 
 ## Ideias para depois
 

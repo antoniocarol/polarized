@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "0.3.0",
+  "schemaVersion": "0.4.0",
   "note": "Licenças e termos são ponto de partida para conferência, não aconselhamento jurídico. licenseCheckedAt fica null até alguém do projeto ler os termos atuais.",
   "sources": [
     {
@@ -572,6 +572,108 @@
       ],
       "licenseCheckedAt": "2026-10-25T00:00:00Z",
       "note": "Arquivo data/curated/elections.json. Os cartões citam a fonte 'curadoria' e o órgão eleitoral nos links."
+    },
+    {
+      "id": "rss",
+      "name": "Feeds RSS de redações",
+      "shortName": "RSS",
+      "org": "vários (schema/outlets.json)",
+      "url": "https://polarized.example/veiculos",
+      "access": "aberto",
+      "license": "manchete, link e resumo do próprio feed",
+      "redistribution": "com_atribuicao",
+      "attributionRequired": true,
+      "reliability": "imprensa",
+      "cadence": "15 min",
+      "latencyHours": 0.25,
+      "layers": [
+        "conflito",
+        "protesto",
+        "eleicao",
+        "economia",
+        "clima",
+        "sismico",
+        "diplomacia",
+        "ciber"
+      ],
+      "licenseCheckedAt": null,
+      "note": "Guarda só manchete, link e o resumo que o próprio feed publica. Nunca o texto integral."
+    },
+    {
+      "id": "bluesky",
+      "name": "Bluesky (contas de redações)",
+      "shortName": "Bluesky",
+      "org": "Bluesky Social",
+      "url": "https://bsky.app",
+      "endpoint": "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed",
+      "access": "aberto",
+      "license": "termos do Bluesky",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "imprensa",
+      "cadence": "15 min",
+      "latencyHours": 0.25,
+      "layers": [
+        "conflito",
+        "protesto",
+        "eleicao",
+        "economia",
+        "clima",
+        "sismico",
+        "diplomacia",
+        "ciber"
+      ],
+      "licenseCheckedAt": null
+    },
+    {
+      "id": "x",
+      "name": "X (contas de redações)",
+      "shortName": "X",
+      "org": "X Corp.",
+      "url": "https://developer.x.com",
+      "endpoint": "https://api.x.com/2",
+      "env": [
+        "X_BEARER_TOKEN"
+      ],
+      "access": "chave_api",
+      "license": "Developer Agreement do X",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "imprensa",
+      "cadence": "15 min",
+      "latencyHours": 0.25,
+      "layers": [
+        "conflito",
+        "protesto",
+        "eleicao",
+        "economia",
+        "clima",
+        "sismico",
+        "diplomacia",
+        "ciber"
+      ],
+      "licenseCheckedAt": null,
+      "note": "Leitura de timelines exige plano pago da API. O acordo de desenvolvedor limita a redistribuição de conteúdo."
+    },
+    {
+      "id": "stooq",
+      "name": "Stooq — cotações diárias",
+      "shortName": "Stooq",
+      "org": "Stooq",
+      "url": "https://stooq.com",
+      "endpoint": "https://stooq.com/q/d/l/",
+      "access": "aberto",
+      "license": "termos do Stooq",
+      "redistribution": "verificar",
+      "attributionRequired": true,
+      "reliability": "agregador",
+      "cadence": "diária",
+      "latencyHours": 24,
+      "layers": [
+        "economia"
+      ],
+      "licenseCheckedAt": null,
+      "note": "Dados de mercado costumam ter licença restrita. Confira os termos ou troque por um provedor com licença de redistribuição."
     }
   ]
 }

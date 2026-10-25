@@ -84,3 +84,29 @@ test("conferência cruzada mede concordância", () => {
   assert.equal(diff.agreement, 0.5);
   assert.equal(diff.divergent.length, 1);
 });
+
+test("mercado: variação vem só da série analisada, nunca de outra série do mesmo dia", () => {
+  const facts = [
+    { entityId: "stooq:ser:a", kind: "series", days: [{ date: "2026-10-23", close: 1, changePct: -2.4 }] },
+    { entityId: "stooq:ser:b", kind: "series", days: [{ date: "2026-10-23", close: 1, changePct: 3.1 }] },
+  ];
+  const a = { headline: "h", summary: "s", limits: "l", points: [{ type: "fato", text: "caiu", supportedBy: [{ entityId: "stooq:ser:a", precedent: null }] }],
+    precedents: [], conditions: [], impacts: [], claims: [], watch: [],
+    moves: [{ date: "2026-10-23", changePct: 9, explained: true, drivers: [{ text: "x", supportedBy: [{ entityId: "stooq:ser:b", precedent: null }] }] },
+            { date: "2026-01-01", changePct: 1, explained: false, drivers: [] }],
+    counterpoint: { text: "Um argumento contrário com frase completa.", supportedBy: [] } };
+  const r = applyGuards(a, facts, "mercado");
+  assert.equal(r.analysis.moves.length, 1, "dia fora da série sai");
+  assert.equal(r.analysis.moves[0].changePct, -2.4, "variação corrigida para a da série analisada");
+});
+
+test("nunca recomenda compra ou venda; em mercado, nunca prevê preço", () => {
+  const facts = [{ entityId: "stooq:ser:a", kind: "series", days: [{ date: "2026-10-23", close: 1, changePct: -2.4 }] }];
+  const mk = summary => ({ headline: "h", summary, limits: "l", points: [{ type: "fato", text: "caiu", supportedBy: [{ entityId: "stooq:ser:a", precedent: null }] }],
+    precedents: [], conditions: [], impacts: [], claims: [], watch: [], moves: [{ date: "2026-10-23", changePct: -2.4, explained: false, drivers: [] }],
+    counterpoint: { text: "Um argumento contrário com frase completa.", supportedBy: [] } });
+  assert.equal(applyGuards(mk("Recomendamos a compra de ações agora."), facts, "mercado").rejected, true);
+  assert.equal(applyGuards(mk("O índice deve subir na semana que vem."), facts, "mercado").rejected, true);
+  assert.equal(applyGuards(mk("A venda de petróleo caiu no trimestre."), facts, "mercado").rejected, false, "'venda' substantivo não é recomendação");
+  assert.equal(applyGuards(mk("O custo deve subir para importadores."), facts, "contexto").rejected, false, "direção de efeito fora de mercado é permitida");
+});

@@ -1,0 +1,20 @@
+{
+  "note": "Instrumentos acompanhados. symbol = código no Stooq (CSV diário). Confira os símbolos na primeira execução real; símbolo errado aparece como falha no relatório de fontes.",
+  "instruments": [
+    { "symbol": "^bvp", "name": "Ibovespa", "exchange": "B3", "iso2": "BR", "city": [-23.55, -46.63], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^spx", "name": "S&P 500", "exchange": "NYSE", "iso2": "US", "city": [40.71, -74.01], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^ndq", "name": "Nasdaq Composite", "exchange": "Nasdaq", "iso2": "US", "city": [40.76, -73.99], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^ukx", "name": "FTSE 100", "exchange": "LSE", "iso2": "GB", "city": [51.51, -0.09], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^dax", "name": "DAX", "exchange": "Xetra", "iso2": "DE", "city": [50.11, 8.68], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^cac", "name": "CAC 40", "exchange": "Euronext Paris", "iso2": "FR", "city": [48.87, 2.34], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^nkx", "name": "Nikkei 225", "exchange": "Bolsa de Tóquio", "iso2": "JP", "city": [35.68, 139.77], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^hsi", "name": "Hang Seng", "exchange": "HKEX", "iso2": "HK", "city": [22.28, 114.16], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^shc", "name": "Shanghai Composite", "exchange": "Bolsa de Xangai", "iso2": "CN", "city": [31.23, 121.47], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "^kospi", "name": "KOSPI", "exchange": "KRX", "iso2": "KR", "city": [37.52, 126.93], "currency": "pontos", "subtype": "indice_bolsa" },
+    { "symbol": "usdbrl", "name": "Dólar em reais", "exchange": null, "iso2": "BR", "city": null, "currency": "BRL", "subtype": "cambio" },
+    { "symbol": "eurusd", "name": "Euro em dólares", "exchange": null, "iso2": null, "city": null, "currency": "USD", "subtype": "cambio" },
+    { "symbol": "usdcny", "name": "Dólar em yuans", "exchange": null, "iso2": "CN", "city": null, "currency": "CNY", "subtype": "cambio" },
+    { "symbol": "cb.f", "name": "Petróleo Brent", "exchange": "ICE", "iso2": null, "city": null, "currency": "USD", "unit": "barril", "subtype": "commodity" },
+    { "symbol": "xauusd", "name": "Ouro", "exchange": null, "iso2": null, "city": null, "currency": "USD", "unit": "onça troy", "subtype": "commodity" }
+  ]
+}

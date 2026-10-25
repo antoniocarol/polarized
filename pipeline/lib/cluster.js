@@ -50,6 +50,7 @@ export function clusterEntities(entities, now) {
       head.intensity = Math.max(head.intensity ?? 0, other.intensity ?? 0);
       for (const l of other.links || []) if (!(head.links ||= []).some(x => x.url === l.url)) head.links.push(l);
       for (const t of other.tags || []) if (!head.tags.includes(t)) head.tags.push(t);
+      for (const r of other.relations || []) if (!(head.relations ||= []).some(x => x.type === r.type && x.from === r.from && x.to === r.to)) head.relations.push(r);
       if (other.time.start < head.time.start && other.time.precision === head.time.precision) head.time.start = other.time.start;
     }
     const distinct = new Set(head.sources.map(s => s.sourceId)).size;

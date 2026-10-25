@@ -3,6 +3,8 @@
 // cada regra e se a análise deve ser descartada.
 
 const PROB = /(\d{1,3}(?:[.,]\d+)?\s?%)|\b(probabilidade|chances?)\s+(de|em)\s+(sucesso|dar certo|fracasso|\d)/i;
+const ADVICE = /\b(recomend\w*|sugerimos|sugere-se|aconselh\w*)\s+(a\s+)?(compra|venda|comprar|vender|manter)\b|\bpre[çc]o[- ]alvo\b|\bhora de (comprar|vender)\b|\b(compre|comprem|vendam)\b/i;
+const PRED = /\b(vai|v[ãa]o|deve|devem|tende a|tendem a|ir[áa]|ir[ãa]o)\s+(continuar a\s+)?(subir|cair|valorizar|desvalorizar|disparar|despencar|se recuperar|recuar|avan[çc]ar)\b/i;
 
 function numbersIn(text) {
   const out = new Set();
@@ -11,6 +13,8 @@ function numbersIn(text) {
     out.add(raw);
     out.add(raw.replace(/\./g, "").replace(",", "."));
     out.add(raw.replace(/,/g, ""));
+    const v = Number(raw.replace(/,/g, ""));
+    if (Number.isFinite(v)) { out.add(v.toFixed(1)); out.add(v.toFixed(0)); out.add(String(Math.round(v * 10) / 10)); }
   }
   return out;
 }
@@ -43,6 +47,17 @@ export function applyGuards(raw, facts, analysisType) {
     }
   }
   if (a.counterpoint) a.counterpoint.supportedBy = clean(a.counterpoint.supportedBy).filter(s => okRef(s, false));
+  // Movimentos de mercado: data e variação vêm da série; fator sem apoio sai.
+  // Só a série analisada (o primeiro item da lista); as outras séries são contexto.
+  const seriesDays = new Map();
+  const subjectSeries = facts[0] && facts[0].kind === "series" ? facts[0] : null;
+  for (const d of (subjectSeries && subjectSeries.days) || []) seriesDays.set(d.date, d.changePct);
+  let droppedMoves = 0;
+  a.moves = (a.moves || []).filter(m => (seriesDays.has(m.date) ? true : (droppedMoves++, false))).map(m => {
+    const drivers = (m.drivers || []).map(d => ({ text: d.text, supportedBy: clean(d.supportedBy).filter(s => okRef(s, true)) })).filter(d => d.supportedBy.length);
+    return { date: m.date, changePct: seriesDays.get(m.date), explained: drivers.length > 0, drivers };
+  });
+  a.watch = (a.watch || []).map(String).slice(0, 6);
   const noPoints = a.points.length === 0;
   guards.push({ rule: "apoio_em_fatos", passed: droppedRefs === 0 && droppedPoints === 0 && !noPoints,
     detail: noPoints ? "nenhum ponto com apoio válido" : `${droppedRefs} referências inválidas removidas, ${droppedPoints} pontos sem apoio removidos` });
@@ -51,7 +66,8 @@ export function applyGuards(raw, facts, analysisType) {
   // 2. Sem probabilidade: porcentagem só se o número vier dos fatos.
   const texts = [a.headline, a.summary, a.limits, a.counterpoint && a.counterpoint.text,
     ...a.points.map(p => p.text), ...(a.conditions || []).flatMap(c => [c.condition, c.why]),
-    ...(a.impacts || []).flatMap(i => [i.domain, ...i.chain]), ...precedents.map(p => p.why)];
+    ...(a.impacts || []).flatMap(i => [i.domain, ...i.chain]), ...precedents.map(p => p.why),
+    ...a.moves.flatMap(m => m.drivers.map(d => d.text)), ...a.watch];
   const hits = texts.filter(Boolean).flatMap(t => {
     const m = PROB.exec(t);
     if (!m) return [];
@@ -61,6 +77,18 @@ export function applyGuards(raw, facts, analysisType) {
   guards.push({ rule: "sem_probabilidade", passed: hits.length === 0,
     detail: hits.length ? `estimativa de chance encontrada: ${hits.slice(0, 3).join("; ")}` : "nenhuma estimativa de chance" });
   if (hits.length) rejected = true;
+
+  // 2b. Sem recomendação de investimento, em qualquer tipo; sem previsão de preço, em mercado.
+  const advice = texts.filter(Boolean).map(t => ADVICE.exec(t)).filter(Boolean).map(m => m[0]);
+  guards.push({ rule: "sem_recomendacao", passed: advice.length === 0, detail: advice.length ? `recomendação encontrada: ${advice.slice(0, 2).join("; ")}` : "nenhuma recomendação de compra ou venda" });
+  if (advice.length) rejected = true;
+  if (analysisType === "mercado") {
+    const pred = texts.filter(Boolean).map(t => PRED.exec(t)).filter(Boolean).map(m => m[0]);
+    guards.push({ rule: "sem_previsao_de_preco", passed: pred.length === 0, detail: pred.length ? `previsão encontrada: ${pred.slice(0, 2).join("; ")}` : "nenhuma previsão de preço" });
+    if (pred.length) rejected = true;
+    guards.push({ rule: "movimentos_da_serie", passed: droppedMoves === 0,
+      detail: `${a.moves.length} dias analisados, ${a.moves.filter(m => m.explained).length} com fatores apoiados nos fatos${droppedMoves ? `; ${droppedMoves} dias fora da série removidos` : ""}` });
+  }
 
   // 3. Contraponto obrigatório.
   const cp = (a.counterpoint && a.counterpoint.text || "").trim();
@@ -76,7 +104,8 @@ export function applyGuards(raw, facts, analysisType) {
     detail: nulled ? `${nulled} magnitudes sem número correspondente nos fatos foram removidas` : "magnitudes conferidas" });
 
   // 5. Conteúdo mínimo por tipo.
-  const need = { checagem: (a.claims || []).length, impacto: (a.impacts || []).length, precedente: precedents.length || (a.limits ? 1 : 0), contexto: 1 }[analysisType];
+  const need = { checagem: (a.claims || []).length, impacto: (a.impacts || []).length, precedente: precedents.length || (a.limits ? 1 : 0), contexto: 1,
+    mercado: a.moves.length, panorama: a.points.length >= 3 ? 1 : 0 }[analysisType];
   guards.push({ rule: "conteudo_do_tipo", passed: need > 0, detail: need > 0 ? "ok" : `análise de ${analysisType} sem o conteúdo do tipo` });
   if (!need) rejected = true;
 
@@ -114,6 +143,12 @@ export function crossCompare(a, b) {
     condicoes: pairUp(a.conditions || [], b.conditions || [], c => c.condition, (x, y) => x.metHere === y.metHere),
     falas: pairUp(a.claims || [], b.claims || [], c => c.quote, (x, y) => x.verdict === y.verdict),
     impactos: pairUp(a.impacts || [], b.impacts || [], i => `${i.domain} ${i.region}`, (x, y) => x.direction === y.direction),
+    movimentos: (() => {
+      const xs = a.moves || [], ys = b.moves || [];
+      if (!xs.length && !ys.length) return null;
+      const div = xs.filter(x => { const y = ys.find(z => z.date === x.date); return !y || y.explained !== x.explained; }).map(x => x.date);
+      return { score: (xs.length - div.length) / Math.max(xs.length, ys.length), div };
+    })(),
   };
   const used = Object.entries(parts).filter(([, v]) => v);
   const agreement = used.length ? used.reduce((s, [, v]) => s + v.score, 0) / used.length : 1;

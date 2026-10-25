@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-export const SCHEMA_VERSION = "0.3.0";
+export const SCHEMA_VERSION = "0.4.0";
 
 export const rel = (...p) => path.join(ROOT, ...p);
 export const readJson = p => JSON.parse(fs.readFileSync(p, "utf8"));

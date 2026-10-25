@@ -1,0 +1,43 @@
+{
+ "raw": {
+  "agencia.exemplo.invalid": {
+   "feed": [
+    {
+     "post": {
+      "uri": "at://did:plc:exemplo/app.bsky.feed.post/3kexemplo1",
+      "author": {
+       "handle": "agencia.exemplo.invalid"
+      },
+      "record": {
+       "text": "Earthquake off Japan: what we know so far",
+       "createdAt": "2026-10-25T16:00:00Z"
+      },
+      "embed": {
+       "external": {
+        "uri": "https://exemplo.invalid/bsky/japan-quake",
+        "title": "Earthquake off Japan east coast: what we know",
+        "description": "Key facts about the quake."
+       }
+      }
+     }
+    },
+    {
+     "post": {
+      "uri": "at://did:plc:exemplo/app.bsky.feed.post/3kexemplo2",
+      "author": {
+       "handle": "agencia.exemplo.invalid"
+      },
+      "record": {
+       "text": "repost",
+       "createdAt": "2026-10-25T15:00:00Z"
+      }
+     },
+     "reason": {
+      "$type": "app.bsky.feed.defs#reasonRepost"
+     }
+    }
+   ]
+  }
+ },
+ "warnings": []
+}

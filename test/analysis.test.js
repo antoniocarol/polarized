@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { NOW, policy, registry } from "./helpers.js";
+import { NOW, policy as basePolicy, registry } from "./helpers.js";
+// Estes testes exercitam análises de fato: sem panoramas nem mercado consumindo o orçamento.
+const policy = { ...basePolicy, analysis: { ...basePolicy.analysis, worldPanorama: false, marketMax: 0, countryPanoramas: 0 } };
 import { runAnalysis } from "../pipeline/lib/analysis.js";
 import { validateEntity } from "../pipeline/lib/validate.js";
 import { readJson, rel } from "../pipeline/lib/util.js";

@@ -1,4 +1,4 @@
-// Polarized — tipos do esquema de dados v0.3.0
+// Polarized — tipos do esquema de dados v0.4.0
 // Espelha schema/polarized.schema.json. Em caso de conflito, o JSON Schema vale.
 
 export type ISODate = string; // RFC 3339, sempre UTC ("Z")
@@ -20,6 +20,7 @@ export interface Place {
   iso3: string | null;
   name: string;
   admin1?: string | null;
+  admin1Code?: string | null; // ISO 3166-2, ex.: "BR-SP"
 }
 
 export interface TimeSpan {
@@ -27,6 +28,7 @@ export interface TimeSpan {
   end: ISODate | null;      // null = em curso
   observedAt: ISODate;      // quando a fonte registrou
   precision: Precision;
+  startKnown?: boolean;     // false = a fonte não diz quando começou (ex.: listas de sanções)
 }
 
 export interface SourceRef {
@@ -40,7 +42,7 @@ export interface Text { headline: string; summary: string; body?: string }
 
 interface Envelope {
   id: string;               // "<fonte>:<tipo>:<id>"
-  schemaVersion: "0.3.0";
+  schemaVersion: "0.4.0";
   layer: Layer;
   subtype: string;          // ver schema/taxonomy.json
   place: Place;
@@ -51,7 +53,16 @@ interface Envelope {
   links?: { label: string; url: string; publishedAt?: ISODate }[];
   tags?: string[];
   clusterKey?: string;
+  relations?: Relation[];   // arcos no globo entre dois países
+  reportIds?: string[];     // relatos (Report) sobre este fato, até 12
   updatedAt: ISODate;
+}
+
+export interface Relation {
+  type: "sanciona" | "conflito_com" | "acordo_com";
+  from: string;             // ISO 3166-1 alfa-2, ou "EU" / "UN"
+  to: string;
+  label: string;
 }
 
 export interface Condition extends Envelope {
@@ -83,7 +94,7 @@ export interface Assertion {
 
 export interface Measure {
   id: string;
-  schemaVersion: "0.3.0";
+  schemaVersion: "0.4.0";
   kind: "measure";
   subject: { type: "condition" | "event" | "place"; id: string };
   metric: string;           // "deslocados_internos", "alíquota_media", …
@@ -108,7 +119,7 @@ export interface TrackSample {
 
 export interface Track {
   id: string;
-  schemaVersion: "0.3.0";
+  schemaVersion: "0.4.0";
   kind: "track";
   layer: "militar";
   subtype: "aeronave" | "navio" | "comboio";
@@ -139,9 +150,10 @@ export interface SupportRef { entityId?: string; precedent?: number; sourceId?: 
 
 export interface Analysis {
   id: string;                 // "plz:analysis:<fato>-<tipo>[-<região>]"
-  schemaVersion: "0.3.0";
+  schemaVersion: "0.4.0";
   kind: "analysis";
-  analysisType: "precedente" | "impacto" | "checagem" | "contexto";
+  analysisType: "precedente" | "impacto" | "checagem" | "contexto" | "mercado" | "panorama";
+  scope?: { type: "fato" | "pais" | "mundo" | "serie"; iso2?: string | null };
   subjectIds: [string, ...string[]];
   layer: Layer;
   question: string;
@@ -155,6 +167,9 @@ export interface Analysis {
     horizon: "dias" | "meses" | "anos"; magnitude: { value: number; unit: string; basis: string } | null }[];
   claims?: { speaker: string; quote: string; class: "fato_verificavel" | "promessa" | "opiniao";
     verdict: "confere" | "nao_confere" | "impreciso" | "sem_dados" | "nao_se_aplica"; why: string; supportedBy: SupportRef[] }[];
+  moves?: { date: string; changePct: number; explained: boolean;   // mercado: um item por dia, variação conferida com a série
+    drivers: { text: string; supportedBy: SupportRef[] }[] }[];
+  watch?: string[];                                               // o que acompanhar
   counterpoint: { text: string; supportedBy: SupportRef[] };   // obrigatório
   limits: string;
   method: { provider: string; model: string; promptVersion: string; generatedAt: ISODate; effort?: string | null };
@@ -168,7 +183,66 @@ export interface Analysis {
   // Não existe campo de probabilidade. Isso é deliberado; ver SCHEMA.md §5.
 }
 
-export type Entity = Condition | Event | Measure | Track | Analysis;
+// Manchete de um veículo. Guardamos só título, link e o resumo do próprio veículo.
+export interface Report {
+  id: string;                 // "<fonte>:rep:<hash da url>"
+  schemaVersion: "0.4.0";
+  kind: "report";
+  sourceId: string;           // rss | bluesky | x
+  outlet: string;             // chave em Snapshot.outlets
+  url: string;
+  title: string;
+  excerpt?: string | null;
+  summaryPt?: string | null;  // manchete em português, quando o modelo classificou
+  lang: string;
+  publishedAt: ISODate;
+  place: Place | null;
+  geo?: Geometry;
+  layer: Layer | null;
+  subtype: string | null;
+  storyKey: string;           // relatos do mesmo fato compartilham a chave
+  topic?: string | null;
+  classifiedBy: "modelo" | "palavras-chave" | "fonte";
+  relatedIds?: string[];      // fatos do snapshot sobre o mesmo assunto
+  status: Status;
+  confidence: number;
+  sources: [SourceRef, ...SourceRef[]];
+  updatedAt: ISODate;
+}
+
+// Fechamento diário de bolsa, câmbio ou commodity.
+export interface Series {
+  id: string;                 // "<fonte>:ser:<símbolo>"
+  schemaVersion: "0.4.0";
+  kind: "series";
+  layer: "economia";
+  subtype: "indice_bolsa" | "cambio" | "commodity";
+  instrument: { symbol: string; name: string; exchange?: string | null; currency: string; unit?: string | null; note?: string | null };
+  place: Place | null;
+  geo: Geometry;
+  points: { d: string; close: number; changePct: number | null }[]; // d = AAAA-MM-DD
+  last: { d: string; close: number; changePct: number | null };
+  status: Status;
+  confidence: number;
+  sources: [SourceRef, ...SourceRef[]];
+  updatedAt: ISODate;
+}
+
+export interface Outlet {
+  id: string;
+  name: string;
+  country: string | null;     // null = internacional
+  region?: string;
+  lang?: string;
+  type: "agencia" | "emissora_publica" | "privada" | "sem_fins_lucrativos" | "estatal" | "organismo_internacional" | "oficial";
+  funding?: string;           // quem paga — financiamento estatal aparece marcado no app
+  feeds: { kind: "rss" | "bluesky" | "x"; url?: string; handle?: string; username?: string }[];
+  criteria: string[];         // por que entrou na lista (schema/outlets.json)
+  note?: string;
+  verifyFeed?: boolean;
+}
+
+export type Entity = Condition | Event | Measure | Track | Analysis | Report | Series;
 
 export interface Source {
   id: string;
@@ -187,6 +261,7 @@ export interface Source {
   latencyHours: number;
   layers: Layer[];
   licenseCheckedAt: ISODate | null;
+  note?: string;
 }
 
 export interface Ingest {
@@ -195,15 +270,17 @@ export interface Ingest {
   count: number;
   fetchedAt: ISODate;
   error: string | null;
+  rejected?: number;          // entidades descartadas pela validação
   ms?: number;
 }
 
 export interface Snapshot {
-  schemaVersion: "0.3.0";
+  schemaVersion: "0.4.0";
   generatedAt: ISODate;
   window: { from: ISODate; to: ISODate };
   dataClass: "example" | "live" | "mixed";
   sources: Record<string, Source>;
+  outlets?: Record<string, Outlet>;
   ingest: Ingest[];           // estado de cada fonte nesta execução
   policy?: Record<string, unknown>;
   entities: Entity[];

@@ -21,7 +21,7 @@ export function parseCsvLine(line) {
   return out.map(v => (v.trim() === "-0-" ? "" : v.trim()));
 }
 
-function conditions(sourceId, counts, ctx, issuer, url) {
+function conditions(sourceId, counts, ctx, issuer, url, from) {
   const out = [];
   for (const [iso2, { n, programs }] of counts) {
     const progs = [...programs].sort().slice(0, 8).join(", ");
@@ -35,6 +35,8 @@ function conditions(sourceId, counts, ctx, issuer, url) {
       url, clusterKey: `sancoes:${iso2}`,
       metric: `designacoes_${sourceId}`, unit: "designações", value: n,
     }));
+    const cond = out.findLast(e => e.kind === "condition");
+    if (cond) cond.relations = [{ type: "sanciona", from, to: iso2, label: issuer }];
   }
   return out;
 }
@@ -58,7 +60,7 @@ export const ofac = {
       const seen = new Set();
       for (const h of hit) { const [iso2, p] = h.split("|"); if (!seen.has(iso2)) { bump(counts, iso2, p); seen.add(iso2); } else counts.get(iso2).programs.add(p); }
     }
-    return { entities: conditions("ofac", counts, ctx, "O Tesouro dos EUA (OFAC)", "https://sanctionssearch.ofac.treas.gov/") };
+    return { entities: conditions("ofac", counts, ctx, "O Tesouro dos EUA (OFAC)", "https://sanctionssearch.ofac.treas.gov/", "US") };
   },
 };
 
@@ -73,7 +75,7 @@ export const unsc = {
       const iso2 = list && MAP.un[list];
       if (iso2) bump(counts, iso2, list);
     }
-    return { entities: conditions("un_sc", counts, ctx, "O Conselho de Segurança da ONU", "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list") };
+    return { entities: conditions("un_sc", counts, ctx, "O Conselho de Segurança da ONU", "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list", "UN") };
   },
 };
 
@@ -90,6 +92,6 @@ export const eu = {
       const c = country(prog.slice(0, 3));
       if (c) bump(counts, c.iso2, prog);
     }
-    return { entities: conditions("eu_sanctions", counts, ctx, "A União Europeia", "https://www.sanctionsmap.eu/") };
+    return { entities: conditions("eu_sanctions", counts, ctx, "A União Europeia", "https://www.sanctionsmap.eu/", "EU") };
   },
 };

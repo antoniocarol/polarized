@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "0.3.0",
+  "schemaVersion": "0.4.0",
   "note": "Fonte da verdade das camadas. O app embute uma cópia de label/color/frame/subtypes; test/taxonomy.test.js garante que as duas estão iguais.",
   "layers": {
     "conflito": {
@@ -130,7 +130,7 @@
       "label": "Economia",
       "color": "#5fb8ff",
       "frame": "hexagon",
-      "desc": "tarifas, acordos e crises",
+      "desc": "tarifas, acordos, crises e mercados",
       "subtypes": {
         "tarifa": {
           "glyph": "tariff",
@@ -163,6 +163,18 @@
         "choque_commodity": {
           "glyph": "commodity",
           "label": "choque de commodity"
+        },
+        "indice_bolsa": {
+          "glyph": "chart",
+          "label": "bolsa de valores"
+        },
+        "cambio": {
+          "glyph": "fx",
+          "label": "câmbio"
+        },
+        "commodity": {
+          "glyph": "commodity",
+          "label": "preço de commodity"
         }
       }
     },

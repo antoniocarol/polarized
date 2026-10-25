@@ -100,7 +100,9 @@
      }
     ]
    },
-   "limits": "Os fatos não trazem desemprego, série mensal de preços nem a íntegra do debate. Falas fora da transcrição não foram analisadas."
+   "limits": "Os fatos não trazem desemprego, série mensal de preços nem a íntegra do debate. Falas fora da transcrição não foram analisadas.",
+   "moves": [],
+   "watch": []
   }
  },
  "curadoria:evt:br-proposta-congelamento-exemplo|precedente": {
@@ -226,7 +228,9 @@
      }
     ]
    },
-   "limits": "Os casos vêm do conhecimento histórico de quem redigiu e ainda não foram verificados por uma pessoa do projeto. Os fatos não trazem dados fiscais, a causa da alta dos alimentos nem o desenho completo da proposta."
+   "limits": "Os casos vêm do conhecimento histórico de quem redigiu e ainda não foram verificados por uma pessoa do projeto. Os fatos não trazem dados fiscais, a causa da alta dos alimentos nem o desenho completo da proposta.",
+   "moves": [],
+   "watch": []
   }
  },
  "wto:cond:eu-regulacao-comercial|impacto": {
@@ -310,7 +314,303 @@
      }
     ]
    },
-   "limits": "Os fatos não trazem os setores cobertos, a data de vigência nem o volume de comércio afetado, por isso nenhuma magnitude foi estimada."
+   "limits": "Os fatos não trazem os setores cobertos, a data de vigência nem o volume de comércio afetado, por isso nenhuma magnitude foi estimada.",
+   "moves": [],
+   "watch": []
+  }
+ },
+ "mundo|panorama": {
+  "method": {
+   "provider": "exemplo",
+   "model": "redigido-manualmente",
+   "effort": null
+  },
+  "output": {
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [],
+   "moves": [],
+   "watch": [
+    "Por quanto tempo dura o corte de internet no Irã",
+    "Se os ataques à energia na Ucrânia se repetem com a chegada do frio",
+    "Se a ajuda humanitária volta a chegar a Darfur do Norte"
+   ],
+   "headline": "O mundo agora: guerra, apagões e um ciclone (exemplo)",
+   "summary": "Os maiores focos do instantâneo de exemplo são o Irã sem internet, os ataques à energia na Ucrânia e a guerra civil no Sudão, além de um ciclone de alerta vermelho nas Filipinas.",
+   "points": [
+    {
+     "type": "fato",
+     "text": "A guerra na Ucrânia segue como o conflito mais grave registrado; quatro redações relataram um ataque com drones à infraestrutura de energia em Kharkiv.",
+     "supportedBy": [
+      {
+       "entityId": "ucdp:cond:ua-guerra-interestatal",
+       "precedent": null
+      },
+      {
+       "entityId": "rss:rep:5d687879861bf4",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "No Sudão, a guerra civil se concentra em Darfur do Norte, com deslocamento e acesso humanitário restrito.",
+     "supportedBy": [
+      {
+       "entityId": "ucdp:cond:sd-guerra-civil",
+       "precedent": null
+      },
+      {
+       "entityId": "rss:rep:81546f05daa157",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "O Irã está sem internet em todo o país, por ordem do governo segundo o Cloudflare Radar, e há registro de protestos reprimidos.",
+     "supportedBy": [
+      {
+       "entityId": "cloudflare_radar:evt:ex-901-IR",
+       "precedent": null
+      },
+      {
+       "entityId": "acled:evt:IRN9001",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "Um ciclone com alerta vermelho chegou às Filipinas, com milhares de pessoas retiradas da costa.",
+     "supportedBy": [
+      {
+       "entityId": "gdacs:evt:TC-900103",
+       "precedent": null
+      },
+      {
+       "entityId": "rss:rep:5d39736b7ece24",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Os três países com maior atenção combinam violência com perda de serviços básicos — energia, internet, acesso humanitário —, o que espalha o efeito para além das mortes registradas.",
+     "supportedBy": [
+      {
+       "entityId": "cloudflare_radar:evt:ex-901-IR",
+       "precedent": null
+      },
+      {
+       "entityId": "ucdp:cond:ua-guerra-interestatal",
+       "precedent": null
+      },
+      {
+       "entityId": "ucdp:cond:sd-guerra-civil",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Entre os índices de bolsa acompanhados, o Ibovespa teve a maior queda no último pregão; o cartão da série explica os fatores daquele dia.",
+     "supportedBy": [
+      {
+       "entityId": "stooq:ser:^bvp",
+       "precedent": null
+      }
+     ]
+    }
+   ],
+   "counterpoint": {
+    "text": "Um retrato montado a partir de bases que registram violência e de redações que publicam em inglês tende a deixar de fora crises lentas — fome, seca, dívida — que não geram eventos diários.",
+    "supportedBy": []
+   },
+   "limits": "O panorama usa só os fatos deste instantâneo. Regiões com pouca cobertura de imprensa ou de bases de dados aparecem menos do que deveriam."
+  }
+ },
+ "stooq:ser:^bvp|mercado": {
+  "method": {
+   "provider": "exemplo",
+   "model": "redigido-manualmente",
+   "effort": null
+  },
+  "output": {
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [],
+   "moves": [
+    {
+     "date": "2026-10-23",
+     "changePct": -2.4,
+     "explained": true,
+     "drivers": [
+      {
+       "text": "Segundo a Agência Exemplo, a queda veio com aversão a risco e alta do dólar.",
+       "supportedBy": [
+        {
+         "entityId": "rss:rep:af60ed87121b57",
+         "precedent": null
+        }
+       ]
+      },
+      {
+       "text": "O dólar subiu 1,6% contra o real no mesmo dia.",
+       "supportedBy": [
+        {
+         "entityId": "stooq:ser:usdbrl",
+         "precedent": null
+        }
+       ]
+      },
+      {
+       "text": "O petróleo Brent subiu 3,1%, com preocupação sobre o transporte no Mar Vermelho segundo o Jornal Independente Exemplo.",
+       "supportedBy": [
+        {
+         "entityId": "stooq:ser:cb.f",
+         "precedent": null
+        },
+        {
+         "entityId": "rss:rep:76a6ddf1533ac5",
+         "precedent": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "date": "2026-10-22",
+     "changePct": -0.8,
+     "explained": false,
+     "drivers": []
+    },
+    {
+     "date": "2026-10-21",
+     "changePct": 0.5,
+     "explained": false,
+     "drivers": []
+    }
+   ],
+   "watch": [],
+   "headline": "Por que o Ibovespa caiu 2,4% na sexta (exemplo)",
+   "summary": "A queda coincidiu com alta do dólar e do petróleo e com aversão a risco no exterior. Nos dois pregões anteriores, os fatos coletados não explicam as variações.",
+   "points": [
+    {
+     "type": "fato",
+     "text": "O Ibovespa caiu 2,4% na sexta-feira, a maior queda do mês na série.",
+     "supportedBy": [
+      {
+       "entityId": "stooq:ser:^bvp",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "A queda veio junto com dólar e petróleo em alta, combinação comum quando investidores reduzem risco em mercados emergentes. Os fatos coletados não mostram um evento doméstico específico naquele dia.",
+     "supportedBy": [
+      {
+       "entityId": "stooq:ser:usdbrl",
+       "precedent": null
+      },
+      {
+       "entityId": "stooq:ser:cb.f",
+       "precedent": null
+      }
+     ]
+    }
+   ],
+   "counterpoint": {
+    "text": "A coincidência com dólar e petróleo não prova a causa: notícias de empresas grandes do índice, que não estão nos fatos coletados, podem ter pesado mais.",
+    "supportedBy": []
+   },
+   "limits": "Variação no mesmo dia de um fato não prova causa. A série é de exemplo, e os fatos não incluem notícias de empresas nem dados de fluxo de investidores."
+  }
+ },
+ "pais:UA|panorama": {
+  "method": {
+   "provider": "exemplo",
+   "model": "redigido-manualmente",
+   "effort": null
+  },
+  "output": {
+   "precedents": [],
+   "conditions": [],
+   "impacts": [],
+   "claims": [],
+   "moves": [],
+   "watch": [
+    "Se os cortes de energia em Kharkiv se espalham para outras cidades",
+    "Se o número de deslocados volta a subir, e qual das três fontes registra primeiro"
+   ],
+   "headline": "Ucrânia: a guerra chega à rede de energia (exemplo)",
+   "summary": "A guerra com a Rússia segue como a condição mais grave, com combates em várias regiões do leste e do sul e ataques recentes à infraestrutura de energia.",
+   "points": [
+    {
+     "type": "fato",
+     "text": "A guerra com a Rússia é a condição mais grave do país, com eventos de combate registrados em várias regiões do leste e do sul nos últimos 45 dias.",
+     "supportedBy": [
+      {
+       "entityId": "ucdp:cond:ua-guerra-interestatal",
+       "precedent": null
+      },
+      {
+       "entityId": "ucdp:evt:9100001",
+       "precedent": null
+      },
+      {
+       "entityId": "ucdp:evt:9100002",
+       "precedent": null
+      },
+      {
+       "entityId": "ucdp:evt:9100004",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "Quatro redações relataram um ataque com drones à infraestrutura de energia em Kharkiv.",
+     "supportedBy": [
+      {
+       "entityId": "rss:rep:5d687879861bf4",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "fato",
+     "text": "O ACLED registrou um ataque aéreo ou com drone em Kiev.",
+     "supportedBy": [
+      {
+       "entityId": "acled:evt:UKR9001",
+       "precedent": null
+      }
+     ]
+    },
+    {
+     "type": "analise",
+     "text": "Os ataques recentes miram energia, o que leva o efeito da guerra a quem está longe da linha de frente.",
+     "supportedBy": [
+      {
+       "entityId": "rss:rep:5d687879861bf4",
+       "precedent": null
+      },
+      {
+       "entityId": "acled:evt:UKR9001",
+       "precedent": null
+      }
+     ]
+    }
+   ],
+   "counterpoint": {
+    "text": "A contagem de eventos depende de onde há repórteres e sensores: áreas ocupadas ou isoladas podem ter mais violência do que a registrada.",
+    "supportedBy": []
+   },
+   "limits": "Os números de deslocados têm três versões oficiais divergentes. O panorama não usa dados militares, que nenhuma fonte aberta confirma."
   }
  }
 }

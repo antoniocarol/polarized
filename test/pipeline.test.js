@@ -9,10 +9,11 @@ test("snapshot de fixtures completo passa na validação", async () => {
   const { errors } = validateSnapshot(snapshot);
   assert.deepEqual(errors, []);
   const kinds = snapshot.entities.reduce((m, e) => ((m[e.kind] = (m[e.kind] || 0) + 1), m), {});
-  assert.ok(kinds.track >= 5 && kinds.analysis === 3 && kinds.event >= 10, JSON.stringify(kinds));
+  assert.ok(kinds.track >= 5 && kinds.analysis === 6 && kinds.event >= 10 && kinds.report >= 20 && kinds.series >= 5, JSON.stringify(kinds));
   assert.equal(snapshot.dataClass, "example");
   assert.ok(snapshot.ingest.every(r => r.status === "fixture"), JSON.stringify(snapshot.ingest));
-  assert.equal(snapshot.ingest.length, 15);
+  assert.equal(snapshot.ingest.length, 19);
+  assert.ok(Object.keys(snapshot.outlets).every(k => k.startsWith("ex_")), "exemplo usa só veículos fictícios");
 });
 
 test("entidade malformada de uma fonte é descartada sem derrubar o snapshot", async () => {

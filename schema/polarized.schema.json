@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://polarized.example/schema/0.3.0/snapshot.json",
+  "$id": "https://polarized.example/schema/0.4.0/snapshot.json",
   "title": "Polarized Snapshot",
   "type": "object",
   "required": [
@@ -15,7 +15,7 @@
   "additionalProperties": false,
   "properties": {
     "schemaVersion": {
-      "const": "0.3.0"
+      "const": "0.4.0"
     },
     "generatedAt": {
       "type": "string",
@@ -65,6 +65,12 @@
       "type": "array",
       "items": {
         "$ref": "#/$defs/entity"
+      }
+    },
+    "outlets": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/outlet"
       }
     }
   },
@@ -146,6 +152,13 @@
             "string",
             "null"
           ]
+        },
+        "admin1Code": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
         }
       },
       "additionalProperties": false
@@ -286,7 +299,7 @@
           "pattern": "^[a-z0-9_]+:[a-z]+:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.3.0"
+          "const": "0.4.0"
         },
         "layer": {
           "$ref": "#/$defs/layer"
@@ -365,6 +378,44 @@
         },
         "kind": {
           "const": "condition"
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "sanciona",
+                  "conflito_com",
+                  "acordo_com"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "reportIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
@@ -394,7 +445,7 @@
           "pattern": "^[a-z0-9_]+:[a-z]+:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.3.0"
+          "const": "0.4.0"
         },
         "layer": {
           "$ref": "#/$defs/layer"
@@ -502,6 +553,44 @@
             "number",
             "null"
           ]
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "type",
+              "from",
+              "to"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "sanciona",
+                  "conflito_com",
+                  "acordo_com"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^[A-Z]{2}$"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "reportIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
@@ -528,7 +617,7 @@
           "type": "string"
         },
         "schemaVersion": {
-          "const": "0.3.0"
+          "const": "0.4.0"
         },
         "kind": {
           "const": "measure"
@@ -658,7 +747,7 @@
           "type": "string"
         },
         "schemaVersion": {
-          "const": "0.3.0"
+          "const": "0.4.0"
         },
         "kind": {
           "const": "track"
@@ -869,7 +958,7 @@
           "pattern": "^plz:analysis:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.3.0"
+          "const": "0.4.0"
         },
         "kind": {
           "const": "analysis"
@@ -879,7 +968,9 @@
             "precedente",
             "impacto",
             "checagem",
-            "contexto"
+            "contexto",
+            "mercado",
+            "panorama"
           ]
         },
         "subjectIds": {
@@ -1407,6 +1498,99 @@
         "updatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "scope": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "fato",
+                "pais",
+                "mundo",
+                "serie"
+              ]
+            },
+            "iso2": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "moves": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "date",
+              "changePct",
+              "explained",
+              "drivers"
+            ],
+            "properties": {
+              "date": {
+                "type": "string"
+              },
+              "changePct": {
+                "type": "number"
+              },
+              "explained": {
+                "type": "boolean"
+              },
+              "drivers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "supportedBy"
+                  ],
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    },
+                    "supportedBy": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [],
+                        "properties": {
+                          "entityId": {
+                            "type": "string"
+                          },
+                          "sourceId": {
+                            "type": "string"
+                          },
+                          "precedent": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "url": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "watch": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
@@ -1427,6 +1611,12 @@
         },
         {
           "$ref": "#/$defs/analysis"
+        },
+        {
+          "$ref": "#/$defs/report"
+        },
+        {
+          "$ref": "#/$defs/series"
         }
       ]
     },
@@ -1572,6 +1762,368 @@
         "rejected": {
           "type": "integer",
           "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "report": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "sourceId",
+        "outlet",
+        "url",
+        "title",
+        "lang",
+        "publishedAt",
+        "place",
+        "layer",
+        "subtype",
+        "storyKey",
+        "classifiedBy",
+        "status",
+        "confidence",
+        "sources",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+:rep:[A-Za-z0-9._-]+$"
+        },
+        "schemaVersion": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "report"
+        },
+        "sourceId": {
+          "type": "string"
+        },
+        "outlet": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 320
+        },
+        "summaryPt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        },
+        "lang": {
+          "type": "string",
+          "maxLength": 8
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "place": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/place"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "geo": {
+          "$ref": "#/$defs/geometry"
+        },
+        "layer": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/layer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "subtype": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "storyKey": {
+          "type": "string"
+        },
+        "topic": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "classifiedBy": {
+          "enum": [
+            "modelo",
+            "palavras-chave",
+            "fonte"
+          ]
+        },
+        "relatedIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "series": {
+      "type": "object",
+      "required": [
+        "id",
+        "schemaVersion",
+        "kind",
+        "layer",
+        "subtype",
+        "instrument",
+        "place",
+        "geo",
+        "points",
+        "last",
+        "status",
+        "confidence",
+        "sources",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+:ser:[A-Za-z0-9._^-]+$"
+        },
+        "schemaVersion": {
+          "const": "0.4.0"
+        },
+        "kind": {
+          "const": "series"
+        },
+        "layer": {
+          "const": "economia"
+        },
+        "subtype": {
+          "enum": [
+            "indice_bolsa",
+            "cambio",
+            "commodity"
+          ]
+        },
+        "instrument": {
+          "type": "object",
+          "required": [
+            "symbol",
+            "name",
+            "currency"
+          ],
+          "properties": {
+            "symbol": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "exchange": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "currency": {
+              "type": "string"
+            },
+            "unit": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "note": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "place": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/place"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "geo": {
+          "$ref": "#/$defs/geometry"
+        },
+        "points": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "d",
+              "close",
+              "changePct"
+            ],
+            "properties": {
+              "d": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "close": {
+                "type": "number"
+              },
+              "changePct": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "last": {
+          "type": "object",
+          "required": [
+            "d",
+            "close",
+            "changePct"
+          ],
+          "properties": {
+            "d": {
+              "type": "string"
+            },
+            "close": {
+              "type": "number"
+            },
+            "changePct": {
+              "type": [
+                "number",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sources": {
+          "$ref": "#/$defs/sources"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "outlet": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "country",
+        "type",
+        "feeds",
+        "criteria"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "country": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "region": {
+          "type": "string"
+        },
+        "lang": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "agencia",
+            "emissora_publica",
+            "privada",
+            "sem_fins_lucrativos",
+            "estatal",
+            "organismo_internacional",
+            "oficial"
+          ]
+        },
+        "funding": {
+          "type": "string"
+        },
+        "feeds": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string"
+        },
+        "verifyFeed": {
+          "type": "boolean"
         }
       },
       "additionalProperties": false

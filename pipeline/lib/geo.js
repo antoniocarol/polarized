@@ -75,3 +75,47 @@ export function placeOf(c, admin1 = null) {
 export const GLOBAL_PLACE = { iso2: null, iso3: null, name: "Global", admin1: null };
 export const point = (lat, lon) => ({ type: "Point", coordinates: [+lon.toFixed(3), +lat.toFixed(3)] });
 export const inBox = (lat, lon, [s, w, n, e]) => lat >= s && lat <= n && lon >= w && lon <= e;
+
+// Estados e províncias (Natural Earth 1:10m simplificado), carregados na primeira consulta.
+let ADMIN1 = null, ADMIN1_BY = null;
+function admin1() {
+  if (!ADMIN1) {
+    ADMIN1 = readJson(rel("pipeline/data/admin1.json"));
+    ADMIN1_BY = new Map();
+    for (const a of ADMIN1) { if (!ADMIN1_BY.has(a.iso2)) ADMIN1_BY.set(a.iso2, []); ADMIN1_BY.get(a.iso2).push(a); }
+  }
+  return ADMIN1_BY;
+}
+const inFlat = (x, y, r) => {
+  let inside = false;
+  for (let i = 0, j = r.length - 2; i < r.length; j = i, i += 2) {
+    const xi = r[i], yi = r[i + 1], xj = r[j], yj = r[j + 1];
+    if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+};
+
+/** Estado que contém o ponto, dentro do país informado (ou em qualquer país, se iso2 for null). */
+export function admin1At(lat, lon, iso2 = null) {
+  const by = admin1();
+  const lists = iso2 ? [by.get(iso2) || []] : [...by.values()];
+  for (const list of lists) for (const a of list) {
+    const [w, s, e, n] = a.bbox;
+    if (lon < w || lon > e || lat < s || lat > n) continue;
+    for (const poly of a.polys) if (inFlat(lon, lat, poly[0]) && !poly.slice(1).some(h => inFlat(lon, lat, h))) return a;
+  }
+  return null;
+}
+
+/** Procura nomes de estados de um país num texto (manchete). Devolve o primeiro encontrado. */
+export function admin1InText(text, iso2) {
+  const list = admin1().get(iso2) || [];
+  const t = ` ${norm(text)} `;
+  let best = null;
+  for (const a of list) {
+    const n = norm(a.name);
+    if (n.length >= 4 && t.includes(` ${n} `) && (!best || n.length > norm(best.name).length)) best = a;
+  }
+  return best;
+}
+export const admin1List = iso2 => admin1().get(iso2) || [];

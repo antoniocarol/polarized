@@ -2,7 +2,7 @@
  "tracks": [
   {
    "id": "opensky:trk:ae1a01",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -72,7 +72,7 @@
   },
   {
    "id": "opensky:trk:ae1a02",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -150,7 +150,7 @@
   },
   {
    "id": "aisstream:trk:338000001",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "navio",

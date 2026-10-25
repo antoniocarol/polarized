@@ -1,0 +1,135 @@
+{
+ "schemaVersion": "0.4.0",
+ "criteria": [
+  "exemplo"
+ ],
+ "note": "Veículos fictícios, usados só nas fixtures. Os reais estão em schema/outlets.json.",
+ "outlets": [
+  {
+   "id": "ex_agencia",
+   "name": "Agência Exemplo",
+   "country": "BR",
+   "region": "América do Sul",
+   "lang": "pt",
+   "type": "agencia",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/agencia/rss"
+    }
+   ]
+  },
+  {
+   "id": "ex_radio",
+   "name": "Rádio Pública Exemplo",
+   "country": "DE",
+   "region": "Europa",
+   "lang": "en",
+   "type": "emissora_publica",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/radio/rss"
+    }
+   ]
+  },
+  {
+   "id": "ex_jornal",
+   "name": "Jornal Independente Exemplo",
+   "country": "GB",
+   "region": "Europa",
+   "lang": "en",
+   "type": "privada",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/jornal/rss"
+    }
+   ]
+  },
+  {
+   "id": "ex_estatal",
+   "name": "Canal Estatal Exemplo",
+   "country": "QA",
+   "region": "Oriente Médio",
+   "lang": "en",
+   "type": "estatal",
+   "funding": "fictício — veículo de exemplo com financiamento estatal",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/estatal/rss"
+    }
+   ]
+  },
+  {
+   "id": "ex_asia",
+   "name": "Diário da Ásia Exemplo",
+   "country": "IN",
+   "region": "Ásia",
+   "lang": "en",
+   "type": "privada",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "rss",
+     "url": "https://exemplo.invalid/asia/rss"
+    }
+   ]
+  },
+  {
+   "id": "ex_bsky",
+   "name": "Agência Exemplo (Bluesky)",
+   "country": "BR",
+   "region": "América do Sul",
+   "lang": "en",
+   "type": "agencia",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "bluesky",
+     "handle": "agencia.exemplo.invalid"
+    }
+   ]
+  },
+  {
+   "id": "ex_x",
+   "name": "Agência Exemplo (X)",
+   "country": "BR",
+   "region": "América do Sul",
+   "lang": "en",
+   "type": "agencia",
+   "funding": "fictício — veículo de exemplo",
+   "criteria": [
+    "exemplo"
+   ],
+   "feeds": [
+    {
+     "kind": "x",
+     "username": "AgenciaExemplo"
+    }
+   ]
+  }
+ ]
+}

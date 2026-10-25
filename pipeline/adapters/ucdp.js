@@ -7,6 +7,7 @@ import { entity } from "../lib/entity.js";
 import { capPerCountry, countryCondition, deathScale } from "../lib/aggregate.js";
 
 const ymd = ms => new Date(ms).toISOString().slice(0, 10);
+const gov = s => countryByName(String(s || "").replace(/^Government of /, "").replace(/\s*\(.*\)\s*$/, ""));
 const VIOLENCE = { 1: "confronto entre um Estado e outro grupo armado", 2: "confronto entre grupos armados não estatais", 3: "violência contra civis" };
 
 export default {
@@ -47,7 +48,8 @@ export default {
         summary: `${VIOLENCE[r.type_of_violence] || "violência organizada"}: ${r.dyad_name}. ${best} mortes estimadas (faixa ${lo} a ${hi}). Dado preliminar do UCDP.`,
         parentId: condId,
       }));
-      const agg = byCountry.get(c.iso2) || { n: 0, best: 0, lo: 0, hi: 0, type1: false, interstate: false, first: r.date_start };
+      const agg = byCountry.get(c.iso2) || { n: 0, best: 0, lo: 0, hi: 0, type1: false, interstate: false, first: r.date_start, rel: new Map() };
+      if (interstate) { const a = gov(r.side_a), b = gov(r.side_b); if (a && b && a.iso2 !== b.iso2) agg.rel.set(`${a.iso2}>${b.iso2}`, { type: "conflito_com", from: a.iso2, to: b.iso2, label: r.dyad_name }); }
       agg.n++; agg.best += best; agg.lo += lo; agg.hi += hi;
       agg.type1 ||= Number(r.type_of_violence) === 1; agg.interstate ||= interstate;
       if (r.date_start < agg.first) agg.first = r.date_start;
@@ -68,6 +70,7 @@ export default {
         url: "https://ucdp.uu.se/", clusterKey: `conflito:${iso2}`,
         metric: `mortes_${P.ucdpWindowDays}d`, unit: "pessoas", value: a.best, method: `UCDP, soma da estimativa central (faixa ${a.lo} a ${a.hi})`,
       }));
+      if (a.rel.size) conditions.findLast(e => e.kind === "condition").relations = [...a.rel.values()];
     }
     const ids = new Set(conditions.map(e => e.id));
     for (const e of events) if (!ids.has(e.parentId)) delete e.parentId;

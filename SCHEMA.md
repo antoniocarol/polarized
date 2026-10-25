@@ -1,6 +1,6 @@
 # Esquema de dados do Polarized
 
-Versão `0.3.0` · documento normativo do projeto
+Versão `0.4.0` · documento normativo do projeto
 
 Tudo que aparece no globo é uma **entidade** com **procedência obrigatória**. Nenhuma
 afirmação chega à tela sem dizer de onde veio, quando foi observada e quem a contesta.
@@ -13,10 +13,11 @@ Arquivos de referência:
 | `schema/types.ts` | Tipos TypeScript equivalentes. Em conflito, o JSON Schema vale. |
 | `schema/taxonomy.json` | Camadas, subtipos, cores, molduras e ícones. |
 | `schema/sources.json` | Registro de fontes, com licença e direito de redistribuição. |
+| `schema/outlets.json` | Veículos de notícia acompanhados, com tipo, financiamento e critério de entrada. |
 
 ---
 
-## 1. Cinco tipos, separados pela forma no tempo
+## 1. Sete tipos, separados pela forma no tempo
 
 | `kind` | forma no tempo | exemplos |
 |---|---|---|
@@ -24,7 +25,9 @@ Arquivos de referência:
 | `event` | ocorrência discreta e datada | terremoto, ataque aéreo, greve, debate, queda de internet |
 | `track` | objeto que se move, amostrado ao longo do tempo | aeronave militar, navio de guerra |
 | `measure` | número de um período, com uma ou mais versões | deslocados, inflação, magnitude, participantes |
-| `analysis` | leitura produzida por IA sobre fatos do snapshot | precedente histórico, impacto, checagem de falas |
+| `analysis` | leitura produzida por IA sobre fatos do snapshot | precedente histórico, impacto, checagem, mercado, panorama |
+| `report` | manchete de um veículo sobre um fato | relato da BBC, post da AP no Bluesky |
+| `series` | fechamento diário de um mercado | Ibovespa, dólar em reais, petróleo Brent |
 
 O assunto é a camada (`layer`) e não depende do tipo. Uma guerra é `condition` da camada
 `conflito`; um bombardeio dentro dela é `event` da mesma camada, com `parentId`
@@ -35,12 +38,12 @@ apontando para a guerra.
 ```jsonc
 {
   "id": "usgs:evt:us7000abcd",     // <fonte>:<tipo>:<id na fonte> — reprocessar não duplica
-  "schemaVersion": "0.3.0",
+  "schemaVersion": "0.4.0",
   "kind": "event",
   "layer": "sismico",
   "subtype": "terremoto",          // define o ícone (taxonomy.json)
   "geo": { "type": "Point", "coordinates": [141.9, 36.1] },  // GeoJSON [lon, lat]; null = sem lugar no mapa
-  "place": { "iso2": "JP", "iso3": "JPN", "name": "Japão", "admin1": null },
+  "place": { "iso2": "JP", "iso3": "JPN", "name": "Japão", "admin1": null, "admin1Code": null },  // admin1Code = ISO 3166-2 ("BR-SP")
   "time": { "start": "…", "end": null, "observedAt": "…", "precision": "minute" },  // startKnown: false quando a fonte não diz o início
   "intensity": 3,                  // 0–5, sempre calculada
   "intensityBasis": "(magnitude − 4) × 1,25, +1 se PAGER laranja, +2 se vermelho",
@@ -51,6 +54,8 @@ apontando para a guerra.
   "text": { "pt": { "headline": "…", "summary": "…", "body": "…" } },
   "links": [{ "label": "Página do evento no USGS", "url": "https://…" }],
   "tags": ["oceanico"],
+  "relations": [{ "type": "sanciona", "from": "US", "to": "RU", "label": "…" }],  // arcos entre países (§8)
+  "reportIds": ["rss:rep:…"],      // relatos sobre este fato (§6)
   "updatedAt": "…",
   "magnitude": { "value": 6.1, "scale": "Mww" },   // só em sismos
   "depthKm": 34
@@ -69,6 +74,8 @@ apontando para a guerra.
    proximidade (até 90 s e 100 km), porque cada rede dá hora e epicentro um pouco diferentes.
 6. `geo: null` é permitido para o que não tem lugar (uma falha de software explorada no
    mundo todo). O app lista esses itens em "Sem lugar no mapa" e não inventa um ponto.
+7. Estado (`place.admin1`, `admin1Code`) sai do ponto, pelos contornos do Natural Earth
+   (`pipeline/data/admin1.json`), nunca de texto livre de quem publicou o fato.
 
 ## 3. `measure` — versões divergentes lado a lado
 
@@ -131,6 +138,10 @@ confunde com eles na tela.
 | `impacto` | O que isso muda, e para quem? | `impacts`: domínio, região, direção, cadeia de causa e efeito, horizonte |
 | `checagem` | O que foi dito confere? | `claims`: fala, classe (fato verificável, promessa, opinião), veredito |
 | `contexto` | Como se chegou aqui? | `points` |
+| `mercado` | Por que o mercado se mexeu assim? | `moves`: um item por dia, com a variação da série e os fatos que podem explicá-la — ou `explained: false` |
+| `panorama` | O que importa agora? | pelo menos três `points`; `scope` diz se é do mundo (`mundo`) ou de um país (`pais`) |
+
+`watch` (opcional, todos os tipos) lista o que acompanhar nos próximos dias.
 
 **Camadas de proteção** (`pipeline/lib/guards.js`, as mesmas no pipeline e no app):
 
@@ -142,6 +153,9 @@ confunde com eles na tela.
 | `magnitude_com_base` | Tamanho de impacto só fica se o número aparece nos fatos; senão vira `null`. |
 | `conteudo_do_tipo` | Checagem sem falas, impacto sem impactos ou precedente sem casos é descartado. |
 | `precedentes_marcados` | Casos vindos do conhecimento do modelo saem sempre com `verified: false`. |
+| `sem_recomendacao` | "Compre", "venda", "vale a pena investir" e afins descartam a análise, de qualquer tipo. |
+| `sem_previsao_de_preco` | Em `mercado`, prever para onde o preço vai ("deve subir", "alvo de 130 mil") descarta a análise. |
+| `movimentos_da_serie` | Em `mercado`, cada dia de `moves` precisa existir na série analisada, com a variação dela (tolerância de arredondamento). Dia inventado ou número trocado cai. |
 | `conferencia_cruzada` | Com um segundo modelo configurado, as duas análises são comparadas caso a caso; a concordância e as divergências ficam registradas em `crossCheck`. |
 
 Por que "condições" no lugar de "chance de dar certo": uma porcentagem gerada por
@@ -155,7 +169,64 @@ mostra quem revisou.
 **Rastreabilidade.** `method` guarda provedor, modelo, versão do prompt e data. Uma
 análise é refeita quando o fato muda ou quando `PROMPT_VERSION` muda.
 
-## 6. Camadas e símbolos
+## 6. `report` — manchetes, histórias e corroboração
+
+```jsonc
+{
+  "id": "rss:rep:3f9a1c0b7d2e4a", "kind": "report", "sourceId": "rss",
+  "outlet": "bbc_world",                 // chave em snapshot.outlets
+  "url": "https://…", "title": "Strong earthquake strikes off Japan…", "lang": "en",
+  "excerpt": "…",                        // o resumo do próprio feed, até 320 caracteres
+  "summaryPt": "Terremoto forte atinge a costa leste do Japão",  // só quando o modelo classificou
+  "publishedAt": "…",
+  "place": { "iso2": "JP", "iso3": "JPN", "name": "Japão", "admin1": null, "admin1Code": null },
+  "layer": "sismico", "subtype": "terremoto",
+  "storyKey": "jp:sismico:3f9a…",        // relatos do mesmo fato compartilham a chave
+  "classifiedBy": "modelo",              // modelo | palavras-chave | fonte
+  "relatedIds": ["usgs:evt:us7000abcd"]
+}
+```
+
+- **Só manchete, link e resumo do veículo.** A matéria fica no site de quem apurou.
+- **Classificação conferida.** País, estado, camada e tema vêm de palavras-chave ou de um
+  modelo barato em lote (`CLASSIFIER_MODEL`); o pipeline confere cada campo contra as
+  listas do esquema e guarda o resultado em cache por 72 h.
+- **História = relatos com a mesma `storyKey`.** O app mostra quantas redações e de
+  quantos países contaram o fato. Uma redação só aparece como "não confirmado".
+- **Veículos** (`schema/outlets.json`) entram por critério escrito, com tipo e
+  financiamento. Financiamento estatal aparece marcado em cada relato. X (Twitter) é
+  opcional e pago (`X_BEARER_TOKEN`); o padrão é RSS e Bluesky.
+
+## 7. `series` — bolsas, câmbio e commodities
+
+```jsonc
+{
+  "id": "stooq:ser:^bvp", "kind": "series", "layer": "economia", "subtype": "indice_bolsa",
+  "instrument": { "symbol": "^bvp", "name": "Ibovespa", "exchange": "B3", "currency": "pontos", "unit": null },
+  "place": { "iso2": "BR", … }, "geo": { "type": "Point", "coordinates": [-46.63, -23.55] },
+  "points": [{ "d": "2026-10-23", "close": 126383, "changePct": -2.4 }],  // até 30 pregões
+  "last": { "d": "2026-10-23", "close": 126383, "changePct": -2.4 }
+}
+```
+
+A análise `mercado` explica os dias que mais se mexeram com os fatos do snapshot, sempre
+dizendo que coincidência no tempo não prova causa. Ela nunca prevê preço e nunca
+recomenda investimento (§5).
+
+## 8. Relações e índice de atenção
+
+`relations` liga dois países: `sanciona` (listas OFAC, ONU, UE — `from` pode ser `EU` ou
+`UN`), `conflito_com` (díades entre governos no UCDP) e `acordo_com`. O app desenha arcos
+no globo e lista as conexões no país.
+
+O **índice de atenção** (`pipeline/lib/attention.js`, o mesmo código no app) soma, por
+país e camada, o fato mais grave mais meia raiz da soma dos demais; eventos perdem peso
+com o tempo (meia-vida de cerca de 33 h), as notícias somam 0,15 cada (até 3 pontos) e
+movimentos de mercado somam até 1. O resultado vai de 0 a 100, relativo ao país com mais
+atenção no instantâneo. A fórmula aparece no app, em cada país. Gravidade pesa mais que
+volume: um país com uma guerra fica acima de um país com muitas notícias leves.
+
+## 9. Camadas e símbolos
 
 Cada camada tem cor e moldura; cada subtipo tem ícone. Forma e cor carregam a mesma
 informação, para funcionar também sem distinção de cores.
@@ -174,7 +245,7 @@ informação, para funcionar também sem distinção de cores.
 
 A legenda completa, desenhada, está no app em "Sobre".
 
-## 7. Registro de fontes
+## 10. Registro de fontes
 
 ```jsonc
 {
@@ -193,15 +264,16 @@ A legenda completa, desenhada, está no app em "Sobre".
 de ingestão mostra `bloqueada_licenca`. As licenças anotadas são ponto de partida para
 conferência, não aconselhamento jurídico.
 
-## 8. Snapshot
+## 11. Snapshot
 
 ```jsonc
 {
-  "schemaVersion": "0.3.0",
+  "schemaVersion": "0.4.0",
   "generatedAt": "…",
   "window": { "from": "…", "to": "…" },
   "dataClass": "example",          // example | live — a tarja de exemplo no app segue este campo
   "sources": { "<id>": { … } },
+  "outlets": { "<id>": { … } },     // veículos citados pelos relatos
   "ingest": [{ "sourceId": "usgs", "status": "ok", "count": 12, "fetchedAt": "…", "error": null }],
   "policy": { "militaryTrackZones": [ … ], "analysis": { "reused": 6, "generated": 2, … } },
   "entities": [ … ]

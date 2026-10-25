@@ -1,11 +1,11 @@
 {
- "schemaVersion": "0.3.0",
+ "schemaVersion": "0.4.0",
  "dataClass": "example",
  "note": "Condições de exemplo para o protótipo. Os números não foram apurados nas fontes citadas. Em produção, crie data/curated/live.json com dataClass \"live\".",
  "entities": [
   {
    "id": "ucdp:cond:ua-guerra-interestatal",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_interestatal",
@@ -55,7 +55,7 @@
   },
   {
    "id": "ucdp:cond:sd-guerra-civil",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_civil",
@@ -105,7 +105,7 @@
   },
   {
    "id": "acled:cond:ps-ocupacao",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "ocupacao",
@@ -151,7 +151,7 @@
   },
   {
    "id": "ucdp:cond:mm-guerra-civil",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_civil",
@@ -197,7 +197,7 @@
   },
   {
    "id": "acled:cond:ht-violencia-armada",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -243,7 +243,7 @@
   },
   {
    "id": "ucdp:cond:cd-insurgencia",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "insurgencia",
@@ -289,7 +289,7 @@
   },
   {
    "id": "gdelt:evt:fr-greve-geral",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "greve_geral",
@@ -335,7 +335,7 @@
   },
   {
    "id": "tse_br:cond:br-presidencial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "presidencial",
@@ -381,7 +381,7 @@
   },
   {
    "id": "fec_us:cond:us-legislativa",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "legislativa",
@@ -427,7 +427,7 @@
   },
   {
    "id": "ifes:cond:ng-pre-eleitoral",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "pre_eleitoral",
@@ -473,7 +473,7 @@
   },
   {
    "id": "wto:cond:cn-controle-exportacao",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "controle_exportacao",
@@ -519,7 +519,7 @@
   },
   {
    "id": "wto:cond:eu-regulacao-comercial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "regulacao_comercial",
@@ -568,7 +568,7 @@
   },
   {
    "id": "imf:cond:ar-crise-cambial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "crise_cambial",
@@ -614,7 +614,7 @@
   },
   {
    "id": "wto:cond:in-negociacao-comercial",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "negociacao_comercial",
@@ -660,7 +660,7 @@
   },
   {
    "id": "firms:cond:au-temporada-incendios",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "clima",
    "subtype": "temporada_incendios",
@@ -706,7 +706,7 @@
   },
   {
    "id": "eu_sanctions:cond:ru-regime-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -760,7 +760,7 @@
   },
   {
    "id": "un_sc:cond:ir-embargo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "embargo",
@@ -806,7 +806,7 @@
   },
   {
    "id": "un_sc:cond:kp-regime-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -852,7 +852,7 @@
   },
   {
    "id": "ofac:cond:ve-regime-sancoes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -898,7 +898,7 @@
   },
   {
    "id": "plz:measure:ua-deslocados",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -939,7 +939,7 @@
   },
   {
    "id": "plz:measure:sd-deslocados",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -974,7 +974,7 @@
   },
   {
    "id": "plz:measure:fr-participantes",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "event",
@@ -1009,7 +1009,7 @@
   },
   {
    "id": "curadoria:evt:br-debate-exemplo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "eleicao",
    "subtype": "debate",
@@ -1058,7 +1058,7 @@
   },
   {
    "id": "curadoria:evt:br-proposta-congelamento-exemplo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "event",
    "layer": "eleicao",
    "subtype": "periodo_de_campanha",
@@ -1108,7 +1108,7 @@
   },
   {
    "id": "plz:measure:br-inflacao-alimentos-exemplo",
-   "schemaVersion": "0.3.0",
+   "schemaVersion": "0.4.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
