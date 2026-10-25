@@ -2,9 +2,33 @@
 // Recebem a saída crua do modelo e os fatos; devolvem a análise corrigida, o relatório de
 // cada regra e se a análise deve ser descartada.
 
-const PROB = /(\d{1,3}(?:[.,]\d+)?\s?%)|\b(probabilidade|chances?)\s+(de|em)\s+(sucesso|dar certo|fracasso|\d)/i;
-const ADVICE = /\b(recomend\w*|sugerimos|sugere-se|aconselh\w*)\s+(a\s+)?(compra|venda|comprar|vender|manter)\b|\bpre[çc]o[- ]alvo\b|\bhora de (comprar|vender)\b|\b(compre|comprem|vendam)\b/i;
-const PRED = /\b(vai|v[ãa]o|deve|devem|tende a|tendem a|ir[áa]|ir[ãa]o)\s+(continuar a\s+)?(subir|cair|valorizar|desvalorizar|disparar|despencar|se recuperar|recuar|avan[çc]ar)\b/i;
+// Os padrões cobrem os idiomas em que a análise pode ser escrita (pt, en, es, fr, ar, zh).
+// Árabe e chinês não têm fronteira de palavra no sentido de \b, por isso vêm sem ela.
+const PROB = new RegExp([
+  /(\d{1,3}(?:[.,]\d+)?\s?%)/.source,
+  /\b(probabilidade|chances?)\s+(de|em)\s+(sucesso|dar certo|fracasso|\d)/.source,
+  /\b(probability|chances?|likelihood|odds)\s+of\s+(success|failure|\d)/.source,
+  /\b(probabilidad|posibilidades?)\s+de\s+(éxito|fracaso|\d)/.source,
+  /\b(probabilité|chances?)\s+de\s+(succès|réussite|échec|\d)/.source,
+  /(احتمال|فرصة|فرص)\s*(ال)?(نجاح|فشل)/.source,
+  /(成功|失败)的?(概率|几率|可能性)|概率为/.source,
+].join("|"), "i");
+const ADVICE = new RegExp([
+  /\b(recomend\w*|sugerimos|sugere-se|aconselh\w*)\s+(a\s+)?(compra|venda|comprar|vender|manter)\b|\bpre[çc]o[- ]alvo\b|\bhora de (comprar|vender)\b|\b(compre|comprem|vendam)\b/.source,
+  /\b(recommend\w*|advis\w*|suggest\w*)\s+(buying|selling|holding|to buy|to sell|to hold)\b|\bprice target\b|\btime to (buy|sell)\b|\b(buy|sell) now\b/.source,
+  /\b(recomend\w*|aconsej\w*)\s+(comprar|vender|mantener)\b|\bprecio objetivo\b/.source,
+  /\b(recommand\w*|conseill\w*)\s+(d'|de\s+)?(acheter|vendre|conserver)\b|\bobjectif de cours\b|\b(achetez|vendez)\b/.source,
+  /(ننصح|نوصي|يُنصح|ينصح)\s*(ب)?(ال)?(شراء|بيع)|السعر المستهدف/.source,
+  /(建议|推荐)(买入|卖出|持有|购买)|目标价/.source,
+].join("|"), "i");
+const PRED = new RegExp([
+  /\b(vai|v[ãa]o|deve|devem|tende a|tendem a|ir[áa]|ir[ãa]o)\s+(continuar a\s+)?(subir|cair|valorizar|desvalorizar|disparar|despencar|se recuperar|recuar|avan[çc]ar)\b/.source,
+  /\b(will|is likely to|are likely to|is expected to|are expected to|should)\s+(continue to\s+)?(rise|fall|climb|drop|rebound|recover|soar|plunge|rally|decline)\b/.source,
+  /\b(va|van)\s+a\s+(subir|bajar|caer|recuperarse|dispararse|desplomarse)\b|\b(subirá|bajará|caerá|subirán|bajarán|caerán)\b/.source,
+  /\b(va|vont|devrait|devraient)\s+(continuer à\s+)?(monter|baisser|chuter|grimper|rebondir|remonter|s'effondrer)\b|\b(montera|baissera|chutera)\b/.source,
+  /(سوف\s*(يرتفع|ينخفض|يتراجع|يصعد|يهبط)|سيرتفع|سينخفض|سيتراجع|سيصعد|سيهبط)/.source,
+  /(将会?|会|预计将?)(继续)?(上涨|下跌|反弹|回升|走高|走低|攀升|暴跌)/.source,
+].join("|"), "i");
 
 function numbersIn(text) {
   const out = new Set();

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "0.4.0",
+  "schemaVersion": "0.5.0",
   "note": "Fonte da verdade das camadas. O app embute uma cópia de label/color/frame/subtypes; test/taxonomy.test.js garante que as duas estão iguais.",
   "layers": {
     "conflito": {

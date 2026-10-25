@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://polarized.example/schema/0.4.0/snapshot.json",
+  "$id": "https://polarized.example/schema/0.5.0/snapshot.json",
   "title": "Polarized Snapshot",
   "type": "object",
   "required": [
@@ -15,7 +15,7 @@
   "additionalProperties": false,
   "properties": {
     "schemaVersion": {
-      "const": "0.4.0"
+      "const": "0.5.0"
     },
     "generatedAt": {
       "type": "string",
@@ -71,6 +71,60 @@
       "type": "object",
       "additionalProperties": {
         "$ref": "#/$defs/outlet"
+      }
+    },
+    "disputed": {
+      "type": "object",
+      "description": "Territórios disputados citados pelas entidades (pipeline/data/disputed.json).",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "id",
+          "un",
+          "claims",
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "un": {
+            "type": "string"
+          },
+          "text": {
+            "$ref": "#/$defs/texts"
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "by",
+                "name"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "by": {
+                  "type": "string",
+                  "maxLength": 60,
+                  "description": "Código ISO 3166-1 do país ou nome de quem reivindica, quando não é um Estado-membro."
+                },
+                "name": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "administra",
+                    "reivindica",
+                    "ocupa",
+                    "onu"
+                  ]
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -159,6 +213,14 @@
             "null"
           ],
           "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+        },
+        "disputed": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Id do território em snapshot.disputed, quando o ponto cai numa área disputada."
         }
       },
       "additionalProperties": false
@@ -299,7 +361,7 @@
           "pattern": "^[a-z0-9_]+:[a-z]+:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "layer": {
           "$ref": "#/$defs/layer"
@@ -416,6 +478,51 @@
           "items": {
             "type": "string"
           }
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Atributos estruturados da fonte, mostrados com rótulo e explicação no app.",
+          "properties": {
+            "programs": {
+              "type": "array",
+              "maxItems": 12,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 200
+                  },
+                  "issuer": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 40
+                  },
+                  "url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "uri"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "additionalProperties": false
@@ -445,7 +552,7 @@
           "pattern": "^[a-z0-9_]+:[a-z]+:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "layer": {
           "$ref": "#/$defs/layer"
@@ -591,6 +698,51 @@
           "items": {
             "type": "string"
           }
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Atributos estruturados da fonte, mostrados com rótulo e explicação no app.",
+          "properties": {
+            "programs": {
+              "type": "array",
+              "maxItems": 12,
+              "items": {
+                "type": "object",
+                "required": [
+                  "code"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "maxLength": 40
+                  },
+                  "label": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 200
+                  },
+                  "issuer": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 40
+                  },
+                  "url": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "format": "uri"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "additionalProperties": false
@@ -617,7 +769,7 @@
           "type": "string"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "kind": {
           "const": "measure"
@@ -747,7 +899,7 @@
           "type": "string"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "kind": {
           "const": "track"
@@ -958,7 +1110,7 @@
           "pattern": "^plz:analysis:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "kind": {
           "const": "analysis"
@@ -1794,7 +1946,7 @@
           "pattern": "^[a-z0-9_]+:rep:[A-Za-z0-9._-]+$"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "kind": {
           "const": "report"
@@ -1929,7 +2081,7 @@
           "pattern": "^[a-z0-9_]+:ser:[A-Za-z0-9._^-]+$"
         },
         "schemaVersion": {
-          "const": "0.4.0"
+          "const": "0.5.0"
         },
         "kind": {
           "const": "series"

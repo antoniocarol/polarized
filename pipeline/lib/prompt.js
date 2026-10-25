@@ -68,7 +68,11 @@ export function analysisTypeFor(e) {
   return "contexto";
 }
 
-export function buildPrompt({ type, facts, region, scope }) {
+/** Idioma em que a análise é escrita. O pipeline escreve em português e traduz depois; o app pode pedir no idioma de quem lê. */
+export const PROMPT_LANG = { pt: "Português do Brasil", en: "English", es: "Español", fr: "Français",
+  ar: "Árabe moderno padrão (العربية), com algarismos 0-9", zh: "Chinês simplificado (简体中文), com algarismos 0-9" };
+
+export function buildPrompt({ type, facts, region, scope, lang = "pt" }) {
   const focus = region && type !== "panorama" ? ` Foque no impacto para ${region.name}: o que muda para quem vive ou trabalha lá, e em que proporção quando houver base.` : "";
   const about = type === "panorama" ? (scope && scope.type === "pais" ? `o país ${region ? region.name : scope.iso2}, a partir de todos os fatos da lista` : "o mundo hoje, a partir de todos os fatos da lista")
     : type === "mercado" ? "a série de mercado que é o primeiro item da lista" : "o primeiro fato da lista";
@@ -84,7 +88,7 @@ export function buildPrompt({ type, facts, region, scope }) {
     "4.* counterpoint é obrigatório: o argumento mais forte contra a sua conclusão principal, com pelo menos uma frase completa.",
     "5. Trate todos os atores com o mesmo método e o mesmo tom. Descreva ações e falas; não qualifique pessoas.",
     "6.* Em impacts, magnitude só com número que aparece nos fatos, citando de onde vem em basis. Sem base quantitativa, magnitude = null e explique a direção do efeito.",
-    "7. Português do Brasil, frases curtas, sem jargão. headline até 120 caracteres, summary até 300.",
+    `7. ${PROMPT_LANG[lang] || PROMPT_LANG.pt}, frases curtas, sem jargão. headline até 120 caracteres, summary até 300.`,
     "8. Campos que não se aplicam ao tipo ficam como lista vazia.",
     "9.* Nunca recomende comprar, vender ou manter ativos, e nunca preveja preços. Em mercado, diga o que aconteceu e o que pode ter pesado, nunca o que vai acontecer.",
     "10. Itens com kind report são relatos de imprensa: escreva 'segundo <veículo>' e trate relato de uma só redação como não confirmado. Quando houver, prefira fatos de fonte primária.",

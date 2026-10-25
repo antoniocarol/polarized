@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "0.4.0",
+  "schemaVersion": "0.5.0",
   "dataClass": "live",
   "note": "Calendário mantido pelo projeto. Uma eleição aparece a partir de campaignDays antes da votação e some 3 dias depois. Confirme cada data no órgão eleitoral e preencha verifiedAt; sem isso o cartão sai como não verificado.",
   "elections": [

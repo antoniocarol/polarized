@@ -1,11 +1,13 @@
 // Copia para o index.html os blocos que o app compartilha com o pipeline:
-// contornos do mundo, taxonomia, países, prompt, camadas de proteção e índice de atenção.
+// contornos do mundo, taxonomia, países, dicionários da interface, prompt, camadas de proteção
+// e índice de atenção.
 // uso: node scripts/sync-app.js [--check]   (--check falha se o app estiver desatualizado)
 import fs from "node:fs";
 import { readJson, rel } from "../pipeline/lib/util.js";
 import { allCountries, country } from "../pipeline/lib/geo.js";
 import { simplify, bboxOf } from "./lib/simplify.js";
 
+export const UI_LANGS = ["pt", "en", "es", "fr", "ar", "zh"];
 const strip = f => fs.readFileSync(rel(f), "utf8").replace(/^export /gm, "").trim();
 
 /** Contornos 1:110m simplificados, com o país de cada anel (para tocar no país). */
@@ -16,8 +18,10 @@ function rings() {
   const arcs = topo.arcs.map(a => { let x = 0, y = 0; return a.map(([dx, dy]) => [(x += dx) * sx + tx, (y += dy) * sy + ty]); });
   const ring = r => r.flatMap((i, k) => { const a = i < 0 ? arcs[~i].slice().reverse() : arcs[i]; return k ? a.slice(1) : a; });
   const out = [], iso = [];
+  const { codes: UN_CODES, shapes: UN_SHAPES } = readJson(rel("pipeline/data/disputed.json")).unView;
   for (const g of topo.objects.countries.geometries) {
-    const c = countries.find(x => x.num === String(g.id).padStart(3, "0"));
+    const named = g.properties?.name && UN_SHAPES[g.properties.name];
+    const c = countries.find(x => x.num && x.num === String(g.id).padStart(3, "0")) || (named ? { iso2: named } : null);
     const polys = (g.type === "MultiPolygon" ? g.arcs : [g.arcs]).map(p => ring(p[0]));
     const span = r => { const [w, s, e, n] = bboxOf(r); return Math.max(e - w, n - s); };
     const biggest = polys.reduce((a, b) => (span(b) > span(a) ? b : a), polys[0]);
@@ -27,6 +31,17 @@ function rings() {
       if (pts.length < 4) continue;
       out.push(pts.flatMap(([x, y]) => [Math.round(x * 10) / 10, Math.round(y * 10) / 10]));
       iso.push(c ? c.iso2 : "");
+    }
+  }
+  // Visão da ONU: os estados que a malha de origem põe em outro país entram por último, por
+  // cima, com o país reconhecido pela ONU — assim tocar na Crimeia abre a Ucrânia.
+  const admin = readJson(rel("pipeline/data/admin1.json"));
+  for (const [code, v] of Object.entries(UN_CODES)) {
+    const a = admin.find(x => x.code === code);
+    for (const poly of a ? a.polys : []) {
+      const pts = []; for (let i = 0; i < poly[0].length; i += 2) pts.push([poly[0][i], poly[0][i + 1]]);
+      const sp = simplify(pts, 0.05);
+      if (sp.length >= 4) { out.push(sp.flatMap(([x, y]) => [Math.round(x * 10) / 10, Math.round(y * 10) / 10])); iso.push(v.to); }
     }
   }
   return `const RINGS = ${JSON.stringify(out)};\nconst RING_ISO = ${JSON.stringify(iso)};`;
@@ -39,6 +54,7 @@ export function blocks() {
     RINGS: rings(),
     TAXONOMY: `const LAYERS = ${JSON.stringify(layers)};\nconst STATUS = ${JSON.stringify(t.status)};\nconst CATS = LAYERS;`,
     COUNTRIES: `const COUNTRIES = ${JSON.stringify(allCountries().map(([iso2, pt]) => { const c = country(iso2); return [iso2, pt, c.lat, c.lon, c.bbox]; }))};`,
+    I18N: `const I18N = {${UI_LANGS.map(l => `${l}:${JSON.stringify(readJson(rel(`i18n/ui/${l}.json`)))}`).join(",\n")}};`,
     SHARED: ["pipeline/lib/prompt.js", "pipeline/lib/guards.js", "pipeline/lib/attention.js"].map(strip).join("\n\n"),
   };
 }

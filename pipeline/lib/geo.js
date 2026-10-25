@@ -32,15 +32,21 @@ const topo = readJson(rel("pipeline/data/world-110m.json"));
 const [sx, sy] = topo.transform.scale, [tx, ty] = topo.transform.translate;
 const arcs = topo.arcs.map(a => { let x = 0, y = 0; return a.map(([dx, dy]) => [(x += dx) * sx + tx, (y += dy) * sy + ty]); });
 const ring = r => r.flatMap((i, k) => { const a = i < 0 ? arcs[~i].slice().reverse() : arcs[i]; return k ? a.slice(1) : a; });
+// Visão da ONU (pipeline/data/disputed.json): formas sem código ISO ganham país, e estados
+// que o Natural Earth põe em outro país voltam para o país reconhecido pela ONU.
+const DISPUTED = readJson(rel("pipeline/data/disputed.json"));
+const UN_SHAPES = DISPUTED.unView.shapes, UN_CODES = DISPUTED.unView.codes;
+const UN_FROM = new Set(Object.values(UN_CODES).map(v => v.from));
 const SHAPES = [];
 for (const g of topo.objects.countries.geometries) {
-  const c = COUNTRIES.find(x => x.num === String(g.id).padStart(3, "0"));
+  const named = g.properties?.name && UN_SHAPES[g.properties.name];
+  const c = COUNTRIES.find(x => x.num && x.num === String(g.id).padStart(3, "0")) || (named && COUNTRIES.find(x => x.iso2 === named));
   if (!c) continue;
   for (const p of g.type === "MultiPolygon" ? g.arcs : [g.arcs]) {
     const rings = p.map(ring);
     let [x0, y0, x1, y1] = [180, 90, -180, -90];
     for (const [x, y] of rings[0]) { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }
-    SHAPES.push({ c, rings, bbox: [x0, y0, x1, y1] });
+    SHAPES.push({ c, rings, bbox: [x0, y0, x1, y1], shape: named ? g.properties.name : null });
   }
 }
 function inRing(x, y, r) {
@@ -59,15 +65,42 @@ export const country = code => (code?.length === 3 ? byIso3.get(code) : byIso2.g
 export const countryByNum = n => (n == null || n === "" ? null : COUNTRIES.find(c => c.num === String(n).padStart(3, "0")) || null);
 export const countryByName = name => byName.get(norm(name)) || null;
 
-/** País que contém o ponto, ou null em alto-mar. */
-export function countryAt(lat, lon) {
+/** Forma (país do world-atlas) que contém o ponto, ou null em alto-mar. */
+export function shapeAt(lat, lon) {
   for (const s of SHAPES) {
     const [x0, y0, x1, y1] = s.bbox;
     if (lon < x0 || lon > x1 || lat < y0 || lat > y1) continue;
-    if (inRing(lon, lat, s.rings[0]) && !s.rings.slice(1).some(h => inRing(lon, lat, h))) return s.c;
+    if (inRing(lon, lat, s.rings[0]) && !s.rings.slice(1).some(h => inRing(lon, lat, h))) return s;
   }
   return null;
 }
+/** País que contém o ponto, pela visão da ONU, ou null em alto-mar. */
+export function countryAt(lat, lon) {
+  const s = shapeAt(lat, lon);
+  if (!s) return null;
+  if (UN_FROM.has(s.c.iso2)) {
+    const by = admin1();
+    for (const [code, v] of Object.entries(UN_CODES)) {
+      if (v.from !== s.c.iso2) continue;
+      const a = (by.get(v.to) || []).find(x => x.code === code);
+      if (a && a.polys.some(poly => inFlat(lon, lat, poly[0]))) return byIso2.get(v.to);
+    }
+  }
+  return s.c;
+}
+/** Território disputado que contém o lugar: por estado, por país, por forma ou por caixa no mar. */
+export function disputedAt(place, lat, lon) {
+  for (const a of DISPUTED.areas) {
+    const m = a.match;
+    if (m.admin1 && place?.admin1Code && m.admin1.includes(place.admin1Code)) return a.id;
+    if (m.iso2 && place?.iso2 && m.iso2.includes(place.iso2)) return a.id;
+    if (lat == null) continue;
+    if (m.bbox && lon >= m.bbox[0] && lon <= m.bbox[2] && lat >= m.bbox[1] && lat <= m.bbox[3]) return a.id;
+    if (m.shape && shapeAt(lat, lon)?.shape === m.shape) return a.id;
+  }
+  return null;
+}
+export const disputedArea = id => DISPUTED.areas.find(a => a.id === id) || null;
 
 export function placeOf(c, admin1 = null) {
   return c ? { iso2: c.iso2, iso3: c.iso3, name: c.pt, admin1 } : { iso2: null, iso3: null, name: "Alto-mar", admin1 };

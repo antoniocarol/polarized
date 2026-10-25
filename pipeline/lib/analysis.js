@@ -7,6 +7,8 @@ import { country } from "./geo.js";
 
 export const MODEL = process.env.POLARIZED_MODEL || "claude-opus-5-5";
 export const CLASSIFIER_MODEL = process.env.POLARIZED_CLASSIFIER_MODEL || MODEL;
+// Tradução é volume alto e tarefa simples: vale apontar POLARIZED_TRANSLATE_MODEL para um modelo menor (claude-haiku-5-5).
+export const TRANSLATE_MODEL = process.env.POLARIZED_TRANSLATE_MODEL || MODEL;
 
 /** Cliente Claude se houver credencial no ambiente; senão null e os estágios de IA são pulados. */
 export function defaultClient() {
@@ -15,12 +17,14 @@ export function defaultClient() {
 }
 
 /** Uma chamada ao Claude com saída estruturada. Devolve o objeto ou lança com motivo legível. */
+// Modelos com fallback no servidor quando o modelo recusa (o Haiku não tem: ali a recusa só é registrada).
+const SERVER_FALLBACK = new Set(["claude-fable-5-1", "claude-opus-5-5", "claude-opus-5", "claude-sonnet-5-5"]);
 export async function askClaude(client, prompt, schema = OUTPUT_SCHEMA, { effort = "high", model = MODEL } = {}) {
+  const fb = SERVER_FALLBACK.has(model) ? { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" } : {};
   const res = await client.beta.messages.create({
     model,
     max_tokens: 16000,
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
+    ...fb,
     output_config: { effort, format: { type: "json_schema", schema } },
     messages: [{ role: "user", content: prompt }],
   });
@@ -33,6 +37,7 @@ const isFact = e => e.kind === "condition" || e.kind === "event";
 const byIntensity = (a, b) => (b.intensity ?? 0) - (a.intensity ?? 0);
 export const factsFor = (job, all, ctx) => sharedFactsFor(job, all, { attention: attentionByCountry, ...ctx });
 export const askClassifier = (client, prompt, schema) => askClaude(client, prompt, schema, { effort: "low", model: CLASSIFIER_MODEL });
+export const askTranslator = (client, prompt, schema) => askClaude(client, prompt, schema, { effort: "low", model: TRANSLATE_MODEL });
 
 /**
  * Segundo modelo, opcional, para conferência cruzada. Qualquer endpoint compatível com

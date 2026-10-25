@@ -87,5 +87,19 @@
     "storyThreshold": 0.3,
     "storyHours": 36,
     "classifyBatch": 60
+  },
+  "translation": {
+    "note": "Idiomas do conteúdo além do português. Cada texto é traduzido uma vez (cache por impressão digital, cacheDays sem uso apaga) e só entra se trouxer todos os números do original. maxStringsPerRun limita o custo de cada execução; o que sobra fica para a próxima, na ordem de prioridade (resumo do mundo, panoramas, análises, fatos mais graves, manchetes).",
+    "enabled": true,
+    "languages": [
+      "en",
+      "es",
+      "fr",
+      "ar",
+      "zh"
+    ],
+    "maxStringsPerRun": 2000,
+    "batchSize": 40,
+    "cacheDays": 30
   }
 }

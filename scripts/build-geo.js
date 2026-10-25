@@ -13,16 +13,24 @@ if (!src) { console.error("informe o caminho do GeoJSON de admin-1 do Natural Ea
 const ne = JSON.parse(fs.readFileSync(src, "utf8"));
 const countries = readJson(rel("pipeline/data/countries.json"));
 const known = new Set(countries.map(c => c.iso2));
+const { codes: UN_CODES, shapes: UN_SHAPES } = readJson(rel("pipeline/data/disputed.json")).unView;
 
 const index = [], perCountry = new Map();
 for (const f of ne.features) {
-  const p = f.properties, iso2 = p.iso_a2;
+  const p = f.properties;
+  const code = /^[A-Z]{2}-[A-Z0-9]{1,3}$/.test(p.iso_3166_2 || "") ? p.iso_3166_2 : null;
+  // Visão da ONU: estado que o Natural Earth põe em outro país volta para o país do código ISO.
+  const iso2 = (code && UN_CODES[code]?.to) || p.iso_a2;
   if (!known.has(iso2) || !f.geometry) continue;
   const polys = f.geometry.type === "MultiPolygon" ? f.geometry.coordinates : [f.geometry.coordinates];
-  const code = /^[A-Z]{2}-[A-Z0-9]{1,3}$/.test(p.iso_3166_2 || "") ? p.iso_3166_2 : null;
   // name_pt do Natural Earth às vezes corta o nome ("Federal" para "Distrito Federal"); aí vale o nome local.
   const cut = p.name_pt && p.name && p.name !== p.name_pt && p.name.endsWith(" " + p.name_pt);
-  const name = (cut ? p.name : p.name_pt) || p.name || p.name_en || p.gn_name || code || p.adm1_code;
+  // E às vezes traz a preposição do nome por extenso ("da Transcarpátia" de "Oblast da Transcarpátia").
+  const pt = p.name_pt && p.name_pt.replace(/^(de|da|do|das|dos) (?=\p{Lu})/u, "");
+  const name = (cut ? p.name : pt) || p.name || p.name_en || p.gn_name || code || p.adm1_code;
+  // Nomes nos outros idiomas do app, quando o Natural Earth traz e diferem do nome principal.
+  const names = {};
+  for (const l of ["en", "es", "fr", "ar", "zh"]) { const n = p["name_" + l]; if (n && n !== name && !(p.name && p.name !== n && p.name.endsWith(" " + n))) names[l] = n; }
   const full = [], light = [];
   let bb = [180, 90, -180, -90];
   for (const poly of polys) {
@@ -37,9 +45,9 @@ for (const f of ne.features) {
     }
   }
   if (!full.length) continue;
-  index.push({ code, iso2, name, type: p.type_en || null, lat: +(+p.latitude).toFixed(3), lon: +(+p.longitude).toFixed(3), bbox: bb.map(v => +v.toFixed(3)), polys: full });
+  index.push({ code, iso2, name, ...(Object.keys(names).length ? { names } : {}), type: p.type_en || null, lat: +(+p.latitude).toFixed(3), lon: +(+p.longitude).toFixed(3), bbox: bb.map(v => +v.toFixed(3)), polys: full });
   if (!perCountry.has(iso2)) perCountry.set(iso2, []);
-  perCountry.get(iso2).push({ code, name, type: p.type_en || null, lat: +(+p.latitude).toFixed(2), lon: +(+p.longitude).toFixed(2), rings: light });
+  perCountry.get(iso2).push({ code, name, ...(Object.keys(names).length ? { names } : {}), type: p.type_en || null, lat: +(+p.latitude).toFixed(2), lon: +(+p.longitude).toFixed(2), rings: light });
 }
 writeJson(rel("pipeline/data/admin1.json"), index);
 fs.rmSync(rel("geo/admin1"), { recursive: true, force: true });
@@ -59,7 +67,8 @@ const arcs = topo.arcs.map(a => { let x = 0, y = 0; return a.map(([dx, dy]) => [
 const ring = r => r.flatMap((i, k) => { const a = i < 0 ? arcs[~i].slice().reverse() : arcs[i]; return k ? a.slice(1) : a; });
 const area = pts => Math.abs(pts.reduce((s, [x, y], i) => { const [x2, y2] = pts[(i + 1) % pts.length]; return s + x * y2 - x2 * y; }, 0) / 2);
 for (const g of topo.objects.countries.geometries) {
-  const c = countries.find(x => x.num === String(g.id).padStart(3, "0"));
+  const named = g.properties?.name && UN_SHAPES[g.properties.name];
+  const c = countries.find(x => x.num && x.num === String(g.id).padStart(3, "0")) || (named && !countries.some(x => x.num && x.iso2 === named) ? countries.find(x => x.iso2 === named) : null);
   if (!c) continue;
   const main = (g.type === "MultiPolygon" ? g.arcs : [g.arcs]).map(p => ring(p[0])).sort((a, b) => area(b) - area(a))[0];
   c.bbox = bboxOf(main).map(v => +v.toFixed(2));

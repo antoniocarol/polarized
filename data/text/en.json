@@ -1,0 +1,262 @@
+{
+ "lang": "en",
+ "source": "pt",
+ "generatedAt": "2026-10-25T17:00:00Z",
+ "entities": {
+  "plz:analysis:panorama-mundo-2026-10-25": {
+   "text.headline": "The world now: war, blackouts and a cyclone (example)",
+   "text.summary": "The biggest hotspots in the sample snapshot are Iran without internet, the attacks on Ukraine's energy grid and the civil war in Sudan, plus a red-alert cyclone in the Philippines.",
+   "points.0.text": "The war in Ukraine remains the most severe conflict on record; four newsrooms reported a drone attack on energy infrastructure in Kharkiv.",
+   "points.1.text": "In Sudan, the civil war is concentrated in North Darfur, with displacement and restricted humanitarian access.",
+   "points.2.text": "Iran has no internet nationwide, on government orders according to Cloudflare Radar, and protests have been suppressed.",
+   "points.3.text": "A red-alert cyclone has reached the Philippines, with thousands of people evacuated from the coast.",
+   "points.4.text": "The three countries with the most attention combine violence with the loss of basic services — power, internet, humanitarian access — which spreads the effect beyond the recorded deaths.",
+   "points.5.text": "Among the stock indices tracked, the Ibovespa had the biggest drop in the last session; the series card explains the factors behind that day.",
+   "watch.0": "How long Iran's internet shutdown lasts",
+   "watch.1": "Whether the attacks on Ukraine's energy grid continue as the cold sets in",
+   "watch.2": "Whether humanitarian aid reaches North Darfur again",
+   "counterpoint.text": "A picture built from databases that record violence and from newsrooms that publish in English tends to leave out slow crises — hunger, drought, debt — that do not generate daily events.",
+   "limits": "The overview uses only the facts in this snapshot. Regions with little press or database coverage appear less than they should."
+  },
+  "acled:evt:IRN9001": {
+   "text.headline": "Protest suppressed — example",
+   "text.summary": "Protesters (Iran) × Police Forces of Iran. 2 deaths recorded. Original source cited by ACLED: Sample source.",
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "acled:evt:IRN9002": {
+   "text.headline": "Protest suppressed — example",
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "acled:evt:FRA9000": {
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "acled:evt:FRA9007": {
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "acled:evt:FRA9014": {
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "acled:evt:FRA9001": {
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "acled:evt:FRA9008": {
+   "intensityBasis": "2, +2 if there were deaths, +1 if there was a crackdown"
+  },
+  "ucdp:cond:ua-guerra-interestatal": {
+   "text.headline": "Ongoing war in Eastern Europe",
+   "text.summary": "Active hostilities, large-scale internal displacement and energy infrastructure under attack.",
+   "intensityBasis": "armed events/24h + cumulative displacement"
+  },
+  "ucdp:cond:sd-guerra-civil": {
+   "text.headline": "Civil war and humanitarian crisis",
+   "text.summary": "Fighting between rival forces with mass displacement and restricted humanitarian access.",
+   "intensityBasis": "armed events/24h + people affected"
+  },
+  "acled:cond:ps-ocupacao": {
+   "text.headline": "Active conflict zone",
+   "text.summary": "Military operations, blockade and humanitarian emergency in a densely populated territory.",
+   "intensityBasis": "armed events/24h per km²"
+  },
+  "eu_sanctions:cond:ru-regime-sancoes": {
+   "text.headline": "Expanded sanctions regime",
+   "text.summary": "Financial, energy and technology sanctions by several blocs.",
+   "intensityBasis": "sanctions packages in force × sectors hit"
+  },
+  "un_sc:cond:ir-embargo": {
+   "intensityBasis": "sanctions packages in force × sectors hit"
+  },
+  "gdacs:evt:TC-900103": {
+   "text.headline": "Tropical cyclone — Cyclone Exemplo, Philippines",
+   "text.summary": "GDACS red alert. Estimated severity: sustained winds of 185 km/h. Automatic model estimate; figures on people affected come later from agencies on the ground.",
+   "intensityBasis": "GDACS alert level: green 2, orange 3, red 5"
+  },
+  "gdacs:evt:FL-900101": {
+   "intensityBasis": "GDACS alert level: green 2, orange 3, red 5"
+  },
+  "gdacs:evt:VO-900102": {
+   "intensityBasis": "GDACS alert level: green 2, orange 3, red 5"
+  },
+  "gdacs:evt:WF-900104": {
+   "intensityBasis": "GDACS alert level: green 2, orange 3, red 5"
+  },
+  "cloudflare_radar:evt:ex-901-IR": {
+   "text.headline": "Nationwide internet outage — Iran",
+   "text.summary": "Cause according to Cloudflare Radar: government order. The outage was still ongoing at the time of collection.",
+   "intensityBasis": "reach (country 4, region 3, network 2), +1 if caused by a government order or military action"
+  },
+  "cloudflare_radar:evt:ex-902-PK": {
+   "intensityBasis": "reach (country 4, region 3, network 2), +1 if caused by a government order or military action"
+  },
+  "cisa_kev:evt:CVE-2026-90001": {
+   "text.headline": "Exploited flaw: ExemploSoft Gateway Exemplo",
+   "text.summary": "CVE-2026-90001 — active exploitation confirmed by CISA, with known use in ransomware. Patch deadline for US federal agencies: 2026-11-14.",
+   "intensityBasis": "3 for confirmed exploitation, 4 if used in a ransomware campaign"
+  },
+  "cisa_kev:evt:CVE-2026-90002": {
+   "intensityBasis": "3 for confirmed exploitation, 4 if used in a ransomware campaign"
+  },
+  "ucdp:evt:9100001": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100002": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100003": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100004": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100005": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100006": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100007": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100008": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100009": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100010": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100011": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100013": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:evt:9100012": {
+   "intensityBasis": "estimated deaths (best): 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "ucdp:cond:mm-guerra-civil": {
+   "intensityBasis": "municipalities with active fighting/month"
+  },
+  "acled:cond:ht-violencia-armada": {
+   "intensityBasis": "homicides/week + urban displacement"
+  },
+  "ucdp:cond:cd-insurgencia": {
+   "intensityBasis": "active armed groups + events/week"
+  },
+  "tse_br:cond:br-presidencial": {
+   "intensityBasis": "days until the vote + electorate"
+  },
+  "fec_us:cond:us-legislativa": {
+   "intensityBasis": "seats at stake + days until the vote"
+  },
+  "wto:cond:cn-controle-exportacao": {
+   "intensityBasis": "trade value affected"
+  },
+  "wto:cond:eu-regulacao-comercial": {
+   "intensityBasis": "trade value affected"
+  },
+  "un_sc:cond:kp-regime-sancoes": {
+   "intensityBasis": "resolutions in force"
+  },
+  "curadoria:evt:br-debate-exemplo": {
+   "intensityBasis": "estimated audience + closeness to the vote"
+  },
+  "curadoria:evt:br-proposta-congelamento-exemplo": {
+   "intensityBasis": "estimated audience + closeness to the vote"
+  },
+  "acled:evt:SDN9001": {
+   "intensityBasis": "recorded deaths: 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "acled:evt:SDN9002": {
+   "intensityBasis": "recorded deaths: 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "acled:evt:SDN9003": {
+   "intensityBasis": "recorded deaths: 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "acled:evt:UKR9001": {
+   "intensityBasis": "recorded deaths: 1 to 9 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "gdelt:evt:fr-greve-geral": {
+   "intensityBasis": "estimated participants + cities affected"
+  },
+  "imf:cond:ar-crise-cambial": {
+   "intensityBasis": "cumulative inflation + exchange rate change"
+  },
+  "wto:cond:in-negociacao-comercial": {
+   "intensityBasis": "trade volume at stake"
+  },
+  "firms:cond:au-temporada-incendios": {
+   "intensityBasis": "active fires/24h"
+  },
+  "ofac:cond:ve-regime-sancoes": {
+   "intensityBasis": "restricted sectors"
+  },
+  "usgs:evt:fx26jp01": {
+   "intensityBasis": "(magnitude − 4) × 1.25, +1 if PAGER orange, +2 if red"
+  },
+  "usgs:evt:fx26to04": {
+   "intensityBasis": "(magnitude − 4) × 1.25, +1 if PAGER orange, +2 if red"
+  },
+  "usgs:evt:fx26cl02": {
+   "intensityBasis": "(magnitude − 4) × 1.25, +1 if PAGER orange, +2 if red"
+  },
+  "usgs:evt:fx26id03": {
+   "intensityBasis": "(magnitude − 4) × 1.25, +1 if PAGER orange, +2 if red"
+  },
+  "ioda:evt:SN-1792915200": {
+   "intensityBasis": "log10 of the IODA outage score, minus 1"
+  },
+  "acled:cond:fr-protestos": {
+   "intensityBasis": "2 + log10 of the number of protests, +1 if there was a crackdown"
+  },
+  "ifes:cond:ng-pre-eleitoral": {
+   "intensityBasis": "days until the vote"
+  },
+  "ofac:cond:cu-sancoes": {
+   "intensityBasis": "designations on the list: fewer than 10 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "un_sc:cond:ly-sancoes": {
+   "intensityBasis": "designations on the list: fewer than 10 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "un_sc:cond:so-sancoes": {
+   "intensityBasis": "designations on the list: fewer than 10 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "eu_sanctions:cond:sy-sancoes": {
+   "intensityBasis": "designations on the list: fewer than 10 → 2, 10 to 99 → 3, 100 to 999 → 4, a thousand or more → 5"
+  },
+  "emsc:evt:20261025_0000902": {
+   "intensityBasis": "(magnitude − 4) × 1.25"
+  }
+ },
+ "admin1": {
+  "UA-23": "Zaporizhzhia",
+  "UA-30": "Kyiv",
+  "SD-DN": "North Darfur",
+  "SD-KH": "Khartoum",
+  "SD-DS": "East Darfur",
+  "SD-KN": "North Kordofan",
+  "CD-NK": "North Kivu",
+  "RW-03": "Northern",
+  "IR-04": "Isfahan",
+  "GR-H": "Central Greece",
+  "PK-IS": "Islamabad Capital Territory",
+  "ID-JT": "Central Java",
+  "AU-NSW": "Lord Howe Island",
+  "PK-BA": "Balochistan"
+ },
+ "outlets": {},
+ "disputed": {
+  "ucrania-ocupada": {
+   "headline": "Ukrainian regions under partial occupation",
+   "summary": "Russia declared the annexation of the four regions in 2022 and controls part of them. The UN General Assembly, in resolution ES-11/4, declared the annexation invalid.",
+   "claims.0.name": "Regions (oblasts) of Ukraine",
+   "claims.1.name": "Regions annexed in 2022"
+  },
+  "palestina": {
+   "headline": "Palestinian Territory",
+   "summary": "The UN uses the term Occupied Palestinian Territory for the West Bank, including East Jerusalem, and Gaza. The State of Palestine has been a non-member observer state at the UN since 2012 and is recognized by most member states.",
+   "claims.0.name": "State of Palestine",
+   "claims.1.name": "Judea and Samaria (West Bank)"
+  }
+ }
+}

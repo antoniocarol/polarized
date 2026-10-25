@@ -1,5 +1,5 @@
 {
- "schemaVersion": "0.4.0",
+ "schemaVersion": "0.5.0",
  "generatedAt": "2026-10-25T17:00:00Z",
  "window": {
   "from": "2026-10-18T17:00:00Z",
@@ -762,7 +762,7 @@
    "count": 25,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 12
+   "ms": 10
   },
   {
    "sourceId": "eleicoes",
@@ -770,7 +770,7 @@
    "count": 1,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 22
+   "ms": 13
   },
   {
    "sourceId": "usgs",
@@ -810,7 +810,7 @@
    "count": 2,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 1
+   "ms": 0
   },
   {
    "sourceId": "cisa_kev",
@@ -834,7 +834,7 @@
    "count": 15,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 2
+   "ms": 3
   },
   {
    "sourceId": "ofac",
@@ -858,7 +858,7 @@
    "count": 6,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 0
+   "ms": 1
   },
   {
    "sourceId": "rss",
@@ -866,7 +866,7 @@
    "count": 21,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": null,
-   "ms": 6
+   "ms": 8
   },
   {
    "sourceId": "bluesky",
@@ -890,7 +890,7 @@
    "count": 5,
    "fetchedAt": "2026-10-25T17:00:00Z",
    "error": "1 itens com falha: ^dax: resposta sem dados (exemplo de símbolo com falha)",
-   "ms": 3
+   "ms": 2
   },
   {
    "sourceId": "opensky",
@@ -909,6 +909,52 @@
    "ms": 1
   }
  ],
+ "disputed": {
+  "ucrania-ocupada": {
+   "id": "ucrania-ocupada",
+   "un": "Regiões de Donetsk, Luhansk, Zaporíjia e Kherson (Ucrânia)",
+   "claims": [
+    {
+     "by": "UA",
+     "name": "Regiões (oblasts) da Ucrânia",
+     "status": "reivindica"
+    },
+    {
+     "by": "RU",
+     "name": "Regiões anexadas em 2022",
+     "status": "ocupa"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Regiões ucranianas sob ocupação parcial",
+     "summary": "A Rússia declarou a anexação das quatro regiões em 2022 e controla parte delas. A Assembleia Geral da ONU, na resolução ES-11/4, declarou a anexação inválida."
+    }
+   }
+  },
+  "palestina": {
+   "id": "palestina",
+   "un": "Território Palestino Ocupado",
+   "claims": [
+    {
+     "by": "PS",
+     "name": "Estado da Palestina",
+     "status": "reivindica"
+    },
+    {
+     "by": "IL",
+     "name": "Judeia e Samaria (Cisjordânia)",
+     "status": "ocupa"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Território Palestino",
+     "summary": "A ONU usa a expressão Território Palestino Ocupado para a Cisjordânia, incluindo Jerusalém Oriental, e Gaza. O Estado da Palestina é Estado observador não membro da ONU desde 2012 e é reconhecido pela maioria dos países-membros."
+    }
+   }
+  }
+ },
  "policy": {
   "militaryTrackZones": [
    {
@@ -934,12 +980,27 @@
    "rejected": 0,
    "failed": 0,
    "skipped": 21
+  },
+  "translation": {
+   "languages": [
+    "en",
+    "es",
+    "fr",
+    "ar",
+    "zh"
+   ],
+   "cached": 0,
+   "translated": 390,
+   "rejected": 0,
+   "failed": 0,
+   "pending": 1187,
+   "calls": 0
   }
  },
  "entities": [
   {
    "id": "curadoria:evt:br-debate-exemplo",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "eleicao",
    "subtype": "debate",
@@ -990,7 +1051,7 @@
   },
   {
    "id": "curadoria:evt:br-proposta-congelamento-exemplo",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "eleicao",
    "subtype": "periodo_de_campanha",
@@ -1042,7 +1103,7 @@
   },
   {
    "id": "cisa_kev:evt:CVE-2026-90001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "ransomware",
@@ -1092,7 +1153,7 @@
   },
   {
    "id": "cisa_kev:evt:CVE-2026-90002",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "vulnerabilidade_explorada",
@@ -1141,7 +1202,7 @@
   },
   {
    "id": "ucdp:evt:9100001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1157,7 +1218,8 @@
     "iso3": "UKR",
     "name": "Ucrânia",
     "admin1": "Donetsk",
-    "admin1Code": "UA-14"
+    "admin1Code": "UA-14",
+    "disputed": "ucrania-ocupada"
    },
    "time": {
     "start": "2026-10-22T00:00:00Z",
@@ -1189,7 +1251,7 @@
   },
   {
    "id": "ucdp:evt:9100002",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1205,7 +1267,8 @@
     "iso3": "UKR",
     "name": "Ucrânia",
     "admin1": "Zaporíjia",
-    "admin1Code": "UA-23"
+    "admin1Code": "UA-23",
+    "disputed": "ucrania-ocupada"
    },
    "time": {
     "start": "2026-10-19T00:00:00Z",
@@ -1237,7 +1300,7 @@
   },
   {
    "id": "ucdp:evt:9100003",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1285,7 +1348,7 @@
   },
   {
    "id": "ucdp:evt:9100004",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1301,7 +1364,8 @@
     "iso3": "UKR",
     "name": "Ucrânia",
     "admin1": "Kherson",
-    "admin1Code": "UA-65"
+    "admin1Code": "UA-65",
+    "disputed": "ucrania-ocupada"
    },
    "time": {
     "start": "2026-10-13T00:00:00Z",
@@ -1333,7 +1397,7 @@
   },
   {
    "id": "ucdp:evt:9100005",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1381,7 +1445,7 @@
   },
   {
    "id": "ucdp:evt:9100006",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1429,7 +1493,7 @@
   },
   {
    "id": "ucdp:evt:9100007",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1477,7 +1541,7 @@
   },
   {
    "id": "ucdp:evt:9100008",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1525,7 +1589,7 @@
   },
   {
    "id": "ucdp:evt:9100009",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1572,7 +1636,7 @@
   },
   {
    "id": "ucdp:evt:9100010",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -1619,7 +1683,7 @@
   },
   {
    "id": "ucdp:evt:9100011",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1667,7 +1731,7 @@
   },
   {
    "id": "ucdp:evt:9100013",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1715,7 +1779,7 @@
   },
   {
    "id": "ucdp:evt:9100012",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -1762,7 +1826,7 @@
   },
   {
    "id": "acled:evt:FRA9000",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1811,7 +1875,7 @@
   },
   {
    "id": "acled:evt:FRA9007",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1860,7 +1924,7 @@
   },
   {
    "id": "acled:evt:FRA9014",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1909,7 +1973,7 @@
   },
   {
    "id": "acled:evt:FRA9001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -1958,7 +2022,7 @@
   },
   {
    "id": "acled:evt:FRA9008",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -2007,7 +2071,7 @@
   },
   {
    "id": "acled:evt:SDN9001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -2060,7 +2124,7 @@
   },
   {
    "id": "acled:evt:SDN9002",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -2109,7 +2173,7 @@
   },
   {
    "id": "acled:evt:SDN9003",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "confronto_armado",
@@ -2158,7 +2222,7 @@
   },
   {
    "id": "acled:evt:UKR9001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "conflito",
    "subtype": "ataque_aereo",
@@ -2212,7 +2276,7 @@
   },
   {
    "id": "acled:evt:IRN9001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "repressao",
@@ -2260,7 +2324,7 @@
   },
   {
    "id": "acled:evt:IRN9002",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "repressao",
@@ -2308,7 +2372,7 @@
   },
   {
    "id": "rss:rep:2107f7874335c8",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_agencia",
@@ -2347,7 +2411,7 @@
   },
   {
    "id": "rss:rep:a202c3f4d4efcb",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_agencia",
@@ -2378,7 +2442,7 @@
   },
   {
    "id": "rss:rep:af60ed87121b57",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_agencia",
@@ -2415,7 +2479,7 @@
   },
   {
    "id": "rss:rep:f320ce85c09572",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_agencia",
@@ -2458,7 +2522,7 @@
   },
   {
    "id": "rss:rep:c731794143d525",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_agencia",
@@ -2501,7 +2565,7 @@
   },
   {
    "id": "rss:rep:ed6dc8f93966f9",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_radio",
@@ -2540,7 +2604,7 @@
   },
   {
    "id": "rss:rep:5d687879861bf4",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_radio",
@@ -2586,7 +2650,7 @@
   },
   {
    "id": "rss:rep:81546f05daa157",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_radio",
@@ -2626,7 +2690,7 @@
   },
   {
    "id": "rss:rep:e0ca8fc9cb5f01",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_radio",
@@ -2666,7 +2730,7 @@
   },
   {
    "id": "rss:rep:5d39736b7ece24",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_radio",
@@ -2705,7 +2769,7 @@
   },
   {
    "id": "rss:rep:8fe028011b5fce",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_radio",
@@ -2744,7 +2808,7 @@
   },
   {
    "id": "rss:rep:f4fa4a9bf65dd6",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_jornal",
@@ -2783,7 +2847,7 @@
   },
   {
    "id": "rss:rep:63043cf0173b6d",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_jornal",
@@ -2829,7 +2893,7 @@
   },
   {
    "id": "rss:rep:eb36b9c99eb35a",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_jornal",
@@ -2868,7 +2932,7 @@
   },
   {
    "id": "rss:rep:76a6ddf1533ac5",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_jornal",
@@ -2899,7 +2963,7 @@
   },
   {
    "id": "rss:rep:5edc3f16dc8e40",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_estatal",
@@ -2945,7 +3009,7 @@
   },
   {
    "id": "rss:rep:7342c0c6bbe80b",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_estatal",
@@ -2985,7 +3049,7 @@
   },
   {
    "id": "rss:rep:b5adeb476de389",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_estatal",
@@ -3024,7 +3088,7 @@
   },
   {
    "id": "rss:rep:80e919bab74d32",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_estatal",
@@ -3063,7 +3127,7 @@
   },
   {
    "id": "rss:rep:ac4c120ec6718c",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_asia",
@@ -3102,7 +3166,7 @@
   },
   {
    "id": "rss:rep:91dd076cae3436",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "rss",
    "outlet": "ex_asia",
@@ -3141,7 +3205,7 @@
   },
   {
    "id": "bluesky:rep:51f299bc9ec8cb",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "bluesky",
    "outlet": "ex_bsky",
@@ -3180,7 +3244,7 @@
   },
   {
    "id": "x:rep:f1e471e270efc8",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "report",
    "sourceId": "x",
    "outlet": "ex_x",
@@ -3226,7 +3290,7 @@
   },
   {
    "id": "stooq:ser:^bvp",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "series",
    "layer": "economia",
    "subtype": "indice_bolsa",
@@ -3421,7 +3485,7 @@
   },
   {
    "id": "stooq:ser:^spx",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "series",
    "layer": "economia",
    "subtype": "indice_bolsa",
@@ -3616,7 +3680,7 @@
   },
   {
    "id": "stooq:ser:^nkx",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "series",
    "layer": "economia",
    "subtype": "indice_bolsa",
@@ -3811,7 +3875,7 @@
   },
   {
    "id": "stooq:ser:usdbrl",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "series",
    "layer": "economia",
    "subtype": "cambio",
@@ -4000,7 +4064,7 @@
   },
   {
    "id": "stooq:ser:cb.f",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "series",
    "layer": "economia",
    "subtype": "commodity",
@@ -4184,7 +4248,7 @@
   },
   {
    "id": "ucdp:cond:ua-guerra-interestatal",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_interestatal",
@@ -4248,7 +4312,7 @@
   },
   {
    "id": "ucdp:cond:sd-guerra-civil",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_civil",
@@ -4308,7 +4372,7 @@
   },
   {
    "id": "acled:cond:ps-ocupacao",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "ocupacao",
@@ -4322,7 +4386,8 @@
    "place": {
     "iso2": "PS",
     "iso3": "PSE",
-    "name": "Territórios Palestinos"
+    "name": "Territórios Palestinos",
+    "disputed": "palestina"
    },
    "time": {
     "start": "2023-10-07T00:00:00Z",
@@ -4354,7 +4419,7 @@
   },
   {
    "id": "ucdp:cond:mm-guerra-civil",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "guerra_civil",
@@ -4400,7 +4465,7 @@
   },
   {
    "id": "acled:cond:ht-violencia-armada",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "violencia_armada",
@@ -4446,7 +4511,7 @@
   },
   {
    "id": "ucdp:cond:cd-insurgencia",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "conflito",
    "subtype": "insurgencia",
@@ -4492,7 +4557,7 @@
   },
   {
    "id": "gdelt:evt:fr-greve-geral",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "protesto",
    "subtype": "greve_geral",
@@ -4543,7 +4608,7 @@
   },
   {
    "id": "tse_br:cond:br-presidencial",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "presidencial",
@@ -4589,7 +4654,7 @@
   },
   {
    "id": "fec_us:cond:us-legislativa",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "legislativa",
@@ -4647,7 +4712,7 @@
   },
   {
    "id": "ifes:cond:ng-pre-eleitoral",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "eleicao",
    "subtype": "pre_eleitoral",
@@ -4693,7 +4758,7 @@
   },
   {
    "id": "wto:cond:cn-controle-exportacao",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "controle_exportacao",
@@ -4739,7 +4804,7 @@
   },
   {
    "id": "wto:cond:eu-regulacao-comercial",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "regulacao_comercial",
@@ -4788,7 +4853,7 @@
   },
   {
    "id": "imf:cond:ar-crise-cambial",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "crise_cambial",
@@ -4834,7 +4899,7 @@
   },
   {
    "id": "wto:cond:in-negociacao-comercial",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "economia",
    "subtype": "negociacao_comercial",
@@ -4880,7 +4945,7 @@
   },
   {
    "id": "firms:cond:au-temporada-incendios",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "clima",
    "subtype": "temporada_incendios",
@@ -4926,7 +4991,7 @@
   },
   {
    "id": "eu_sanctions:cond:ru-regime-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -4982,22 +5047,44 @@
      "type": "sanciona",
      "from": "US",
      "to": "RU",
-     "label": "O Tesouro dos EUA (OFAC)"
+     "label": "OFAC"
     },
     {
      "type": "sanciona",
      "from": "EU",
      "to": "RU",
-     "label": "A União Europeia"
+     "label": "UE"
     }
    ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "RUSSIA-EO14024",
+      "label": "Ordem Executiva 14024 (2021): atividades nocivas do governo russo; base das sanções desde a invasão da Ucrânia",
+      "issuer": "OFAC",
+      "url": "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+     },
+     {
+      "code": "UKRAINE-EO13662",
+      "label": "Ordem Executiva 13662 (2014): setores da economia russa, como finanças e energia",
+      "issuer": "OFAC",
+      "url": "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+     },
+     {
+      "code": "RUS",
+      "label": "Regime de sanções da UE para Rússia",
+      "issuer": "UE",
+      "url": "https://www.sanctionsmap.eu/"
+     }
+    ]
+   },
    "reportIds": [
     "rss:rep:8fe028011b5fce"
    ]
   },
   {
    "id": "un_sc:cond:ir-embargo",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "embargo",
@@ -5057,19 +5144,35 @@
      "type": "sanciona",
      "from": "US",
      "to": "IR",
-     "label": "O Tesouro dos EUA (OFAC)"
+     "label": "OFAC"
     },
     {
      "type": "sanciona",
      "from": "EU",
      "to": "IR",
-     "label": "A União Europeia"
+     "label": "UE"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "IRAN",
+      "label": "Sanções gerais ao Irã (Regulamento de Transações e Sanções Iranianas)",
+      "issuer": "OFAC",
+      "url": "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+     },
+     {
+      "code": "IRN",
+      "label": "Regime de sanções da UE para Irã",
+      "issuer": "UE",
+      "url": "https://www.sanctionsmap.eu/"
+     }
+    ]
+   }
   },
   {
    "id": "un_sc:cond:kp-regime-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -5123,19 +5226,35 @@
      "type": "sanciona",
      "from": "US",
      "to": "KP",
-     "label": "O Tesouro dos EUA (OFAC)"
+     "label": "OFAC"
     },
     {
      "type": "sanciona",
      "from": "UN",
      "to": "KP",
-     "label": "O Conselho de Segurança da ONU"
+     "label": "ONU"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "DPRK3",
+      "label": "Sanções à Coreia do Norte (ordem executiva de 2017)",
+      "issuer": "OFAC",
+      "url": "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+     },
+     {
+      "code": "DPRK",
+      "label": "Resolução 1718 (2006): programas nuclear e de mísseis da Coreia do Norte",
+      "issuer": "ONU",
+      "url": "https://main.un.org/securitycouncil/en/sanctions/information"
+     }
+    ]
+   }
   },
   {
    "id": "ofac:cond:ve-regime-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -5183,13 +5302,23 @@
      "type": "sanciona",
      "from": "US",
      "to": "VE",
-     "label": "O Tesouro dos EUA (OFAC)"
+     "label": "OFAC"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "VENEZUELA-EO13850",
+      "label": "Ordem Executiva 13850 (2018): setores da economia venezuelana, como ouro e petróleo",
+      "issuer": "OFAC",
+      "url": "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+     }
+    ]
+   }
   },
   {
    "id": "usgs:evt:fx26jp01",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -5260,7 +5389,7 @@
   },
   {
    "id": "usgs:evt:fx26cl02",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -5275,7 +5404,7 @@
     "iso2": "CL",
     "iso3": "CHL",
     "name": "Chile",
-    "admin1": "de Coquimbo",
+    "admin1": "Coquimbo",
     "admin1Code": "CL-CO"
    },
    "time": {
@@ -5319,7 +5448,7 @@
   },
   {
    "id": "usgs:evt:fx26id03",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -5377,7 +5506,7 @@
   },
   {
    "id": "usgs:evt:fx26to04",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -5438,7 +5567,7 @@
   },
   {
    "id": "emsc:evt:20261025_0000902",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "terremoto",
@@ -5491,7 +5620,7 @@
   },
   {
    "id": "gdacs:evt:FL-900101",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "clima",
    "subtype": "enchente",
@@ -5545,7 +5674,7 @@
   },
   {
    "id": "gdacs:evt:VO-900102",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "sismico",
    "subtype": "vulcao",
@@ -5599,7 +5728,7 @@
   },
   {
    "id": "gdacs:evt:TC-900103",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "clima",
    "subtype": "tempestade",
@@ -5657,7 +5786,7 @@
   },
   {
    "id": "gdacs:evt:WF-900104",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "clima",
    "subtype": "incendio",
@@ -5711,7 +5840,7 @@
   },
   {
    "id": "cloudflare_radar:evt:ex-901-IR",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "queda_internet",
@@ -5778,7 +5907,7 @@
   },
   {
    "id": "ioda:evt:SN-1792915200",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "queda_internet",
@@ -5832,7 +5961,7 @@
   },
   {
    "id": "cloudflare_radar:evt:ex-902-PK",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "event",
    "layer": "ciber",
    "subtype": "queda_internet",
@@ -5883,7 +6012,7 @@
   },
   {
    "id": "acled:cond:fr-protestos",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "protesto",
    "subtype": "manifestacao",
@@ -5933,7 +6062,7 @@
   },
   {
    "id": "ofac:cond:cu-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -5971,8 +6100,8 @@
    ],
    "text": {
     "pt": {
-     "headline": "Sob sanções — Cuba",
-     "summary": "O Tesouro dos EUA (OFAC) mantém 1 designação ligadas a Cuba (programas: CUBA)."
+     "headline": "Cuba sob sanções",
+     "summary": "Na lista de sanções do Tesouro dos EUA (OFAC), 1 nome — pessoa, empresa, navio ou aeronave — está em programas voltados para este país."
     }
    },
    "tags": [],
@@ -5983,13 +6112,23 @@
      "type": "sanciona",
      "from": "US",
      "to": "CU",
-     "label": "O Tesouro dos EUA (OFAC)"
+     "label": "OFAC"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "CUBA",
+      "label": "Embargo a Cuba (Regulamento de Controle de Ativos Cubanos, de 1963)",
+      "issuer": "OFAC",
+      "url": "https://ofac.treasury.gov/sanctions-programs-and-country-information"
+     }
+    ]
+   }
   },
   {
    "id": "un_sc:cond:ly-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -6027,8 +6166,8 @@
    ],
    "text": {
     "pt": {
-     "headline": "Sob sanções — Líbia",
-     "summary": "O Conselho de Segurança da ONU mantém 1 designação ligadas a Líbia (programas: Libya)."
+     "headline": "Líbia sob sanções",
+     "summary": "Na lista de sanções do Conselho de Segurança da ONU, 1 nome — pessoa, empresa, navio ou aeronave — está em programas voltados para este país."
     }
    },
    "tags": [],
@@ -6039,13 +6178,23 @@
      "type": "sanciona",
      "from": "UN",
      "to": "LY",
-     "label": "O Conselho de Segurança da ONU"
+     "label": "ONU"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "Libya",
+      "label": "Resolução 1970 (2011): Líbia",
+      "issuer": "ONU",
+      "url": "https://main.un.org/securitycouncil/en/sanctions/information"
+     }
+    ]
+   }
   },
   {
    "id": "un_sc:cond:so-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -6083,8 +6232,8 @@
    ],
    "text": {
     "pt": {
-     "headline": "Sob sanções — Somália",
-     "summary": "O Conselho de Segurança da ONU mantém 1 designação ligadas a Somália (programas: Somalia)."
+     "headline": "Somália sob sanções",
+     "summary": "Na lista de sanções do Conselho de Segurança da ONU, 1 nome — pessoa, empresa, navio ou aeronave — está em programas voltados para este país."
     }
    },
    "tags": [],
@@ -6095,13 +6244,23 @@
      "type": "sanciona",
      "from": "UN",
      "to": "SO",
-     "label": "O Conselho de Segurança da ONU"
+     "label": "ONU"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "Somalia",
+      "label": "Resolução 751 (1992): Somália e al-Shabaab",
+      "issuer": "ONU",
+      "url": "https://main.un.org/securitycouncil/en/sanctions/information"
+     }
+    ]
+   }
   },
   {
    "id": "eu_sanctions:cond:sy-sancoes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "condition",
    "layer": "diplomacia",
    "subtype": "regime_sancoes",
@@ -6139,8 +6298,8 @@
    ],
    "text": {
     "pt": {
-     "headline": "Sob sanções — Síria",
-     "summary": "A União Europeia mantém 1 designação ligadas a Síria (programas: SYR)."
+     "headline": "Síria sob sanções",
+     "summary": "Na lista de sanções da União Europeia, 1 nome — pessoa, empresa, navio ou aeronave — está em programas voltados para este país."
     }
    },
    "tags": [],
@@ -6151,13 +6310,23 @@
      "type": "sanciona",
      "from": "EU",
      "to": "SY",
-     "label": "A União Europeia"
+     "label": "UE"
     }
-   ]
+   ],
+   "attributes": {
+    "programs": [
+     {
+      "code": "SYR",
+      "label": "Regime de sanções da UE para Síria",
+      "issuer": "UE",
+      "url": "https://www.sanctionsmap.eu/"
+     }
+    ]
+   }
   },
   {
    "id": "plz:measure:ua-deslocados",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6198,7 +6367,7 @@
   },
   {
    "id": "plz:measure:sd-deslocados",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6233,7 +6402,7 @@
   },
   {
    "id": "plz:measure:fr-participantes",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "event",
@@ -6268,7 +6437,7 @@
   },
   {
    "id": "plz:measure:br-inflacao-alimentos-exemplo",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6297,7 +6466,7 @@
   },
   {
    "id": "plz:measure:ua-conflito-mortes_45d",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6326,7 +6495,7 @@
   },
   {
    "id": "plz:measure:sd-conflito-mortes_45d",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6355,7 +6524,7 @@
   },
   {
    "id": "plz:measure:cd-conflito-mortes_45d",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6384,7 +6553,7 @@
   },
   {
    "id": "plz:measure:sd-conflito-mortes_14d",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6413,7 +6582,7 @@
   },
   {
    "id": "plz:measure:fr-protestos-protestos_14d",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6442,7 +6611,7 @@
   },
   {
    "id": "plz:measure:ru-sancoes-designacoes_ofac",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6470,7 +6639,7 @@
   },
   {
    "id": "plz:measure:ir-sancoes-designacoes_ofac",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6498,7 +6667,7 @@
   },
   {
    "id": "plz:measure:kp-sancoes-designacoes_ofac",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6526,7 +6695,7 @@
   },
   {
    "id": "plz:measure:cu-sancoes-designacoes_ofac",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6554,7 +6723,7 @@
   },
   {
    "id": "plz:measure:ve-sancoes-designacoes_ofac",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6582,7 +6751,7 @@
   },
   {
    "id": "plz:measure:kp-sancoes-designacoes_un_sc",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6610,7 +6779,7 @@
   },
   {
    "id": "plz:measure:ly-sancoes-designacoes_un_sc",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6638,7 +6807,7 @@
   },
   {
    "id": "plz:measure:so-sancoes-designacoes_un_sc",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6666,7 +6835,7 @@
   },
   {
    "id": "plz:measure:ru-sancoes-designacoes_eu_sanctions",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6694,7 +6863,7 @@
   },
   {
    "id": "plz:measure:ir-sancoes-designacoes_eu_sanctions",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6722,7 +6891,7 @@
   },
   {
    "id": "plz:measure:sy-sancoes-designacoes_eu_sanctions",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "condition",
@@ -6750,7 +6919,7 @@
   },
   {
    "id": "plz:measure:fx26jp01-magnitude",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "measure",
    "subject": {
     "type": "event",
@@ -6785,7 +6954,7 @@
   },
   {
    "id": "opensky:trk:ae1a01",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -6863,7 +7032,7 @@
   },
   {
    "id": "opensky:trk:ae1a02",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -6941,7 +7110,7 @@
   },
   {
    "id": "aisstream:trk:338000001",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "navio",
@@ -7011,7 +7180,7 @@
   },
   {
    "id": "opensky:trk:ae1a03",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -7057,7 +7226,7 @@
   },
   {
    "id": "opensky:trk:3f1a04",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "aeronave",
@@ -7103,7 +7272,7 @@
   },
   {
    "id": "aisstream:trk:247000202",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "track",
    "layer": "militar",
    "subtype": "navio",
@@ -7157,7 +7326,7 @@
   },
   {
    "id": "plz:analysis:panorama-mundo-2026-10-25",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "analysis",
    "analysisType": "panorama",
    "subjectIds": [
@@ -7409,7 +7578,7 @@
   },
   {
    "id": "plz:analysis:mercado-bvp-2026-10-25",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "analysis",
    "analysisType": "mercado",
    "subjectIds": [
@@ -7632,7 +7801,7 @@
   },
   {
    "id": "plz:analysis:panorama-ua-2026-10-25",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "analysis",
    "analysisType": "panorama",
    "subjectIds": [
@@ -7803,7 +7972,7 @@
   },
   {
    "id": "plz:analysis:wto-cond-eu-regulacao-comercial-impacto",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "analysis",
    "analysisType": "impacto",
    "subjectIds": [
@@ -7958,7 +8127,7 @@
   },
   {
    "id": "plz:analysis:curadoria-evt-br-proposta-congelamento-exemplo-precedente",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "analysis",
    "analysisType": "precedente",
    "subjectIds": [
@@ -8165,7 +8334,7 @@
   },
   {
    "id": "plz:analysis:curadoria-evt-br-debate-exemplo-checagem",
-   "schemaVersion": "0.4.0",
+   "schemaVersion": "0.5.0",
    "kind": "analysis",
    "analysisType": "checagem",
    "subjectIds": [

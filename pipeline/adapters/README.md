@@ -1,6 +1,6 @@
 # Adaptadores
 
-Cada adaptador lê uma fonte e devolve entidades no esquema `0.4.0`.
+Cada adaptador lê uma fonte e devolve entidades no esquema `0.5.0`.
 
 ```js
 export default {
@@ -33,7 +33,7 @@ JSON Schema antes de entrar; a malformada sai sozinha e fica contada no relatór
 | `sanctions.js` → `eu` | Lista consolidada da UE (XML) | `EU_FSF_TOKEN` | regime de sanções da UE por país | — |
 | `opensky.js` | OpenSky `/states/all` | opcional (OAuth2) | trilhas de aeronaves militares | licença (uso não comercial) |
 | `aisstream.js` | AISStream WebSocket | `AISSTREAM_API_KEY` | trilhas de navios militares | licença |
-| `news.js` → `rss` | feeds RSS/Atom dos veículos em `schema/outlets.json` | — | relatos (manchete, link, resumo), classificados e agrupados em histórias | endereços com `verifyFeed` |
+| `news.js` → `rss` | feeds RSS/Atom dos 43 veículos em `schema/outlets.json` (português, inglês, espanhol, francês, árabe, chinês e híndi) | — | relatos (manchete, link, resumo), classificados e agrupados em histórias | endereços com `verifyFeed` |
 | `news.js` → `bluesky` | API pública do Bluesky (`getAuthorFeed`) | — | relatos das contas de agências | licença; contas oficiais |
 | `news.js` → `x` | API v2 do X | `X_BEARER_TOKEN` (pago) | relatos das contas de agências | custo e termos do Developer Agreement |
 | `markets.js` | Stooq, CSV diário | — | séries de bolsa, câmbio e commodity (`pipeline/data/markets.json`) | licença; símbolos |
@@ -53,7 +53,9 @@ Depois da coleta, `pipeline/lib/classify.js` descobre país, estado e tema: com
 `ANTHROPIC_API_KEY`, um modelo classifica em lote e cada campo é conferido contra as listas
 do esquema; sem ela, palavras-chave com peso (lugares 3, países 2, gentílicos 1). Manchetes
 em idiomas diferentes sobre o mesmo fato só se juntam numa história quando o modelo
-classificou — por palavras-chave, a semelhança de título não atravessa idiomas.
+classificou — por palavras-chave, a semelhança de título não atravessa idiomas. As palavras-chave
+reconhecem países em várias línguas (nomes do `Intl` do Node) e temas em espanhol, francês, árabe
+e chinês, para que manchetes fora do inglês e do português também caiam no país certo.
 
 ## Ideias para depois
 

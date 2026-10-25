@@ -7,10 +7,11 @@ import { ROOT, SCHEMA_VERSION, iso, readJson, readJsonIf, rel, writeJson } from 
 import { mergeTracks } from "./lib/tracks.js";
 import { applyLicenseGate, blockedSources } from "./lib/gate.js";
 import { clusterEntities } from "./lib/cluster.js";
-import { runAnalysis, defaultClient, askClassifier } from "./lib/analysis.js";
+import { runAnalysis, defaultClient, askClassifier, askTranslator } from "./lib/analysis.js";
+import { translateSnapshot, validateOverlay } from "./lib/translate.js";
 import { classifyReports } from "./lib/classify.js";
 import { clusterStories, attachReports } from "./lib/stories.js";
-import { enrichAdmin1 } from "./lib/enrich.js";
+import { enrichAdmin1, enrichDisputed, disputedFor } from "./lib/enrich.js";
 import { validateSnapshot, validateEntity } from "./lib/validate.js";
 import usgs from "./adapters/usgs.js";
 import gdacs from "./adapters/gdacs.js";
@@ -101,6 +102,7 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
   const cls = await classifyReports(reports, { client: aiClient, ask: askClassifier, cache: state.reports || {}, now, log, batchSize: policy.news.classifyBatch });
   clusterStories(reports, { threshold: policy.news.storyThreshold, hours: policy.news.storyHours });
   enrichAdmin1(kept);
+  enrichDisputed(kept);
   if (reports.length) log(`notícias   ${reports.length} relatos, ${new Set(reports.map(r => r.storyKey)).size} histórias, ${cls.calls} chamadas ao modelo`);
 
   const merged = clusterEntities(kept, now);
@@ -128,11 +130,20 @@ export async function build({ fixtures = false, now = iso(Date.now()), only = nu
     schemaVersion: SCHEMA_VERSION, generatedAt: now,
     window: { from: iso(Date.parse(now) - 7 * 864e5), to: now },
     dataClass: fixtures ? "example" : "live",
-    sources, outlets, ingest,
+    sources, outlets, ingest, disputed: disputedFor([...clustered]),
     policy: { militaryTrackZones: policy.militaryTracks.zones.map(z => ({ name: z.name, delayMinutes: z.delayMinutes })), analysis: analysisReport },
     entities: [...clustered, ...tracks.published, ...analyses],
   };
-  return { snapshot, state: { tracks: tracks.state, militaryMmsi: tracks.militaryMmsi, reports: cls.cache } };
+  // Tradução do conteúdo para os idiomas do app (text/<idioma>.json), com cache e conferência de números.
+  let translations = null, trCache = state.translations || {};
+  if (policy.translation?.enabled !== false) {
+    const fx = fixtures ? readJsonIf(rel("pipeline/fixtures/translations.json")) : null;
+    const tr = await translateSnapshot(snapshot, { client: fixtures ? null : aiClient, ask: askTranslator, cache: trCache, now, log, policy: policy.translation || {}, fixtures: fx });
+    translations = tr.overlays; trCache = tr.cache;
+    snapshot.policy.translation = { languages: Object.keys(tr.overlays), ...tr.report };
+    log(`tradução   ${JSON.stringify(tr.report)}`);
+  }
+  return { snapshot, translations, state: { tracks: tracks.state, militaryMmsi: tracks.militaryMmsi, reports: cls.cache, translations: trCache } };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -140,7 +151,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     fixtures: { type: "boolean", default: false }, now: { type: "string" }, out: { type: "string", default: "public/snapshot.json" },
     state: { type: "string", default: "state/tracks.json" }, only: { type: "string" }, "no-analysis": { type: "boolean", default: false } } });
   const out = path.resolve(ROOT, v.out);
-  const { snapshot, state } = await build({
+  const { snapshot, state, translations } = await build({
     fixtures: v.fixtures, now: v.now ? iso(v.now) : undefined, only: v.only?.split(","), analysis: !v["no-analysis"],
     // Com fixtures, nada é reaproveitado da execução anterior: o exemplo é sempre reconstruído do zero.
     statePath: v.fixtures ? rel("pipeline/fixtures/state.json") : path.resolve(ROOT, v.state), prevPath: v.fixtures ? null : out,
@@ -153,6 +164,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     process.exit(1);
   }
   writeJson(out, snapshot);
+  for (const [lang, ov] of Object.entries(translations || {})) {
+    const errs = validateOverlay(ov, snapshot);
+    if (errs.length) { console.error(`text/${lang}.json não gravado: ${errs.slice(0, 3).join("; ")}`); continue; }
+    writeJson(path.join(path.dirname(out), "text", `${lang}.json`), ov);
+  }
   if (!v.fixtures) writeJson(path.resolve(ROOT, v.state), state);
   console.log(`${v.out}: ${snapshot.entities.length} entidades`);
 }

@@ -16,6 +16,15 @@ com a sua fonte à vista, e com análise por IA que nunca se mistura com o fato.
 - **Resumo do dia.** Um panorama do mundo por IA, com as mesmas camadas de proteção.
 - **Novo desde a sua última visita**, arcos de sanção e conflito no globo, e países
   tingidos pelo índice de atenção (fórmula aberta, no app e em `SCHEMA.md` §8).
+- **Seis idiomas.** Interface em português, inglês, espanhol, francês, árabe (com layout da
+  direita para a esquerda) e chinês. O conteúdo é traduzido por IA com cache e conferência de
+  números; o original fica a um toque (`SCHEMA.md` §13).
+- **Territórios disputados.** Nome e fronteira seguem a ONU; o lugar disputado aparece marcado,
+  com o nome que cada parte usa (`SCHEMA.md` §12).
+- **Cada termo explicado.** Gravidade em escala de 0 a 5 com a regra à vista, e um "i" ao lado
+  de confiança, situação, designação, programa de sanção, corroboração e atenção.
+- **Veículos de várias regiões e línguas**, com financiamento à vista: agências, emissoras
+  públicas, jornais privados, veículos sem fins lucrativos e agências estatais marcadas.
 
 Projeto aberto, mantido por anúncios discretos e doações.
 
@@ -36,7 +45,10 @@ Isso mantém o cliente leve, cacheável e independente das APIs.
 | caminho | o quê |
 |---|---|
 | `index.html` | O app inteiro: globo em canvas, abas Agora/Notícias/Mercados, visão de país, detalhe, análise, legenda. Mobile-first. |
-| `geo/admin1/XX.json` | Contornos dos estados de cada país, carregados pelo app só no zoom (gerados por `scripts/build-geo.js`). |
+| `geo/admin1/XX.json` | Contornos dos estados de cada país, com nomes em cada idioma, carregados pelo app só no zoom (gerados por `scripts/build-geo.js`). |
+| `i18n/ui/*.json` | Textos da interface em cada idioma. O teste falha se faltar uma chave. |
+| `pipeline/lib/translate.js` | Tradução do conteúdo: cache, prioridade, conferência de números, `text/<idioma>.json`. |
+| `pipeline/data/disputed.json` | Territórios disputados e visão da ONU para as fronteiras. |
 | `SCHEMA.md` | Especificação do esquema de dados (leia primeiro). |
 | `schema/` | JSON Schema, tipos TypeScript, taxonomia de camadas, registro de fontes e de veículos (`outlets.json`). |
 | `pipeline/run.js` | Orquestrador. |
@@ -86,6 +98,7 @@ no relatório de ingestão e o resto do snapshot sai normalmente.
 | `X_BEARER_TOKEN` | Posts de contas de agências no X. A API do X é paga; sem a chave, as mesmas redações entram por RSS e Bluesky. |
 | `POLARIZED_MODEL` | Troca o modelo da análise (padrão `claude-opus-5-5`). |
 | `POLARIZED_CLASSIFIER_MODEL` | Modelo que classifica as manchetes em lote (país, estado, tema). Vale usar um modelo mais barato; sem `ANTHROPIC_API_KEY`, a classificação cai para palavras-chave. |
+| `POLARIZED_TRANSLATE_MODEL` | Modelo da tradução do conteúdo (padrão: o mesmo da análise). É o estágio de maior volume: `claude-haiku-5-5` custa cerca de 40 vezes menos por token. Sem `ANTHROPIC_API_KEY`, o conteúdo fica em português e só a interface muda de idioma. |
 
 ## Publicar
 
@@ -106,7 +119,10 @@ parar de atualizar, reative em *Actions → snapshot → Enable workflow*.
 Custo da IA por execução: no máximo `analysis.maxPerRun` (12) análises — o resumo do mundo,
 até 4 panoramas de país, até 3 mercados e os fatos mais graves —, reaproveitadas enquanto o
 fato não muda (panoramas e mercados, uma vez por dia). A classificação de manchetes é feita
-em lotes de 60, só para manchetes novas, com cache de 72 h.
+em lotes de 60, só para manchetes novas, com cache de 72 h. A tradução manda no máximo
+`translation.maxStringsPerRun` (2000) textos novos por execução, em lotes de 40, e guarda cada
+tradução por 30 dias sem uso; na primeira execução são alguns milhares de textos (manchetes de
+43 veículos em 5 idiomas), depois só o que é novo.
 
 ## Antes de ir ao ar com dados reais
 
@@ -117,7 +133,13 @@ em lotes de 60, só para manchetes novas, com cache de 72 h.
       fonte entra na execução seguinte. Os feeds RSS (`com_atribuicao`) já entram: o
       Polarized guarda só manchete, link e resumo, com o nome do veículo.
 - [ ] **Feeds de notícia.** Confira os endereços marcados com `verifyFeed` em
-      `schema/outlets.json` e os critérios de cada veículo antes de acrescentar outros.
+      `schema/outlets.json` (a maioria dos veículos em outras línguas) e os critérios de cada
+      veículo antes de acrescentar outros. Feed que falha aparece em "Estado das fontes".
+- [ ] **Territórios disputados.** Leia os textos de `pipeline/data/disputed.json` com alguém de
+      relações internacionais antes de ir ao ar; eles citam as resoluções da ONU de cada caso.
+- [ ] **Programas de sanção.** As descrições em `pipeline/data/sanction-programs.json` foram
+      escritas pelo projeto; confira cada uma na página do emissor.
+- [ ] **Tradução.** Peça a falantes nativos que revisem `i18n/ui/ar.json` e `i18n/ui/zh.json`.
 - [ ] **Mercados.** As cotações do Stooq são de fim de dia e sem garantia; para uso
       comercial com anúncios, avalie um provedor com licença de redistribuição.
 - [ ] **Primeira execução com rede.** Os adaptadores foram escritos contra o formato

@@ -21,22 +21,38 @@ export function parseCsvLine(line) {
   return out.map(v => (v.trim() === "-0-" ? "" : v.trim()));
 }
 
-function conditions(sourceId, counts, ctx, issuer, url, from) {
-  const out = [];
+const ISSUER = {
+  ofac: { de: "do Tesouro dos EUA (OFAC)", short: "OFAC", key: "ofac" },
+  un_sc: { de: "do Conselho de Segurança da ONU", short: "ONU", key: "un" },
+  eu_sanctions: { de: "da União Europeia", short: "UE", key: "eu" },
+};
+/** Programa da lista -> { code, label, issuer, url }. Programa da UE sem descrição vira "regime da UE para <país>". */
+function program(sourceId, code, c) {
+  const is = ISSUER[sourceId], label = MAP.labels?.[is.key]?.[code] ?? (is.key === "eu" ? `Regime de sanções da UE para ${c.pt}` : null);
+  return { code, label, issuer: is.short, url: MAP.programUrls?.[is.key] ?? null };
+}
+
+function conditions(sourceId, counts, ctx, url, from) {
+  const out = [], is = ISSUER[sourceId];
   for (const [iso2, { n, programs }] of counts) {
-    const progs = [...programs].sort().slice(0, 8).join(", ");
+    const progs = [...programs].sort().slice(0, 8);
     out.push(...countryCondition({
       sourceId, iso2, layer: "diplomacia", subtype: "regime_sancoes", id: `${sourceId}:cond:${iso2.toLowerCase()}-sancoes`,
       start: ctx.now, now: ctx.now, startKnown: false, intensity: scale(n),
       basis: "designações vigentes na lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil ou mais → 5",
       status: "verificado", confidence: 0.95,
-      headline: c => `Sob sanções — ${c.pt}`,
-      summary: c => `${issuer} mantém ${n === 1 ? "1 designação" : n + " designações"} ligadas a ${c.pt}${progs ? ` (programas: ${progs})` : ""}.`.slice(0, 320),
+      headline: c => `${c.pt} sob sanções`,
+      // A frase não depende do artigo do nome do país ("a Venezuela", "o Irã"), para valer para todos.
+      summary: c => `Na lista de sanções ${is.de}, ${n === 1 ? "1 nome — pessoa, empresa, navio ou aeronave — está" : n + " nomes — pessoas, empresas, navios ou aeronaves — estão"} em programas voltados para este país.`,
       url, clusterKey: `sancoes:${iso2}`,
       metric: `designacoes_${sourceId}`, unit: "designações", value: n,
     }));
     const cond = out.findLast(e => e.kind === "condition");
-    if (cond) cond.relations = [{ type: "sanciona", from, to: iso2, label: issuer }];
+    if (cond) {
+      cond.relations = [{ type: "sanciona", from, to: iso2, label: is.short }];
+      const c = country(iso2);
+      cond.attributes = { programs: progs.map(p => program(sourceId, p, c)) };
+    }
   }
   return out;
 }
@@ -60,7 +76,7 @@ export const ofac = {
       const seen = new Set();
       for (const h of hit) { const [iso2, p] = h.split("|"); if (!seen.has(iso2)) { bump(counts, iso2, p); seen.add(iso2); } else counts.get(iso2).programs.add(p); }
     }
-    return { entities: conditions("ofac", counts, ctx, "O Tesouro dos EUA (OFAC)", "https://sanctionssearch.ofac.treas.gov/", "US") };
+    return { entities: conditions("ofac", counts, ctx, "https://sanctionssearch.ofac.treas.gov/", "US") };
   },
 };
 
@@ -75,7 +91,7 @@ export const unsc = {
       const iso2 = list && MAP.un[list];
       if (iso2) bump(counts, iso2, list);
     }
-    return { entities: conditions("un_sc", counts, ctx, "O Conselho de Segurança da ONU", "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list", "UN") };
+    return { entities: conditions("un_sc", counts, ctx, "https://main.un.org/securitycouncil/en/content/un-sc-consolidated-list", "UN") };
   },
 };
 
@@ -92,6 +108,6 @@ export const eu = {
       const c = country(prog.slice(0, 3));
       if (c) bump(counts, c.iso2, prog);
     }
-    return { entities: conditions("eu_sanctions", counts, ctx, "A União Europeia", "https://www.sanctionsmap.eu/", "EU") };
+    return { entities: conditions("eu_sanctions", counts, ctx, "https://www.sanctionsmap.eu/", "EU") };
   },
 };

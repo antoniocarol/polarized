@@ -1,0 +1,313 @@
+{
+ "lang": "es",
+ "source": "pt",
+ "generatedAt": "2026-10-25T17:00:00Z",
+ "entities": {
+  "plz:analysis:panorama-mundo-2026-10-25": {
+   "text.headline": "El mundo ahora: guerra, apagones y un ciclón (ejemplo)",
+   "text.summary": "Los mayores focos de la instantánea de ejemplo son Irán sin internet, los ataques a la energía en Ucrania y la guerra civil en Sudán, además de un ciclón con alerta roja en Filipinas.",
+   "points.0.text": "La guerra en Ucrania sigue siendo el conflicto más grave registrado; cuatro redacciones informaron de un ataque con drones contra la infraestructura energética en Járkov.",
+   "points.1.text": "En Sudán, la guerra civil se concentra en Darfur del Norte, con desplazamiento y acceso humanitario restringido.",
+   "points.2.text": "Irán está sin internet en todo el país, por orden del gobierno según Cloudflare Radar, y hay registro de protestas reprimidas.",
+   "points.3.text": "Un ciclón con alerta roja llegó a Filipinas, con miles de personas evacuadas de la costa.",
+   "points.4.text": "Los tres países con más atención combinan violencia con pérdida de servicios básicos —energía, internet, acceso humanitario—, lo que extiende el efecto más allá de las muertes registradas.",
+   "points.5.text": "Entre los índices bursátiles seguidos, el Ibovespa tuvo la mayor caída en la última sesión; la tarjeta de la serie explica los factores de ese día.",
+   "watch.0": "Cuánto dura el corte de internet en Irán",
+   "watch.1": "Si los ataques a la energía en Ucrania se repiten con la llegada del frío",
+   "watch.2": "Si la ayuda humanitaria vuelve a llegar a Darfur del Norte",
+   "counterpoint.text": "Un retrato armado a partir de bases que registran violencia y de redacciones que publican en inglés tiende a dejar fuera las crisis lentas —hambre, sequía, deuda— que no generan eventos diarios.",
+   "limits": "El panorama usa solo los hechos de esta instantánea. Las regiones con poca cobertura de prensa o de bases de datos aparecen menos de lo que deberían."
+  },
+  "acled:evt:IRN9001": {
+   "text.headline": "Protesta reprimida — ejemplo",
+   "text.summary": "Manifestantes (Irán) × Fuerzas Policiales de Irán. 2 muertes registradas. Fuente original citada por ACLED: Fuente de ejemplo.",
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "acled:evt:IRN9002": {
+   "text.headline": "Protesta reprimida — ejemplo",
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "acled:evt:FRA9000": {
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "acled:evt:FRA9007": {
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "acled:evt:FRA9014": {
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "acled:evt:FRA9001": {
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "acled:evt:FRA9008": {
+   "intensityBasis": "2, +2 si hubo muertes, +1 si hubo represión"
+  },
+  "ucdp:cond:ua-guerra-interestatal": {
+   "text.headline": "Guerra en curso en el este de Europa",
+   "text.summary": "Hostilidades activas, desplazamiento interno a gran escala e infraestructura energética bajo ataque.",
+   "intensityBasis": "eventos armados/24h + desplazamiento acumulado"
+  },
+  "ucdp:cond:sd-guerra-civil": {
+   "text.headline": "Guerra civil y crisis humanitaria",
+   "text.summary": "Enfrentamiento entre fuerzas rivales con desplazamiento masivo y acceso humanitario restringido.",
+   "intensityBasis": "eventos armados/24h + población afectada"
+  },
+  "acled:cond:ps-ocupacao": {
+   "text.headline": "Zona de conflicto activo",
+   "text.summary": "Operaciones militares, bloqueo y emergencia humanitaria en un territorio densamente poblado.",
+   "intensityBasis": "eventos armados/24h por km²"
+  },
+  "eu_sanctions:cond:ru-regime-sancoes": {
+   "text.headline": "Régimen de sanciones ampliado",
+   "text.summary": "Sanciones financieras, energéticas y tecnológicas de varios bloques.",
+   "intensityBasis": "paquetes vigentes × sectores afectados"
+  },
+  "un_sc:cond:ir-embargo": {
+   "intensityBasis": "paquetes vigentes × sectores afectados"
+  },
+  "gdacs:evt:TC-900103": {
+   "text.headline": "Ciclón tropical — Ciclón Exemplo, Filipinas",
+   "text.summary": "Alerta roja del GDACS. Severidad estimada: vientos sostenidos de 185 km/h. Estimación automática por modelo; las cifras de afectados llegan después, de las agencias en terreno.",
+   "intensityBasis": "nivel de alerta del GDACS: verde 2, naranja 3, rojo 5"
+  },
+  "gdacs:evt:FL-900101": {
+   "intensityBasis": "nivel de alerta del GDACS: verde 2, naranja 3, rojo 5"
+  },
+  "gdacs:evt:VO-900102": {
+   "intensityBasis": "nivel de alerta del GDACS: verde 2, naranja 3, rojo 5"
+  },
+  "gdacs:evt:WF-900104": {
+   "intensityBasis": "nivel de alerta del GDACS: verde 2, naranja 3, rojo 5"
+  },
+  "cloudflare_radar:evt:ex-901-IR": {
+   "text.headline": "Caída de internet en todo el país — Irán",
+   "text.summary": "Causa según Cloudflare Radar: orden del gobierno. La caída continuaba en el momento de la recolección.",
+   "intensityBasis": "alcance (país 4, región 3, red 2), +1 si la causa es una orden del gobierno o una acción militar"
+  },
+  "cloudflare_radar:evt:ex-902-PK": {
+   "intensityBasis": "alcance (país 4, región 3, red 2), +1 si la causa es una orden del gobierno o una acción militar"
+  },
+  "cisa_kev:evt:CVE-2026-90001": {
+   "text.headline": "Falla explotada: ExemploSoft Gateway Exemplo",
+   "text.summary": "CVE-2026-90001 — explotación activa confirmada por la CISA, con uso conocido en ransomware. Plazo de corrección para organismos federales de EE. UU.: 2026-11-14.",
+   "intensityBasis": "3 si la explotación está confirmada, 4 si se usa en una campaña de ransomware"
+  },
+  "cisa_kev:evt:CVE-2026-90002": {
+   "intensityBasis": "3 si la explotación está confirmada, 4 si se usa en una campaña de ransomware"
+  },
+  "ucdp:evt:9100001": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100002": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100003": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100004": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100005": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100006": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100007": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100008": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100009": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100010": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100011": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100013": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:evt:9100012": {
+   "intensityBasis": "muertes estimadas (best): 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "ucdp:cond:mm-guerra-civil": {
+   "intensityBasis": "municipios con enfrentamientos activos/mes"
+  },
+  "acled:cond:ht-violencia-armada": {
+   "intensityBasis": "homicidios/semana + desplazamiento urbano"
+  },
+  "ucdp:cond:cd-insurgencia": {
+   "intensityBasis": "grupos armados activos + eventos/semana"
+  },
+  "tse_br:cond:br-presidencial": {
+   "intensityBasis": "días hasta la votación + electorado"
+  },
+  "fec_us:cond:us-legislativa": {
+   "intensityBasis": "escaños en juego + días hasta la votación"
+  },
+  "wto:cond:cn-controle-exportacao": {
+   "intensityBasis": "valor comercial afectado"
+  },
+  "wto:cond:eu-regulacao-comercial": {
+   "intensityBasis": "valor comercial afectado"
+  },
+  "un_sc:cond:kp-regime-sancoes": {
+   "intensityBasis": "resoluciones vigentes"
+  },
+  "curadoria:evt:br-debate-exemplo": {
+   "intensityBasis": "audiencia estimada + cercanía de la votación"
+  },
+  "curadoria:evt:br-proposta-congelamento-exemplo": {
+   "intensityBasis": "audiencia estimada + cercanía de la votación"
+  },
+  "acled:evt:SDN9001": {
+   "intensityBasis": "muertes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "acled:evt:SDN9002": {
+   "intensityBasis": "muertes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "acled:evt:SDN9003": {
+   "intensityBasis": "muertes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "acled:evt:UKR9001": {
+   "intensityBasis": "muertes registradas: 1 a 9 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "gdelt:evt:fr-greve-geral": {
+   "intensityBasis": "participantes estimados + ciudades afectadas"
+  },
+  "imf:cond:ar-crise-cambial": {
+   "intensityBasis": "inflación acumulada + variación cambiaria"
+  },
+  "wto:cond:in-negociacao-comercial": {
+   "intensityBasis": "volumen de comercio en juego"
+  },
+  "firms:cond:au-temporada-incendios": {
+   "intensityBasis": "focos activos/24h"
+  },
+  "ofac:cond:ve-regime-sancoes": {
+   "intensityBasis": "sectores restringidos"
+  },
+  "usgs:evt:fx26jp01": {
+   "intensityBasis": "(magnitud − 4) × 1,25, +1 si PAGER naranja, +2 si rojo"
+  },
+  "usgs:evt:fx26to04": {
+   "intensityBasis": "(magnitud − 4) × 1,25, +1 si PAGER naranja, +2 si rojo"
+  },
+  "usgs:evt:fx26cl02": {
+   "intensityBasis": "(magnitud − 4) × 1,25, +1 si PAGER naranja, +2 si rojo"
+  },
+  "usgs:evt:fx26id03": {
+   "intensityBasis": "(magnitud − 4) × 1,25, +1 si PAGER naranja, +2 si rojo"
+  },
+  "ioda:evt:SN-1792915200": {
+   "intensityBasis": "log10 de la puntuación de caída del IODA, menos 1"
+  },
+  "acled:cond:fr-protestos": {
+   "intensityBasis": "2 + log10 del número de protestas, +1 si hubo represión"
+  },
+  "ifes:cond:ng-pre-eleitoral": {
+   "intensityBasis": "días hasta la votación"
+  },
+  "ofac:cond:cu-sancoes": {
+   "intensityBasis": "designaciones vigentes en la lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "un_sc:cond:ly-sancoes": {
+   "intensityBasis": "designaciones vigentes en la lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "un_sc:cond:so-sancoes": {
+   "intensityBasis": "designaciones vigentes en la lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "eu_sanctions:cond:sy-sancoes": {
+   "intensityBasis": "designaciones vigentes en la lista: menos de 10 → 2, 10 a 99 → 3, 100 a 999 → 4, mil o más → 5"
+  },
+  "emsc:evt:20261025_0000902": {
+   "intensityBasis": "(magnitud − 4) × 1,25"
+  },
+  "rss:rep:ed6dc8f93966f9": {
+   "_tl": "Terremoto de magnitud 6.1 sacude la costa este de Japón"
+  },
+  "rss:rep:5d687879861bf4": {
+   "_tl": "Ataque con drones contra Járkov daña infraestructura energética"
+  },
+  "rss:rep:f4fa4a9bf65dd6": {
+   "_tl": "Fuerte terremoto frente a la costa este de Japón, sin alerta de tsunami"
+  },
+  "rss:rep:63043cf0173b6d": {
+   "_tl": "Ataque nocturno con drones alcanza infraestructura energética de Járkov"
+  },
+  "rss:rep:5edc3f16dc8e40": {
+   "_tl": "Infraestructura energética de Járkov alcanzada en ataque con drones"
+  },
+  "rss:rep:91dd076cae3436": {
+   "_tl": "Terremoto en Japón: fuerte sismo frente a la costa este"
+  },
+  "bluesky:rep:51f299bc9ec8cb": {
+   "_tl": "Terremoto frente a la costa este de Japón: lo que se sabe"
+  },
+  "x:rep:f1e471e270efc8": {
+   "_tl": "Járkov: ataque con drones daña infraestructura energética, según autoridades"
+  },
+  "rss:rep:5d39736b7ece24": {
+   "_tl": "Miles de evacuados mientras un ciclón toca tierra en Filipinas"
+  },
+  "rss:rep:80e919bab74d32": {
+   "_tl": "Ciclón toca tierra en Filipinas; miles de evacuados"
+  },
+  "rss:rep:ac4c120ec6718c": {
+   "_tl": "Ciclón toca tierra en Filipinas mientras miles son evacuados de la costa"
+  },
+  "rss:rep:81546f05daa157": {
+   "_tl": "Se intensifican los combates en torno a El Fasher, en Darfur del Norte"
+  },
+  "rss:rep:eb36b9c99eb35a": {
+   "_tl": "El apagón de internet en Irán entra en su segundo día"
+  },
+  "rss:rep:7342c0c6bbe80b": {
+   "_tl": "Grupos de ayuda alertan de que la crisis empeora con la intensificación de los combates en Darfur del Norte"
+  },
+  "rss:rep:b5adeb476de389": {
+   "_tl": "El apagón de internet en Irán entra en su segundo día, según monitores"
+  }
+ },
+ "admin1": {
+  "UA-23": "Zaporiyia",
+  "UA-65": "Jersón",
+  "SD-DN": "Darfur del Norte",
+  "SD-KH": "Jartum",
+  "SD-DS": "Darfur del Este",
+  "SD-KN": "Kordofán del Norte",
+  "MM-01": "División de Sagaing",
+  "CD-NK": "Kivu del Norte",
+  "FR-75": "París",
+  "FR-93": "Sena-Saint Denis",
+  "FR-95": "Valle del Oise",
+  "IR-07": "Elburz",
+  "IR-04": "Isfahán",
+  "BR-RS": "Río Grande del Sur",
+  "BR-SP": "Estado de São Paulo",
+  "UA-63": "Járkov",
+  "GR-H": "Grecia Central",
+  "PK-IS": "F.C.T.",
+  "AU-NSW": "Isla de Lord Howe",
+  "PK-BA": "Baluchistán"
+ },
+ "outlets": {},
+ "disputed": {
+  "ucrania-ocupada": {
+   "headline": "Regiones ucranianas bajo ocupación parcial",
+   "summary": "Rusia declaró la anexión de las cuatro regiones en 2022 y controla parte de ellas. La Asamblea General de la ONU, en la resolución ES-11/4, declaró inválida la anexión.",
+   "claims.0.name": "Regiones (óblast) de Ucrania",
+   "claims.1.name": "Regiones anexadas en 2022"
+  },
+  "palestina": {
+   "headline": "Territorio Palestino",
+   "summary": "La ONU usa la expresión Territorio Palestino Ocupado para Cisjordania, incluida Jerusalén Oriental, y Gaza. El Estado de Palestina es Estado observador no miembro de la ONU desde 2012 y lo reconoce la mayoría de los países miembros.",
+   "claims.0.name": "Estado de Palestina",
+   "claims.1.name": "Judea y Samaria (Cisjordania)"
+  }
+ }
+}

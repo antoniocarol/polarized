@@ -1,4 +1,4 @@
-// Polarized — tipos do esquema de dados v0.4.0
+// Polarized — tipos do esquema de dados v0.5.0
 // Espelha schema/polarized.schema.json. Em caso de conflito, o JSON Schema vale.
 
 export type ISODate = string; // RFC 3339, sempre UTC ("Z")
@@ -21,6 +21,7 @@ export interface Place {
   name: string;
   admin1?: string | null;
   admin1Code?: string | null; // ISO 3166-2, ex.: "BR-SP"
+  disputed?: string | null;   // id em Snapshot.disputed quando o lugar está num território disputado
 }
 
 export interface TimeSpan {
@@ -42,7 +43,7 @@ export interface Text { headline: string; summary: string; body?: string }
 
 interface Envelope {
   id: string;               // "<fonte>:<tipo>:<id>"
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   layer: Layer;
   subtype: string;          // ver schema/taxonomy.json
   place: Place;
@@ -55,6 +56,7 @@ interface Envelope {
   clusterKey?: string;
   relations?: Relation[];   // arcos no globo entre dois países
   reportIds?: string[];     // relatos (Report) sobre este fato, até 12
+  attributes?: { programs?: { code: string; label?: string | null; issuer?: string | null; url?: string | null }[] }; // ex.: programas de sanção
   updatedAt: ISODate;
 }
 
@@ -94,7 +96,7 @@ export interface Assertion {
 
 export interface Measure {
   id: string;
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   kind: "measure";
   subject: { type: "condition" | "event" | "place"; id: string };
   metric: string;           // "deslocados_internos", "alíquota_media", …
@@ -119,7 +121,7 @@ export interface TrackSample {
 
 export interface Track {
   id: string;
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   kind: "track";
   layer: "militar";
   subtype: "aeronave" | "navio" | "comboio";
@@ -150,7 +152,7 @@ export interface SupportRef { entityId?: string; precedent?: number; sourceId?: 
 
 export interface Analysis {
   id: string;                 // "plz:analysis:<fato>-<tipo>[-<região>]"
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   kind: "analysis";
   analysisType: "precedente" | "impacto" | "checagem" | "contexto" | "mercado" | "panorama";
   scope?: { type: "fato" | "pais" | "mundo" | "serie"; iso2?: string | null };
@@ -186,7 +188,7 @@ export interface Analysis {
 // Manchete de um veículo. Guardamos só título, link e o resumo do próprio veículo.
 export interface Report {
   id: string;                 // "<fonte>:rep:<hash da url>"
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   kind: "report";
   sourceId: string;           // rss | bluesky | x
   outlet: string;             // chave em Snapshot.outlets
@@ -213,7 +215,7 @@ export interface Report {
 // Fechamento diário de bolsa, câmbio ou commodity.
 export interface Series {
   id: string;                 // "<fonte>:ser:<símbolo>"
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   kind: "series";
   layer: "economia";
   subtype: "indice_bolsa" | "cambio" | "commodity";
@@ -275,13 +277,34 @@ export interface Ingest {
 }
 
 export interface Snapshot {
-  schemaVersion: "0.4.0";
+  schemaVersion: "0.5.0";
   generatedAt: ISODate;
   window: { from: ISODate; to: ISODate };
   dataClass: "example" | "live" | "mixed";
   sources: Record<string, Source>;
   outlets?: Record<string, Outlet>;
+  disputed?: Record<string, DisputedArea>;   // territórios citados pelas entidades
   ingest: Ingest[];           // estado de cada fonte nesta execução
   policy?: Record<string, unknown>;
   entities: Entity[];
+}
+
+// Território disputado (pipeline/data/disputed.json). Nome e fronteira seguem a ONU.
+export interface DisputedArea {
+  id: string;
+  un: string;                 // como a ONU se refere ao lugar
+  claims: { by: string; name: string; status?: "administra" | "reivindica" | "ocupa" | "onu" }[]; // by: ISO 3166-1 ou nome
+  text: Record<string, { headline?: string; summary: string }>;
+}
+
+// text/<idioma>.json: traduções do conteúdo, sobrepostas pelo app. Os caminhos são
+// relativos à entidade ("text.headline", "points.0.text"; "_tl" = título de relato traduzido).
+export interface TextOverlay {
+  lang: string;
+  source: "pt";
+  generatedAt: ISODate;
+  entities: Record<string, Record<string, string>>;
+  admin1: Record<string, string>;                      // ISO 3166-2 -> nome do estado no idioma
+  outlets: Record<string, { funding?: string; note?: string }>;
+  disputed: Record<string, Record<string, string>>;   // headline, summary, claims.N.name
 }

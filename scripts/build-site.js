@@ -1,7 +1,9 @@
 // Monta o site estático para hospedagem própria (GitHub Pages ou qualquer CDN):
 // _site/index.html com o documento completo, _site/snapshot.json e os estados de cada país
-// (_site/geo/admin1/XX.json, carregados só quando alguém dá zoom num país).
+// (_site/geo/admin1/XX.json, carregados só quando alguém dá zoom num país) e as traduções
+// do conteúdo (_site/text/<idioma>.json).
 import fs from "node:fs";
+import path from "node:path";
 import { rel } from "../pipeline/lib/util.js";
 
 const src = process.argv[2] || "public/snapshot.json";
@@ -13,4 +15,7 @@ const head = '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">' +
 fs.writeFileSync(rel("_site/index.html"), `${head}${page}</body></html>`);
 fs.copyFileSync(rel(src), rel("_site/snapshot.json"));
 fs.cpSync(rel("geo/admin1"), rel("_site/geo/admin1"), { recursive: true });
+// Traduções do conteúdo, gravadas pelo pipeline ao lado do instantâneo (text/<idioma>.json).
+const textDir = path.join(path.dirname(rel(src)), "text");
+if (fs.existsSync(textDir)) fs.cpSync(textDir, rel("_site/text"), { recursive: true });
 console.log(`_site/ pronto (snapshot de ${src})`);

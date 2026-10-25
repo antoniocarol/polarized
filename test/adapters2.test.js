@@ -57,8 +57,13 @@ test("OFAC: lê o CSV com programas múltiplos e ignora programas temáticos", (
   const out = list(ofac.normalize(text("ofac.csv"), ctx("ofac")));
   const by = Object.fromEntries(cond(out).map(e => [e.place.iso2, e]));
   assert.deepEqual(Object.keys(by).sort(), ["CU", "IR", "KP", "RU", "VE"]);
-  assert.match(by.RU.text.pt.summary, /4 designações/);
-  assert.match(by.CU.text.pt.summary, /1 designação ligadas/);
+  assert.match(by.RU.text.pt.summary, /4 nomes — pessoas, empresas, navios ou aeronaves — estão/);
+  assert.match(by.CU.text.pt.summary, /1 nome — pessoa, empresa, navio ou aeronave — está/);
+  assert.equal(by.VE.text.pt.headline, "Venezuela sob sanções");
+  // Cada programa vem com código, descrição e emissor, para o app explicar o que é.
+  const ve = by.VE.attributes.programs;
+  assert.ok(ve.length >= 1 && ve.every(p => p.issuer === "OFAC" && p.code.startsWith("VENEZUELA")));
+  assert.ok(ve.some(p => /Ordem Executiva/.test(p.label)));
   assert.equal(by.RU.time.startKnown, false);
   valid(out);
 });

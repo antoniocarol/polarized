@@ -1,0 +1,563 @@
+{
+ "note": "Política do projeto: o nome e a fronteira seguem a ONU; o território disputado é marcado e o app mostra como cada parte o chama. Marcar não é tomar partido. Revise com fontes primárias (resoluções da ONU) antes de mudar um texto. 'match' liga fatos ao território por estado (ISO 3166-2), por país (ISO 3166-1) ou por caixa [oeste, sul, leste, norte] para áreas no mar.",
+ "unView": {
+  "note": "Onde os contornos de origem (Natural Earth) divergem das fronteiras reconhecidas pela ONU, vale a ONU. Cada código passa do país 'from' para o país 'to'.",
+  "codes": {
+   "UA-43": {
+    "from": "RU",
+    "to": "UA"
+   },
+   "UA-40": {
+    "from": "RU",
+    "to": "UA"
+   }
+  },
+  "shapes": {
+   "N. Cyprus": "CY",
+   "Somaliland": "SO",
+   "Kosovo": "XK"
+  },
+  "shapesNote": "Formas do world-atlas sem código ISO: ganham o país pela visão da ONU (Kosovo fica com o código XK, usado por convenção) e a área disputada correspondente."
+ },
+ "areas": [
+  {
+   "id": "crimeia",
+   "un": "República Autônoma da Crimeia e Sebastopol (Ucrânia)",
+   "match": {
+    "admin1": [
+     "UA-43",
+     "UA-40"
+    ]
+   },
+   "claims": [
+    {
+     "by": "UA",
+     "name": "República Autônoma da Crimeia e cidade de Sebastopol",
+     "status": "reivindica"
+    },
+    {
+     "by": "RU",
+     "name": "República da Crimeia e cidade federal de Sebastopol",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Crimeia",
+     "summary": "Anexada pela Rússia em 2014. A Assembleia Geral da ONU, na resolução 68/262, afirmou a integridade territorial da Ucrânia e não reconhece a anexação."
+    }
+   }
+  },
+  {
+   "id": "ucrania-ocupada",
+   "un": "Regiões de Donetsk, Luhansk, Zaporíjia e Kherson (Ucrânia)",
+   "match": {
+    "admin1": [
+     "UA-14",
+     "UA-09",
+     "UA-23",
+     "UA-65"
+    ]
+   },
+   "claims": [
+    {
+     "by": "UA",
+     "name": "Regiões (oblasts) da Ucrânia",
+     "status": "reivindica"
+    },
+    {
+     "by": "RU",
+     "name": "Regiões anexadas em 2022",
+     "status": "ocupa"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Regiões ucranianas sob ocupação parcial",
+     "summary": "A Rússia declarou a anexação das quatro regiões em 2022 e controla parte delas. A Assembleia Geral da ONU, na resolução ES-11/4, declarou a anexação inválida."
+    }
+   }
+  },
+  {
+   "id": "caxemira",
+   "un": "Jammu e Caxemira",
+   "match": {
+    "admin1": [
+     "IN-JK",
+     "IN-LA",
+     "PK-JK",
+     "PK-GB"
+    ]
+   },
+   "claims": [
+    {
+     "by": "IN",
+     "name": "Jammu e Caxemira e Ladaque",
+     "status": "administra"
+    },
+    {
+     "by": "PK",
+     "name": "Azad Caxemira e Gilgit-Baltistão",
+     "status": "administra"
+    },
+    {
+     "by": "CN",
+     "name": "Aksai Chin",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Caxemira",
+     "summary": "Região dividida entre Índia, Paquistão e China desde 1947, com linhas de controle no lugar de fronteiras acordadas. Índia e Paquistão reivindicam a região inteira; resoluções do Conselho de Segurança da ONU de 1948 e 1949 tratam do conflito."
+    }
+   }
+  },
+  {
+   "id": "saara-ocidental",
+   "un": "Saara Ocidental (território não autônomo)",
+   "match": {
+    "iso2": [
+     "EH"
+    ]
+   },
+   "claims": [
+    {
+     "by": "MA",
+     "name": "Províncias do Sul",
+     "status": "administra"
+    },
+    {
+     "by": "Frente Polisário (RASD)",
+     "name": "República Árabe Saaraui Democrática",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Saara Ocidental",
+     "summary": "Está na lista da ONU de territórios não autônomos desde 1963. O Marrocos administra a maior parte; a Frente Polisário reivindica a independência, e a missão da ONU (MINURSO) acompanha o cessar-fogo."
+    }
+   }
+  },
+  {
+   "id": "taiwan",
+   "un": "Taiwan (sem assento na ONU desde a resolução 2758, de 1971)",
+   "match": {
+    "iso2": [
+     "TW"
+    ]
+   },
+   "claims": [
+    {
+     "by": "TW",
+     "name": "República da China (Taiwan)",
+     "status": "administra"
+    },
+    {
+     "by": "CN",
+     "name": "Província de Taiwan",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Taiwan",
+     "summary": "Governada de forma autônoma desde 1949 pela República da China. A República Popular da China reivindica o território. Poucos países mantêm relações diplomáticas formais com Taipé, mas muitos têm laços comerciais e escritórios de representação."
+    }
+   }
+  },
+  {
+   "id": "palestina",
+   "un": "Território Palestino Ocupado",
+   "match": {
+    "iso2": [
+     "PS"
+    ]
+   },
+   "claims": [
+    {
+     "by": "PS",
+     "name": "Estado da Palestina",
+     "status": "reivindica"
+    },
+    {
+     "by": "IL",
+     "name": "Judeia e Samaria (Cisjordânia)",
+     "status": "ocupa"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Território Palestino",
+     "summary": "A ONU usa a expressão Território Palestino Ocupado para a Cisjordânia, incluindo Jerusalém Oriental, e Gaza. O Estado da Palestina é Estado observador não membro da ONU desde 2012 e é reconhecido pela maioria dos países-membros."
+    }
+   }
+  },
+  {
+   "id": "kosovo",
+   "un": "Kosovo (resolução 1244 do Conselho de Segurança)",
+   "match": {
+    "iso2": [
+     "XK"
+    ]
+   },
+   "claims": [
+    {
+     "by": "XK",
+     "name": "República do Kosovo",
+     "status": "administra"
+    },
+    {
+     "by": "RS",
+     "name": "Província Autônoma de Kosovo e Metohija",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Kosovo",
+     "summary": "Declarou independência da Sérvia em 2008, reconhecida por parte dos países-membros da ONU. A Sérvia não reconhece. A ONU se refere ao território nos termos da resolução 1244 do Conselho de Segurança."
+    }
+   }
+  },
+  {
+   "id": "golan",
+   "un": "Colinas de Golã sírias ocupadas",
+   "match": {
+    "bbox": [
+     35.6,
+     32.65,
+     35.95,
+     33.35
+    ]
+   },
+   "claims": [
+    {
+     "by": "SY",
+     "name": "Colinas de Golã",
+     "status": "reivindica"
+    },
+    {
+     "by": "IL",
+     "name": "Colinas de Golã",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Colinas de Golã",
+     "summary": "Sob controle de Israel desde 1967 e anexadas por lei israelense em 1981. A resolução 497 do Conselho de Segurança da ONU considera a anexação nula."
+    }
+   }
+  },
+  {
+   "id": "malvinas",
+   "un": "Ilhas Falkland (Malvinas)",
+   "match": {
+    "iso2": [
+     "FK"
+    ]
+   },
+   "claims": [
+    {
+     "by": "GB",
+     "name": "Ilhas Falkland",
+     "status": "administra"
+    },
+    {
+     "by": "AR",
+     "name": "Ilhas Malvinas",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ilhas Falkland (Malvinas)",
+     "summary": "Território britânico ultramarino reivindicado pela Argentina. A ONU lista as ilhas como território não autônomo e pede negociação entre os dois países."
+    }
+   }
+  },
+  {
+   "id": "abecasia",
+   "un": "Abecásia (Geórgia)",
+   "match": {
+    "admin1": [
+     "GE-AB"
+    ]
+   },
+   "claims": [
+    {
+     "by": "GE",
+     "name": "República Autônoma da Abecásia",
+     "status": "reivindica"
+    },
+    {
+     "by": "Autoridades de fato da Abecásia",
+     "name": "República da Abecásia",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Abecásia",
+     "summary": "Fora do controle do governo georgiano desde a guerra de 1992-1993. A Rússia reconheceu a independência em 2008; a Assembleia Geral da ONU reafirma a integridade territorial da Geórgia."
+    }
+   }
+  },
+  {
+   "id": "transnistria",
+   "un": "Transnístria (Moldávia)",
+   "match": {
+    "admin1": [
+     "MD-SN"
+    ]
+   },
+   "claims": [
+    {
+     "by": "MD",
+     "name": "Unidades administrativo-territoriais da margem esquerda do Dniester",
+     "status": "reivindica"
+    },
+    {
+     "by": "Autoridades de fato da Transnístria",
+     "name": "República Moldava Pridnestroviana",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Transnístria",
+     "summary": "Separou-se da Moldávia após a guerra de 1992 e não é reconhecida por nenhum país-membro da ONU. Tropas russas seguem estacionadas no território."
+    }
+   }
+  },
+  {
+   "id": "arunachal",
+   "un": "Arunachal Pradesh (Índia)",
+   "match": {
+    "admin1": [
+     "IN-AR"
+    ]
+   },
+   "claims": [
+    {
+     "by": "IN",
+     "name": "Arunachal Pradesh",
+     "status": "administra"
+    },
+    {
+     "by": "CN",
+     "name": "Zangnan (Tibete do Sul)",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Arunachal Pradesh",
+     "summary": "Estado administrado pela Índia e reivindicado pela China, que não reconhece a Linha McMahon de 1914 como fronteira."
+    }
+   }
+  },
+  {
+   "id": "spratly",
+   "un": "Ilhas Spratly",
+   "match": {
+    "bbox": [
+     111.5,
+     6.5,
+     117.8,
+     12.0
+    ]
+   },
+   "claims": [
+    {
+     "by": "CN",
+     "name": "Ilhas Nansha",
+     "status": "reivindica"
+    },
+    {
+     "by": "VN",
+     "name": "Ilhas Trường Sa",
+     "status": "reivindica"
+    },
+    {
+     "by": "PH",
+     "name": "Grupo de Ilhas Kalayaan",
+     "status": "reivindica"
+    },
+    {
+     "by": "MY",
+     "name": "Ilhas Spratly",
+     "status": "reivindica"
+    },
+    {
+     "by": "TW",
+     "name": "Ilhas Nansha",
+     "status": "reivindica"
+    },
+    {
+     "by": "BN",
+     "name": "zona econômica no sul do arquipélago",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ilhas Spratly",
+     "summary": "Recifes e ilhotas reivindicados no todo ou em parte por seis governos, vários deles com postos ocupados. Em 2016, um tribunal arbitral sob a Convenção da ONU sobre o Direito do Mar rejeitou a base histórica da reivindicação chinesa; a China não aceita a decisão."
+    }
+   }
+  },
+  {
+   "id": "paracel",
+   "un": "Ilhas Paracel",
+   "match": {
+    "bbox": [
+     111.0,
+     15.6,
+     112.9,
+     17.2
+    ]
+   },
+   "claims": [
+    {
+     "by": "CN",
+     "name": "Ilhas Xisha",
+     "status": "administra"
+    },
+    {
+     "by": "VN",
+     "name": "Ilhas Hoàng Sa",
+     "status": "reivindica"
+    },
+    {
+     "by": "TW",
+     "name": "Ilhas Xisha",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ilhas Paracel",
+     "summary": "Sob controle da China desde 1974; Vietnã e Taiwan reivindicam o arquipélago."
+    }
+   }
+  },
+  {
+   "id": "senkaku",
+   "un": "Ilhas Senkaku (Diaoyu)",
+   "match": {
+    "bbox": [
+     123.4,
+     25.6,
+     124.7,
+     26.0
+    ]
+   },
+   "claims": [
+    {
+     "by": "JP",
+     "name": "Ilhas Senkaku",
+     "status": "administra"
+    },
+    {
+     "by": "CN",
+     "name": "Ilhas Diaoyu",
+     "status": "reivindica"
+    },
+    {
+     "by": "TW",
+     "name": "Ilhas Diaoyutai",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ilhas Senkaku (Diaoyu)",
+     "summary": "Administradas pelo Japão e reivindicadas pela China e por Taiwan."
+    }
+   }
+  },
+  {
+   "id": "curilas-sul",
+   "un": "Ilhas Curilas do Sul",
+   "match": {
+    "bbox": [
+     145.4,
+     43.3,
+     148.9,
+     45.6
+    ]
+   },
+   "claims": [
+    {
+     "by": "RU",
+     "name": "Curilas do Sul",
+     "status": "administra"
+    },
+    {
+     "by": "JP",
+     "name": "Territórios do Norte",
+     "status": "reivindica"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Ilhas Curilas do Sul",
+     "summary": "Sob controle da União Soviética e depois da Rússia desde 1945; o Japão reivindica as quatro ilhas do sul. A disputa impede até hoje um tratado de paz entre os dois países."
+    }
+   }
+  },
+  {
+   "id": "somalilandia",
+   "un": "Somalilândia (Somália)",
+   "match": {
+    "shape": "Somaliland"
+   },
+   "claims": [
+    {
+     "by": "SO",
+     "name": "Regiões do norte da Somália",
+     "status": "reivindica"
+    },
+    {
+     "by": "Somalilândia",
+     "name": "República da Somalilândia",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Somalilândia",
+     "summary": "Declarou independência da Somália em 1991 e tem governo próprio, sem reconhecimento como Estado pela ONU. Partes das regiões de Sool e Sanaag também são disputadas com a Puntlândia."
+    }
+   }
+  },
+  {
+   "id": "chipre-norte",
+   "un": "Chipre (parte norte)",
+   "match": {
+    "shape": "N. Cyprus"
+   },
+   "claims": [
+    {
+     "by": "CY",
+     "name": "Áreas não controladas pelo governo da República de Chipre",
+     "status": "reivindica"
+    },
+    {
+     "by": "Autoridades de fato do norte",
+     "name": "República Turca de Chipre do Norte",
+     "status": "administra"
+    }
+   ],
+   "text": {
+    "pt": {
+     "headline": "Norte de Chipre",
+     "summary": "Sob administração das autoridades cipriotas turcas desde 1974 e reconhecido como Estado apenas pela Turquia. O Conselho de Segurança da ONU, na resolução 541, considerou a declaração de independência de 1983 inválida."
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,322 @@
+{
+ "lang": "zh",
+ "source": "pt",
+ "generatedAt": "2026-10-25T17:00:00Z",
+ "entities": {
+  "plz:analysis:panorama-mundo-2026-10-25": {
+   "text.headline": "此刻的世界：战争、断电断网与一场气旋（示例）",
+   "text.summary": "示例快照中最突出的焦点是全国断网的伊朗、乌克兰能源设施遭袭和苏丹内战，此外还有菲律宾的红色预警气旋。",
+   "points.0.text": "乌克兰战争仍是记录中最严重的冲突；四家新闻机构报道了哈尔科夫能源基础设施遭无人机袭击。",
+   "points.1.text": "在苏丹，内战集中在北达尔富尔，民众流离失所，人道援助进入受限。",
+   "points.2.text": "据 Cloudflare Radar，伊朗依政府命令在全国范围断网，并有抗议遭镇压的记录。",
+   "points.3.text": "一场红色预警气旋抵达菲律宾，数千人从沿海地区撤离。",
+   "points.4.text": "最受关注的三个国家都同时面临暴力和基本服务中断——电力、互联网、人道援助——使影响扩散到记录的死亡人数之外。",
+   "points.5.text": "在追踪的股指中，Ibovespa 在最近一个交易日跌幅最大；该序列的卡片解释了当天的影响因素。",
+   "watch.0": "伊朗断网会持续多久",
+   "watch.1": "随着天气转冷，乌克兰能源设施是否会再次遭袭",
+   "watch.2": "人道援助能否重新进入北达尔富尔",
+   "counterpoint.text": "依据记录暴力事件的数据库和以英语发稿的新闻机构拼出的图景，往往会遗漏饥荒、干旱、债务等不产生每日事件的缓慢危机。",
+   "limits": "概览只使用本快照中的事实。新闻报道或数据库覆盖较少的地区，出现的频率会低于应有水平。"
+  },
+  "acled:evt:IRN9001": {
+   "text.headline": "抗议遭镇压——示例",
+   "text.summary": "抗议者（伊朗）× 伊朗警察部队。记录 2 人死亡。ACLED 引用的原始来源：示例来源。",
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "acled:evt:IRN9002": {
+   "text.headline": "抗议遭镇压——示例",
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "acled:evt:FRA9000": {
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "acled:evt:FRA9007": {
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "acled:evt:FRA9014": {
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "acled:evt:FRA9001": {
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "acled:evt:FRA9008": {
+   "intensityBasis": "2 分，有死亡 +2，有镇压 +1"
+  },
+  "ucdp:cond:ua-guerra-interestatal": {
+   "text.headline": "东欧持续进行的战争",
+   "text.summary": "敌对行动持续，大规模国内流离失所，能源基础设施遭到攻击。",
+   "intensityBasis": "武装事件/24小时 + 累计流离失所人数"
+  },
+  "ucdp:cond:sd-guerra-civil": {
+   "text.headline": "内战与人道危机",
+   "text.summary": "敌对武装力量交战，造成大规模流离失所，人道援助进入受限。",
+   "intensityBasis": "武装事件/24小时 + 受影响人口"
+  },
+  "acled:cond:ps-ocupacao": {
+   "text.headline": "活跃冲突区",
+   "text.summary": "人口稠密地区的军事行动、封锁与人道紧急状况。",
+   "intensityBasis": "每平方公里武装事件/24小时"
+  },
+  "eu_sanctions:cond:ru-regime-sancoes": {
+   "text.headline": "扩大的制裁制度",
+   "text.summary": "多个集团实施的金融、能源和技术制裁。",
+   "intensityBasis": "现行制裁措施 × 受影响行业"
+  },
+  "un_sc:cond:ir-embargo": {
+   "intensityBasis": "现行制裁措施 × 受影响行业"
+  },
+  "gdacs:evt:TC-900103": {
+   "text.headline": "热带气旋——Exemplo 气旋，菲律宾",
+   "text.summary": "GDACS 红色预警。估计强度：持续风速 185 公里/小时。这是模型自动估算；受影响人数稍后由现场机构提供。",
+   "intensityBasis": "GDACS 预警级别：绿色 2，橙色 3，红色 5"
+  },
+  "gdacs:evt:FL-900101": {
+   "intensityBasis": "GDACS 预警级别：绿色 2，橙色 3，红色 5"
+  },
+  "gdacs:evt:VO-900102": {
+   "intensityBasis": "GDACS 预警级别：绿色 2，橙色 3，红色 5"
+  },
+  "gdacs:evt:WF-900104": {
+   "intensityBasis": "GDACS 预警级别：绿色 2，橙色 3，红色 5"
+  },
+  "cloudflare_radar:evt:ex-901-IR": {
+   "text.headline": "全国性断网——伊朗",
+   "text.summary": "据 Cloudflare Radar，原因是政府命令。数据收集时断网仍在持续。",
+   "intensityBasis": "范围（全国 4，地区 3，网络 2），若因政府命令或军事行动 +1"
+  },
+  "cloudflare_radar:evt:ex-902-PK": {
+   "intensityBasis": "范围（全国 4，地区 3，网络 2），若因政府命令或军事行动 +1"
+  },
+  "cisa_kev:evt:CVE-2026-90001": {
+   "text.headline": "被利用的漏洞：ExemploSoft Gateway Exemplo",
+   "text.summary": "CVE-2026-90001——CISA 确认存在主动利用，已知被用于勒索软件攻击。美国联邦机构的修补期限：2026-11-14。",
+   "intensityBasis": "确认被利用为 3，若用于勒索软件攻击为 4"
+  },
+  "cisa_kev:evt:CVE-2026-90002": {
+   "intensityBasis": "确认被利用为 3，若用于勒索软件攻击为 4"
+  },
+  "ucdp:evt:9100001": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100002": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100003": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100004": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100005": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100006": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100007": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100008": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100009": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100010": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100011": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100013": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:evt:9100012": {
+   "intensityBasis": "估计死亡人数（best）：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "ucdp:cond:mm-guerra-civil": {
+   "intensityBasis": "发生活跃冲突的城市/月"
+  },
+  "acled:cond:ht-violencia-armada": {
+   "intensityBasis": "凶杀案/周 + 城市内流离失所"
+  },
+  "ucdp:cond:cd-insurgencia": {
+   "intensityBasis": "活跃武装团体 + 事件/周"
+  },
+  "tse_br:cond:br-presidencial": {
+   "intensityBasis": "距投票天数 + 选民人数"
+  },
+  "fec_us:cond:us-legislativa": {
+   "intensityBasis": "争夺席位 + 距投票天数"
+  },
+  "wto:cond:cn-controle-exportacao": {
+   "intensityBasis": "受影响的贸易额"
+  },
+  "wto:cond:eu-regulacao-comercial": {
+   "intensityBasis": "受影响的贸易额"
+  },
+  "un_sc:cond:kp-regime-sancoes": {
+   "intensityBasis": "现行决议"
+  },
+  "curadoria:evt:br-debate-exemplo": {
+   "intensityBasis": "估计观众人数 + 距投票时间"
+  },
+  "curadoria:evt:br-proposta-congelamento-exemplo": {
+   "intensityBasis": "估计观众人数 + 距投票时间"
+  },
+  "acled:evt:SDN9001": {
+   "intensityBasis": "记录的死亡人数：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "acled:evt:SDN9002": {
+   "intensityBasis": "记录的死亡人数：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "acled:evt:SDN9003": {
+   "intensityBasis": "记录的死亡人数：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "acled:evt:UKR9001": {
+   "intensityBasis": "记录的死亡人数：1 到 9 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "gdelt:evt:fr-greve-geral": {
+   "intensityBasis": "估计参与人数 + 受影响城市"
+  },
+  "imf:cond:ar-crise-cambial": {
+   "intensityBasis": "累计通胀 + 汇率变动"
+  },
+  "wto:cond:in-negociacao-comercial": {
+   "intensityBasis": "涉及的贸易量"
+  },
+  "firms:cond:au-temporada-incendios": {
+   "intensityBasis": "活跃火点/24小时"
+  },
+  "ofac:cond:ve-regime-sancoes": {
+   "intensityBasis": "受限行业"
+  },
+  "usgs:evt:fx26jp01": {
+   "intensityBasis": "（震级 − 4）× 1.25，PAGER 橙色 +1，红色 +2"
+  },
+  "usgs:evt:fx26to04": {
+   "intensityBasis": "（震级 − 4）× 1.25，PAGER 橙色 +1，红色 +2"
+  },
+  "usgs:evt:fx26cl02": {
+   "intensityBasis": "（震级 − 4）× 1.25，PAGER 橙色 +1，红色 +2"
+  },
+  "usgs:evt:fx26id03": {
+   "intensityBasis": "（震级 − 4）× 1.25，PAGER 橙色 +1，红色 +2"
+  },
+  "ioda:evt:SN-1792915200": {
+   "intensityBasis": "IODA 断网分数的 log10，减 1"
+  },
+  "acled:cond:fr-protestos": {
+   "intensityBasis": "2 + 抗议次数的 log10，有镇压 +1"
+  },
+  "ifes:cond:ng-pre-eleitoral": {
+   "intensityBasis": "距投票天数"
+  },
+  "ofac:cond:cu-sancoes": {
+   "intensityBasis": "名单上的现行条目：少于 10 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "un_sc:cond:ly-sancoes": {
+   "intensityBasis": "名单上的现行条目：少于 10 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "un_sc:cond:so-sancoes": {
+   "intensityBasis": "名单上的现行条目：少于 10 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "eu_sanctions:cond:sy-sancoes": {
+   "intensityBasis": "名单上的现行条目：少于 10 → 2，10 到 99 → 3，100 到 999 → 4，1000 及以上 → 5"
+  },
+  "emsc:evt:20261025_0000902": {
+   "intensityBasis": "（震级 − 4）× 1.25"
+  },
+  "rss:rep:ed6dc8f93966f9": {
+   "_tl": "日本东部海域发生 6.1 级地震"
+  },
+  "rss:rep:5d687879861bf4": {
+   "_tl": "无人机袭击哈尔科夫，能源基础设施受损"
+  },
+  "rss:rep:f4fa4a9bf65dd6": {
+   "_tl": "日本东部海域发生强烈地震，未发布海啸预警"
+  },
+  "rss:rep:63043cf0173b6d": {
+   "_tl": "夜间无人机袭击击中哈尔科夫能源基础设施"
+  },
+  "rss:rep:5edc3f16dc8e40": {
+   "_tl": "哈尔科夫能源基础设施遭无人机袭击"
+  },
+  "rss:rep:91dd076cae3436": {
+   "_tl": "日本地震：东部海域发生强震"
+  },
+  "bluesky:rep:51f299bc9ec8cb": {
+   "_tl": "日本东部海域地震：目前所知"
+  },
+  "x:rep:f1e471e270efc8": {
+   "_tl": "哈尔科夫：官员称无人机袭击损坏能源基础设施"
+  },
+  "rss:rep:5d39736b7ece24": {
+   "_tl": "气旋登陆菲律宾，数千人撤离"
+  },
+  "rss:rep:80e919bab74d32": {
+   "_tl": "气旋在菲律宾登陆，数千人撤离"
+  },
+  "rss:rep:ac4c120ec6718c": {
+   "_tl": "气旋在菲律宾登陆，数千人从沿海撤离"
+  },
+  "rss:rep:81546f05daa157": {
+   "_tl": "北达尔富尔法希尔周边战事加剧"
+  },
+  "rss:rep:eb36b9c99eb35a": {
+   "_tl": "伊朗断网进入第二天"
+  },
+  "rss:rep:7342c0c6bbe80b": {
+   "_tl": "北达尔富尔战事加剧，援助组织警告危机恶化"
+  },
+  "rss:rep:b5adeb476de389": {
+   "_tl": "监测机构称伊朗断网进入第二天"
+  }
+ },
+ "admin1": {
+  "BR-DF": "联邦区",
+  "UA-14": "顿涅茨克州",
+  "UA-23": "扎波罗热州",
+  "UA-30": "基辅",
+  "UA-65": "赫尔松州",
+  "SD-DN": "北达尔富尔省",
+  "SD-KH": "喀土穆省",
+  "SD-DS": "东达尔富尔",
+  "SD-KN": "北科尔多凡省",
+  "MM-04": "曼德勒省",
+  "MM-01": "实皆省",
+  "CD-NK": "北基伍省",
+  "RW-03": "北部省",
+  "FR-75": "巴黎",
+  "FR-93": "塞纳-圣但尼省",
+  "FR-95": "瓦勒德瓦兹省",
+  "IR-07": "厄尔布尔士省",
+  "IR-04": "伊斯法罕省",
+  "BR-RS": "南里奥格兰德州",
+  "BR-SP": "圣保罗州",
+  "UA-63": "哈尔科夫州",
+  "CL-CO": "科金博大区",
+  "GR-H": "中希腊",
+  "PK-IS": "伊斯兰堡首都区",
+  "ID-JT": "中爪哇省",
+  "AU-NSW": "豪勋爵岛",
+  "IR-25": "亚兹德省",
+  "SN-TC": "坦巴昆达区",
+  "PK-BA": "俾路支省"
+ },
+ "outlets": {},
+ "disputed": {
+  "ucrania-ocupada": {
+   "headline": "部分被占领的乌克兰地区",
+   "summary": "俄罗斯于 2022 年宣布吞并这四个地区，并控制其中部分地区。联合国大会在 ES-11/4 号决议中宣布吞并无效。",
+   "claims.0.name": "乌克兰的州",
+   "claims.1.name": "2022 年吞并的地区"
+  },
+  "palestina": {
+   "headline": "巴勒斯坦领土",
+   "summary": "联合国用“被占领巴勒斯坦领土”指约旦河西岸（包括东耶路撒冷）和加沙。巴勒斯坦国自 2012 年起是联合国非会员观察员国，获得大多数会员国承认。",
+   "claims.0.name": "巴勒斯坦国",
+   "claims.1.name": "犹太和撒玛利亚（约旦河西岸）"
+  }
+ }
+}

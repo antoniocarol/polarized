@@ -1,5 +1,5 @@
 // Completa o estado (admin-1) de eventos com ponto e dá posição aos relatos com estado conhecido.
-import { admin1At, admin1List } from "./geo.js";
+import { admin1At, admin1List, disputedAt, disputedArea } from "./geo.js";
 
 export function enrichAdmin1(entities) {
   let n = 0;
@@ -15,4 +15,21 @@ export function enrichAdmin1(entities) {
     }
   }
   return n;
+}
+
+/** Marca fatos e relatos que caem num território disputado (pipeline/data/disputed.json). */
+export function enrichDisputed(entities) {
+  for (const e of entities) {
+    if (!e.place || !["condition", "event", "report"].includes(e.kind)) continue;
+    const pt = e.geo?.type === "Point" ? e.geo.coordinates : null;
+    // Condição no centro do país só herda a disputa quando o país inteiro é disputado (match por país).
+    const id = disputedAt(e.place, e.kind === "condition" && !e.place.admin1Code ? null : pt?.[1] ?? null, pt?.[0] ?? null);
+    if (id) e.place.disputed = id; else delete e.place.disputed;
+  }
+}
+/** As áreas citadas, para snapshot.disputed. */
+export function disputedFor(entities) {
+  const out = {};
+  for (const e of entities) { const id = e.place?.disputed; if (id && !out[id]) { const a = disputedArea(id); if (a) out[id] = { id: a.id, un: a.un, claims: a.claims, text: a.text }; } }
+  return out;
 }

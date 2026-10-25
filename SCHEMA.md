@@ -1,6 +1,6 @@
 # Esquema de dados do Polarized
 
-Versão `0.4.0` · documento normativo do projeto
+Versão `0.5.0` · documento normativo do projeto
 
 Tudo que aparece no globo é uma **entidade** com **procedência obrigatória**. Nenhuma
 afirmação chega à tela sem dizer de onde veio, quando foi observada e quem a contesta.
@@ -14,6 +14,8 @@ Arquivos de referência:
 | `schema/taxonomy.json` | Camadas, subtipos, cores, molduras e ícones. |
 | `schema/sources.json` | Registro de fontes, com licença e direito de redistribuição. |
 | `schema/outlets.json` | Veículos de notícia acompanhados, com tipo, financiamento e critério de entrada. |
+| `pipeline/data/disputed.json` | Territórios disputados e a visão da ONU para as fronteiras (§12). |
+| `i18n/ui/*.json` | Textos fixos da interface em cada idioma (§13). |
 
 ---
 
@@ -38,12 +40,12 @@ apontando para a guerra.
 ```jsonc
 {
   "id": "usgs:evt:us7000abcd",     // <fonte>:<tipo>:<id na fonte> — reprocessar não duplica
-  "schemaVersion": "0.4.0",
+  "schemaVersion": "0.5.0",
   "kind": "event",
   "layer": "sismico",
   "subtype": "terremoto",          // define o ícone (taxonomy.json)
   "geo": { "type": "Point", "coordinates": [141.9, 36.1] },  // GeoJSON [lon, lat]; null = sem lugar no mapa
-  "place": { "iso2": "JP", "iso3": "JPN", "name": "Japão", "admin1": null, "admin1Code": null },  // admin1Code = ISO 3166-2 ("BR-SP")
+  "place": { "iso2": "JP", "iso3": "JPN", "name": "Japão", "admin1": null, "admin1Code": null },  // admin1Code = ISO 3166-2 ("BR-SP"); disputed = id do território (§12)
   "time": { "start": "…", "end": null, "observedAt": "…", "precision": "minute" },  // startKnown: false quando a fonte não diz o início
   "intensity": 3,                  // 0–5, sempre calculada
   "intensityBasis": "(magnitude − 4) × 1,25, +1 se PAGER laranja, +2 se vermelho",
@@ -56,6 +58,7 @@ apontando para a guerra.
   "tags": ["oceanico"],
   "relations": [{ "type": "sanciona", "from": "US", "to": "RU", "label": "…" }],  // arcos entre países (§8)
   "reportIds": ["rss:rep:…"],      // relatos sobre este fato (§6)
+  "attributes": { "programs": [{ "code": "VENEZUELA-EO13850", "label": "Ordem Executiva 13850 (2018): …", "issuer": "OFAC", "url": "https://…" }] },
   "updatedAt": "…",
   "magnitude": { "value": 6.1, "scale": "Mww" },   // só em sismos
   "depthKm": 34
@@ -268,12 +271,13 @@ conferência, não aconselhamento jurídico.
 
 ```jsonc
 {
-  "schemaVersion": "0.4.0",
+  "schemaVersion": "0.5.0",
   "generatedAt": "…",
   "window": { "from": "…", "to": "…" },
   "dataClass": "example",          // example | live — a tarja de exemplo no app segue este campo
   "sources": { "<id>": { … } },
   "outlets": { "<id>": { … } },     // veículos citados pelos relatos
+  "disputed": { "<id>": { … } },    // territórios disputados citados (§12)
   "ingest": [{ "sourceId": "usgs", "status": "ok", "count": 12, "fetchedAt": "…", "error": null }],
   "policy": { "militaryTrackZones": [ … ], "analysis": { "reused": 6, "generated": 2, … } },
   "entities": [ … ]
@@ -284,3 +288,45 @@ conferência, não aconselhamento jurídico.
 bloqueada por licença fica visível em vez de sumir em silêncio. Cada entidade é validada
 sozinha antes de entrar: uma malformada é descartada, contada em `rejected` e o primeiro
 erro vai em `error`, sem derrubar o resto do snapshot.
+
+## 12. Territórios disputados e visão da ONU
+
+`pipeline/data/disputed.json` guarda a política do projeto para lugares disputados:
+
+- **Fronteira e nome seguem a ONU.** Onde a malha de origem (Natural Earth) põe um estado em
+  outro país, `unView.codes` devolve o estado ao país reconhecido pela ONU (a Crimeia, UA-43 e
+  UA-40, fica com a Ucrânia). Formas sem código ISO (`unView.shapes`) ganham país do mesmo jeito.
+  A regra vale no pipeline, nos contornos dos estados e no toque do globo.
+- **O território é marcado.** Cada área tem `match` (por estado, por país, por forma ou por caixa
+  no mar). Fato ou relato que cai nela recebe `place.disputed`, e `snapshot.disputed` traz a área
+  com o nome na ONU, como cada parte a chama (`claims`) e um resumo neutro.
+- **Marcar não é tomar partido.** O app mostra todas as partes lado a lado e diz qual é a política.
+  Os textos citam a resolução da ONU que trata do caso; mude-os só com fonte primária.
+
+## 13. Idiomas
+
+A interface vem traduzida à mão (`i18n/ui/<idioma>.json`, hoje pt, en, es, fr, ar e zh; o
+`npm run sync-app` embute os dicionários no app). O idioma vem do navegador, de `?lang=` ou da
+escolha em "Sobre"; árabe espelha o layout. Nomes de países vêm do `Intl` do navegador; de
+estados, do Natural Earth.
+
+O conteúdo nasce em português e o pipeline grava `text/<idioma>.json` ao lado do instantâneo:
+
+```jsonc
+{ "lang": "en", "source": "pt", "generatedAt": "…",
+  "entities": { "ucdp:cond:ua-guerra": { "text.headline": "…", "intensityBasis": "…" },
+                "plz:analysis:mundo-…": { "points.0.text": "…" },
+                "rss:rep:3f9a…": { "_tl": "…" } },          // título de relato traduzido
+  "admin1": { "UA-43": "Autonomous Republic of Crimea" },
+  "outlets": { "aljazeera": { "funding": "…" } },
+  "disputed": { "crimeia": { "summary": "…", "claims.0.name": "…" } } }
+```
+
+- **Cada texto é traduzido uma vez.** O cache guarda a tradução pela impressão digital do texto
+  e do idioma; só texto novo ou alterado gasta modelo. `policy.translation.maxStringsPerRun`
+  limita cada execução, na ordem: resumo do mundo, panoramas, análises, fatos mais graves, manchetes.
+- **Conferência de números.** Uma tradução que perde ou muda um número ou uma data do original é
+  descartada; o item fica no original e o app avisa. Para árabe e chinês, o código também confere
+  que a tradução está na escrita do idioma.
+- **Manchete de veículo não é reescrita.** O app mostra a original e, embaixo, a tradução.
+- **Falas citadas** em checagens ficam como foram ditas; traduz-se a explicação.
